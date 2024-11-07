@@ -1,7 +1,7 @@
-import { Footer } from "./components/Footer";
-import { Shelf } from "./components/Shelf";
-import { Header } from "./layouts/Header";
-import { Main } from "./layouts/Main";
+import { Footer } from "./components/Footer/Footer";
+import { Shelf } from "./components/Shelf/Shelf";
+import { Header } from "./layouts/Header/Header";
+import { Main } from "./layouts/Main/Main";
 
 function App() {
   return (
