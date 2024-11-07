@@ -1,0 +1,18 @@
+.shelf {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  height: 300px;
+  background-color: #eaffd7;
+  padding: 20px 20px 0 20px;
+  border: none;
+}
+
+.shelf_bottom {
+  border-bottom: 4px solid #000;
+  width: 90%;
+  height: 5px;
+  box-shadow: 10px 10px 5px 1px rgba(0, 0, 0, 0.4);
+}

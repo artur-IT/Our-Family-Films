@@ -1,0 +1,9 @@
+.movie {
+  display: flex;
+  justify-content: flex-start;
+  align-self: start;
+  width: 200px;
+  height: 300px;
+  margin: 0 30px;
+  border: 1px solid #000;
+}
