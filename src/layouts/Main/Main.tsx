@@ -5,10 +5,5 @@ interface MainProps {
 }
 
 export const Main: React.FC<MainProps> = ({ children }) => {
-  return (
-    <div className={style.main}>
-      <p>Main</p>
-      {children}
-    </div>
-  );
+  return <div className={style.main}>{children}</div>;
 };

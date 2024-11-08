@@ -15,15 +15,14 @@
   justify-content: flex-start;
   width: 100%;
   height: 140px;
-  padding: 10px;
   color: #fff;
   background-color: #000;
-  opacity: 1; /* początkowo element jest niewidoczny */
-  transition: opacity 0.4s ease; /* płynna animacja */
+  opacity: 0.2; /* początkowo element jest niewidoczny */
+  transition: all 0.4s ease; /* płynna animacja */
 }
 
 .movie:hover .movie_description {
-  opacity: 0.7; /* po najechaniu element staje się widoczny */
+  opacity: 1; /* po najechaniu element staje się widoczny */
 }
 
 .movie_data p,
@@ -44,20 +43,30 @@
 }
 
 img {
-  width: 25px;
+  width: 20px;
 }
 img.star:hover {
   background: url("/star-full.svg");
   cursor: pointer;
 }
 
-.comments {
+.comments_icon {
   position: absolute;
-  right: 20px;
+  right: 15px;
   cursor: pointer;
+}
+.movie[data-expanded="true"] .movie_description {
+  height: 280px;
 }
 
 span {
   margin-left: 10px;
   font-size: 12px;
+}
+p {
+  font-size: 12px;
+}
+.comments_user p {
+  margin: 5px 10px;
+  font-style: italic;
 }
