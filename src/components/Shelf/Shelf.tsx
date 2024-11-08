@@ -27,6 +27,7 @@ export const Shelf = () => {
           <Movie />
           <Movie />
           <Movie />
+          <Movie />
         </div>
 
         <button className={`${style.scroll_button} ${style.scroll_right}`} onClick={() => scroll("right")}>

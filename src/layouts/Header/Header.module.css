@@ -2,6 +2,7 @@
   position: absolute;
   top: 0;
   width: 100vw;
+  min-width: 1100px;
   height: 70px;
   background-color: #ffffff;
   color: #000000;
@@ -15,6 +16,7 @@
 nav {
   display: flex;
   width: 90%;
+  max-width: 1300px;
   margin: 0 auto;
   justify-content: space-between;
   align-items: center;

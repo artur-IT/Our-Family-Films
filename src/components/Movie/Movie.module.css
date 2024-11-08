@@ -1,4 +1,5 @@
 .movie {
+  position: relative;
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
@@ -9,8 +10,6 @@
 }
 
 .movie_description {
-  position: relative;
-  /* top: 160px; */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -49,11 +48,13 @@ img {
 }
 img.star:hover {
   background: url("/star-full.svg");
+  cursor: pointer;
 }
 
 .comments {
   position: absolute;
   right: 20px;
+  cursor: pointer;
 }
 
 span {
