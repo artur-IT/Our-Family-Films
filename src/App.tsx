@@ -1,16 +1,18 @@
-import { Footer } from "./layouts/Footer/Footer";
-import { Shelf } from "./components/Shelf/Shelf";
 import { Header } from "./layouts/Header/Header";
 import { Main } from "./layouts/Main/Main";
-import { PanelAdmin } from "./layouts/PanelAdmin/PanelAdmin";
+import { Shelf } from "./components/Shelf/Shelf";
+import { Footer } from "./layouts/Footer/Footer";
+
+import { useState } from "react";
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   return (
     <>
-      <Header />
+      <Header onLogin={() => setIsLoggedIn(!isLoggedIn)} />
       <Main>
-        <Shelf />
-        <PanelAdmin />
+        <Shelf isLoggedIn={isLoggedIn} />
       </Main>
       <Footer />
     </>

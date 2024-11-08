@@ -2,12 +2,12 @@ import { Movie } from "../Movie/Movie";
 import style from "./Shelf.module.css";
 import { useRef } from "react";
 
-export const Shelf = () => {
+export const Shelf = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   const scroll = (direction: "left" | "right") => {
     if (containerRef.current) {
-      const scrollAmount = 300; // możesz dostosować wartość
+      const scrollAmount = 1000;
       containerRef.current.scrollBy({
         left: direction === "left" ? -scrollAmount : scrollAmount,
         behavior: "smooth",
@@ -23,11 +23,11 @@ export const Shelf = () => {
         </button>
 
         <div className={style.shelf_movie_container} ref={containerRef}>
-          <Movie />
-          <Movie />
-          <Movie />
-          <Movie />
-          <Movie />
+          <Movie isLoggedIn={isLoggedIn} />
+          <Movie isLoggedIn={isLoggedIn} />
+          <Movie isLoggedIn={isLoggedIn} />
+          <Movie isLoggedIn={isLoggedIn} />
+          <Movie isLoggedIn={isLoggedIn} />
         </div>
 
         <button className={`${style.scroll_button} ${style.scroll_right}`} onClick={() => scroll("right")}>
