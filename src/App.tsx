@@ -4,6 +4,8 @@ import { Shelf } from "./components/Shelf/Shelf";
 import { Footer } from "./layouts/Footer/Footer";
 
 import { useState } from "react";
+import { MovieEdit } from "./components/MovieEdit/MovieEdit";
+// import MovieSearch from "./api/MovieSearch";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -14,6 +16,8 @@ function App() {
       <Main>
         <Shelf isLoggedIn={isLoggedIn} />
       </Main>
+      {/* <MovieSearch /> */}
+      <MovieEdit />
       <Footer />
     </>
   );

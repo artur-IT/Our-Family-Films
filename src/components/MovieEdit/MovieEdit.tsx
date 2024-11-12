@@ -1,4 +1,5 @@
 import { useState } from "react";
+import styles from "./MovieEdit.module.css";
 
 export const MovieEdit = () => {
   const [isEditing, setIsEditing] = useState(false);
@@ -33,7 +34,7 @@ export const MovieEdit = () => {
   };
 
   return (
-    <div className="movie-edit">
+    <div className={styles.movieEdit}>
       {isEditing ? (
         <div className="edit-form">
           <input type="text" name="title" value={movieData.title} onChange={handleChange} placeholder="Movie title" />
