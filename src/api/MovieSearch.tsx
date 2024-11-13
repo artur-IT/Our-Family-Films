@@ -66,7 +66,6 @@ const MovieSearch: React.FC = () => {
             />
           ))}
       </div>
-      {selectedPoster && <MovieAdd />} {/* Renderuj MovieAdd */}
     </div>
   );
 };

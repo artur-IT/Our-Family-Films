@@ -7,7 +7,8 @@ import { useState } from "react";
 import { PanelLogin } from "./layouts/PanelLogin/PanelLogin";
 // import MovieAdd from "./components/MovieAdd/MovieAdd";
 // import { MovieEdit } from "./components/MovieEdit/MovieEdit";
-import MovieSearch from "./api/MovieSearch";
+// import MovieSearch from "./api/MovieSearch";
+import MovieAdd from "./components/MovieAdd/MovieAdd";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -18,7 +19,7 @@ function App() {
       <Main>
         <Shelf isLoggedIn={isLoggedIn} />
         {isLoggedIn && <PanelLogin />}
-        {isLoggedIn && <MovieSearch />}
+        {isLoggedIn && <MovieAdd />}
       </Main>
       <Footer />
     </>
