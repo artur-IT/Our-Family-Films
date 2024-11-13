@@ -1,10 +1,9 @@
 .movieSearchContainer {
-  position: absolute;
-  top: 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 20px;
+  margin: 10px;
+  padding: 0 10px;
   border: 1px solid #000;
   background-color: lightslategrey;
 }
@@ -44,6 +43,6 @@
 }
 
 .movieTitle {
-  font-size: 2rem;
+  font-size: 1.5rem;
   margin: 0;
 }

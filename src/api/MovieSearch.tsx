@@ -1,12 +1,17 @@
 import React, { useState } from "react";
+import { useMovie } from "../context/MovieContext";
+import MovieAdd from "../components/MovieAdd/MovieAdd";
 import styles from "./MovieSearch.module.css";
 
 const MovieSearch: React.FC = () => {
+  const { setMovie } = useMovie();
   const [movieTitle, setMovieTitle] = useState("");
   const [moviePosters, setMoviePosters] = useState([]);
   const [orgTitle, setOrgMovieTitle] = useState("");
+  const [selectedPoster, setSelectedPoster] = useState<string | null>(null);
 
   const fetchMovieData = (title: string) => {
+    setSelectedPoster(null);
     const url = `https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(title)}&api_key=ad405f3b86fe05aa920a6b1736fdd9db`;
     fetch(url)
       .then((response) => {
@@ -31,6 +36,7 @@ const MovieSearch: React.FC = () => {
 
   return (
     <div className={styles.movieSearchContainer}>
+      {selectedPoster && <p>Wybrany plakat: {selectedPoster}</p>}
       <div className={styles.searchArea}>
         <input
           type="text"
@@ -46,15 +52,21 @@ const MovieSearch: React.FC = () => {
       <p className={styles.movieTitle}>{orgTitle}</p>
       <div>
         {moviePosters.length > 0 &&
+          !selectedPoster &&
           moviePosters.map((poster, index) => (
             <img
               key={index}
               src={`https://image.tmdb.org/t/p/w500${poster}`}
               alt={`Movie Poster ${index}`}
               className={styles.moviePoster}
+              onClick={() => {
+                setSelectedPoster(poster);
+                setMovie(orgTitle, poster);
+              }}
             />
           ))}
       </div>
+      {selectedPoster && <MovieAdd />} {/* Renderuj MovieAdd */}
     </div>
   );
 };

@@ -23,7 +23,6 @@ export const Movie = ({
       </div>
 
       <div className={style.rating}>
-        {}
         <img src={movie.rating > 0 ? starFullIcon : starEmptyIcon} alt="star" className={style.star} />
         <img src={movie.rating >= 2 ? starFullIcon : starEmptyIcon} alt="star" className={style.star} />
         <img src={movie.rating == 3 ? starFullIcon : starEmptyIcon} alt="star" className={style.star} />

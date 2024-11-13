@@ -5,6 +5,7 @@ export const Header = ({ onLogin }: { onLogin: () => void }) => {
     <header className={style.header}>
       <nav>
         <p>Our Family Films</p>
+        <a href="#">Dodaj film</a>
         <a href="#" onClick={onLogin}>
           Zaloguj
         </a>
