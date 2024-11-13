@@ -1,4 +1,5 @@
 import { useState } from "react";
+import styles from "./PanelLogin.module.css";
 
 export const PanelLogin = () => {
   const [loginData, setLoginData] = useState({
@@ -21,14 +22,14 @@ export const PanelLogin = () => {
   };
 
   return (
-    <div className="login-panel">
+    <div className={styles.loginPanel}>
       <h2>Login</h2>
       <form onSubmit={handleSubmit}>
-        <div className="form-group">
+        <div className={styles.formGroup}>
           <label htmlFor="username">Username:</label>
           <input type="text" id="username" name="username" value={loginData.username} onChange={handleChange} required />
         </div>
-        <div className="form-group">
+        <div className={styles.formGroup}>
           <label htmlFor="password">Password:</label>
           <input type="password" id="password" name="password" value={loginData.password} onChange={handleChange} required />
         </div>

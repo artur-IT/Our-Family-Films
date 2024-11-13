@@ -22,7 +22,7 @@
 }
 
 .movie:hover .movie_description {
-  opacity: 1; /* po najechaniu element staje się widoczny */
+  opacity: 1;
 }
 
 .movie_data p,
