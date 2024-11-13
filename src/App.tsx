@@ -19,7 +19,7 @@ function App() {
       </Main>
       {/* <MovieSearch /> */}
       {/* <MovieEdit /> */}
-      <PanelLogin />
+      {isLoggedIn && <PanelLogin />}
       <Footer />
     </>
   );

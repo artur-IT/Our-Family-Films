@@ -45,10 +45,10 @@
 img {
   width: 20px;
 }
-img.star:hover {
+/* img.star:hover {
   background: url("/star-full.svg");
   cursor: pointer;
-}
+} */
 
 .comments_icon {
   position: absolute;
