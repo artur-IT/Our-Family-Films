@@ -10,14 +10,17 @@ const MovieAdd: React.FC = () => {
       <h2>Dodaj film</h2>
       <MovieSearch />
       <form className={styles.movieAddForm}>
-        <label htmlFor="title">Tytuł: {title}</label>
-        <input type="text" id="title" />
-        <label htmlFor="year">Rok</label>
-        <input type="number" id="year" />
+        <label htmlFor="title">Tytuł</label>
+        <input type="text" id="title" defaultValue={title} />
+        <label htmlFor="genre">Typ</label>
+        <select name="type" id="type">
+          <option value="film">Film</option>
+          <option value="serial">Serial</option>
+        </select>
         <label htmlFor="genre">Gatunek</label>
         <input type="text" id="genre" />
-        <label htmlFor="poster">Plakat: {posterPath}</label>
-        <input type="text" id="poster" />
+        {/* <label htmlFor="poster">Plakat: {posterPath}</label>
+        <input type="text" id="poster" defaultValue={posterPath || ""} /> */}
         <button type="submit">Dodaj film</button>
       </form>
     </div>

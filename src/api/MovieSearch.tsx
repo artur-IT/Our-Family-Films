@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useMovie } from "../context/MovieContext";
-import MovieAdd from "../components/MovieAdd/MovieAdd";
 import styles from "./MovieSearch.module.css";
 
 const MovieSearch: React.FC = () => {
@@ -12,7 +11,7 @@ const MovieSearch: React.FC = () => {
 
   const fetchMovieData = (title: string) => {
     setSelectedPoster(null);
-    const url = `https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(title)}&api_key=ad405f3b86fe05aa920a6b1736fdd9db`;
+    const url = `https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(title)}&api_key=ad405f3b86fe05aa920a6b1736fdd9db&`;
     fetch(url)
       .then((response) => {
         if (!response.ok) {
@@ -22,6 +21,7 @@ const MovieSearch: React.FC = () => {
       })
       .then((data) => {
         if (data.results.length > 0) {
+          console.log(data.results);
           const posters = data.results.map((result: { poster_path: string }) => result.poster_path);
           setMoviePosters(posters);
           setOrgMovieTitle(data.results[0].original_title);
