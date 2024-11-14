@@ -18,7 +18,7 @@ function App() {
       <Header onLogin={() => setIsLoggedIn(!isLoggedIn)} />
       <Main>
         <Shelf isLoggedIn={isLoggedIn} />
-        {isLoggedIn && <PanelLogin />}
+        {/* {isLoggedIn && <PanelLogin />} */}
         {isLoggedIn && <MovieAdd />}
       </Main>
       <Footer />

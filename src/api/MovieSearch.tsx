@@ -1,16 +1,21 @@
 import React, { useState } from "react";
 import { useMovie } from "../context/MovieContext";
+// import MovieAdd from "../components/MovieAdd/MovieAdd";
+// import { MovieData } from "../types/types";
 import styles from "./MovieSearch.module.css";
+import { Movie } from "../components/Movie/Movie";
+import MovieAdd from "../components/MovieAdd/MovieAdd";
 
 const MovieSearch: React.FC = () => {
-  const { setMovie } = useMovie();
+  const { setSelectedTitle, setSelectedPoster, selectedPoster, selectedTitle } = useMovie();
+  // const [movieDB, setMovieDB] = useState<MovieData[]>([]);
   const [movieTitle, setMovieTitle] = useState("");
   const [moviePosters, setMoviePosters] = useState([]);
-  const [orgTitle, setOrgMovieTitle] = useState("");
-  const [selectedPoster, setSelectedPoster] = useState<string | null>(null);
+  // const [orgTitle, setOrgMovieTitle] = useState("");
+  // const [poster, setPoster] = useState<string>("");
 
   const fetchMovieData = (title: string) => {
-    setSelectedPoster(null);
+    setSelectedPoster("");
     const url = `https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(title)}&api_key=ad405f3b86fe05aa920a6b1736fdd9db&`;
     fetch(url)
       .then((response) => {
@@ -21,10 +26,9 @@ const MovieSearch: React.FC = () => {
       })
       .then((data) => {
         if (data.results.length > 0) {
-          console.log(data.results);
           const posters = data.results.map((result: { poster_path: string }) => result.poster_path);
           setMoviePosters(posters);
-          setOrgMovieTitle(data.results[0].original_title);
+          setMovieTitle(data.results[0].original_title);
         }
       })
       .catch((error) => {
@@ -37,6 +41,7 @@ const MovieSearch: React.FC = () => {
   return (
     <div className={styles.movieSearchContainer}>
       {selectedPoster && <p>Wybrany plakat: {selectedPoster}</p>}
+      <p className={styles.movieTitle}>{selectedTitle}</p>
       <div className={styles.searchArea}>
         <input
           type="text"
@@ -49,10 +54,9 @@ const MovieSearch: React.FC = () => {
           Szukaj
         </button>
       </div>
-      <p className={styles.movieTitle}>{orgTitle}</p>
+
       <div>
         {moviePosters.length > 0 &&
-          !selectedPoster &&
           moviePosters.map((poster, index) => (
             <img
               key={index}
@@ -60,8 +64,8 @@ const MovieSearch: React.FC = () => {
               alt={`Movie Poster ${index}`}
               className={styles.moviePoster}
               onClick={() => {
+                setSelectedTitle(movieTitle);
                 setSelectedPoster(poster);
-                setMovie(orgTitle, poster);
               }}
             />
           ))}

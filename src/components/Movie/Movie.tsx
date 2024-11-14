@@ -4,14 +4,9 @@ import { PanelAdmin } from "../../layouts/PanelAdmin/PanelAdmin";
 import starEmptyIcon from "/star-empty.svg";
 import starFullIcon from "/star-full.svg";
 import commentsIcon from "/comments.svg";
+import { MovieData } from "../../types/types";
 
-export const Movie = ({
-  movie,
-  isLoggedIn,
-}: {
-  movie: { title: string; year: number; genre: string; rating: 1 | 2 | 3; comments: string[] };
-  isLoggedIn: boolean;
-}) => {
+export const Movie = ({ movie, isLoggedIn }: { movie: MovieData; isLoggedIn: boolean; orgTitle: string; poster: string }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const movieDescription = (
