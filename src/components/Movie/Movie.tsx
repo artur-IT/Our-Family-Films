@@ -8,6 +8,7 @@ import { MovieData } from "../../types/types";
 
 export const Movie = ({ movie, isLoggedIn }: { movie: MovieData; isLoggedIn: boolean; orgTitle: string; poster: string }) => {
   const [isExpanded, setIsExpanded] = useState(false);
+  console.log(movie.image);
 
   const movieDescription = (
     <div className={style.movie_description}>
@@ -34,7 +35,7 @@ export const Movie = ({ movie, isLoggedIn }: { movie: MovieData; isLoggedIn: boo
   );
 
   return (
-    <div className={style.movie} data-expanded={isExpanded}>
+    <div className={style.movie} data-expanded={isExpanded} style={{ backgroundImage: `url(${movie.image})` }}>
       {isLoggedIn && <PanelAdmin />} {movieDescription}
     </div>
   );

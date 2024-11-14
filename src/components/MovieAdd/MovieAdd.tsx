@@ -8,8 +8,8 @@ interface MovieAddProps {
   movieDB: MovieData[];
   setMovieDB: React.Dispatch<React.SetStateAction<MovieData[]>>;
 }
-const MovieAdd: React.FC<MovieAddProps> = ({ title, posterPath }: { title: string; posterPath: string }) => {
-  const { addMovie } = useMovie();
+const MovieAdd: React.FC<MovieAddProps> = () => {
+  const { addMovie, selectedTitle, selectedPoster } = useMovie();
   const [genre, setGenre] = useState("");
   const [type, setType] = useState("film");
 
@@ -19,11 +19,11 @@ const MovieAdd: React.FC<MovieAddProps> = ({ title, posterPath }: { title: strin
     // Tworzenie nowego obiektu filmu
     const newMovie = {
       id: Date.now(),
-      title: title,
+      title: selectedTitle,
       genre: genre,
       rating: 0,
       comments: [],
-      image: posterPath || "",
+      image: `https://image.tmdb.org/t/p/w500${selectedPoster || ""}`,
     };
     console.log("Dodano nowy film:", newMovie);
     addMovie(newMovie as MovieData);
@@ -35,7 +35,7 @@ const MovieAdd: React.FC<MovieAddProps> = ({ title, posterPath }: { title: strin
       <MovieSearch />
       <form className={styles.movieAddForm} onSubmit={handleSubmit}>
         <label htmlFor="title">Tytuł</label>
-        <input type="text" id="title" defaultValue={title} />
+        <input type="text" id="title" defaultValue={selectedTitle} />
         <label htmlFor="type">Typ</label>
         <select name="type" id="type" value={type} onChange={(e) => setType(e.target.value)}>
           <option value="film">Film</option>
@@ -43,6 +43,7 @@ const MovieAdd: React.FC<MovieAddProps> = ({ title, posterPath }: { title: strin
         </select>
         <label htmlFor="genre">Gatunek</label>
         <input type="text" id="genre" maxLength={30} value={genre} onChange={(e) => setGenre(e.target.value)} />
+        <p>{selectedPoster}</p>
         <button type="submit">Dodaj film</button>
       </form>
     </div>

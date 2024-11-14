@@ -1,18 +1,11 @@
 import React, { useState } from "react";
 import { useMovie } from "../context/MovieContext";
-// import MovieAdd from "../components/MovieAdd/MovieAdd";
-// import { MovieData } from "../types/types";
 import styles from "./MovieSearch.module.css";
-import { Movie } from "../components/Movie/Movie";
-import MovieAdd from "../components/MovieAdd/MovieAdd";
 
 const MovieSearch: React.FC = () => {
-  const { setSelectedTitle, setSelectedPoster, selectedPoster, selectedTitle } = useMovie();
-  // const [movieDB, setMovieDB] = useState<MovieData[]>([]);
+  const { setSelectedTitle, setSelectedPoster } = useMovie();
   const [movieTitle, setMovieTitle] = useState("");
   const [moviePosters, setMoviePosters] = useState([]);
-  // const [orgTitle, setOrgMovieTitle] = useState("");
-  // const [poster, setPoster] = useState<string>("");
 
   const fetchMovieData = (title: string) => {
     setSelectedPoster("");
@@ -26,6 +19,7 @@ const MovieSearch: React.FC = () => {
       })
       .then((data) => {
         if (data.results.length > 0) {
+          console.log(data.results);
           const posters = data.results.map((result: { poster_path: string }) => result.poster_path);
           setMoviePosters(posters);
           setMovieTitle(data.results[0].original_title);
@@ -40,8 +34,6 @@ const MovieSearch: React.FC = () => {
 
   return (
     <div className={styles.movieSearchContainer}>
-      {selectedPoster && <p>Wybrany plakat: {selectedPoster}</p>}
-      <p className={styles.movieTitle}>{selectedTitle}</p>
       <div className={styles.searchArea}>
         <input
           type="text"

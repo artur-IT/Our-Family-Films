@@ -7,6 +7,7 @@
   height: 280px;
   margin: 0 20px;
   border: 1px solid #000;
+  background-size: 100%;
 }
 
 .movie_description {
@@ -17,8 +18,8 @@
   height: 140px;
   color: #fff;
   background-color: #000;
-  opacity: 0.2; /* początkowo element jest niewidoczny */
-  transition: all 0.4s ease; /* płynna animacja */
+  opacity: 0.2;
+  transition: all 0.4s ease;
 }
 
 .movie:hover .movie_description {
