@@ -4,10 +4,8 @@ import { Shelf } from "./components/Shelf/Shelf";
 import { Footer } from "./layouts/Footer/Footer";
 
 import { useState } from "react";
-import { PanelLogin } from "./layouts/PanelLogin/PanelLogin";
-// import MovieAdd from "./components/MovieAdd/MovieAdd";
+// import { PanelLogin } from "./layouts/PanelLogin/PanelLogin";
 // import { MovieEdit } from "./components/MovieEdit/MovieEdit";
-// import MovieSearch from "./api/MovieSearch";
 import MovieAdd from "./components/MovieAdd/MovieAdd";
 
 function App() {

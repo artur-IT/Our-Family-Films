@@ -1,4 +1,3 @@
-// src/context/MovieContext.tsx
 import React, { createContext, useContext, useState } from "react";
 import { MovieData } from "../types/types";
 
@@ -6,7 +5,6 @@ const movieDB: MovieData[] = [
   {
     id: 1,
     title: "Rambo",
-    year: 1982,
     genre: "Action",
     rating: 1,
     comments: ["Komentarz 1", "Komentarz 2", "Komentarz 3"],
@@ -15,7 +13,6 @@ const movieDB: MovieData[] = [
   {
     id: 2,
     title: "Rambo II",
-    year: 1985,
     genre: "Action",
     rating: 2,
     comments: ["Komentarz 1", "Komentarz 2"],
@@ -24,7 +21,6 @@ const movieDB: MovieData[] = [
   {
     id: 3,
     title: "Rambo III",
-    year: 1988,
     genre: "Action",
     rating: 3,
     comments: ["Komentarz 1"],
@@ -35,9 +31,9 @@ const movieDB: MovieData[] = [
 interface MovieContextType {
   movies: MovieData[];
   addMovie: (newMovie: MovieData) => void;
-  selectedTitle: string; // Dodano tytuł filmu
-  selectedPoster: string; // Dodano plakat filmu
-  setSelectedTitle: (title: string) => void; // Funkcja do ustawiania tytułu
+  selectedTitle: string;
+  selectedPoster: string;
+  setSelectedTitle: (title: string) => void;
   setSelectedPoster: (poster: string) => void; // Funkcja do ustawiania plakatu
 }
 

@@ -8,13 +8,12 @@ import { MovieData } from "../../types/types";
 
 export const Movie = ({ movie, isLoggedIn }: { movie: MovieData; isLoggedIn: boolean; orgTitle: string; poster: string }) => {
   const [isExpanded, setIsExpanded] = useState(false);
-  console.log(movie.image);
 
   const movieDescription = (
     <div className={style.movie_description}>
       <div className={style.movie_data}>
         <p>{movie.title}</p>
-        <p>{movie.year}</p>
+        <p>{`(${movie.type})`}</p>
         <p>{movie.genre}</p>
       </div>
 

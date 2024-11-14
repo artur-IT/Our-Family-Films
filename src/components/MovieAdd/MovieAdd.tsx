@@ -20,12 +20,13 @@ const MovieAdd: React.FC<MovieAddProps> = () => {
     const newMovie = {
       id: Date.now(),
       title: selectedTitle,
+      type: type,
       genre: genre,
       rating: 0,
       comments: [],
       image: `https://image.tmdb.org/t/p/w500${selectedPoster || ""}`,
     };
-    console.log("Dodano nowy film:", newMovie);
+    // console.log("Dodano nowy film:", newMovie);
     addMovie(newMovie as MovieData);
   };
 
@@ -38,12 +39,11 @@ const MovieAdd: React.FC<MovieAddProps> = () => {
         <input type="text" id="title" defaultValue={selectedTitle} />
         <label htmlFor="type">Typ</label>
         <select name="type" id="type" value={type} onChange={(e) => setType(e.target.value)}>
-          <option value="film">Film</option>
-          <option value="serial">Serial</option>
+          <option value="Film">Film</option>
+          <option value="Serial">Serial</option>
         </select>
         <label htmlFor="genre">Gatunek</label>
         <input type="text" id="genre" maxLength={30} value={genre} onChange={(e) => setGenre(e.target.value)} />
-        <p>{selectedPoster}</p>
         <button type="submit">Dodaj film</button>
       </form>
     </div>

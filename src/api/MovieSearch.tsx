@@ -19,7 +19,7 @@ const MovieSearch: React.FC = () => {
       })
       .then((data) => {
         if (data.results.length > 0) {
-          console.log(data.results);
+          // console.log(data.results);
           const posters = data.results.map((result: { poster_path: string }) => result.poster_path);
           setMoviePosters(posters);
           setMovieTitle(data.results[0].original_title);

@@ -1,7 +1,7 @@
 export interface MovieData {
   id: number;
   title: string;
-  year?: number;
+  type: string;
   genre: string;
   rating: 0 | 1 | 2 | 3;
   comments: string[];
