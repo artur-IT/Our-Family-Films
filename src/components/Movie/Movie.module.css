@@ -7,7 +7,7 @@
   height: 280px;
   margin: 0 20px;
   border: 2px solid #000;
-  background-size: 95%;
+  background-size: cover;
   box-shadow: #000 10px 10px 10px 0px;
 }
 

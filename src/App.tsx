@@ -17,7 +17,7 @@ function App() {
       <Main>
         <Shelf isLoggedIn={isLoggedIn} />
         {/* {isLoggedIn && <PanelLogin />} */}
-        {isLoggedIn && <MovieAdd />}
+        {isLoggedIn && <MovieAdd setLoginIn={setIsLoggedIn} />}
       </Main>
       <Footer />
     </>

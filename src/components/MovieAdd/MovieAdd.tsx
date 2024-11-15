@@ -7,9 +7,10 @@ import { MovieData } from "../../types/types";
 interface MovieAddProps {
   movieDB: MovieData[];
   setMovieDB: React.Dispatch<React.SetStateAction<MovieData[]>>;
+  setLoginIn: (e: boolean) => boolean;
 }
-const MovieAdd: React.FC<MovieAddProps> = () => {
-  const { addMovie, selectedTitle, selectedPoster } = useMovie();
+const MovieAdd: React.FC<MovieAddProps> = ({ setLoginIn }) => {
+  const { addMovie, selectedTitle, selectedPoster, setSelectedTitle } = useMovie();
   const [genre, setGenre] = useState("");
   const [type, setType] = useState("film");
 
@@ -28,6 +29,9 @@ const MovieAdd: React.FC<MovieAddProps> = () => {
     };
     // console.log("Dodano nowy film:", newMovie);
     addMovie(newMovie as MovieData);
+    setSelectedTitle("");
+    setGenre("");
+    setLoginIn(false);
   };
 
   return (
@@ -36,7 +40,7 @@ const MovieAdd: React.FC<MovieAddProps> = () => {
       <MovieSearch />
       <form className={styles.movieAddForm} onSubmit={handleSubmit}>
         <label htmlFor="title">Tytuł</label>
-        <input type="text" id="title" defaultValue={selectedTitle} />
+        <input type="text" id="title" value={selectedTitle} onChange={(e) => setSelectedTitle(e.target.value)} />
         <label htmlFor="type">Typ</label>
         <select name="type" id="type" value={type} onChange={(e) => setType(e.target.value)}>
           <option value="Film">Film</option>

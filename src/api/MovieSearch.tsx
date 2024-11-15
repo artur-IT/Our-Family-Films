@@ -58,6 +58,8 @@ const MovieSearch: React.FC = () => {
               onClick={() => {
                 setSelectedTitle(movieTitle);
                 setSelectedPoster(poster);
+                setMoviePosters([]);
+                setMovieTitle("");
               }}
             />
           ))}

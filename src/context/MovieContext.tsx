@@ -5,6 +5,7 @@ const movieDB: MovieData[] = [
   {
     id: 1,
     title: "Rambo",
+    type: "film",
     genre: "Action",
     rating: 1,
     comments: ["Komentarz 1", "Komentarz 2", "Komentarz 3"],
@@ -13,17 +14,10 @@ const movieDB: MovieData[] = [
   {
     id: 2,
     title: "Rambo II",
+    type: "film",
     genre: "Action",
     rating: 2,
     comments: ["Komentarz 1", "Komentarz 2"],
-    image: "https://via.placeholder.com/150",
-  },
-  {
-    id: 3,
-    title: "Rambo III",
-    genre: "Action",
-    rating: 3,
-    comments: ["Komentarz 1"],
     image: "https://via.placeholder.com/150",
   },
 ];
