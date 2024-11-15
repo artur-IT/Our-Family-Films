@@ -47,7 +47,7 @@ const MovieSearch: React.FC = () => {
         </button>
       </div>
 
-      <div>
+      <div className={styles.posters}>
         {moviePosters.length > 0 &&
           moviePosters.map((poster, index) => (
             <img

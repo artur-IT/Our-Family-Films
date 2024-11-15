@@ -2,8 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 10px;
-  padding: 0 10px;
+  /* width: 100%; */
   border: 1px solid #000;
   background-color: lightslategrey;
 }
@@ -11,13 +10,13 @@
 .searchArea {
   display: flex;
   align-items: center;
-  margin: 15px 0;
+  margin: 0;
 }
 
 .movieSearchInput {
   padding: 10px;
   font-size: 16px;
-  width: 300px;
+  width: 250px;
   border: 1px solid #ccc;
   border-radius: 4px;
 }
@@ -35,6 +34,17 @@
 
 .movieSearchButton:hover {
   background-color: #0056b3;
+}
+
+.posters {
+  position: absolute;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 200%;
+  margin: 0;
+  background-color: #0056b3;
+  z-index: 5;
 }
 
 .moviePoster {
