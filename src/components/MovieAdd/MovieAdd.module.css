@@ -1,13 +1,13 @@
 .movieAdd {
   position: absolute;
   top: 100px;
-  left: 0;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  width: 600px;
-  height: 500px;
+  width: 400px;
+  height: 400px;
   padding: 10px;
   color: #fff;
   border-radius: 10px;
@@ -24,15 +24,47 @@
 .movieAddForm {
   display: flex;
   flex-direction: column;
-  align-self: start;
+  align-self: center;
   align-items: start;
-  width: 200px;
+  width: 350px;
   height: 300px;
   padding: 10px;
   color: #fff;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   transition: all 0.4s ease;
-  z-index: 5;
+  z-index: 4;
   background-color: darkgoldenrod;
+}
+
+.movieAddForm div {
+  margin: 0px 0;
+}
+
+.movieAddForm div label {
+  display: inline-block;
+  width: 80px;
+}
+.movieAddForm div input {
+  /* width: 200px; */
+  height: 20px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  padding: 5px;
+  margin: 5px;
+}
+.movieAddForm div select {
+  height: 30px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  padding: 5px;
+  margin: 5px;
+}
+input.poster_checkbox {
+  /* width: 25px; */
+  height: 20px;
+}
+.movieAddForm button {
+  margin: 5px 0px 0 84px;
+  padding: 5px 10px;
 }

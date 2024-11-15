@@ -2,6 +2,7 @@ import { connectToDatabase } from "./dbConnection.js";
 
 // Get all posts from MongoDB
 export const handler = async (req, res) => {
+  console.log("plik: getArticles.js");
   if (req.method === "GET") {
     try {
       const database = await connectToDatabase();

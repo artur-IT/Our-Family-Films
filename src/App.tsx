@@ -3,13 +3,30 @@ import { Main } from "./layouts/Main/Main";
 import { Shelf } from "./components/Shelf/Shelf";
 import { Footer } from "./layouts/Footer/Footer";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 // import { PanelLogin } from "./layouts/PanelLogin/PanelLogin";
 // import { MovieEdit } from "./components/MovieEdit/MovieEdit";
 import MovieAdd from "./components/MovieAdd/MovieAdd";
+// import connectToDatabase from "../src/api/dbConnection.js";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+
+  // get articles from MongoDB
+  const getPosts = () => {
+    return fetch("http://localhost:3000/api/getArticles")
+      .then((response) => {
+        console.log(response); // Logowanie odpowiedzi
+        return response.json(); // Próbuj konwertować na JSON
+      })
+      .then((data) => {
+        console.log(data); // Wyświetlenie pobranych danych w konsoli przeglądarki
+      })
+      .catch((error) => console.error("Błąd:", error));
+  };
+  useEffect(() => {
+    getPosts();
+  }, []);
 
   return (
     <>

@@ -5,9 +5,9 @@ import styles from "./MovieAdd.module.css";
 import { MovieData } from "../../types/types";
 
 interface MovieAddProps {
-  movieDB: MovieData[];
-  setMovieDB: React.Dispatch<React.SetStateAction<MovieData[]>>;
-  setLoginIn: (e: boolean) => boolean;
+  movieDB?: MovieData[];
+  setMovieDB?: (value: MovieData[]) => void;
+  setLoginIn: (value: boolean) => void;
 }
 const MovieAdd: React.FC<MovieAddProps> = ({ setLoginIn }) => {
   const { addMovie, selectedTitle, selectedPoster, setSelectedTitle } = useMovie();
@@ -39,15 +39,26 @@ const MovieAdd: React.FC<MovieAddProps> = ({ setLoginIn }) => {
       <h2>Dodaj film</h2>
       <MovieSearch />
       <form className={styles.movieAddForm} onSubmit={handleSubmit}>
-        <label htmlFor="title">Tytuł</label>
-        <input type="text" id="title" value={selectedTitle} onChange={(e) => setSelectedTitle(e.target.value)} />
-        <label htmlFor="type">Typ</label>
-        <select name="type" id="type" value={type} onChange={(e) => setType(e.target.value)}>
-          <option value="Film">Film</option>
-          <option value="Serial">Serial</option>
-        </select>
-        <label htmlFor="genre">Gatunek</label>
-        <input type="text" id="genre" maxLength={30} value={genre} onChange={(e) => setGenre(e.target.value)} />
+        <div className="title_section">
+          <label htmlFor="title">Tytuł</label>
+          <input type="text" id="title" value={selectedTitle} onChange={(e) => setSelectedTitle(e.target.value)} />
+        </div>
+        <div className="type_section">
+          <label htmlFor="type">Typ</label>
+          <select name="type" id="type" value={type} onChange={(e) => setType(e.target.value)}>
+            <option value="Film">Film</option>
+            <option value="Serial">Serial</option>
+          </select>
+        </div>
+        <div className="genre_section">
+          <label htmlFor="genre">Gatunek</label>
+          <input type="text" id="genre" maxLength={30} value={genre} onChange={(e) => setGenre(e.target.value)} />
+        </div>
+        <div className="poster_section">
+          <label id="poster">Plakat</label>
+          <input className="poster_checkbox" type="checkbox" checked={selectedPoster ? true : false} readOnly />
+        </div>
+
         <button type="submit">Dodaj film</button>
       </form>
     </div>

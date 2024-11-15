@@ -9,7 +9,7 @@ const movieDB: MovieData[] = [
     genre: "Action",
     rating: 1,
     comments: ["Komentarz 1", "Komentarz 2", "Komentarz 3"],
-    image: "https://via.placeholder.com/150",
+    image: "",
   },
   {
     id: 2,
@@ -18,7 +18,7 @@ const movieDB: MovieData[] = [
     genre: "Action",
     rating: 2,
     comments: ["Komentarz 1", "Komentarz 2"],
-    image: "https://via.placeholder.com/150",
+    image: "",
   },
 ];
 
@@ -40,6 +40,7 @@ export const MovieProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 
   const addMovie = (newMovie: MovieData) => {
     setMovies((prevMovies) => [...prevMovies, newMovie]);
+    setSelectedPoster("");
   };
 
   return (

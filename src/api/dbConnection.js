@@ -4,7 +4,7 @@ import { MongoClient } from "mongodb";
 const uri =
   "mongodb+srv://vercel-admin-user-6703a71951df322efc1f187a:FNGsib8AhXU4LJp8@cluster0.r4uz6i5.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 const client = new MongoClient(uri);
-
+console.log("plik: dbConnection.js");
 export const connectToDatabase = async () => {
   try {
     await client.connect();
