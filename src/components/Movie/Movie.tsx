@@ -26,9 +26,9 @@ export const Movie = ({ movie, isLoggedIn }: { movie: MovieData; isLoggedIn: boo
       </div>
 
       <div className={style.comments_user}>
-        {movie.comments.map((comment, idx) => (
+        {/* {movie.comments.map((comment, idx) => (
           <p key={idx}>{comment}</p>
-        ))}
+        ))} */}
       </div>
     </div>
   );

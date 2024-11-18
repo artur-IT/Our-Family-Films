@@ -1,26 +1,28 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import { MovieData } from "../types/types";
 
-const movieDB: MovieData[] = [
-  {
-    id: 1,
-    title: "Rambo",
-    type: "film",
-    genre: "Action",
-    rating: 1,
-    comments: ["Komentarz 1", "Komentarz 2", "Komentarz 3"],
-    image: "",
-  },
-  {
-    id: 2,
-    title: "Rambo II",
-    type: "film",
-    genre: "Action",
-    rating: 2,
-    comments: ["Komentarz 1", "Komentarz 2"],
-    image: "",
-  },
-];
+// get articles from MongoDB - ONLY FOR LOCAL TESTING
+
+// const movieDB: MovieData[] = [
+//   {
+//     id: "h3445hb65bgh6vg6vf",
+//     title: "Rambo",
+//     type: "film",
+//     genre: "Action",
+//     rating: 1,
+//     comments: ["Komentarz 1", "Komentarz 2", "Komentarz 3"],
+//     image: "",
+//   },
+//   {
+//     id: "ujhuyhyu5678",
+//     title: "Rambo II",
+//     type: "film",
+//     genre: "Action",
+//     rating: 2,
+//     comments: ["Komentarz 1", "Komentarz 2"],
+//     image: "",
+//   },
+// ];
 
 interface MovieContextType {
   movies: MovieData[];
@@ -34,9 +36,25 @@ interface MovieContextType {
 const MovieContext = createContext<MovieContextType | undefined>(undefined);
 
 export const MovieProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [movies, setMovies] = useState<MovieData[]>(movieDB);
+  const [movies, setMovies] = useState<MovieData[]>([]);
   const [selectedTitle, setSelectedTitle] = useState<string>("");
   const [selectedPoster, setSelectedPoster] = useState<string>("");
+
+  const getPosts = () => {
+    return fetch("http://localhost:3000/api/getArticles")
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        setMovies(data);
+        console.log(data);
+      })
+      .catch((error) => console.error("Błąd:", error));
+  };
+
+  useEffect(() => {
+    getPosts();
+  }, []);
 
   const addMovie = (newMovie: MovieData) => {
     setMovies((prevMovies) => [...prevMovies, newMovie]);

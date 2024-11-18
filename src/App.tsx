@@ -13,20 +13,19 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
   // get articles from MongoDB
-  const getPosts = () => {
-    return fetch("http://localhost:3000/api/getArticles")
-      .then((response) => {
-        console.log(response); // Logowanie odpowiedzi
-        return response.json(); // Próbuj konwertować na JSON
-      })
-      .then((data) => {
-        console.log(data); // Wyświetlenie pobranych danych w konsoli przeglądarki
-      })
-      .catch((error) => console.error("Błąd:", error));
-  };
-  useEffect(() => {
-    getPosts();
-  }, []);
+  // const getPosts = () => {
+  //   return (
+  //     fetch("http://localhost:3000/api/getArticles")
+  //       .then((response) => {
+  //         // console.log(response);
+  //         return response.json();
+  //       })
+  //       .catch((error) => console.error("Błąd:", error))
+  //   );
+  // };
+  // useEffect(() => {
+  //   getPosts();
+  // }, []);
 
   return (
     <>
