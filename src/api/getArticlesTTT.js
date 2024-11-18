@@ -9,7 +9,6 @@ export const handler = async (req, res) => {
       const articles = database.collection("our_movies");
       const result = await articles.find().sort({ date: -1 }).toArray();
       res.status(200).json(result);
-      // console.log(result);
     } catch (error) {
       console.error("Błąd podczas pobierania artykułów:", error);
       res.status(500).json({ error: "Nie udało się pobrać artykułów", details: error.message });

@@ -17,7 +17,7 @@ const port = 3000;
 app.use(express.json({ limit: process.env.MAX_BODY_SIZE || "5mb" }));
 app.use(express.urlencoded({ limit: process.env.MAX_BODY_SIZE || "5mb", extended: true }));
 
-app.use(cors()); // Dodaj to, aby zezwolić na CORS
+app.use(cors()); // Zezwolenie na CORS
 
 // get posts from MongoDB
 app.get("/api/getArticles", async (req, res) => {
