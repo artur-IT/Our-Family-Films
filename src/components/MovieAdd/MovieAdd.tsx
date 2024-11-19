@@ -1,8 +1,8 @@
 import { useState } from "react";
-import MovieSearch from "../../api/MovieSearch";
-import { useMovie } from "../../context/MovieContext";
+import MovieSearch from "@/app/api/MovieSearch";
+import { useMovie } from "@/context/MovieContext";
 import styles from "./MovieAdd.module.css";
-import { MovieData } from "../../types/types";
+import { MovieData } from "@/types/types";
 
 interface MovieAddProps {
   movieDB?: MovieData[];

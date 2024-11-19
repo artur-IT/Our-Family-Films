@@ -1,10 +1,11 @@
 import { useState } from "react";
 import style from "./Movie.module.css";
 import { PanelAdmin } from "../../layouts/PanelAdmin/PanelAdmin";
-import starEmptyIcon from "/star-empty.svg";
-import starFullIcon from "/star-full.svg";
-import commentsIcon from "/comments.svg";
-import { MovieData } from "../../types/types";
+import starEmptyIcon from "../../../public/star-empty.svg";
+import starFullIcon from "../../../public/star-full.svg";
+import commentsIcon from "../../../public/comments.svg";
+import { MovieData } from "@/types/types";
+import Image from "next/image";
 
 export const Movie = ({ movie, isLoggedIn }: { movie: MovieData; isLoggedIn: boolean; orgTitle: string; poster: string }) => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -18,11 +19,11 @@ export const Movie = ({ movie, isLoggedIn }: { movie: MovieData; isLoggedIn: boo
       </div>
 
       <div className={style.rating}>
-        <img src={movie.rating > 0 ? starFullIcon : starEmptyIcon} alt="star" className={style.star} />
-        <img src={movie.rating >= 2 ? starFullIcon : starEmptyIcon} alt="star" className={style.star} />
-        <img src={movie.rating == 3 ? starFullIcon : starEmptyIcon} alt="star" className={style.star} />
+        <Image src={movie.rating > 0 ? starFullIcon : starEmptyIcon} alt="star" className={style.star} />
+        <Image src={movie.rating >= 2 ? starFullIcon : starEmptyIcon} alt="star" className={style.star} />
+        <Image src={movie.rating === 3 ? starFullIcon : starEmptyIcon} alt="star" className={style.star} />
         <span>(2/4)</span>
-        <img src={commentsIcon} alt="comments icon" className={style.comments_icon} onClick={() => setIsExpanded(!isExpanded)} />
+        <Image src={commentsIcon} alt="comments icon" className={style.comments_icon} onClick={() => setIsExpanded(!isExpanded)} />
       </div>
 
       <div className={style.comments_user}>

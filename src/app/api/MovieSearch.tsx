@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useMovie } from "../context/MovieContext";
+import { useMovie } from "@/context/MovieContext";
 import styles from "./MovieSearch.module.css";
 
 const MovieSearch: React.FC = () => {

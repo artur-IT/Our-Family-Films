@@ -1,11 +1,13 @@
-import { Movie } from "../Movie/Movie";
+import { Movie } from "@/components/Movie/Movie";
 import style from "./Shelf.module.css";
 import { useRef } from "react";
-import { useMovie } from "../../context/MovieContext";
+// import { useMovie } from "../../context/MovieContext";
+import { useContext } from "react";
+import { MovieContext } from "@/context/MovieContext";
 
 export const Shelf = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const { movies } = useMovie(); // Uzyskaj filmy z kontekstu
+  const { movies } = useContext(MovieContext) || { movies: [] }; // Uzyskaj filmy z kontekstu
 
   const scroll = (direction: "left" | "right") => {
     if (containerRef.current) {
@@ -26,7 +28,7 @@ export const Shelf = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
 
         <div className={style.shelf_movie_container} ref={containerRef}>
           {movies.map((movie) => (
-            <Movie key={movie.id} movie={movie} isLoggedIn={isLoggedIn} />
+            <Movie key={Number(movie.id)} movie={movie} isLoggedIn={isLoggedIn} />
           ))}
         </div>
 
