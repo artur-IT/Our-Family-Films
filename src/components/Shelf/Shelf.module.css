@@ -21,7 +21,7 @@
   justify-content: flex-start;
   background-color: #fffbdb;
   gap: 20px;
-  overflow-x: auto;
+  /* overflow-x: auto; */
   scroll-behavior: smooth;
   /* Ukrywa scrollbar w Firefox */
   scrollbar-width: none;
@@ -69,6 +69,7 @@
   height: 15px;
   background-color: #000;
   box-shadow: 10px 10px 5px 1px rgba(0, 0, 0, 0.4);
+  z-index: 5;
 }
 
 .year {
