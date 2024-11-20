@@ -12,7 +12,7 @@ const MovieSearch: React.FC = () => {
   const [moviePosters, setMoviePosters] = useState<string[]>([]);
 
   const fetchMovieData = (title: string) => {
-    debugger;
+    // debugger;
     if (setSelectedPoster) {
       setSelectedPoster("");
     }
@@ -43,6 +43,7 @@ const MovieSearch: React.FC = () => {
       <div className={styles.searchArea}>
         <input
           type="text"
+          name="movieTitle"
           value={movieTitle}
           onChange={(e) => setMovieTitle(e.target.value)}
           placeholder="Wpisz tytuł filmu"
