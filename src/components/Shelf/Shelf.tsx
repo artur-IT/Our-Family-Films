@@ -1,7 +1,6 @@
 import { Movie } from "@/components/Movie/Movie";
 import style from "./Shelf.module.css";
 import { useRef } from "react";
-// import { useMovie } from "../../context/MovieContext";
 import { useContext } from "react";
 import { MovieContext } from "@/context/MovieContext";
 

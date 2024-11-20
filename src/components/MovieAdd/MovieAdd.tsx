@@ -1,8 +1,9 @@
-import { useState } from "react";
+"use client";
+import { useContext, useState } from "react";
 import MovieSearch from "@/app/api/MovieSearch";
-import { useMovie } from "@/context/MovieContext";
 import styles from "./MovieAdd.module.css";
 import { MovieData } from "@/types/types";
+import { MovieContext } from "@/context/MovieContext";
 
 interface MovieAddProps {
   movieDB?: MovieData[];
@@ -10,16 +11,17 @@ interface MovieAddProps {
   setLoginIn: (value: boolean) => void;
 }
 const MovieAdd: React.FC<MovieAddProps> = ({ setLoginIn }) => {
-  const { addMovie, selectedTitle, selectedPoster, setSelectedTitle } = useMovie();
+  const movieContext = useContext(MovieContext);
+  const { addMovie, selectedTitle, selectedPoster, setSelectedTitle } = movieContext || {};
   const [genre, setGenre] = useState("");
   const [type, setType] = useState("film");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-
+    // const id = Date.now();
     // Tworzenie nowego obiektu filmu
     const newMovie = {
-      id: Date.now(),
+      id: 8,
       title: selectedTitle,
       type: type,
       genre: genre,
@@ -28,8 +30,12 @@ const MovieAdd: React.FC<MovieAddProps> = ({ setLoginIn }) => {
       image: `https://image.tmdb.org/t/p/w500${selectedPoster || ""}`,
     };
     // console.log("Dodano nowy film:", newMovie);
-    addMovie(newMovie as MovieData);
-    setSelectedTitle("");
+    if (addMovie) {
+      addMovie(newMovie as unknown as MovieData);
+    }
+    if (setSelectedTitle) {
+      setSelectedTitle("");
+    }
     setGenre("");
     setLoginIn(false);
   };
@@ -41,7 +47,7 @@ const MovieAdd: React.FC<MovieAddProps> = ({ setLoginIn }) => {
       <form className={styles.movieAddForm} onSubmit={handleSubmit}>
         <div className="title_section">
           <label htmlFor="title">Tytuł</label>
-          <input type="text" id="title" value={selectedTitle} onChange={(e) => setSelectedTitle(e.target.value)} />
+          <input type="text" id="title" value={selectedTitle || ""} onChange={(e) => setSelectedTitle?.(e.target.value)} />
         </div>
         <div className="type_section">
           <label htmlFor="type">Typ</label>

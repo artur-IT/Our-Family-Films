@@ -1,14 +1,21 @@
-import React, { useState } from "react";
-import { useMovie } from "@/context/MovieContext";
+"use client";
+import React, { useContext, useState } from "react";
+import { MovieContext } from "@/context/MovieContext";
 import styles from "./MovieSearch.module.css";
+import Image from "next/image";
 
 const MovieSearch: React.FC = () => {
-  const { setSelectedTitle, setSelectedPoster } = useMovie();
+  const context = useContext(MovieContext);
+  const setSelectedTitle = context?.setSelectedTitle;
+  const setSelectedPoster = context?.setSelectedPoster;
   const [movieTitle, setMovieTitle] = useState("");
-  const [moviePosters, setMoviePosters] = useState([]);
+  const [moviePosters, setMoviePosters] = useState<string[]>([]);
 
   const fetchMovieData = (title: string) => {
-    setSelectedPoster("");
+    debugger;
+    if (setSelectedPoster) {
+      setSelectedPoster("");
+    }
     const url = `https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(title)}&api_key=ad405f3b86fe05aa920a6b1736fdd9db&`;
     fetch(url)
       .then((response) => {
@@ -19,7 +26,6 @@ const MovieSearch: React.FC = () => {
       })
       .then((data) => {
         if (data.results.length > 0) {
-          // console.log(data.results);
           const posters = data.results.map((result: { poster_path: string }) => result.poster_path);
           setMoviePosters(posters);
           setMovieTitle(data.results[0].original_title);
@@ -50,16 +56,18 @@ const MovieSearch: React.FC = () => {
       <div className={styles.posters}>
         {moviePosters.length > 0 &&
           moviePosters.map((poster, index) => (
-            <img
+            <Image
               key={index}
               src={`https://image.tmdb.org/t/p/w500${poster}`}
               alt={`Movie Poster ${index}`}
               className={styles.moviePoster}
               onClick={() => {
-                setSelectedTitle(movieTitle);
-                setSelectedPoster(poster);
-                setMoviePosters([]);
-                setMovieTitle("");
+                if (setSelectedTitle && setSelectedPoster) {
+                  setSelectedTitle(movieTitle);
+                  setSelectedPoster(poster);
+                  setMoviePosters([]);
+                  setMovieTitle("");
+                }
               }}
             />
           ))}
