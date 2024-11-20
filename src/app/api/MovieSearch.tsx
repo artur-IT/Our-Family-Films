@@ -9,14 +9,14 @@ const MovieSearch: React.FC = () => {
   const setSelectedTitle = context?.setSelectedTitle;
   const setSelectedPoster = context?.setSelectedPoster;
   const [movieTitle, setMovieTitle] = useState("");
-  const [moviePosters, setMoviePosters] = useState<string[]>([]);
+  const [moviePosters, setMoviePosters] = useState([]);
 
   const fetchMovieData = (title: string) => {
     // debugger;
-    if (setSelectedPoster) {
-      setSelectedPoster("");
-    }
-    const url = `https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(title)}&api_key=ad405f3b86fe05aa920a6b1736fdd9db&`;
+    // if (setSelectedPoster) {
+    //   setSelectedPoster("");
+    // }
+    const url = `https://api.themoviedb.org/3/search/movie?query=${title}&api_key=ad405f3b86fe05aa920a6b1736fdd9db&`;
     fetch(url)
       .then((response) => {
         if (!response.ok) {
@@ -62,6 +62,8 @@ const MovieSearch: React.FC = () => {
               src={`https://image.tmdb.org/t/p/w500${poster}`}
               alt={`Movie Poster ${index}`}
               className={styles.moviePoster}
+              width={150}
+              height={225}
               onClick={() => {
                 if (setSelectedTitle && setSelectedPoster) {
                   setSelectedTitle(movieTitle);
