@@ -1,9 +1,5 @@
 import style from "./Main.module.css";
 
-interface MainProps {
-  children: React.ReactNode;
-}
-
-export const Main: React.FC<MainProps> = ({ children }) => {
+export const Main = ({ children }: { children: React.ReactNode }) => {
   return <div className={style.main}>{children}</div>;
 };
