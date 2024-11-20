@@ -1,6 +1,5 @@
 import { useState } from "react";
 import style from "./Movie.module.css";
-import { PanelAdmin } from "../../layouts/PanelAdmin/PanelAdmin";
 import starEmptyIcon from "../../../public/star-empty.svg";
 import starFullIcon from "../../../public/star-full.svg";
 import commentsIcon from "../../../public/comments.svg";

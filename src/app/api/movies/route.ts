@@ -8,7 +8,7 @@ export async function GET() {
     const movies = await db.collection("our_movies").find().sort({ date: -1 }).toArray();
 
     return NextResponse.json(movies);
-  } catch (error: any) {
+  } catch (error: any | unknown) {
     return NextResponse.json({ error: `Nie udało się pobrać filmów: ${error.message}` }, { status: 500 });
   }
 }
