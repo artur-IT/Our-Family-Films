@@ -17,7 +17,7 @@ export const MovieContext = createContext<MovieContextType | undefined>(undefine
 
 export const MovieProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const initialData = getInitialData();
-  const [movies, setMovies] = useState(initialData.movies);
+  const [movies, setMovies] = useState<MovieData[]>(initialData.movies);
   const [selectedTitle, setSelectedTitle] = useState(initialData.selectedTitle);
   const [selectedPoster, setSelectedPoster] = useState(initialData.selectedPoster);
 
