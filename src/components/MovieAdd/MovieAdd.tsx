@@ -23,7 +23,6 @@ const MovieAdd: React.FC<MovieAddProps> = ({ setLoginIn }) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // const id = uuidv4();
     // Tworzenie nowego obiektu filmu
     const newMovie = {
       id: movieId,
@@ -34,7 +33,6 @@ const MovieAdd: React.FC<MovieAddProps> = ({ setLoginIn }) => {
       comments: [],
       image: `https://image.tmdb.org/t/p/w500${selectedPoster || ""}`,
     };
-    // console.log("Dodano nowy film:", newMovie);
     if (addMovie) {
       addMovie(newMovie as unknown as MovieData);
     }
@@ -42,7 +40,7 @@ const MovieAdd: React.FC<MovieAddProps> = ({ setLoginIn }) => {
       setSelectedTitle("");
     }
     setGenre("");
-    // setLoginIn(false);
+    setLoginIn(false);
   };
 
   return (

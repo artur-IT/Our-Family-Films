@@ -7,11 +7,11 @@ import commentsIcon from "../../../public/comments.svg";
 import { MovieData } from "@/types/types";
 import Image from "next/image";
 
-export const Movie = ({ movie, isLoggedIn }: { movie: MovieData; isLoggedIn: boolean; orgTitle: string; poster: string }) => {
+export const Movie = ({ movie }: { movie: MovieData }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const movieDescription = (
-    <div className={style.movie_description}>
+    <div className={style.movie_description} id={movie.id}>
       <div className={style.movie_data}>
         <p>{movie.title}</p>
         <p>{`(${movie.type})`}</p>
@@ -38,7 +38,7 @@ export const Movie = ({ movie, isLoggedIn }: { movie: MovieData; isLoggedIn: boo
 
   return (
     <div className={style.movie} data-expanded={isExpanded} style={{ backgroundImage: `url(${movie.image})` }}>
-      {isLoggedIn && <PanelAdmin />} {movieDescription}
+      {movieDescription}
     </div>
   );
 };

@@ -4,14 +4,16 @@ import { useRef } from "react";
 import { useContext } from "react";
 import { MovieContext } from "@/context/MovieContext";
 
-export const Shelf = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
+export const Shelf = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const { movies } = useContext(MovieContext) || { movies: [] }; // Uzyskaj filmy z kontekstu
 
   const scroll = (direction: "left" | "right") => {
     if (containerRef.current) {
-      const scrollAmount = 1000;
-      containerRef.current.scrollBy({
+      const container = containerRef.current;
+      // const scrollAmount = 1000;
+      const scrollAmount = container.clientWidth / 2;
+      container.scrollBy({
         left: direction === "left" ? -scrollAmount : scrollAmount,
         behavior: "smooth",
       });
@@ -27,7 +29,7 @@ export const Shelf = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
 
         <div className={style.shelf_movie_container} ref={containerRef}>
           {movies.map((movie) => (
-            <Movie key={Number(movie.id)} movie={movie} isLoggedIn={isLoggedIn} />
+            <Movie key={movie.id} movie={movie} />
           ))}
         </div>
 
