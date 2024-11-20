@@ -1,6 +1,5 @@
 // Plik TYLKO do LOKALNEGO TESTOWANIA - pobierania i zapisywania danych !!!
 //-------------------------------------------------------------------------
-import { format } from "date-fns";
 export const config = {
   api: {
     bodyParser: {
@@ -36,7 +35,7 @@ app.get("/api/getMovies", async (req, res) => {
     res.json(formattedResults);
     // console.log(result);
   } catch (error) {
-    res.status(500).json({ error: "Nie udało się pobrać artykułów" });
+    res.status(500).json({ error: "Nie udało się pobrać artykułów: " + error.message });
   }
 });
 
