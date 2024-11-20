@@ -1,27 +1,32 @@
 "use client";
-import { useContext, useState } from "react";
+import { useContext, useMemo, useState } from "react";
 import MovieSearch from "@/app/api/MovieSearch";
 import styles from "./MovieAdd.module.css";
 import { MovieData } from "@/types/types";
 import { MovieContext } from "@/context/MovieContext";
+import { v4 as uuidv4 } from "uuid";
+import { getInitialData } from "@//hydration";
 
 interface MovieAddProps {
   movieDB?: MovieData[];
   setMovieDB?: (value: MovieData[]) => void;
   setLoginIn: (value: boolean) => void;
 }
+
 const MovieAdd: React.FC<MovieAddProps> = ({ setLoginIn }) => {
   const movieContext = useContext(MovieContext);
   const { addMovie, selectedTitle, selectedPoster, setSelectedTitle } = movieContext || {};
-  const [genre, setGenre] = useState("");
-  const [type, setType] = useState("film");
+  const movieId = useMemo(() => uuidv4(), []);
+  const initialData = getInitialData();
+  const [genre, setGenre] = useState(initialData.genre);
+  const [type, setType] = useState(initialData.type);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // const id = Date.now();
+    // const id = uuidv4();
     // Tworzenie nowego obiektu filmu
     const newMovie = {
-      id: 8,
+      id: movieId,
       title: selectedTitle,
       type: type,
       genre: genre,
@@ -37,7 +42,7 @@ const MovieAdd: React.FC<MovieAddProps> = ({ setLoginIn }) => {
       setSelectedTitle("");
     }
     setGenre("");
-    setLoginIn(false);
+    // setLoginIn(false);
   };
 
   return (
@@ -61,8 +66,10 @@ const MovieAdd: React.FC<MovieAddProps> = ({ setLoginIn }) => {
           <input type="text" id="genre" maxLength={30} value={genre} onChange={(e) => setGenre(e.target.value)} />
         </div>
         <div className="poster_section">
-          <label id="poster">Plakat</label>
-          <input className="poster_checkbox" type="checkbox" checked={selectedPoster ? true : false} readOnly />
+          <label id="poster">
+            Plakat
+            <input className="poster_checkbox" type="checkbox" name="poster" checked={selectedPoster ? true : false} readOnly />
+          </label>
         </div>
 
         <button type="submit">Dodaj film</button>

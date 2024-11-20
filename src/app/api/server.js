@@ -1,5 +1,6 @@
 // Plik TYLKO do LOKALNEGO TESTOWANIA - pobierania i zapisywania danych !!!
 //-------------------------------------------------------------------------
+import { format } from "date-fns";
 export const config = {
   api: {
     bodyParser: {
@@ -20,12 +21,19 @@ app.use(express.urlencoded({ limit: process.env.MAX_BODY_SIZE || "5mb", extended
 app.use(cors()); // Zezwolenie na CORS
 
 // get posts from MongoDB
-app.get("/api/getArticles", async (req, res) => {
+app.get("/api/getMovies", async (req, res) => {
   try {
     const database = await connectToDatabase();
-    const articles = database.collection("our_movies");
-    const result = await articles.find().sort({ date: -1 }).toArray();
-    res.json(result);
+    const movies = database.collection("our_movies");
+    const result = await movies.find().sort({ date: -1 }).toArray();
+
+    // Formatowanie daty w spójny sposób
+    const formattedResults = result.map((article) => ({
+      ...article,
+      id: article.id.toString(),
+    }));
+
+    res.json(formattedResults);
     // console.log(result);
   } catch (error) {
     res.status(500).json({ error: "Nie udało się pobrać artykułów" });
@@ -33,7 +41,7 @@ app.get("/api/getArticles", async (req, res) => {
 });
 
 // save new post to MongoDB
-// app.post("/api/addArticle", async (req, res) => {
+// app.post("/api/addMovie", async (req, res) => {
 //   try {
 //     const database = await connectToDatabase();
 //     const articles = database.collection("our_movies");

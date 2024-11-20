@@ -1,6 +1,7 @@
 "use client";
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useCallback, useContext, useEffect, useState } from "react";
 import { MovieData } from "../types/types";
+import { getInitialData } from "@/hydration";
 
 interface MovieContextType {
   movies: MovieData[];
@@ -15,21 +16,30 @@ interface MovieContextType {
 export const MovieContext = createContext<MovieContextType | undefined>(undefined);
 
 export const MovieProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [movies, setMovies] = useState<MovieData[]>([]);
-  const [selectedTitle, setSelectedTitle] = useState<string>("");
-  const [selectedPoster, setSelectedPoster] = useState<string>("");
+  const initialData = getInitialData();
+  const [movies, setMovies] = useState(initialData.movies);
+  const [selectedTitle, setSelectedTitle] = useState(initialData.selectedTitle);
+  const [selectedPoster, setSelectedPoster] = useState(initialData.selectedPoster);
 
   // get articles from MongoDB - ONLY FOR LOCAL TESTING
-  const getMovies = () => {
-    return fetch("/api/movies")
-      .then((response) => response.json())
-      .then((data) => setMovies(data))
-      .catch((error) => console.error("Błąd pobierania filmów:", error));
-  };
+  const getMovies = useCallback(async () => {
+    try {
+      const response = await fetch("/api/movies");
+      const data = await response.json();
+      // Formatowanie danych przed zapisaniem do stanu
+      const formattedData = data.map((movie: MovieData) => ({
+        ...movie,
+        id: movie.id.toString(),
+      }));
+      setMovies(formattedData);
+    } catch (error) {
+      console.error("Błąd pobierania filmów:", error);
+    }
+  }, []);
 
   useEffect(() => {
     getMovies();
-  }, []);
+  }, [getMovies]);
   //----------------------------------------------
 
   const addMovie = (newMovie: MovieData) => {
