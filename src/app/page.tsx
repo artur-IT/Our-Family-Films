@@ -15,7 +15,7 @@ export default function Home() {
     <>
       <Header onLogin={() => setIsLoggedIn(!isLoggedIn)} />
       <Main>
-        <Shelf isLoggedIn={isLoggedIn} />
+        <Shelf />
         {/* {isLoggedIn && <PanelLogin />} */}
         {isLoggedIn && <MovieAdd setLoginIn={setIsLoggedIn} />}
       </Main>
