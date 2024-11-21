@@ -3,11 +3,10 @@ import style from "./Header.module.css";
 interface PropsTypes {
   isLoggedIn: boolean;
   setLogin: () => void;
-  addMovie: boolean;
   setAddMovie: () => void;
 }
 
-export const Header = ({ isLoggedIn, setLogin, addMovie, setAddMovie }: PropsTypes) => {
+export const Header = ({ isLoggedIn, setLogin, setAddMovie }: PropsTypes) => {
   return (
     <header className={style.header}>
       <nav>
