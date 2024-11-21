@@ -1,12 +1,27 @@
 import style from "./Header.module.css";
 
-export const Header = ({ onLogin }: { onLogin: () => void }) => {
+interface PropsTypes {
+  isLoggedIn: boolean;
+  setLogin: () => void;
+  addMovie: boolean;
+  setAddMovie: () => void;
+}
+
+export const Header = ({ isLoggedIn, setLogin, addMovie, setAddMovie }: PropsTypes) => {
   return (
     <header className={style.header}>
       <nav>
         <p>Our Family Films</p>
-        <a href="#">Dodaj film</a>
-        <a href="#" onClick={onLogin}>
+        {isLoggedIn && (
+          <>
+            <a href="#" onClick={setAddMovie}>
+              Dodaj film
+            </a>
+            <a href="#">Edytuj film</a>
+          </>
+        )}
+
+        <a href="#" onClick={setLogin}>
           Zaloguj
         </a>
       </nav>

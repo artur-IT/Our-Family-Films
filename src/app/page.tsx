@@ -10,14 +10,20 @@ import MovieAdd from "@/components/MovieAdd/MovieAdd";
 
 export default function Home() {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const [addMovie, setAddMovie] = useState<boolean>(false);
 
   return (
     <>
-      <Header onLogin={() => setIsLoggedIn(!isLoggedIn)} />
+      <Header
+        isLoggedIn={isLoggedIn}
+        setLogin={() => setIsLoggedIn(!isLoggedIn)}
+        addMovie={addMovie}
+        setAddMovie={() => setAddMovie(!addMovie)}
+      />
       <Main>
         <Shelf />
         {/* {isLoggedIn && <PanelLogin />} */}
-        {isLoggedIn && <MovieAdd setLoginIn={setIsLoggedIn} />}
+        {addMovie && <MovieAdd setAddMovie={setAddMovie} />}
       </Main>
       <Footer />
     </>

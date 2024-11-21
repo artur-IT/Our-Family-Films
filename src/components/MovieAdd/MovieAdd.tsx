@@ -10,10 +10,11 @@ import { getInitialData } from "@//hydration";
 interface MovieAddProps {
   movieDB?: MovieData[];
   setMovieDB?: (value: MovieData[]) => void;
-  setLoginIn: (value: boolean) => void;
+  // setLoginIn: (value: boolean) => void;
+  setAddMovie: (value: boolean) => void;
 }
 
-const MovieAdd: React.FC<MovieAddProps> = ({ setLoginIn }) => {
+const MovieAdd: React.FC<MovieAddProps> = ({ setAddMovie }) => {
   const movieContext = useContext(MovieContext);
   const { addMovie, selectedTitle, selectedPoster, setSelectedTitle } = movieContext || {};
   const movieId = useMemo(() => uuidv4(), []);
@@ -40,7 +41,7 @@ const MovieAdd: React.FC<MovieAddProps> = ({ setLoginIn }) => {
       setSelectedTitle("");
     }
     setGenre("");
-    setLoginIn(false);
+    setAddMovie(false);
   };
 
   return (
