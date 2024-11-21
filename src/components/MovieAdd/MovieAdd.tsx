@@ -6,7 +6,7 @@ import { MovieData } from "@/types/types";
 import { MovieContext } from "@/context/MovieContext";
 import { v4 as uuidv4 } from "uuid";
 import { getInitialData } from "@//hydration";
-import { set, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
 interface MovieAddProps {
   movieDB?: MovieData[];
@@ -26,7 +26,7 @@ const MovieAdd: React.FC<MovieAddProps> = ({ setAddMovie }) => {
   const movieId = useMemo(() => uuidv4(), []);
   const initialData = getInitialData();
 
-  const { register, handleSubmit, setValue, reset } = useForm<MovieFormInputs>({
+  const { register, handleSubmit, reset } = useForm<MovieFormInputs>({
     defaultValues: {
       title: selectedTitle || "",
       type: "Film",

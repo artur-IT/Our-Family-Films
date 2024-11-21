@@ -5,7 +5,6 @@ import { Shelf } from "@/components/Shelf/Shelf";
 import { Footer } from "@/layouts/Footer/Footer";
 import { useState } from "react";
 import MovieAdd from "@/components/MovieAdd/MovieAdd";
-import { PanelLogin } from "@/layouts/PanelLogin/PanelLogin";
 
 export default function Home() {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
@@ -14,10 +13,8 @@ export default function Home() {
   return (
     <>
       <Header isLoggedIn={isLoggedIn} setLogin={() => setIsLoggedIn(!isLoggedIn)} setAddMovie={() => setAddMovie(!addMovie)} />
-
       <Main>
         <Shelf />
-
         {addMovie && <MovieAdd setAddMovie={setAddMovie} />}
       </Main>
       <Footer />
