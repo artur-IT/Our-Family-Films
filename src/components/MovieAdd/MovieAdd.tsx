@@ -6,7 +6,7 @@ import { MovieData } from "@/types/types";
 import { MovieContext } from "@/context/MovieContext";
 import { v4 as uuidv4 } from "uuid";
 import { getInitialData } from "@//hydration";
-import { useForm } from "react-hook-form";
+import { set, useForm } from "react-hook-form";
 
 interface MovieAddProps {
   movieDB?: MovieData[];
@@ -17,19 +17,21 @@ interface MovieFormInputs {
   title: string;
   type: "Film" | "Serial";
   genre: string;
+  image: string;
 }
 
 const MovieAdd: React.FC<MovieAddProps> = ({ setAddMovie }) => {
   const movieContext = useContext(MovieContext);
-  const { addMovie, selectedTitle, selectedPoster, setSelectedTitle } = movieContext || {};
+  const { addMovie, selectedTitle, selectedPoster, setSelectedTitle, setSelectedPoster } = movieContext || {};
   const movieId = useMemo(() => uuidv4(), []);
   const initialData = getInitialData();
 
-  const { register, handleSubmit, setValue } = useForm<MovieFormInputs>({
+  const { register, handleSubmit, setValue, reset } = useForm<MovieFormInputs>({
     defaultValues: {
       title: selectedTitle || "",
       type: "Film",
       genre: initialData.genre,
+      image: "",
     },
   });
 
@@ -49,13 +51,23 @@ const MovieAdd: React.FC<MovieAddProps> = ({ setAddMovie }) => {
     if (setSelectedTitle) {
       setSelectedTitle("");
     }
-    setAddMovie(false);
+
+    if (setAddMovie) {
+      setAddMovie(false);
+    }
   };
 
-  // Aktualizacja tytułu gdy zmienia się selectedTitle z kontekstu
   useEffect(() => {
-    setValue("title", selectedTitle || "");
-  }, [selectedTitle, setValue]);
+    reset({
+      title: "",
+      type: "Film",
+      genre: initialData.genre,
+      image: "",
+    });
+    if (setSelectedPoster) {
+      setSelectedPoster("");
+    }
+  }, []);
 
   return (
     <div className={styles.movieAdd}>
@@ -64,7 +76,7 @@ const MovieAdd: React.FC<MovieAddProps> = ({ setAddMovie }) => {
       <form className={styles.movieAddForm} onSubmit={handleSubmit(onSubmit)}>
         <div className="title_section">
           <label htmlFor="title">Tytuł</label>
-          <input id="title" {...register("title", { required: "Tytuł jest wymagany" })} />
+          <input id="title" {...register("title")} value={selectedTitle || ""} />
         </div>
         <div className="type_section">
           <label htmlFor="type">Typ</label>
@@ -85,6 +97,9 @@ const MovieAdd: React.FC<MovieAddProps> = ({ setAddMovie }) => {
         </div>
 
         <button type="submit">Dodaj film</button>
+        <button type="submit" onClick={() => setAddMovie(false)}>
+          Anuluj
+        </button>
       </form>
     </div>
   );

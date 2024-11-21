@@ -12,10 +12,6 @@ const MovieSearch: React.FC = () => {
   const [moviePosters, setMoviePosters] = useState([]);
 
   const fetchMovieData = (title: string) => {
-    // debugger;
-    // if (setSelectedPoster) {
-    //   setSelectedPoster("");
-    // }
     const url = `https://api.themoviedb.org/3/search/movie?query=${title}&api_key=ad405f3b86fe05aa920a6b1736fdd9db&`;
     fetch(url)
       .then((response) => {
@@ -28,7 +24,6 @@ const MovieSearch: React.FC = () => {
         if (data.results.length > 0) {
           const posters = data.results.map((result: { poster_path: string }) => result.poster_path);
           setMoviePosters(posters);
-          setMovieTitle(data.results[0].original_title);
         }
       })
       .catch((error) => {
