@@ -1,5 +1,5 @@
 "use client";
-import { useContext, useEffect, useMemo, useState } from "react";
+import { useContext, useEffect, useMemo } from "react";
 import MovieSearch from "@/app/api/MovieSearch";
 import styles from "./MovieAdd.module.css";
 import { MovieData } from "@/types/types";
