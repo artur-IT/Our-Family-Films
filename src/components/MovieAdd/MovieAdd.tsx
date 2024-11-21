@@ -1,17 +1,22 @@
 "use client";
-import { useContext, useMemo, useState } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import MovieSearch from "@/app/api/MovieSearch";
 import styles from "./MovieAdd.module.css";
 import { MovieData } from "@/types/types";
 import { MovieContext } from "@/context/MovieContext";
 import { v4 as uuidv4 } from "uuid";
 import { getInitialData } from "@//hydration";
+import { useForm } from "react-hook-form";
 
 interface MovieAddProps {
   movieDB?: MovieData[];
   setMovieDB?: (value: MovieData[]) => void;
-  // setLoginIn: (value: boolean) => void;
   setAddMovie: (value: boolean) => void;
+}
+interface MovieFormInputs {
+  title: string;
+  type: "Film" | "Serial";
+  genre: string;
 }
 
 const MovieAdd: React.FC<MovieAddProps> = ({ setAddMovie }) => {
@@ -19,17 +24,21 @@ const MovieAdd: React.FC<MovieAddProps> = ({ setAddMovie }) => {
   const { addMovie, selectedTitle, selectedPoster, setSelectedTitle } = movieContext || {};
   const movieId = useMemo(() => uuidv4(), []);
   const initialData = getInitialData();
-  const [genre, setGenre] = useState(initialData.genre);
-  const [type, setType] = useState(initialData.type);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Tworzenie nowego obiektu filmu
+  const { register, handleSubmit, setValue } = useForm<MovieFormInputs>({
+    defaultValues: {
+      title: selectedTitle || "",
+      type: "Film",
+      genre: initialData.genre,
+    },
+  });
+
+  const onSubmit = (data: MovieFormInputs) => {
     const newMovie = {
       id: movieId,
-      title: selectedTitle,
-      type: type,
-      genre: genre,
+      title: data.title,
+      type: data.type,
+      genre: data.genre,
       rating: 0,
       comments: [],
       image: `https://image.tmdb.org/t/p/w500${selectedPoster || ""}`,
@@ -40,29 +49,33 @@ const MovieAdd: React.FC<MovieAddProps> = ({ setAddMovie }) => {
     if (setSelectedTitle) {
       setSelectedTitle("");
     }
-    setGenre("");
     setAddMovie(false);
   };
+
+  // Aktualizacja tytułu gdy zmienia się selectedTitle z kontekstu
+  useEffect(() => {
+    setValue("title", selectedTitle || "");
+  }, [selectedTitle, setValue]);
 
   return (
     <div className={styles.movieAdd}>
       <h2>Dodaj film</h2>
       <MovieSearch />
-      <form className={styles.movieAddForm} onSubmit={handleSubmit}>
+      <form className={styles.movieAddForm} onSubmit={handleSubmit(onSubmit)}>
         <div className="title_section">
           <label htmlFor="title">Tytuł</label>
-          <input type="text" id="title" value={selectedTitle || ""} onChange={(e) => setSelectedTitle?.(e.target.value)} />
+          <input id="title" {...register("title", { required: "Tytuł jest wymagany" })} />
         </div>
         <div className="type_section">
           <label htmlFor="type">Typ</label>
-          <select name="type" id="type" value={type} onChange={(e) => setType(e.target.value)}>
+          <select id="type" {...register("type")}>
             <option value="Film">Film</option>
             <option value="Serial">Serial</option>
           </select>
         </div>
         <div className="genre_section">
           <label htmlFor="genre">Gatunek</label>
-          <input type="text" id="genre" maxLength={30} value={genre} onChange={(e) => setGenre(e.target.value)} />
+          <input id="genre" maxLength={30} {...register("genre", { required: "Wybierz gatunek", maxLength: 30 })} />
         </div>
         <div className="poster_section">
           <label id="poster">
