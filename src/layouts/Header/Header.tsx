@@ -1,3 +1,4 @@
+import { PanelLogin } from "../PanelLogin/PanelLogin";
 import style from "./Header.module.css";
 
 interface PropsTypes {
@@ -8,22 +9,25 @@ interface PropsTypes {
 
 export const Header = ({ isLoggedIn, setLogin, setAddMovie }: PropsTypes) => {
   return (
-    <header className={style.header}>
-      <nav>
-        <p>Our Family Films</p>
-        {isLoggedIn && (
-          <>
-            <a href="#" onClick={setAddMovie}>
-              Dodaj film
-            </a>
-            <a href="#">Edytuj film</a>
-          </>
-        )}
+    <>
+      <header className={style.header}>
+        <nav>
+          <p>Our Family Films</p>
+          {isLoggedIn && (
+            <>
+              <a href="#" onClick={setAddMovie}>
+                Dodaj film
+              </a>
+              <a href="#">Edytuj film</a>
+            </>
+          )}
 
-        <a href="#" onClick={setLogin}>
-          Zaloguj
-        </a>
-      </nav>
-    </header>
+          <a href="#" onClick={setLogin}>
+            Zaloguj
+          </a>
+        </nav>
+      </header>
+      {isLoggedIn && <PanelLogin />}
+    </>
   );
 };

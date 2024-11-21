@@ -1,7 +1,9 @@
 .loginPanel {
   position: absolute;
-  right: 0;
+  right: 50%;
   top: 70px;
+  transform: translateX(100px);
+  width: 200px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -10,7 +12,7 @@
   color: #fff;
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 20px 20px rgba(255, 255, 255, 0.9);
   z-index: 5;
 }
 
