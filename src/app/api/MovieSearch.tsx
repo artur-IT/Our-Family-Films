@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { MovieContext } from "@/context/MovieContext";
 import styles from "./MovieSearch.module.css";
 import Image from "next/image";
@@ -10,6 +10,20 @@ const MovieSearch: React.FC = () => {
   const setSelectedPoster = context?.setSelectedPoster;
   const [movieTitle, setMovieTitle] = useState("");
   const [moviePosters, setMoviePosters] = useState([]);
+  const postersRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (postersRef.current && !postersRef.current.contains(event.target as Node)) {
+        setMoviePosters([]);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const fetchMovieData = (title: string) => {
     const url = `https://api.themoviedb.org/3/search/movie?query=${title}&api_key=ad405f3b86fe05aa920a6b1736fdd9db&`;
@@ -25,7 +39,6 @@ const MovieSearch: React.FC = () => {
           const posters = data.results
             .filter((result: { poster_path: string }) => result.poster_path !== null)
             .map((result: { poster_path: string }) => result.poster_path);
-          console.log(posters);
           setMoviePosters(posters);
         }
       })
@@ -52,7 +65,7 @@ const MovieSearch: React.FC = () => {
         </button>
       </div>
 
-      <div className={styles.posters}>
+      <div ref={postersRef} className={styles.posters}>
         {moviePosters.length > 0 &&
           moviePosters.map((poster, index) => (
             <Image
