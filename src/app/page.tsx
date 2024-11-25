@@ -12,12 +12,12 @@ export default function Home() {
 
   return (
     <>
-      <Header isLoggedIn={isLoggedIn} setLogin={() => setIsLoggedIn(!isLoggedIn)} setAddMovie={() => setAddMovie(!addMovie)} />
+      {/* <Header isLoggedIn={isLoggedIn} setLogin={() => setIsLoggedIn(!isLoggedIn)} setAddMovie={() => setAddMovie(!addMovie)} />
       <Main>
         <Shelf />
         {addMovie && <MovieAdd setAddMovie={setAddMovie} />}
       </Main>
-      <Footer />
+      <Footer /> */}
     </>
   );
 }

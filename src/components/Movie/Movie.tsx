@@ -5,8 +5,9 @@ import starFullIcon from "../../../public/star-full.svg";
 import commentsIcon from "../../../public/comments.svg";
 import { MovieData } from "@/types/types";
 import Image from "next/image";
+import { MovieEdit } from "@/app/movies/MovieEdit/MovieEdit";
 
-export const Movie = ({ movie }: { movie: MovieData }) => {
+export const Movie = ({ movie, isLoggedIn }: { movie: MovieData; isLoggedIn: boolean }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const movieDescription = (
@@ -37,7 +38,8 @@ export const Movie = ({ movie }: { movie: MovieData }) => {
 
   return (
     <div className={style.movie} data-expanded={isExpanded} style={{ backgroundImage: `url(${movie.image})` }}>
-      {movieDescription}
+      {/* {!isLoggedIn && movieDescription} */}
+      {isLoggedIn ? <MovieEdit /> : movieDescription}
     </div>
   );
 };

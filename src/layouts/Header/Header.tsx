@@ -1,3 +1,4 @@
+import { useEditMode } from "@/context/EditMovieContext";
 import { PanelLogin } from "../PanelLogin/PanelLogin";
 import style from "./Header.module.css";
 
@@ -8,6 +9,8 @@ interface PropsTypes {
 }
 
 export const Header = ({ isLoggedIn, setLogin, setAddMovie }: PropsTypes) => {
+  const { isEditMode, toggleEditMode } = useEditMode();
+
   return (
     <>
       <header className={style.header}>
@@ -19,6 +22,7 @@ export const Header = ({ isLoggedIn, setLogin, setAddMovie }: PropsTypes) => {
                 Dodaj film
               </a>
               <a href="#">Edytuj film</a>
+              <button onClick={toggleEditMode}>{isEditMode ? "Zakończ edycję" : "Edytuj filmy"}</button>
             </>
           )}
 
@@ -27,7 +31,7 @@ export const Header = ({ isLoggedIn, setLogin, setAddMovie }: PropsTypes) => {
           </a>
         </nav>
       </header>
-      {isLoggedIn && <PanelLogin />}
+      {/* {isLoggedIn && <PanelLogin />} */}
     </>
   );
 };

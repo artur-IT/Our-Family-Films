@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { useContext } from "react";
 import { MovieContext } from "@/context/MovieContext";
 
-export const Shelf = () => {
+export const Shelf = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const { movies } = useContext(MovieContext) || { movies: [] }; // Uzyskaj filmy z kontekstu
 
@@ -29,7 +29,7 @@ export const Shelf = () => {
 
         <div className={style.shelf_movie_container} ref={containerRef}>
           {movies.map((movie) => (
-            <Movie key={movie.id} movie={movie} />
+            <Movie isLoggedIn={isLoggedIn} key={movie.id} movie={movie} />
           ))}
         </div>
 
