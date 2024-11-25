@@ -22,7 +22,10 @@ const MovieSearch: React.FC = () => {
       })
       .then((data) => {
         if (data.results.length > 0) {
-          const posters = data.results.map((result: { poster_path: string }) => result.poster_path);
+          const posters = data.results
+            .filter((result: { poster_path: string }) => result.poster_path !== null)
+            .map((result: { poster_path: string }) => result.poster_path);
+          console.log(posters);
           setMoviePosters(posters);
         }
       })
