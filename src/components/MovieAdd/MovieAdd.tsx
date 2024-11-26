@@ -55,19 +55,19 @@ const MovieAdd: React.FC<MovieAddProps> = ({ setAddMovie }) => {
     if (setAddMovie) {
       setAddMovie(false);
     }
+    console.log(newMovie);
   };
 
   useEffect(() => {
-    reset({
-      title: "",
-      type: "Film",
-      genre: initialData.genre,
-      image: "",
-    });
-    if (setSelectedPoster) {
-      setSelectedPoster("");
+    if (selectedTitle) {
+      reset({
+        title: selectedTitle,
+        type: "Film",
+        genre: initialData.genre,
+        image: "",
+      });
     }
-  }, []);
+  }, [selectedTitle]);
 
   return (
     <div className={styles.movieAdd}>
@@ -76,12 +76,7 @@ const MovieAdd: React.FC<MovieAddProps> = ({ setAddMovie }) => {
       <form className={styles.movieAddForm} onSubmit={handleSubmit(onSubmit)}>
         <div className="title_section">
           <label htmlFor="title">Tytuł</label>
-          <input
-            id="title"
-            {...register("title")}
-            value={selectedTitle || ""}
-            onChange={(e) => setSelectedTitle && setSelectedTitle(e.target.value)}
-          />
+          <input id="title" {...register("title")} defaultValue={selectedTitle || ""} />
         </div>
         <div className="type_section">
           <label htmlFor="type">Typ</label>

@@ -12,6 +12,7 @@ const MovieSearch: React.FC = () => {
   const [moviePosters, setMoviePosters] = useState([]);
   const postersRef = useRef<HTMLDivElement>(null);
 
+  // Close finding posters when clicking outside of the posters div
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (postersRef.current && !postersRef.current.contains(event.target as Node)) {
@@ -25,7 +26,7 @@ const MovieSearch: React.FC = () => {
     };
   }, []);
 
-  const fetchMovieData = (title: string) => {
+  const searchMoviePoster = (title: string) => {
     const url = `https://api.themoviedb.org/3/search/movie?query=${title}&api_key=ad405f3b86fe05aa920a6b1736fdd9db&`;
     fetch(url)
       .then((response) => {
@@ -47,7 +48,7 @@ const MovieSearch: React.FC = () => {
       });
   };
 
-  const handleSearch = () => fetchMovieData(movieTitle);
+  const handleSearch = () => searchMoviePoster(movieTitle);
 
   return (
     <div className={styles.movieSearchContainer}>

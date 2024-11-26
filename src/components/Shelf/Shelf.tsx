@@ -6,7 +6,7 @@ import { MovieContext } from "@/context/MovieContext";
 
 export const Shelf = ({ isLoggedIn, children }: { isLoggedIn: boolean; children: React.ReactNode }) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const { movies } = useContext(MovieContext) || { movies: [] }; // Uzyskaj filmy z kontekstu
+  const { movies } = useContext(MovieContext) || { movies: [] };
 
   const scroll = (direction: "left" | "right") => {
     if (containerRef.current) {

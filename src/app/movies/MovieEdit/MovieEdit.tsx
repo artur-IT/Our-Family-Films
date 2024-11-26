@@ -18,9 +18,7 @@ export const MovieEdit = () => {
     <>
       {isEditMode && (
         <div className={style.movie_description}>
-          {/* <button className={style.edit_btn} onClick={() => onEdit(movie.id)}>  */}
           <button className={style.edit_btn}>Edytuj</button>
-          {/* <button className={style.delete_btn} onClick={() => onDelete(movie.id)}>  */}
           <button className={style.delete_btn}>Usuń</button>
         </div>
       )}

@@ -21,12 +21,11 @@ export const MovieProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const [selectedTitle, setSelectedTitle] = useState(initialData.selectedTitle);
   const [selectedPoster, setSelectedPoster] = useState(initialData.selectedPoster);
 
-  // get articles from MongoDB - ONLY FOR LOCAL TESTING
+  // get movies from MongoDB - ONLY FOR LOCAL TESTING
   const getMovies = useCallback(async () => {
     try {
       const response = await fetch("/api/movies");
       const data = await response.json();
-      // Formatowanie danych przed zapisaniem do stanu
       const formattedData = data.map((movie: MovieData) => ({
         ...movie,
         id: movie.id.toString(),

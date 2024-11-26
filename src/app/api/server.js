@@ -17,16 +17,14 @@ const port = 3000;
 app.use(express.json({ limit: process.env.MAX_BODY_SIZE || "5mb" }));
 app.use(express.urlencoded({ limit: process.env.MAX_BODY_SIZE || "5mb", extended: true }));
 
-app.use(cors()); // Zezwolenie na CORS
+app.use(cors());
 
-// get posts from MongoDB
+// get films from MongoDB
 app.get("/api/getMovies", async (req, res) => {
   try {
     const database = await connectToDatabase();
     const movies = database.collection("our_movies");
     const result = await movies.find().sort({ date: -1 }).toArray();
-
-    // Formatowanie daty w spójny sposób
     const formattedResults = result.map((article) => ({
       ...article,
       id: article.id.toString(),

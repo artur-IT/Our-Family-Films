@@ -9,8 +9,6 @@ import { Shelf } from "@/components/Shelf/Shelf";
 import { useState } from "react";
 import { Header } from "@/layouts/Header/Header";
 import MovieAdd from "@/components/MovieAdd/MovieAdd";
-import { Movie } from "@/components/Movie/Movie";
-import { MovieEdit } from "@/app/movies/MovieEdit/MovieEdit";
 
 // export const metadata: Metadata = {
 //   title: "Our Family Films",
@@ -28,8 +26,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <EditModeProvider>
             <Header isLoggedIn={isLoggedIn} setLogin={() => setIsLoggedIn(!isLoggedIn)} setAddMovie={() => setAddMovie(!addMovie)} />
             <Main>
-              <Shelf isLoggedIn={isLoggedIn} />
-              {/* {children} */}
+              <Shelf isLoggedIn={isLoggedIn} children={children} />
               {addMovie && <MovieAdd setAddMovie={setAddMovie} />}
             </Main>
             <Footer />
