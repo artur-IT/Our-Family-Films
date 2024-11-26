@@ -38,17 +38,17 @@ app.get("/api/getMovies", async (req, res) => {
 });
 
 // save new post to MongoDB
-// app.post("/api/addMovie", async (req, res) => {
-//   try {
-//     const database = await connectToDatabase();
-//     const articles = database.collection("our_movies");
-//     const newArticle = req.body;
-//     const result = await articles.insertOne(newArticle);
-//     res.status(201).json({ message: "Artykuł dodany pomyślnie", id: result.insertedId });
-//   } catch (error) {
-//     res.status(500).json({ error: "Nie udało się dodać artykułu", details: error.message });
-//   }
-// });
+app.post("/api/addMovie", async (req, res) => {
+  try {
+    const database = await connectToDatabase();
+    const articles = database.collection("our_movies");
+    const newArticle = req.body;
+    const result = await articles.insertOne(newArticle);
+    res.status(201).json({ message: "Artykuł dodany pomyślnie", id: result.insertedId });
+  } catch (error) {
+    res.status(500).json({ error: "Nie udało się dodać artykułu", details: error.message });
+  }
+});
 
 app.listen(port, () => {
   console.log(`Serwer działa na porcie ${port}`);

@@ -1,5 +1,4 @@
 import { useEditMode } from "@/context/EditMovieContext";
-import { PanelLogin } from "../PanelLogin/PanelLogin";
 import style from "./Header.module.css";
 
 interface PropsTypes {

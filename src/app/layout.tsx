@@ -26,7 +26,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <EditModeProvider>
             <Header isLoggedIn={isLoggedIn} setLogin={() => setIsLoggedIn(!isLoggedIn)} setAddMovie={() => setAddMovie(!addMovie)} />
             <Main>
-              <Shelf isLoggedIn={isLoggedIn} children={children} />
+              <Shelf isLoggedIn={isLoggedIn} />
               {addMovie && <MovieAdd setAddMovie={setAddMovie} />}
             </Main>
             <Footer />

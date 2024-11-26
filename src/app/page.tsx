@@ -1,14 +1,14 @@
-"use client";
-import { Header } from "@/layouts/Header/Header";
-import { Main } from "@/layouts/Main/Main";
-import { Shelf } from "@/components/Shelf/Shelf";
-import { Footer } from "@/layouts/Footer/Footer";
-import { useState } from "react";
-import MovieAdd from "@/components/MovieAdd/MovieAdd";
+// "use client";
+// import { Header } from "@/layouts/Header/Header";
+// import { Main } from "@/layouts/Main/Main";
+// import { Shelf } from "@/components/Shelf/Shelf";
+// import { Footer } from "@/layouts/Footer/Footer";
+// import { useState } from "react";
+// import MovieAdd from "@/components/MovieAdd/MovieAdd";
 
 export default function Home() {
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
-  const [addMovie, setAddMovie] = useState<boolean>(false);
+  // const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  // const [addMovie, setAddMovie] = useState<boolean>(false);
 
   return (
     <>

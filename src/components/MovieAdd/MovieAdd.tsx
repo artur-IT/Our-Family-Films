@@ -55,7 +55,6 @@ const MovieAdd: React.FC<MovieAddProps> = ({ setAddMovie }) => {
     if (setAddMovie) {
       setAddMovie(false);
     }
-    console.log(newMovie);
   };
 
   useEffect(() => {
