@@ -22,7 +22,7 @@ interface MovieFormInputs {
 
 const MovieAdd: React.FC<MovieAddProps> = ({ setAddMovie }) => {
   const movieContext = useContext(MovieContext);
-  const { addMovie, selectedTitle, selectedPoster, setSelectedTitle, setSelectedPoster } = movieContext || {};
+  const { addMovie, selectedTitle, selectedPoster, setSelectedTitle } = movieContext || {};
   const movieId = useMemo(() => uuidv4(), []);
   const initialData = getInitialData();
 

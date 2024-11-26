@@ -15,7 +15,7 @@ import MovieAdd from "@/components/MovieAdd/MovieAdd";
 //   description: "Nasze rodzinne filmy",
 // };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout() {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [addMovie, setAddMovie] = useState<boolean>(false);
 
