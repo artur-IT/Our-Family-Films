@@ -29,7 +29,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Header isLoggedIn={isLoggedIn} setLogin={() => setIsLoggedIn(!isLoggedIn)} setAddMovie={() => setAddMovie(!addMovie)} />
             <Main>
               <Shelf isLoggedIn={isLoggedIn} />
-              {children}
+              {/* {children} */}
               {addMovie && <MovieAdd setAddMovie={setAddMovie} />}
             </Main>
             <Footer />

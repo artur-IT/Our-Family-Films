@@ -1,3 +1,7 @@
 export default function Add() {
-  return <div>Add Movie</div>;
+  return (
+    <div>
+      <h1>Add Movie</h1>
+    </div>
+  );
 }

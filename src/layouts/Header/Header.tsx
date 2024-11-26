@@ -18,10 +18,7 @@ export const Header = ({ isLoggedIn, setLogin, setAddMovie }: PropsTypes) => {
           <p>Our Family Films</p>
           {isLoggedIn && (
             <>
-              <a href="#" onClick={setAddMovie}>
-                Dodaj film
-              </a>
-              <a href="#">Edytuj film</a>
+              <button onClick={setAddMovie}>Dodaj film</button>
               <button onClick={toggleEditMode}>{isEditMode ? "Zakończ edycję" : "Edytuj filmy"}</button>
             </>
           )}
