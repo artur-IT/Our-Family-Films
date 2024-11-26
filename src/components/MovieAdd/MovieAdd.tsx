@@ -76,7 +76,12 @@ const MovieAdd: React.FC<MovieAddProps> = ({ setAddMovie }) => {
       <form className={styles.movieAddForm} onSubmit={handleSubmit(onSubmit)}>
         <div className="title_section">
           <label htmlFor="title">Tytuł</label>
-          <input id="title" {...register("title")} value={selectedTitle || ""} />
+          <input
+            id="title"
+            {...register("title")}
+            value={selectedTitle || ""}
+            onChange={(e) => setSelectedTitle && setSelectedTitle(e.target.value)}
+          />
         </div>
         <div className="type_section">
           <label htmlFor="type">Typ</label>
