@@ -37,14 +37,12 @@ export async function getDatabase() {
 
 export async function getCollection(collectionName = COLLECTION_NAME) {
   const db = await getDatabase();
-  console.log("getCollection z db.ts: ", db);
   return db.collection(collectionName);
 }
 
 // Przykład użycia w API:
 export async function getMovies() {
   const collection = await getCollection();
-  console.log("getMovies to z db.ts: ", collection);
   return collection;
 }
 

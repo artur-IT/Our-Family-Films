@@ -47,10 +47,14 @@ export const MovieProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     getMovies();
   }, [getMovies]);
 
-  const addMovie = (newMovie: MovieData) => {
-    setMovies((prevMovies) => [...prevMovies, newMovie]);
-    setSelectedPoster("");
-  };
+  const addMovie = useCallback(
+    (newMovie: MovieData) => {
+      setMovies((prevMovies) => [...prevMovies, newMovie]);
+      setSelectedPoster("");
+      getMovies(); // odświeżamy listę filmów
+    },
+    [getMovies]
+  );
 
   const useMovie = () => {
     const context = useContext(MovieContext);

@@ -36,26 +36,19 @@ const MovieAdd: React.FC<MovieAddProps> = ({ setAddMovie }) => {
   });
 
   const addMovieToMongoDB = async (movieData: MovieData) => {
-    try {
-      const response = await fetch("/api/movies", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(movieData),
-      });
+    const response = await fetch("/api/movies", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(movieData),
+    });
 
-      if (!response.ok) {
-        throw new Error("Nie udało się dodać filmu");
-      }
-
-      const data = await response.json();
-      if (addMovie) {
-        addMovie(movieData);
-      }
-    } catch (error) {
-      console.error("Błąd podczas dodawania filmu:", error);
+    if (!response.ok) {
+      throw new Error("Nie udało się dodać filmu");
     }
+
+    return await response.json();
   };
 
   const onSubmit = async (data: MovieFormInputs) => {
@@ -65,19 +58,29 @@ const MovieAdd: React.FC<MovieAddProps> = ({ setAddMovie }) => {
       type: data.type,
       genre: data.genre,
       rating: 0,
-      comments: [],
+      comments: {},
       image: `https://image.tmdb.org/t/p/w500${selectedPoster || ""}`,
     };
-    // if (addMovie) {
-    //   addMovie(newMovie as unknown as MovieData);
-    await addMovieToMongoDB(newMovie as MovieData);
 
-    if (setSelectedTitle) {
-      setSelectedTitle("");
-    }
+    try {
+      const response = await fetch("/api/movies", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newMovie),
+      });
 
-    if (setAddMovie) {
-      setAddMovie(false);
+      if (response.ok) {
+        if (addMovie) {
+          addMovie(newMovie as MovieData);
+        }
+        if (setSelectedTitle) {
+          setSelectedTitle("");
+        }
+
+        setAddMovie(false);
+      }
+    } catch (error) {
+      console.error(error);
     }
   };
 

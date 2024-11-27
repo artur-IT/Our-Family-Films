@@ -1,26 +1,31 @@
-import { MongoClient } from "mongodb";
+import { getCollection } from "@/lib/db";
 import { NextResponse } from "next/server";
 
-const MONGODB_URI = process.env.MONGODB_URI;
-const DATABASE_NAME = "myFirstBase";
-const COLLECTION_NAME = "our_movies";
-
 export async function GET() {
-  let client;
   try {
-    client = await MongoClient.connect(MONGODB_URI as string);
-
-    const db = client.db(DATABASE_NAME);
-    const collection = db.collection(COLLECTION_NAME);
-    const movies = await collection.find().toArray();
-
+    const collection = await getCollection();
+    const movies = await collection.find({}).toArray();
     return NextResponse.json(movies);
   } catch (error) {
-    console.error("Szczegóły błędu:", error);
-    return NextResponse.json({ error: "Nie udało się pobrać filmów z bazy danych" }, { status: 500 });
-  } finally {
-    if (client) {
-      await client.close();
-    }
+    return NextResponse.json({ error: "Błąd pobierania" }, { status: 500 });
+  }
+}
+
+export async function POST(request: Request) {
+  try {
+    const movieData = await request.json();
+    console.log("Otrzymane dane filmu:", movieData); // Logowanie danych
+
+    const collection = await getCollection();
+    await collection.insertOne(movieData);
+
+    return NextResponse.json({
+      success: true,
+      data: movieData,
+    });
+  } catch (error) {
+    console.error("Błąd dodawania filmu:", error); // Logowanie błędów
+
+    return NextResponse.json({ error: "Błąd dodawania" }, { status: 500 });
   }
 }
