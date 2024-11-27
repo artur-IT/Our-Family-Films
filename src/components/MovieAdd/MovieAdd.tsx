@@ -35,7 +35,30 @@ const MovieAdd: React.FC<MovieAddProps> = ({ setAddMovie }) => {
     },
   });
 
-  const onSubmit = (data: MovieFormInputs) => {
+  const addMovieToMongoDB = async (movieData: MovieData) => {
+    try {
+      const response = await fetch("/api/movies", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(movieData),
+      });
+
+      if (!response.ok) {
+        throw new Error("Nie udało się dodać filmu");
+      }
+
+      const data = await response.json();
+      if (addMovie) {
+        addMovie(movieData);
+      }
+    } catch (error) {
+      console.error("Błąd podczas dodawania filmu:", error);
+    }
+  };
+
+  const onSubmit = async (data: MovieFormInputs) => {
     const newMovie = {
       id: movieId,
       title: data.title,
@@ -45,9 +68,10 @@ const MovieAdd: React.FC<MovieAddProps> = ({ setAddMovie }) => {
       comments: [],
       image: `https://image.tmdb.org/t/p/w500${selectedPoster || ""}`,
     };
-    if (addMovie) {
-      addMovie(newMovie as unknown as MovieData);
-    }
+    // if (addMovie) {
+    //   addMovie(newMovie as unknown as MovieData);
+    await addMovieToMongoDB(newMovie as MovieData);
+
     if (setSelectedTitle) {
       setSelectedTitle("");
     }

@@ -1,18 +1,19 @@
-import { connectToDatabase } from "./dbConnection.js";
+import clientPromise from "../../lib/db";
 
-export default async function addMovie(req, res) {
+export default async function addMovieToMongoDB(req, res) {
   if (req.method === "POST") {
-    const { id, title, content, author, date, picture } = req.body;
+    const { id, title, type, genre, rating, comments, image } = req.body;
     try {
-      const database = await connectToDatabase();
+      const database = await clientPromise;
       const movies = database.collection("our_films");
       const result = await movies.insertOne({
         id,
         title,
-        content,
-        author,
-        date,
-        picture,
+        type,
+        genre,
+        rating,
+        comments,
+        image,
       });
 
       res.status(200).json({ message: "Artykuł dodany pomyślnie", id: result.insertedId });

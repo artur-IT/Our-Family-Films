@@ -21,16 +21,23 @@ export const MovieProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const [selectedTitle, setSelectedTitle] = useState(initialData.selectedTitle);
   const [selectedPoster, setSelectedPoster] = useState(initialData.selectedPoster);
 
-  // get movies from MongoDB - ONLY FOR LOCAL TESTING
+  // get movies from MongoDB
   const getMovies = useCallback(async () => {
     try {
-      const response = await fetch("/api/movies");
+      const response = await fetch("/api/movies", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        cache: "no-store",
+      });
+
+      if (!response.ok) {
+        throw new Error(`Błąd HTTP: ${response.status}`);
+      }
+
       const data = await response.json();
-      const formattedData = data.map((movie: MovieData) => ({
-        ...movie,
-        id: movie.id.toString(),
-      }));
-      setMovies(formattedData);
+      setMovies(data);
     } catch (error) {
       console.error("Błąd pobierania filmów:", error);
     }
@@ -39,7 +46,6 @@ export const MovieProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   useEffect(() => {
     getMovies();
   }, [getMovies]);
-  //----------------------------------------------
 
   const addMovie = (newMovie: MovieData) => {
     setMovies((prevMovies) => [...prevMovies, newMovie]);

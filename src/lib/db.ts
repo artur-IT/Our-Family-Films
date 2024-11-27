@@ -1,33 +1,54 @@
 import { MongoClient } from "mongodb";
 
-if (!process.env.MONGODB_URI) {
-  throw new Error("Brak MONGODB_URI w zmiennych środowiskowych");
+const MONGODB_URI = process.env.MONGODB_URI;
+const DATABASE_NAME = "myFirstBase";
+const COLLECTION_NAME = "our_movies";
+
+if (!MONGODB_URI) {
+  throw new Error("Dodaj MONGODB_URI do zmiennych środowiskowych (.env)");
 }
 
-const uri = process.env.MONGODB_URI;
-const options = {};
+interface MongoConnection {
+  client: MongoClient | null;
+  promise: Promise<MongoClient> | null;
+}
 
-let client: MongoClient;
-let clientPromise: Promise<MongoClient>;
+let connection: MongoConnection = {
+  client: null,
+  promise: null,
+};
 
-if (process.env.NODE_ENV === "development") {
-  // W trybie development używamy globalnej zmiennej
-  const globalWithMongo = global as typeof globalThis & {
-    _mongoClientPromise?: Promise<MongoClient>;
-  };
-
-  if (!globalWithMongo._mongoClientPromise) {
-    client = new MongoClient(
-      "mongodb+srv://vercel-admin-user-6703a71951df322efc1f187a:FNGsib8AhXU4LJp8@cluster0.r4uz6i5.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
-      options
-    );
-    globalWithMongo._mongoClientPromise = client.connect();
+export async function getMongoClient() {
+  if (connection.client) {
+    return connection.client;
   }
-  clientPromise = globalWithMongo._mongoClientPromise;
-} else {
-  // W produkcji tworzymy nowe połączenie
-  client = new MongoClient(uri, options);
-  clientPromise = client.connect();
+  if (!connection.promise) {
+    connection.promise = MongoClient.connect(MONGODB_URI as string);
+  }
+
+  connection.client = await connection.promise;
+  return connection.client;
 }
 
-export { clientPromise };
+export async function getDatabase() {
+  const client = await getMongoClient();
+  return client.db(DATABASE_NAME);
+}
+
+export async function getCollection(collectionName = COLLECTION_NAME) {
+  const db = await getDatabase();
+  console.log("getCollection z db.ts: ", db);
+  return db.collection(collectionName);
+}
+
+// Przykład użycia w API:
+export async function getMovies() {
+  const collection = await getCollection();
+  console.log("getMovies to z db.ts: ", collection);
+  return collection;
+}
+
+export async function addMovie(movieData: any) {
+  const collection = await getCollection();
+  return collection.insertOne(movieData);
+}
