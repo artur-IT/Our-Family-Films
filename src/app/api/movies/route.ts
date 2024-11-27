@@ -14,8 +14,6 @@ export async function GET() {
 export async function POST(request: Request) {
   try {
     const movieData = await request.json();
-    console.log("Otrzymane dane filmu:", movieData); // Logowanie danych
-
     const collection = await getCollection();
     await collection.insertOne(movieData);
 
@@ -24,8 +22,7 @@ export async function POST(request: Request) {
       data: movieData,
     });
   } catch (error) {
-    console.error("Błąd dodawania filmu:", error); // Logowanie błędów
-
+    console.error("Błąd dodawania filmu:", error);
     return NextResponse.json({ error: "Błąd dodawania" }, { status: 500 });
   }
 }

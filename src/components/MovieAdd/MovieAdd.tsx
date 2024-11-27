@@ -35,22 +35,6 @@ const MovieAdd: React.FC<MovieAddProps> = ({ setAddMovie }) => {
     },
   });
 
-  const addMovieToMongoDB = async (movieData: MovieData) => {
-    const response = await fetch("/api/movies", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(movieData),
-    });
-
-    if (!response.ok) {
-      throw new Error("Nie udało się dodać filmu");
-    }
-
-    return await response.json();
-  };
-
   const onSubmit = async (data: MovieFormInputs) => {
     const newMovie = {
       id: movieId,
