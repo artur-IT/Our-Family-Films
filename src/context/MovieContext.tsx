@@ -6,6 +6,7 @@ import { getInitialData } from "@/hydration";
 interface MovieContextType {
   movies: MovieData[];
   addMovie: (newMovie: MovieData) => void;
+  deleteMovie: (id: string) => void;
   useMovie: (newMovie: MovieData) => void;
   selectedTitle: string;
   selectedPoster: string;
@@ -51,10 +52,14 @@ export const MovieProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     (newMovie: MovieData) => {
       setMovies((prevMovies) => [...prevMovies, newMovie]);
       setSelectedPoster("");
-      getMovies(); // odświeżamy listę filmów
+      getMovies(); // refresh film list
     },
     [getMovies]
   );
+
+  const deleteMovie = useCallback((movieId: string) => {
+    setMovies((prevMovies) => prevMovies.filter((movie) => movie.id !== movieId));
+  }, []);
 
   const useMovie = () => {
     const context = useContext(MovieContext);
@@ -65,7 +70,9 @@ export const MovieProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   };
 
   return (
-    <MovieContext.Provider value={{ movies, addMovie, useMovie, selectedTitle, selectedPoster, setSelectedTitle, setSelectedPoster }}>
+    <MovieContext.Provider
+      value={{ movies, addMovie, deleteMovie, useMovie, selectedTitle, selectedPoster, setSelectedTitle, setSelectedPoster }}
+    >
       {children}
     </MovieContext.Provider>
   );
