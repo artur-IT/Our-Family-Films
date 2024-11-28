@@ -13,8 +13,16 @@ export const Movie = ({ movie, isLoggedIn }: { movie: MovieData; isLoggedIn: boo
   const [isExpanded, setIsExpanded] = useState(false);
   const movieContext = useContext(MovieContext);
   if (!movieContext) throw new Error("Movie must be used within MovieContext.Provider");
-  const { deleteMovie } = movieContext;
+  const { deleteMovie, updateMovie } = movieContext;
   const { isEditMode } = useEditMode();
+
+  const handleUpdate = async () => {
+    updateMovie(movie.id, {
+      title: "Nowy tytuł",
+      genre: "Nowy gatunek",
+      rating: 2,
+    });
+  };
 
   const handleDelete = async () => {
     if (window.confirm("Czy na pewno chcesz usunąć ten film?")) {
@@ -44,7 +52,9 @@ export const Movie = ({ movie, isLoggedIn }: { movie: MovieData; isLoggedIn: boo
 
         {isEditMode && (
           <div className={style.movie_description}>
-            <button className={style.edit_btn}>Edytuj</button>
+            <button className={style.edit_btn} onClick={handleUpdate}>
+              Edytuj
+            </button>
             <button className={style.delete_btn} onClick={handleDelete}>
               Usuń
             </button>

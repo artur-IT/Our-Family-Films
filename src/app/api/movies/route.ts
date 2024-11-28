@@ -12,6 +12,30 @@ export async function GET() {
   }
 }
 
+// ENDPOINT TO UPDATE MOVIE DATA IN MONGODB
+export async function PATCH(request: Request) {
+  try {
+    const movieData = await request.json();
+    const { id, ...updateData } = movieData;
+    const collection = await getCollection();
+
+    const result = await collection.updateOne({ id: id }, { $set: updateData });
+
+    if (result.matchedCount === 0) {
+      return NextResponse.json({ message: "Nie znaleziono filmu" }, { status: 404 });
+    }
+
+    return NextResponse.json({
+      success: true,
+      message: "Film został zaktualizowany",
+      data: movieData,
+    });
+  } catch (error) {
+    console.error("Błąd aktualizacji filmu:", error);
+    return NextResponse.json({ error: "Błąd aktualizacji" }, { status: 500 });
+  }
+}
+
 // ENDPOINT TO ADD NEW MOVIE TO MONGODB
 export async function POST(request: Request) {
   try {
