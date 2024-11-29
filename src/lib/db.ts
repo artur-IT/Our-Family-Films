@@ -1,3 +1,4 @@
+import { MovieData } from "@/types/types";
 import { MongoClient } from "mongodb";
 
 const MONGODB_URI = process.env.MONGODB_URI;
@@ -46,7 +47,7 @@ export async function getMovies() {
   return collection;
 }
 
-export async function addMovie(movieData: any) {
+export async function addMovie(movieData: MovieData) {
   const collection = await getCollection();
   return collection.insertOne(movieData);
 }
