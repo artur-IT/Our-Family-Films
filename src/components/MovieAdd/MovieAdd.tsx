@@ -5,7 +5,6 @@ import styles from "./MovieAdd.module.css";
 import { MovieData } from "@/types/types";
 import { MovieContext } from "@/context/MovieContext";
 import { v4 as uuidv4 } from "uuid";
-import { getInitialData } from "@//hydration";
 import { useForm } from "react-hook-form";
 
 interface MovieAddProps {
@@ -24,13 +23,12 @@ const MovieAdd: React.FC<MovieAddProps> = ({ setAddMovie }) => {
   const movieContext = useContext(MovieContext);
   const { addMovie, selectedTitle, selectedPoster, setSelectedTitle } = movieContext || {};
   const movieId = useMemo(() => uuidv4().slice(0, 3), []);
-  const initialData = getInitialData();
 
   const { register, handleSubmit, reset } = useForm<MovieFormInputs>({
     defaultValues: {
       title: selectedTitle || "",
       type: "Film",
-      genre: initialData.genre,
+      genre: "",
       image: "",
     },
   });
@@ -73,7 +71,7 @@ const MovieAdd: React.FC<MovieAddProps> = ({ setAddMovie }) => {
       reset({
         title: selectedTitle,
         type: "Film",
-        genre: initialData.genre,
+        genre: "",
         image: "",
       });
     }

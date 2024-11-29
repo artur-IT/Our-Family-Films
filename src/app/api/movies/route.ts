@@ -8,7 +8,7 @@ export async function GET() {
     const movies = await collection.find({}).toArray();
     return NextResponse.json(movies);
   } catch (error) {
-    return NextResponse.json({ error: "Błąd pobierania" }, { status: 500 });
+    return NextResponse.json({ error: error }, { status: 500 });
   }
 }
 
@@ -66,6 +66,6 @@ export async function DELETE(request: Request) {
       return NextResponse.json({ message: "Nie znaleziono filmu" }, { status: 404 });
     }
   } catch (error) {
-    return NextResponse.json({ error: "Błąd podczas usuwania filmu" }, { status: 500 });
+    return NextResponse.json({ error: error }, { status: 500 });
   }
 }

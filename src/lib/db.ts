@@ -13,7 +13,7 @@ interface MongoConnection {
   promise: Promise<MongoClient> | null;
 }
 
-let connection: MongoConnection = {
+const connection: MongoConnection = {
   client: null,
   promise: null,
 };

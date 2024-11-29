@@ -20,7 +20,7 @@ export const MovieEdit = ({ setEditForm, movie, id }: MovieEditProps) => {
   {
     const [isEditing, setIsEditing] = useState(false);
     const movieContext = useContext(MovieContext);
-    const { register, handleSubmit, reset } = useForm<MovieFormInputs>({
+    const { register, handleSubmit } = useForm<MovieFormInputs>({
       defaultValues: {
         title: movie.title,
         type: movie.type,
