@@ -1,9 +1,12 @@
 .movieEdit {
   position: absolute;
-  bottom: 200px;
+  top: 0px;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
   background-color: rgb(6, 66, 46);
+}
+
+.movieEdit div {
+  margin: 5px 4px;
 }

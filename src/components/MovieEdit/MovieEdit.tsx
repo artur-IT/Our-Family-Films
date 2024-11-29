@@ -8,6 +8,7 @@ interface MovieFormInputs {
   title: string;
   type: string;
   rating: number;
+  genre: string;
 }
 
 interface MovieEditProps {
@@ -24,6 +25,7 @@ export const MovieEdit = ({ setEditForm, movie, id }: MovieEditProps) => {
       defaultValues: {
         title: movie.title,
         type: movie.type,
+        genre: movie.genre,
         rating: movie.rating,
       },
     });
@@ -33,6 +35,7 @@ export const MovieEdit = ({ setEditForm, movie, id }: MovieEditProps) => {
         id: id,
         title: data.title,
         type: data.type,
+        genre: data.genre,
         rating: Number(data.rating),
       };
       try {
@@ -70,9 +73,15 @@ export const MovieEdit = ({ setEditForm, movie, id }: MovieEditProps) => {
                 </select>
               </div>
 
+              <div>
+                <label htmlFor="genre">Gatunek</label>
+                <input id="genre" maxLength={30} {...register("genre", { maxLength: 30 })} />
+              </div>
+
               <div className="rating">
                 <label htmlFor="rating">Ocena</label>
                 <select id="rating" {...register("rating")}>
+                  <option value="0">0</option>
                   <option value="1">1</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
