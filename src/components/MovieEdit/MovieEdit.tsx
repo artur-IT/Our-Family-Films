@@ -1,55 +1,92 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import styles from "./MovieEdit.module.css";
+import { useForm } from "react-hook-form";
+import { MovieContext } from "@/context/MovieContext";
 
-export const MovieEdit = () => {
-  const [isEditing, setIsEditing] = useState(false);
-  const [movieData, setMovieData] = useState({
-    title: "",
-    description: "",
-    year: "",
-  });
+interface MovieFormInputs {
+  id?: string;
+  title: string;
+  type: string;
+  rating: number;
+}
 
-  const handleEdit = () => {
-    setIsEditing(true);
-  };
+interface MovieEditProps {
+  setEditForm: (value: boolean) => void;
+  movie: MovieFormInputs;
+  id: string;
+}
 
-  const handleSave = () => {
-    // Save movie data logic would go here
-    setIsEditing(false);
-  };
+export const MovieEdit = ({ setEditForm, movie, id }: MovieEditProps) => {
+  {
+    const [isEditing, setIsEditing] = useState(false);
+    const movieContext = useContext(MovieContext);
+    const { register, handleSubmit, reset } = useForm<MovieFormInputs>({
+      defaultValues: {
+        title: movie.title,
+        type: movie.type,
+        rating: movie.rating,
+      },
+    });
 
-  const handleDelete = () => {
-    // Delete movie logic would go here
-    if (window.confirm("Are you sure you want to delete this movie?")) {
-      // Delete operation
-    }
-  };
+    const handleSave = handleSubmit(async (data) => {
+      const newData = {
+        id: id,
+        title: data.title,
+        type: data.type,
+        rating: Number(data.rating),
+      };
+      try {
+        await movieContext?.updateMovie(id, {
+          ...newData,
+          rating: newData.rating as 0 | 2 | 1 | 3 | undefined,
+        });
+        setIsEditing(false);
+        setEditForm(false);
+      } catch (error) {
+        console.error("Błąd podczas aktualizacji filmu:", error);
+      }
+    });
 
-  const handleChange = (e: { target: { name: string; value: string } }) => {
-    const { name, value } = e.target;
-    setMovieData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
+    const handleCancel = () => {
+      setIsEditing(true);
+      setEditForm(false);
+    };
 
-  return (
-    <div className={styles.movieEdit}>
-      {isEditing ? (
-        <div className="edit-form">
-          <input type="text" name="title" value={movieData.title} onChange={handleChange} placeholder="Movie title" />
-          <textarea name="description" value={movieData.description} onChange={handleChange} placeholder="Movie description" />
-          <input type="text" name="year" value={movieData.year} onChange={handleChange} placeholder="Release year" />
-          <button onClick={handleSave}>Save</button>
+    return (
+      <>
+        <div className={styles.movieEdit}>
+          {!isEditing && (
+            <>
+              <div className="title_section">
+                <label htmlFor="title">Tytuł</label>
+                <input id="title" {...register("title")} />
+              </div>
+
+              <div className="type_section">
+                <label htmlFor="type">Typ</label>
+                <select id="type" maxLength={30} {...register("type")}>
+                  <option value="Film">Film</option>
+                  <option value="Serial">Serial</option>
+                </select>
+              </div>
+
+              <div className="rating">
+                <label htmlFor="rating">Ocena</label>
+                <select id="rating" {...register("rating")}>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                </select>
+              </div>
+
+              <div className="movie-actions">
+                <button onClick={handleSave}>Save</button>
+                <button onClick={handleCancel}>Cancel</button>
+              </div>
+            </>
+          )}
         </div>
-      ) : (
-        <div className="movie-actions">
-          <button onClick={handleEdit}>Edit Movie</button>
-          <button onClick={handleDelete} className="delete-btn">
-            Delete Movie
-          </button>
-        </div>
-      )}
-    </div>
-  );
+      </>
+    );
+  }
 };

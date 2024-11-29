@@ -5,24 +5,18 @@ import starFullIcon from "../../../public/star-full.svg";
 import commentsIcon from "../../../public/comments.svg";
 import { MovieData } from "@/types/types";
 import Image from "next/image";
-// import { MovieEdit } from "@/app/movies/MovieEdit/MovieEdit";
+
 import { useEditMode } from "@/context/EditMovieContext";
 import { MovieContext } from "@/context/MovieContext";
+import { MovieEdit } from "@/components/MovieEdit/MovieEdit";
 
 export const Movie = ({ movie, isLoggedIn }: { movie: MovieData; isLoggedIn: boolean }) => {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [showEditForm, setEditForm] = useState(false);
   const movieContext = useContext(MovieContext);
   if (!movieContext) throw new Error("Movie must be used within MovieContext.Provider");
-  const { deleteMovie, updateMovie } = movieContext;
+  const { deleteMovie } = movieContext;
   const { isEditMode } = useEditMode();
-
-  const handleUpdate = async () => {
-    updateMovie(movie.id, {
-      title: "Nowy tytuł",
-      genre: "Nowy gatunek",
-      rating: 2,
-    });
-  };
 
   const handleDelete = async () => {
     if (window.confirm("Czy na pewno chcesz usunąć ten film?")) {
@@ -47,12 +41,11 @@ export const Movie = ({ movie, isLoggedIn }: { movie: MovieData; isLoggedIn: boo
   return (
     <>
       <div className={style.movie} id={movie.id} data-expanded={isExpanded} style={{ backgroundImage: `url(${movie.image})` }}>
-        {/* Edit curtain on film */}
-        {/* {isLoggedIn && <MovieEdit />} */}
-
         {isEditMode && (
           <div className={style.movie_description}>
-            <button className={style.edit_btn} onClick={handleUpdate}>
+            {/* Edit curtain on film */}
+            {showEditForm && <MovieEdit setEditForm={setEditForm} movie={movie} id={movie.id} />}
+            <button className={style.edit_btn} onClick={() => setEditForm(!showEditForm)} disabled={showEditForm}>
               Edytuj
             </button>
             <button className={style.delete_btn} onClick={handleDelete}>
@@ -61,6 +54,7 @@ export const Movie = ({ movie, isLoggedIn }: { movie: MovieData; isLoggedIn: boo
           </div>
         )}
 
+        {/* Movie description */}
         <div className={style.movie_description} style={isLoggedIn ? { opacity: 1 } : undefined} id={movie.id}>
           <div className={style.movie_data}>
             <p>{movie.title}</p>
