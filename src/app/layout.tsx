@@ -1,37 +1,30 @@
-"use client";
-// import type { Metadata } from "next";
-import { MovieProvider } from "@/context/MovieContext";
+import type { Metadata } from "next";
 import styles from "./layout.module.css";
-import { EditModeProvider } from "@/context/EditMovieContext";
-import { Footer } from "@/layouts/Footer/Footer";
-import { Main } from "@/layouts/Main/Main";
-import { Shelf } from "@/components/Shelf/Shelf";
-import { useState } from "react";
-import { Header } from "@/layouts/Header/Header";
-import MovieAdd from "@/components/MovieAdd/MovieAdd";
+import ClientLayout from "./ClientLayout";
 
-// export const metadata: Metadata = {
-//   title: "Our Family Films",
-//   description: "Nasze rodzinne filmy",
-// };
+export const metadata: Metadata = {
+  title: "Our Family Films",
+  description: "Nasze rodzinne filmy",
+  icons: {
+    apple: "/apple-touch-icon.png",
+    icon: [
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+    ],
+    other: [
+      {
+        rel: "manifest",
+        url: "/site.webmanifest",
+      },
+    ],
+  },
+};
 
 export default function RootLayout() {
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
-  const [addMovie, setAddMovie] = useState<boolean>(false);
-
   return (
     <html lang="pl">
       <body className={styles.main}>
-        <MovieProvider>
-          <EditModeProvider>
-            <Header isLoggedIn={isLoggedIn} setLogin={() => setIsLoggedIn(!isLoggedIn)} setAddMovie={() => setAddMovie(!addMovie)} />
-            <Main>
-              <Shelf isLoggedIn={isLoggedIn} />
-              {addMovie && <MovieAdd setAddMovie={setAddMovie} />}
-            </Main>
-            <Footer />
-          </EditModeProvider>
-        </MovieProvider>
+        <ClientLayout />
       </body>
     </html>
   );
