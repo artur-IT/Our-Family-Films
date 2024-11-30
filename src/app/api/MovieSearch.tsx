@@ -4,12 +4,14 @@ import { MovieContext } from "@/context/MovieContext";
 import styles from "./MovieSearch.module.css";
 import Image from "next/image";
 
+const TMDB_API_KEY = process.env.NEXT_PUBLIC_TMDB_API_KEY;
+
 const MovieSearch: React.FC = () => {
   const context = useContext(MovieContext);
   const setSelectedTitle = context?.setSelectedTitle;
   const setSelectedPoster = context?.setSelectedPoster;
   const [movieTitle, setMovieTitle] = useState("");
-  const [moviePosters, setMoviePosters] = useState([]);
+  const [moviePosters, setMoviePosters] = useState<string[]>([]);
   const postersRef = useRef<HTMLDivElement>(null);
 
   // Close finding posters when clicking outside of the posters div
@@ -27,7 +29,7 @@ const MovieSearch: React.FC = () => {
   }, []);
 
   const searchMoviePoster = (title: string) => {
-    const url = `https://api.themoviedb.org/3/search/movie?query=${title}&api_key=ad405f3b86fe05aa920a6b1736fdd9db&`;
+    const url = `https://api.themoviedb.org/3/search/movie?query=${title}&api_key=${TMDB_API_KEY}`;
     fetch(url)
       .then((response) => {
         if (!response.ok) {

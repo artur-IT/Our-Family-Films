@@ -30,6 +30,7 @@
 .movie_data p,
 .rating p {
   margin: 0;
+  font-variant-caps: small-caps;
 }
 
 .movie_data {

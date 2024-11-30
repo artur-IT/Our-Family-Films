@@ -23,7 +23,7 @@ export const Header = ({ isLoggedIn, setLogin, setAddMovie }: PropsTypes) => {
           )}
 
           <a href="#" onClick={setLogin}>
-            Zaloguj
+            {isLoggedIn ? "Wyloguj" : "Zaloguj"}
           </a>
         </nav>
       </header>
