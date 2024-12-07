@@ -18,6 +18,7 @@ export default function Home() {
         {addMovie && <MovieAdd setAddMovie={setAddMovie} />}
       </Main>
       <Footer /> */}
+      <h1>NIC !!!</h1>
     </>
   );
 }

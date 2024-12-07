@@ -1,0 +1,8 @@
+.adminPanel {
+  padding: 2rem;
+  z-index: 100;
+}
+
+.adminControls {
+  margin-bottom: 2rem;
+}
