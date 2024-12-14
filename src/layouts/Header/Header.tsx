@@ -1,8 +1,10 @@
 "use client";
 import { useEditMode } from "@/context/EditMovieContext";
-import { useRouter } from "next/navigation";
+import { createPortal } from "react-dom";
 import style from "./Header.module.css";
 import Link from "next/link";
+import { useState } from "react";
+import { PanelLogin } from "../PanelLogin/PanelLogin";
 
 interface PropsTypes {
   isLoggedIn: boolean;
@@ -12,7 +14,7 @@ interface PropsTypes {
 
 export const Header = ({ isLoggedIn, setLogin, setAddMovie }: PropsTypes) => {
   const { isEditMode, toggleEditMode } = useEditMode();
-  const router = useRouter();
+  const [showLogin, setShowLogin] = useState(false);
 
   return (
     <>
@@ -26,15 +28,12 @@ export const Header = ({ isLoggedIn, setLogin, setAddMovie }: PropsTypes) => {
             </>
           )}
           <Link href="/admin">Panel Admina</Link>
-          <Link onClick={() => setLogin()} replace href="/auth">
-            {isLoggedIn ? "Wyloguj" : "Zaloguj"}{" "}
-          </Link>
-          {/* <a href="#" onClick={setLogin}>
-            {isLoggedIn ? "Wyloguj" : "Zaloguj"}
-          </a> */}
+          <Link href="/auth">Panel Logowania</Link>
+          <button onClick={() => setShowLogin(!showLogin)}>{isLoggedIn ? "Wyloguj" : "Zaloguj"}</button>
         </nav>
       </header>
-      {/* {isLoggedIn && <PanelLogin />} */}
+      <div id="modal-root"></div>
+      {/* {showLogin && createPortal(<PanelLogin />, document.getElementById("modal-root")!)} */}
     </>
   );
 };
