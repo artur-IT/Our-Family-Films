@@ -27,26 +27,18 @@ import { useState } from "react";
 //   },
 // };
 
-export default function RootLayout({ children, auth }: { children: React.ReactNode; auth: React.ReactNode }) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [addMovie, setAddMovie] = useState<boolean>(false);
 
   return (
     <html lang="pl">
       <body>
-        {/* <MovieProvider>
-          <EditModeProvider>
-            {children}
-            {auth}
-          </EditModeProvider>
-        </MovieProvider> */}
-
         <MovieProvider>
           <EditModeProvider>
             <Header isLoggedIn={isLoggedIn} setLogin={() => setIsLoggedIn(!isLoggedIn)} setAddMovie={() => setAddMovie(!addMovie)} />
 
             {children}
-            {auth}
             <Main>
               <Shelf isLoggedIn={isLoggedIn} />
               {addMovie && <MovieAdd setAddMovie={setAddMovie} />}
