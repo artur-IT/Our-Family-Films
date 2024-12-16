@@ -46,8 +46,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Footer />
           </EditModeProvider>
         </MovieProvider>
-
-        {/* <div id="modal-root"></div> */}
       </body>
     </html>
   );
