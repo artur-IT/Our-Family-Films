@@ -1,5 +1,10 @@
 .adminPanel {
-  padding: 2rem;
+  position: absolute;
+  right: 50%;
+  top: 0px;
+  transform: translateX(100px);
+  padding: 20px 0;
+  /* background-color: aquamarine; */
   z-index: 100;
 }
 

@@ -5,9 +5,7 @@ import { EditModeProvider } from "@/context/EditMovieContext";
 import { Footer } from "@/layouts/Footer/Footer";
 import { Main } from "@/layouts/Main/Main";
 import { Shelf } from "@/components/Shelf/Shelf";
-import MovieAdd from "@/components/MovieAdd/MovieAdd";
 import { Header } from "@/layouts/Header/Header";
-import { useState } from "react";
 import { LoginProvider } from "@/context/LoginStateContext";
 
 // export const metadata: Metadata = {
@@ -29,20 +27,16 @@ import { LoginProvider } from "@/context/LoginStateContext";
 // };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const [showAddMovie, setShowAddMovie] = useState<boolean>(false);
-
   return (
     <html lang="pl">
       <body>
         <LoginProvider>
           <MovieProvider>
             <EditModeProvider>
-              <Header setShowAddMovie={() => setShowAddMovie(!showAddMovie)} />
-
+              <Header />
               {children}
               <Main>
                 <Shelf />
-                {showAddMovie && <MovieAdd setShowAddMovie={setShowAddMovie} />}
               </Main>
               <Footer />
             </EditModeProvider>

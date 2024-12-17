@@ -15,6 +15,12 @@ export const PanelLogin = () => {
       router.push("/admin");
       setIsLoggedIn(!isLoggedIn);
     }
+
+    if (data.username === "us") {
+      document.cookie = "auth=true; path=/";
+      router.push("/user");
+      setIsLoggedIn(!isLoggedIn);
+    }
   };
 
   return (

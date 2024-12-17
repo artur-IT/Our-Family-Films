@@ -1,19 +1,18 @@
 "use client";
 import { useEffect } from "react";
 import { useEditMode } from "@/context/EditMovieContext";
-import style from "@/app/admin/admin.module.css";
+import style from "./user.module.css";
 
-export default function AdminPanel() {
-  const { isEditMode, toggleEditMode, toggleShowAddMovie } = useEditMode();
+export default function UserPanel() {
+  const { isEditMode, toggleEditMode } = useEditMode();
 
   useEffect(() => {
     toggleEditMode();
     // Tutaj później dodamy sprawdzanie autoryzacji
   }, []);
   return (
-    <div className={style.adminPanel}>
-      <span>Admin Panel</span>
-      <button onClick={toggleShowAddMovie}>Dodaj film</button>
+    <div className={style.userPanel}>
+      <span>User Panel</span>
       <button onClick={toggleEditMode}>{isEditMode ? "Zakończ edycję" : "Edytuj filmy"}</button>
     </div>
   );

@@ -5,10 +5,10 @@ import starFullIcon from "../../../public/star-full.svg";
 import commentsIcon from "../../../public/comments.svg";
 import { MovieData } from "@/types/types";
 import Image from "next/image";
-
 import { useEditMode } from "@/context/EditMovieContext";
 import { MovieContext } from "@/context/MovieContext";
 import { MovieEdit } from "@/components/MovieEdit/MovieEdit";
+import MovieAdd from "../MovieAdd/MovieAdd";
 
 export const Movie = ({ movie, isLoggedIn }: { movie: MovieData; isLoggedIn: boolean }) => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -16,7 +16,7 @@ export const Movie = ({ movie, isLoggedIn }: { movie: MovieData; isLoggedIn: boo
   const movieContext = useContext(MovieContext);
   if (!movieContext) throw new Error("Movie must be used within MovieContext.Provider");
   const { deleteMovie } = movieContext;
-  const { isEditMode } = useEditMode();
+  const { isEditMode, showAddMovie } = useEditMode();
 
   const handleDelete = async () => {
     if (window.confirm("Czy na pewno chcesz usunąć ten film?")) {
@@ -40,6 +40,7 @@ export const Movie = ({ movie, isLoggedIn }: { movie: MovieData; isLoggedIn: boo
 
   return (
     <>
+      {showAddMovie && <MovieAdd />}
       <div className={style.movie} id={movie.id} data-expanded={isExpanded} style={{ backgroundImage: `url(${movie.image})` }}>
         {isEditMode && (
           <div className={style.movie_description}>

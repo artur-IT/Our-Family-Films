@@ -7,7 +7,7 @@ import { useLoginState } from "@/context/LoginStateContext";
 export default function AuthPage() {
   const router = useRouter();
   const pathname = usePathname();
-  const { isLoggedIn, setIsLoggedIn } = useLoginState();
+  const { isLoggedIn } = useLoginState();
 
   useEffect(() => {
     if (pathname === "/auth" && isLoggedIn) {

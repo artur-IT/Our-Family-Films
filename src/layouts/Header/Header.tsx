@@ -6,9 +6,10 @@ import Link from "next/link";
 import { useState } from "react";
 import { useLoginState } from "@/context/LoginStateContext";
 import AdminPanel from "@/app/admin/page";
+import UserPanel from "@/app/user/page";
 
-export const Header = ({ setShowAddMovie }: { setShowAddMovie: () => void }) => {
-  const { isEditMode } = useEditMode();
+export const Header = ({}) => {
+  // const { isEditMode, setShowAddMovie } = useEditMode();
   const [showPanelLogin, setShowPanelLogin] = useState<boolean>(false);
   const { isLoggedIn, setIsLoggedIn } = useLoginState();
   const pathname = usePathname();
@@ -24,7 +25,8 @@ export const Header = ({ setShowAddMovie }: { setShowAddMovie: () => void }) => 
         <nav>
           <p>Our Family Films</p>
 
-          {pathname === "/admin" && isLoggedIn && <AdminPanel setShowAddMovie={setShowAddMovie} isEditMode={isEditMode} />}
+          {/* {pathname === "/admin" && isLoggedIn && <AdminPanel setShowAddMovie={setShowAddMovie} isEditMode={isEditMode} />} */}
+          {/* {pathname === "/user" && isLoggedIn && <UserPanel />} */}
 
           <Link href={showPanelLogin ? "/" : "/auth"} onClick={handleLinkLogin}>
             {isLoggedIn ? "Wyloguj" : "Zaloguj"}

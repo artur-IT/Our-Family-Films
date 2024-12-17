@@ -1,0 +1,8 @@
+.userPanel {
+  position: absolute;
+  right: 50%;
+  top: 0px;
+  transform: translateX(100px);
+  padding: 20px 0;
+  z-index: 10;
+}

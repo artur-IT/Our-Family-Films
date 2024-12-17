@@ -3,19 +3,26 @@ import { createContext, useContext, useState, ReactNode } from "react";
 
 type EditModeContextType = {
   isEditMode: boolean;
+  showAddMovie: boolean;
+  toggleShowAddMovie: () => void;
   toggleEditMode: () => void;
 };
 
 const EditModeContext = createContext<EditModeContextType | undefined>(undefined);
 
 export function EditModeProvider({ children }: { children: ReactNode }) {
-  const [isEditMode, setIsEditMode] = useState(false);
+  const [isEditMode, setIsEditMode] = useState<boolean>(false);
+  const [showAddMovie, setShowAddMovie] = useState<boolean>(false);
 
   const toggleEditMode = () => {
     setIsEditMode((prev) => !prev);
   };
 
-  return <EditModeContext.Provider value={{ isEditMode, toggleEditMode }}>{children}</EditModeContext.Provider>;
+  const toggleShowAddMovie = () => setShowAddMovie((prev) => !prev);
+
+  return (
+    <EditModeContext.Provider value={{ isEditMode, showAddMovie, toggleShowAddMovie, toggleEditMode }}>{children}</EditModeContext.Provider>
+  );
 }
 
 export const useEditMode = () => {

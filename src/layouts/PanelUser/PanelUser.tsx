@@ -1,7 +1,7 @@
 export const PanelUser = () => {
   return (
     <div>
-      <h1>PanelUser</h1>
+      <h1>PanelUser z Layouts...</h1>
     </div>
   );
 };
