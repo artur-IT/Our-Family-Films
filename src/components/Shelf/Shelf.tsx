@@ -3,9 +3,11 @@ import style from "./Shelf.module.css";
 import { useRef } from "react";
 import { useContext } from "react";
 import { MovieContext } from "@/context/MovieContext";
+import { useLoginState } from "@/context/LoginStateContext";
 
-export const Shelf = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
+export const Shelf = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const { isLoggedIn } = useLoginState();
   const { movies } = useContext(MovieContext) || { movies: [] };
 
   const scroll = (direction: "left" | "right") => {

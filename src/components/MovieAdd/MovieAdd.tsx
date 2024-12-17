@@ -10,7 +10,7 @@ import { useForm } from "react-hook-form";
 interface MovieAddProps {
   movieDB?: MovieData[];
   setMovieDB?: (value: MovieData[]) => void;
-  setAddMovie: (value: boolean) => void;
+  setShowAddMovie: (value: boolean) => void;
 }
 interface MovieFormInputs {
   title: string;
@@ -19,7 +19,7 @@ interface MovieFormInputs {
   image: string;
 }
 
-const MovieAdd: React.FC<MovieAddProps> = ({ setAddMovie }) => {
+const MovieAdd: React.FC<MovieAddProps> = ({ setShowAddMovie }) => {
   const movieContext = useContext(MovieContext);
   const { addMovie, selectedTitle, selectedPoster, setSelectedTitle } = movieContext || {};
   const movieId = useMemo(() => uuidv4().slice(0, 3), []);
@@ -59,7 +59,7 @@ const MovieAdd: React.FC<MovieAddProps> = ({ setAddMovie }) => {
           setSelectedTitle("");
         }
 
-        setAddMovie(false);
+        setShowAddMovie(false);
       }
     } catch (error) {
       console.error(error);
@@ -105,7 +105,7 @@ const MovieAdd: React.FC<MovieAddProps> = ({ setAddMovie }) => {
         </div>
 
         <button type="submit">Dodaj film</button>
-        <button type="submit" onClick={() => setAddMovie(false)}>
+        <button type="submit" onClick={() => setShowAddMovie(false)}>
           Anuluj
         </button>
       </form>

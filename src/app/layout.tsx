@@ -29,8 +29,7 @@ import { LoginProvider } from "@/context/LoginStateContext";
 // };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
-  const [addMovie, setAddMovie] = useState<boolean>(false);
+  const [showAddMovie, setShowAddMovie] = useState<boolean>(false);
 
   return (
     <html lang="pl">
@@ -38,12 +37,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <LoginProvider>
           <MovieProvider>
             <EditModeProvider>
-              <Header setAddMovie={() => setAddMovie(!addMovie)} />
+              <Header setShowAddMovie={() => setShowAddMovie(!showAddMovie)} />
 
               {children}
               <Main>
-                <Shelf isLoggedIn={isLoggedIn} />
-                {addMovie && <MovieAdd setAddMovie={setAddMovie} />}
+                <Shelf />
+                {showAddMovie && <MovieAdd setShowAddMovie={setShowAddMovie} />}
               </Main>
               <Footer />
             </EditModeProvider>

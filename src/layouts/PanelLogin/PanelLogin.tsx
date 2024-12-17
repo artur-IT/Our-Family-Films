@@ -6,7 +6,6 @@ import { useLoginState } from "@/context/LoginStateContext";
 export const PanelLogin = () => {
   const router = useRouter();
   const { isLoggedIn, setIsLoggedIn } = useLoginState();
-  1;
   const { register, handleSubmit } = useForm();
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
