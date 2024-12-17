@@ -5,24 +5,16 @@ import style from "./Header.module.css";
 import Link from "next/link";
 import { useState } from "react";
 import { useLoginState } from "@/context/LoginStateContext";
-import { set } from "react-hook-form";
+import AdminPanel from "@/app/admin/page";
 
-interface PropsTypes {
-  setShowAddMovie: () => void;
-}
-
-export const Header = ({ setShowAddMovie }: PropsTypes) => {
-  const { isEditMode, toggleEditMode } = useEditMode();
+export const Header = ({ setShowAddMovie }: { setShowAddMovie: () => void }) => {
+  const { isEditMode } = useEditMode();
   const [showPanelLogin, setShowPanelLogin] = useState<boolean>(false);
   const { isLoggedIn, setIsLoggedIn } = useLoginState();
   const pathname = usePathname();
 
-  //
-
   const handleLinkLogin = () => {
-    if (isLoggedIn) {
-      setIsLoggedIn(!isLoggedIn);
-    }
+    if (isLoggedIn) setIsLoggedIn(!isLoggedIn);
     setShowPanelLogin(!showPanelLogin);
   };
 
@@ -32,12 +24,7 @@ export const Header = ({ setShowAddMovie }: PropsTypes) => {
         <nav>
           <p>Our Family Films</p>
 
-          {pathname === "/admin" && isLoggedIn && (
-            <>
-              <button onClick={setShowAddMovie}>Dodaj film</button>
-              <button onClick={toggleEditMode}>{isEditMode ? "Zakończ edycję" : "Edytuj filmy"}</button>
-            </>
-          )}
+          {pathname === "/admin" && isLoggedIn && <AdminPanel setShowAddMovie={setShowAddMovie} isEditMode={isEditMode} />}
 
           <Link href={showPanelLogin ? "/" : "/auth"} onClick={handleLinkLogin}>
             {isLoggedIn ? "Wyloguj" : "Zaloguj"}
