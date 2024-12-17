@@ -12,7 +12,7 @@ interface PropsTypes {
 
 export const Header = ({ setAddMovie }: PropsTypes) => {
   const { isEditMode, toggleEditMode } = useEditMode();
-  const [showPanelLogin, setShowPanelLoginm] = useState<boolean>(false);
+  const [showPanelLogin, setShowPanelLogin] = useState<boolean>(false);
   const { isLoggedIn, setIsLoggedIn } = useLoginState();
   const pathname = usePathname();
 
@@ -22,14 +22,14 @@ export const Header = ({ setAddMovie }: PropsTypes) => {
         <nav>
           <p>Our Family Films</p>
 
-          {pathname === "/admin" && (
+          {pathname === "/admin" && isLoggedIn && (
             <>
               <button onClick={setAddMovie}>Dodaj film</button>
               <button onClick={toggleEditMode}>{isEditMode ? "Zakończ edycję" : "Edytuj filmy"}</button>
             </>
           )}
 
-          <Link href={showPanelLogin ? "/" : "/auth"} onClick={() => setShowPanelLoginm(!showPanelLogin)}>
+          <Link href={showPanelLogin ? "/" : "/auth"} onClick={() => setShowPanelLogin(!showPanelLogin)}>
             {isLoggedIn ? "Wyloguj" : "Zaloguj"}
           </Link>
         </nav>

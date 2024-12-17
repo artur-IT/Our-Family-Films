@@ -1,6 +1,6 @@
 import { useRouter } from "next/navigation";
 import styles from "./PanelLogin.module.css";
-import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import { FieldValues, set, SubmitHandler, useForm } from "react-hook-form";
 import { useLoginState } from "@/context/LoginStateContext";
 
 export const PanelLogin = () => {
@@ -14,6 +14,7 @@ export const PanelLogin = () => {
     if (data.username === "ad") {
       document.cookie = "auth=true; path=/";
       router.push("/admin");
+      setIsLoggedIn(!isLoggedIn);
     }
   };
 
