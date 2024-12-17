@@ -8,6 +8,7 @@ import { Shelf } from "@/components/Shelf/Shelf";
 import MovieAdd from "@/components/MovieAdd/MovieAdd";
 import { Header } from "@/layouts/Header/Header";
 import { useState } from "react";
+import { LoginProvider } from "@/context/LoginStateContext";
 
 // export const metadata: Metadata = {
 //   title: "Our Family Films",
@@ -29,24 +30,25 @@ import { useState } from "react";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
-  // const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [addMovie, setAddMovie] = useState<boolean>(false);
 
   return (
     <html lang="pl">
       <body>
-        <MovieProvider>
-          <EditModeProvider>
-            <Header isLoggedIn={isLoggedIn} setAddMovie={() => setAddMovie(!addMovie)} />
+        <LoginProvider>
+          <MovieProvider>
+            <EditModeProvider>
+              <Header setAddMovie={() => setAddMovie(!addMovie)} />
 
-            {children}
-            <Main>
-              <Shelf isLoggedIn={isLoggedIn} />
-              {addMovie && <MovieAdd setAddMovie={setAddMovie} />}
-            </Main>
-            <Footer />
-          </EditModeProvider>
-        </MovieProvider>
+              {children}
+              <Main>
+                <Shelf isLoggedIn={isLoggedIn} />
+                {addMovie && <MovieAdd setAddMovie={setAddMovie} />}
+              </Main>
+              <Footer />
+            </EditModeProvider>
+          </MovieProvider>
+        </LoginProvider>
       </body>
     </html>
   );

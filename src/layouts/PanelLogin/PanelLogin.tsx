@@ -1,9 +1,12 @@
 import { useRouter } from "next/navigation";
 import styles from "./PanelLogin.module.css";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import { useLoginState } from "@/context/LoginStateContext";
 
 export const PanelLogin = () => {
   const router = useRouter();
+  const { isLoggedIn, setIsLoggedIn } = useLoginState();
+  1;
   const { register, handleSubmit } = useForm();
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {

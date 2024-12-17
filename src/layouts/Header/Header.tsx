@@ -4,15 +4,16 @@ import { useEditMode } from "@/context/EditMovieContext";
 import style from "./Header.module.css";
 import Link from "next/link";
 import { useState } from "react";
+import { useLoginState } from "@/context/LoginStateContext";
 
 interface PropsTypes {
-  isLoggedIn: boolean;
   setAddMovie: () => void;
 }
 
-export const Header = ({ isLoggedIn, setAddMovie }: PropsTypes) => {
+export const Header = ({ setAddMovie }: PropsTypes) => {
   const { isEditMode, toggleEditMode } = useEditMode();
   const [showPanelLogin, setShowPanelLoginm] = useState<boolean>(false);
+  const { isLoggedIn, setIsLoggedIn } = useLoginState();
   const pathname = usePathname();
 
   return (
