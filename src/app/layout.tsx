@@ -29,6 +29,7 @@ import { useState } from "react";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  // const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [addMovie, setAddMovie] = useState<boolean>(false);
 
   return (
@@ -36,7 +37,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <MovieProvider>
           <EditModeProvider>
-            <Header isLoggedIn={isLoggedIn} setLogin={() => setIsLoggedIn(!isLoggedIn)} setAddMovie={() => setAddMovie(!addMovie)} />
+            <Header isLoggedIn={isLoggedIn} setAddMovie={() => setAddMovie(!addMovie)} />
 
             {children}
             <Main>

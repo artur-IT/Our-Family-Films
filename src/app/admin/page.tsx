@@ -14,13 +14,5 @@ export default function AdminPanel() {
     toggleEditMode();
     // Tutaj później dodamy sprawdzanie autoryzacji
   }, []);
-  return (
-    <div className={style.adminPanel}>
-      <h1>Panel Administratora</h1>
-      <div className={style.adminControls}>
-        <button onClick={() => router.push("/")}>Powrót do strony głównej</button>
-      </div>
-      {/* Tu dodamy listę filmów z możliwością edycji */}
-    </div>
-  );
+  return <></>;
 }
