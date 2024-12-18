@@ -16,7 +16,7 @@ export const Movie = ({ movie, isLoggedIn }: { movie: MovieData; isLoggedIn: boo
   const movieContext = useContext(MovieContext);
   if (!movieContext) throw new Error("Movie must be used within MovieContext.Provider");
   const { deleteMovie } = movieContext;
-  const { isEditMode, showAddMovie } = useEditMode();
+  const { isEditMode, showAddMovie, user } = useEditMode();
 
   const handleDelete = async () => {
     if (window.confirm("Czy na pewno chcesz usunąć ten film?")) {
@@ -49,9 +49,12 @@ export const Movie = ({ movie, isLoggedIn }: { movie: MovieData; isLoggedIn: boo
             <button className={style.edit_btn} onClick={() => setEditForm(!showEditForm)} disabled={showEditForm}>
               Edytuj
             </button>
-            <button className={style.delete_btn} onClick={handleDelete}>
-              Usuń
-            </button>
+            {/* If user is Admin show delete button */}
+            {user === "ad" && (
+              <button className={style.delete_btn} onClick={handleDelete}>
+                Usuń
+              </button>
+            )}
           </div>
         )}
 

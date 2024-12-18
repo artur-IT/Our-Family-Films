@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import styles from "./MovieEdit.module.css";
 import { useForm } from "react-hook-form";
 import { MovieContext } from "@/context/MovieContext";
+import { useEditMode } from "@/context/EditMovieContext";
 
 interface MovieFormInputs {
   id?: string;
@@ -9,6 +10,7 @@ interface MovieFormInputs {
   type: string;
   rating: number;
   genre: string;
+  comment?: string;
 }
 
 interface MovieEditProps {
@@ -18,8 +20,10 @@ interface MovieEditProps {
 }
 
 export const MovieEdit = ({ setEditForm, movie, id }: MovieEditProps) => {
+  const { user } = useEditMode();
   {
-    const [isEditing, setIsEditing] = useState(false);
+    const [isEditingADMIN, setIsEditingADMIN] = useState(user);
+    const [isEditingUSER, setIsEditingUSER] = useState(user);
     const movieContext = useContext(MovieContext);
     const { register, handleSubmit } = useForm<MovieFormInputs>({
       defaultValues: {
@@ -27,6 +31,7 @@ export const MovieEdit = ({ setEditForm, movie, id }: MovieEditProps) => {
         type: movie.type,
         genre: movie.genre,
         rating: movie.rating,
+        comment: movie.comment,
       },
     });
 
@@ -37,13 +42,15 @@ export const MovieEdit = ({ setEditForm, movie, id }: MovieEditProps) => {
         type: data.type,
         genre: data.genre,
         rating: Number(data.rating),
+        comment: data.comment,
       };
       try {
         await movieContext?.updateMovie(id, {
           ...newData,
           rating: newData.rating as 0 | 2 | 1 | 3 | undefined,
+          comments: newData.comment ? [newData.comment] : [],
         });
-        setIsEditing(false);
+        // setIsEditingADMIN(false);
         setEditForm(false);
       } catch (error) {
         console.error("Błąd podczas aktualizacji filmu:", error);
@@ -51,14 +58,14 @@ export const MovieEdit = ({ setEditForm, movie, id }: MovieEditProps) => {
     });
 
     const handleCancel = () => {
-      setIsEditing(true);
+      // setIsEditingADMIN(true);
       setEditForm(false);
     };
 
     return (
       <>
         <div className={styles.movieEdit}>
-          {!isEditing && (
+          {isEditingADMIN === "ad" && (
             <>
               <div className="title_section">
                 <label htmlFor="title">Tytuł</label>
@@ -86,6 +93,30 @@ export const MovieEdit = ({ setEditForm, movie, id }: MovieEditProps) => {
                   <option value="2">2</option>
                   <option value="3">3</option>
                 </select>
+              </div>
+
+              <div className="movie-actions">
+                <button onClick={handleSave}>Save</button>
+                <button onClick={handleCancel}>Cancel</button>
+              </div>
+            </>
+          )}
+
+          {isEditingUSER === "us" && (
+            <>
+              <div className="rating">
+                <label htmlFor="rating">Ocena</label>
+                <select id="rating" {...register("rating")}>
+                  <option value="0">0</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                </select>
+              </div>
+
+              <div className="comment">
+                <label htmlFor="comment">Komentarz</label>
+                <input type="text" placeholder="Zmień komentarz" maxLength={30} {...register("comment", { maxLength: 30 })} />
               </div>
 
               <div className="movie-actions">
