@@ -48,19 +48,15 @@ export const MovieEdit = ({ setEditForm, movie, id }: MovieEditProps) => {
         await movieContext?.updateMovie(id, {
           ...newData,
           rating: newData.rating as 0 | 2 | 1 | 3 | undefined,
-          comments: newData.comment ? [newData.comment] : [],
+          comments: newData.comment ? { [user]: newData.comment } : {},
         });
-        // setIsEditingADMIN(false);
         setEditForm(false);
       } catch (error) {
         console.error("Błąd podczas aktualizacji filmu:", error);
       }
     });
 
-    const handleCancel = () => {
-      // setIsEditingADMIN(true);
-      setEditForm(false);
-    };
+    const handleCancel = () => setEditForm(false);
 
     return (
       <>

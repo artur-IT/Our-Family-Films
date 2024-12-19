@@ -4,6 +4,6 @@ export interface MovieData {
   type: string;
   genre: string;
   rating: 0 | 1 | 2 | 3;
-  comments: string[];
+  comments: {};
   image: string;
 }
