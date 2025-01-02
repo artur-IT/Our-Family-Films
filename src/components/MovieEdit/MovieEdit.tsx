@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import styles from "./MovieEdit.module.css";
 import { useForm } from "react-hook-form";
 import { MovieContext } from "@/context/MovieContext";
@@ -22,8 +22,6 @@ interface MovieEditProps {
 export const MovieEdit = ({ setEditForm, movie, id }: MovieEditProps) => {
   const { user } = useEditMode();
   {
-    const [isEditingADMIN, setIsEditingADMIN] = useState(user);
-    const [isEditingUSER, setIsEditingUSER] = useState(user);
     const movieContext = useContext(MovieContext);
     const { register, handleSubmit } = useForm<MovieFormInputs>({
       defaultValues: {
@@ -61,7 +59,7 @@ export const MovieEdit = ({ setEditForm, movie, id }: MovieEditProps) => {
     return (
       <>
         <div className={styles.movieEdit}>
-          {isEditingADMIN === "ar" && (
+          {user === "ar" && (
             <>
               <div className="title_section">
                 <label htmlFor="title">Tytuł</label>

@@ -1,10 +1,18 @@
-import { get } from "http";
 import { createContext, useCallback, useContext, useEffect, useState } from "react";
 
-// Login state context -if user is logged in or not
-const LoginStateContext = createContext({
+interface User {
+  username: string;
+  password: string;
+}
+
+// Login state context - if user is logged in or not
+export const LoginStateContext = createContext<{
+  isLoggedIn: boolean;
+  setIsLoggedIn: (loggedIn: boolean) => void;
+  users: User[];
+}>({
   isLoggedIn: false,
-  setIsLoggedIn: (value: boolean) => {},
+  setIsLoggedIn: () => {},
   users: [],
 });
 
