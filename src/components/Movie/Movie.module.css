@@ -57,8 +57,13 @@ img.comments_icon {
 
 .comments_icon {
   position: absolute;
-  right: 15px;
+  right: 25px;
   cursor: pointer;
+}
+.commentsLength {
+  position: absolute;
+  right: 5px;
+  font-size: 12px;
 }
 .movie[data-expanded="true"] .movie_description {
   height: 280px;
