@@ -80,47 +80,28 @@ export const MovieEdit = ({ setEditForm, movie, id }: MovieEditProps) => {
                 <label htmlFor="genre">Gatunek</label>
                 <input id="genre" maxLength={30} {...register("genre", { maxLength: 30 })} />
               </div>
-
-              <div className="rating">
-                <label htmlFor="rating">Ocena</label>
-                <select id="rating" {...register("rating")}>
-                  <option value="0">0</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                </select>
-              </div>
-
-              <div className="movie-actions">
-                <button onClick={handleSave}>Save</button>
-                <button onClick={handleCancel}>Cancel</button>
-              </div>
             </>
           )}
 
-          {isEditingUSER !== "ar" && (
-            <>
-              <div className="rating">
-                <label htmlFor="rating">Ocena</label>
-                <select id="rating" {...register("rating")}>
-                  <option value="0">0</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                </select>
-              </div>
+          <div className="rating">
+            <label htmlFor="rating">Ocena</label>
+            <select id="rating" {...register("rating")}>
+              <option value="0">0</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </select>
+          </div>
 
-              <div className="comment">
-                <label htmlFor="comment">Komentarz</label>
-                <input type="text" placeholder="Zmień komentarz" maxLength={30} {...register("comment", { maxLength: 30 })} />
-              </div>
+          <div className="comment">
+            <label htmlFor="comment">Komentarz</label>
+            <input type="text" placeholder="Zmień komentarz" maxLength={30} {...register("comment", { maxLength: 30 })} />
+          </div>
 
-              <div className="movie-actions">
-                <button onClick={handleSave}>Save</button>
-                <button onClick={handleCancel}>Cancel</button>
-              </div>
-            </>
-          )}
+          <div className="movie-actions">
+            <button onClick={handleSave}>Save</button>
+            <button onClick={handleCancel}>Cancel</button>
+          </div>
         </div>
       </>
     );
