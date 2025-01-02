@@ -39,17 +39,24 @@ export async function PATCH(request: Request) {
 // ENDPOINT TO ADD NEW USER TO MONGODB
 export async function POST(request: Request) {
   try {
-    const movieData = await request.json();
+    const { username, password } = await request.json();
     const collection = await getCollectionUsers();
-    await collection.insertOne(movieData);
+    const user = await collection.findOne({ username, password });
 
-    return NextResponse.json({
-      success: true,
-      data: movieData,
-    });
+    if (user) {
+      return NextResponse.json({
+        success: true,
+        user: {
+          username: user.username,
+          // role: user.role,
+        },
+      });
+    }
+
+    return NextResponse.json({ success: false }, { status: 401 });
   } catch (error) {
     console.error("Błąd dodawania użytkownika:", error);
-    return NextResponse.json({ error: "Błąd dodawania" }, { status: 500 });
+    return NextResponse.json({ error: "Błąd autoryzacji" }, { status: 500 });
   }
 }
 

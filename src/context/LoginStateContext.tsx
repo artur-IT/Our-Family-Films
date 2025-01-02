@@ -14,7 +14,7 @@ export const LoginProvider = ({ children }: { children: React.ReactNode }) => {
 
   const getUsers = useCallback(async () => {
     try {
-      const response = await fetch("/api/users", {
+      const response = await fetch("/api/auth", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

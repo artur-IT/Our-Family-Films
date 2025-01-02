@@ -50,7 +50,7 @@ export const Movie = ({ movie, isLoggedIn }: { movie: MovieData; isLoggedIn: boo
               Edytuj
             </button>
             {/* If user is Admin show delete button */}
-            {user === "ad" && (
+            {user === "ar" && (
               <button className={style.delete_btn} onClick={handleDelete}>
                 Usuń
               </button>

@@ -61,7 +61,7 @@ export const MovieEdit = ({ setEditForm, movie, id }: MovieEditProps) => {
     return (
       <>
         <div className={styles.movieEdit}>
-          {isEditingADMIN === "ad" && (
+          {isEditingADMIN === "ar" && (
             <>
               <div className="title_section">
                 <label htmlFor="title">Tytuł</label>
@@ -98,7 +98,7 @@ export const MovieEdit = ({ setEditForm, movie, id }: MovieEditProps) => {
             </>
           )}
 
-          {isEditingUSER === "us" && (
+          {isEditingUSER !== "ar" && (
             <>
               <div className="rating">
                 <label htmlFor="rating">Ocena</label>

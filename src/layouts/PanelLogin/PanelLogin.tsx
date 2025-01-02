@@ -3,6 +3,7 @@ import styles from "./PanelLogin.module.css";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { useLoginState } from "@/context/LoginStateContext";
 import { useEditMode } from "@/context/EditMovieContext";
+import { useContext } from "react";
 
 export const PanelLogin = () => {
   const { checkUser } = useEditMode();
@@ -10,21 +11,40 @@ export const PanelLogin = () => {
   const { isLoggedIn, setIsLoggedIn, users } = useLoginState();
   const { register, handleSubmit } = useForm();
 
-  const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    console.log("Users from PanelLogin: ", users);
-    if (data.username === "ad") {
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+    // console.log("Users from PanelLogin: ", users);
+    const foundUser = users.find(
+      (user: { username: string; password: string }) => user.username === data.username && user.password === data.password
+    );
+
+    if (foundUser) {
       document.cookie = "auth=true; path=/";
-      router.push("/admin");
+
+      if (foundUser.username === "ar") {
+        router.push("/admin");
+      } else {
+        router.push("/user");
+      }
+
       setIsLoggedIn(!isLoggedIn);
-      checkUser(data.username);
+      checkUser(foundUser.username);
+    } else {
+      alert("Nieprawidłowe dane logowania!");
     }
 
-    if (data.username === "us") {
-      document.cookie = "auth=true; path=/";
-      router.push("/user");
-      setIsLoggedIn(!isLoggedIn);
-      checkUser(data.username);
-    }
+    // if (data.username === "ad") {
+    //   document.cookie = "auth=true; path=/";
+    //   router.push("/admin");
+    //   setIsLoggedIn(!isLoggedIn);
+    //   checkUser(data.username);
+    // }
+
+    // if (data.username === "us") {
+    //   document.cookie = "auth=true; path=/";
+    //   router.push("/user");
+    //   setIsLoggedIn(!isLoggedIn);
+    //   checkUser(data.username);
+    // }
   };
 
   return (
