@@ -1,17 +1,17 @@
 import { useRouter } from "next/navigation";
 import styles from "./PanelLogin.module.css";
-import { FieldValues, set, SubmitHandler, useForm } from "react-hook-form";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { useLoginState } from "@/context/LoginStateContext";
 import { useEditMode } from "@/context/EditMovieContext";
 
 export const PanelLogin = () => {
   const { checkUser } = useEditMode();
   const router = useRouter();
-  const { isLoggedIn, setIsLoggedIn } = useLoginState();
+  const { isLoggedIn, setIsLoggedIn, users } = useLoginState();
   const { register, handleSubmit } = useForm();
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    // console.log("Login attempt with:", data);
+    console.log("Users from PanelLogin: ", users);
     if (data.username === "ad") {
       document.cookie = "auth=true; path=/";
       router.push("/admin");
