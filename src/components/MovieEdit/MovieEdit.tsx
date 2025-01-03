@@ -20,6 +20,7 @@ interface MovieEditProps {
 }
 
 export const MovieEdit = ({ setEditForm, movie, id }: MovieEditProps) => {
+  console.log(movie.comments);
   const { user } = useEditMode();
   {
     const movieContext = useContext(MovieContext);
@@ -43,10 +44,15 @@ export const MovieEdit = ({ setEditForm, movie, id }: MovieEditProps) => {
         comment: data.comment,
       };
       try {
+        const updatedComments = {
+          ...movie.comments, // zachowujemy wszystkie istniejące komentarze
+          [user]: data.comment, // dodajemy/aktualizujemy komentarz aktualnego użytkownika
+        };
+
         await movieContext?.updateMovie(id, {
           ...newData,
           rating: newData.rating as 0 | 2 | 1 | 3 | undefined,
-          comments: newData.comment ? { [user]: newData.comment } : {},
+          comments: updatedComments,
         });
         setEditForm(false);
       } catch (error) {

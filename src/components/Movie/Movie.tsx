@@ -38,6 +38,12 @@ export const Movie = ({ movie, isLoggedIn }: { movie: MovieData; isLoggedIn: boo
     }
   };
 
+  const test = () => {
+    for (const [key, value] of Object.entries(movie.comments)) {
+      console.log(`${key}: ${value}`);
+    }
+  };
+
   return (
     <>
       {showAddMovie && <MovieAdd />}
@@ -77,10 +83,10 @@ export const Movie = ({ movie, isLoggedIn }: { movie: MovieData; isLoggedIn: boo
 
           {/* User comments */}
           <div className={style.comments_user}>
-            {Object.values(movie.comments).map((value, index) => (
-              <div key={index}>
+            {Object.entries(movie.comments).map(([user, comment]) => (
+              <div key={user}>
                 <span>{user}: </span>
-                <span>{value as string}</span>
+                <span>{comment as string}</span>
                 <br />
               </div>
             ))}
