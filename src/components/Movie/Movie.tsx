@@ -38,11 +38,11 @@ export const Movie = ({ movie, isLoggedIn }: { movie: MovieData; isLoggedIn: boo
     }
   };
 
-  const test = () => {
-    for (const [key, value] of Object.entries(movie.comments)) {
-      console.log(`${key}: ${value}`);
-    }
-  };
+  // SUM ALL RATINGS FROM ALL USERS
+  const totalRatings = Object.values(movie.ratings).reduce((sum, rating) => {
+    return (sum as number) + (rating as number);
+  }, 0);
+  const averageRating = (totalRatings as number) / Object.values(movie.ratings).length;
 
   return (
     <>
@@ -74,9 +74,10 @@ export const Movie = ({ movie, isLoggedIn }: { movie: MovieData; isLoggedIn: boo
 
           {/* Rating film (stars)*/}
           <div className={style.rating}>
-            <Image src={movie.rating > 0 ? starFullIcon : starEmptyIcon} alt="star" className={style.star} />
-            <Image src={movie.rating >= 2 ? starFullIcon : starEmptyIcon} alt="star" className={style.star} />
-            <Image src={movie.rating === 3 ? starFullIcon : starEmptyIcon} alt="star" className={style.star} />
+            <Image src={Number(averageRating.toFixed(0)) > 0 ? starFullIcon : starEmptyIcon} alt="star" className={style.star} />
+            <Image src={Number(averageRating.toFixed(0)) >= 2 ? starFullIcon : starEmptyIcon} alt="star" className={style.star} />
+            <Image src={Number(averageRating.toFixed(0)) >= 3 ? starFullIcon : starEmptyIcon} alt="star" className={style.star} />
+
             <Image src={commentsIcon} alt="comments icon" className={style.comments_icon} onClick={() => setIsExpanded(!isExpanded)} />
             <span className={style.commentsLength}>({Object.keys(movie.comments).length})</span>
           </div>

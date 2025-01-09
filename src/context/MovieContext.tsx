@@ -18,7 +18,7 @@ interface MovieContextType {
 type MovieUpdateData = {
   title?: string;
   genre?: string;
-  rating?: number;
+  ratings?: {};
 };
 
 export const MovieContext = createContext<MovieContextType | undefined>(undefined);
@@ -75,9 +75,7 @@ export const MovieProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       }
 
       setMovies((prevMovies) =>
-        prevMovies.map((movie) =>
-          movie.id === movieId ? { ...movie, ...updatedData, rating: updatedData.rating as 0 | 2 | 1 | 3 } : movie
-        )
+        prevMovies.map((movie) => (movie.id === movieId ? { ...movie, ...updatedData, rating: updatedData.ratings } : movie))
       );
     } catch (error) {
       console.error("Błąd aktualizacji filmu:", error);

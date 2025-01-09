@@ -8,9 +8,10 @@ interface MovieFormInputs {
   id?: string;
   title: string;
   type: string;
-  rating: number;
+  ratings: {};
   genre: string;
   comment?: string;
+  comments?: Record<string, string>;
 }
 
 interface MovieEditProps {
@@ -20,7 +21,6 @@ interface MovieEditProps {
 }
 
 export const MovieEdit = ({ setEditForm, movie, id }: MovieEditProps) => {
-  console.log(movie.comments);
   const { user } = useEditMode();
   {
     const movieContext = useContext(MovieContext);
@@ -29,8 +29,8 @@ export const MovieEdit = ({ setEditForm, movie, id }: MovieEditProps) => {
         title: movie.title,
         type: movie.type,
         genre: movie.genre,
-        rating: movie.rating,
-        comment: movie.comment,
+        ratings: {},
+        comments: {},
       },
     });
 
@@ -40,8 +40,8 @@ export const MovieEdit = ({ setEditForm, movie, id }: MovieEditProps) => {
         title: data.title,
         type: data.type,
         genre: data.genre,
-        rating: Number(data.rating),
-        comment: data.comment,
+        // rating: Number(data.ratings),
+        // comment: data.comment,
       };
       try {
         const updatedComments = {
@@ -49,9 +49,14 @@ export const MovieEdit = ({ setEditForm, movie, id }: MovieEditProps) => {
           [user]: data.comment, // dodajemy/aktualizujemy komentarz aktualnego użytkownika
         };
 
+        const updatedRatings = {
+          ...movie.ratings,
+          [user]: Number(data.ratings),
+        };
+
         await movieContext?.updateMovie(id, {
           ...newData,
-          rating: newData.rating as 0 | 2 | 1 | 3 | undefined,
+          ratings: updatedRatings,
           comments: updatedComments,
         });
         setEditForm(false);
@@ -89,7 +94,7 @@ export const MovieEdit = ({ setEditForm, movie, id }: MovieEditProps) => {
 
           <div className="rating">
             <label htmlFor="rating">Ocena</label>
-            <select id="rating" {...register("rating")}>
+            <select id="rating" {...register("ratings")}>
               <option value="0">0</option>
               <option value="1">1</option>
               <option value="2">2</option>
