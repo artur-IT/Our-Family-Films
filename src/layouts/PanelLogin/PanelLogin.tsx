@@ -18,16 +18,15 @@ export const PanelLogin = () => {
     const foundUser = users.find((user: User) => user.username === data.username && user.password === data.password);
 
     if (foundUser) {
+      setIsLoggedIn(!isLoggedIn);
+      checkUser(foundUser.username);
       document.cookie = "auth=true; path=/";
 
       if (foundUser.username === "ar") {
-        router.push("/admin");
+        await router.push("/admin");
       } else {
-        router.push("/user");
+        await router.push("/user");
       }
-
-      setIsLoggedIn(!isLoggedIn);
-      checkUser(foundUser.username);
     } else {
       alert("Nieprawidłowe dane logowania!");
     }
