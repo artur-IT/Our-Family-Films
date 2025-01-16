@@ -7,6 +7,7 @@ import { Main } from "@/layouts/Main/Main";
 import { Shelf } from "@/components/Shelf/Shelf";
 import { Header } from "@/layouts/Header/Header";
 import { LoginProvider } from "@/context/LoginStateContext";
+import style from "./layout.module.css";
 
 // export const metadata: Metadata = {
 //   title: "Our Family Films",
@@ -29,7 +30,7 @@ import { LoginProvider } from "@/context/LoginStateContext";
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pl">
-      <body>
+      <body className={style.main}>
         <LoginProvider>
           <MovieProvider>
             <EditModeProvider>

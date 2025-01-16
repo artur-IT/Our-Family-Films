@@ -1,6 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap");
+
 body.main {
-  font-family: Inter, system-ui;
-  background-color: lightblue;
+  font-family: "Roboto Flex", serif;
+  font-optical-sizing: auto;
+  font-weight: 100;
+  background-color: #60caee;
   margin: 0;
   padding: 0;
 }
