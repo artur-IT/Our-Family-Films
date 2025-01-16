@@ -2,9 +2,11 @@
 import { useEffect } from "react";
 import { useEditMode } from "@/context/EditMovieContext";
 import style from "./user.module.css";
+import { useLoginState } from "@/context/LoginStateContext";
 
 export default function UserPanel() {
   const { isEditMode, toggleEditMode } = useEditMode();
+  console.log(useLoginState);
 
   useEffect(() => {
     toggleEditMode();

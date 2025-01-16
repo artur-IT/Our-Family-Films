@@ -3,6 +3,7 @@ import { createContext, useCallback, useContext, useEffect, useState } from "rea
 interface User {
   username: string;
   password: string;
+  name: string;
 }
 
 // Login state context - if user is logged in or not
