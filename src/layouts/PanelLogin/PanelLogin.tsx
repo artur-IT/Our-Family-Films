@@ -19,7 +19,7 @@ export const PanelLogin = () => {
 
     if (foundUser) {
       setIsLoggedIn(!isLoggedIn);
-      checkUser(foundUser.username);
+      checkUser(foundUser.name);
       document.cookie = "auth=true; path=/";
 
       if (foundUser.username === "ar") {
