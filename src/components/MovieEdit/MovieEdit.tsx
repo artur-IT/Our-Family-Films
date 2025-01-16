@@ -69,7 +69,7 @@ export const MovieEdit = ({ setEditForm, movie, id }: MovieEditProps) => {
     return (
       <>
         <div className={styles.movieEdit}>
-          {user === "ar" && (
+          {user === "Artur" && (
             <>
               <div className="title_section">
                 <label htmlFor="title">Tytuł</label>

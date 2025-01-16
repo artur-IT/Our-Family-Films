@@ -16,10 +16,11 @@
   flex-direction: column;
   justify-content: flex-start;
   width: 100%;
+  max-width: 200px;
   height: 140px;
   color: #fff;
   background-color: #000;
-  opacity: 0.2;
+  opacity: 0;
   transition: all 0.4s ease;
 }
 

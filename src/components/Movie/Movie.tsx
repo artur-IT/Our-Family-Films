@@ -55,8 +55,8 @@ export const Movie = ({ movie, isLoggedIn }: { movie: MovieData; isLoggedIn: boo
             <button className={style.edit_btn} onClick={() => setEditForm(!showEditForm)} disabled={showEditForm}>
               Edytuj
             </button>
-            {/* If user is Admin show delete button */}
-            {user === "ar" && (
+            {/* If user as Admin show delete button */}
+            {user === "Artur" && (
               <button className={style.delete_btn} onClick={handleDelete}>
                 Usuń
               </button>
