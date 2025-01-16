@@ -40,7 +40,7 @@ const MovieAdd: React.FC<MovieAddProps> = () => {
       title: data.title,
       type: data.type,
       genre: data.genre,
-      rating: 0,
+      ratings: {},
       comments: {},
       image: `https://image.tmdb.org/t/p/w500${selectedPoster || ""}`,
     };

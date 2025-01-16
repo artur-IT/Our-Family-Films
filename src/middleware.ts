@@ -4,17 +4,21 @@ import type { NextRequest } from "next/server";
 //  middleware do ochrony panelu admina
 
 export function middleware(request: NextRequest) {
-  // Na początek prosta weryfikacja - później rozbudujemy o pełną autoryzację
-  // const authCookie = request.cookies.get("auth");
+  const authCookie = request.cookies.get("auth");
 
-  if (request.nextUrl.pathname === "/") {
+  // Sprawdzenie, czy użytkownik jest zalogowany
+  if (!authCookie || authCookie.value !== "true") {
+    return NextResponse.redirect(new URL("/auth", request.url));
+  }
+
+  if (request.nextUrl.pathname === "/" || request.nextUrl.pathname === "/user" || request.nextUrl.pathname === "/admin") {
     const response = NextResponse.next();
     response.cookies.set("auth", "false");
     return response;
   }
 
   if (request.nextUrl.pathname.startsWith("/admin") || request.nextUrl.pathname.startsWith("/user")) {
-    const authCookie = request.cookies.get("auth");
+    // const authCookie = request.cookies.get("auth");
     if (!authCookie || authCookie.value !== "true") {
       return NextResponse.redirect(new URL("/auth", request.url));
     }
@@ -24,5 +28,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/admin/:path*", "/user/:path*", "/"],
+  matcher: ["/admin/:path*", "/user/:path*"],
 };
