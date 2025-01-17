@@ -4,7 +4,11 @@ body.main {
   font-family: "Roboto Flex", serif;
   font-optical-sizing: auto;
   font-weight: 100;
-  background-color: #60caee;
   margin: 0;
   padding: 0;
+  --primary: #bf0413;
+  --secondary: #f29f05;
+  --button: #f2b705;
+  --background: #1c58a6;
+  --five: #f2f2f2;
 }

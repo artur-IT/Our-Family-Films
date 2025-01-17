@@ -7,6 +7,6 @@
   padding: 20px 0;
   bottom: 0;
   height: 50px;
-  background-color: #333;
-  color: #fff;
+  background-color: black;
+  color: var(--five);
 }

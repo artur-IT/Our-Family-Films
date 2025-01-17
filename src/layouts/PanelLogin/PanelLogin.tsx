@@ -44,7 +44,9 @@ export const PanelLogin = () => {
           <label htmlFor="password">Password:</label>
           <input type="password" id="password" {...register("password", { required: true })} />
         </div>
-        <button type="submit">Login</button>
+        <button type="submit" className={styles.button}>
+          Login
+        </button>
       </form>
     </div>
   );
