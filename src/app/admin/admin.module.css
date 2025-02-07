@@ -6,7 +6,6 @@
   top: 0px;
   transform: translateX(100px);
   padding: 20px 0;
-  /* background-color: aquamarine; */
   z-index: 100;
 }
 
@@ -17,12 +16,10 @@
 .buttons {
   display: flex;
   margin-left: 8px;
-  /* padding: 5px 8px; */
-  /* background-color: var(--button); */
-
+  font-family: "Roboto Flex", serif;
+  font-weight: 100;
   background-color: var(--five);
   display: block;
-  /* margin: 0 auto; */
   color: #fff;
   border: none;
   padding: 10px 20px;

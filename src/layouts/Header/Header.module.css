@@ -22,3 +22,25 @@
   justify-content: space-between;
   align-items: center;
 }
+
+.header nav a {
+  text-decoration: none;
+}
+
+.button {
+  font-family: "Roboto Flex", serif;
+  font-weight: 100;
+  background-color: var(--five);
+  display: block;
+  margin: 0 auto;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: var(--button);
+}
