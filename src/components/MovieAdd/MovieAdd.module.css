@@ -9,14 +9,14 @@
   justify-content: space-between;
   align-items: center;
   width: 400px;
-  height: 400px;
+  height: 350px;
   padding: 10px;
   color: #fff;
-  border-radius: 10px;
+  border-radius: 6px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   transition: all 0.4s ease;
   z-index: 10;
-  background-color: darkgoldenrod;
+  background-color: var(--primary);
 }
 
 .movieAdd h2 {
@@ -32,11 +32,9 @@
   height: 300px;
   padding: 10px;
   color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   transition: all 0.4s ease;
   z-index: 4;
-  background-color: darkgoldenrod;
+  background-color: var(--primary);
 }
 
 .movieAddForm div {
@@ -66,7 +64,21 @@ input.poster_checkbox {
   /* width: 25px; */
   height: 20px;
 }
+
 .movieAddForm button {
-  margin: 5px 0px 0 84px;
-  padding: 5px 10px;
+  font-family: "Roboto Flex", serif;
+  font-weight: 100;
+  background-color: var(--five);
+  display: block;
+  margin: 5px auto;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.movieAddForm button:hover {
+  background-color: var(--button);
 }
