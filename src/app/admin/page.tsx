@@ -13,8 +13,12 @@ export default function AdminPanel() {
   return (
     <div className={style.adminPanel}>
       <span>Admin Panel</span>
-      <button onClick={toggleShowAddMovie}>Dodaj film</button>
-      <button onClick={toggleEditMode}>{isEditMode ? "Zakończ edycję" : "Edytuj filmy"}</button>
+      <button className={style.buttons} onClick={toggleShowAddMovie}>
+        Dodaj film
+      </button>
+      <button className={style.buttons} onClick={toggleEditMode}>
+        {isEditMode ? "Zakończ edycję" : "Edytuj filmy"}
+      </button>
     </div>
   );
 }

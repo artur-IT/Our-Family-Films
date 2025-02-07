@@ -5,6 +5,7 @@
   min-width: 1100px;
   height: 70px;
   background-color: #ffffff;
+  /* border-bottom: 2px solid var(--five); */
   color: #000000;
   display: flex;
   justify-content: space-between;
