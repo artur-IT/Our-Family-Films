@@ -11,11 +11,11 @@
 }
 
 .movieSearchInput {
-  padding: 10px;
+  padding: 5px;
   font-size: 14px;
   width: 250px;
   border: 1px solid #ccc;
-  border-radius: 2px;
+  border-radius: 4px;
 }
 
 .movieSearchButton {
