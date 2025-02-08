@@ -9,7 +9,7 @@
   justify-content: space-between;
   align-items: center;
   width: 400px;
-  height: 350px;
+  height: auto;
   padding: 10px;
   color: #fff;
   border-radius: 6px;
@@ -24,10 +24,6 @@
 }
 
 .movieAddForm {
-  display: flex;
-  flex-direction: column;
-  align-self: center;
-  align-items: flex-start;
   width: 350px;
   height: 300px;
   padding: 10px;
@@ -38,31 +34,31 @@
 }
 
 .movieAddForm div {
+  display: flex;
+  flex-direction: column;
   margin: 0px 0;
 }
 
-.movieAddForm div label {
-  display: inline-block;
-  width: 80px;
-}
 .movieAddForm div input {
-  /* width: 200px; */
   height: 20px;
   border-radius: 5px;
   border: 1px solid #ccc;
   padding: 5px;
-  margin: 5px;
+  margin: 5px 0;
 }
 .movieAddForm div select {
+  width: 70px;
   height: 30px;
   border-radius: 5px;
   border: 1px solid #ccc;
   padding: 5px;
-  margin: 5px;
+  margin: 5px 0;
 }
-input.poster_checkbox {
-  /* width: 25px; */
-  height: 20px;
+.poster_checkbox {
+  position: relative;
+  left: 8px;
+  width: 25px;
+  margin: 0;
 }
 
 .movieAddForm button {

@@ -101,7 +101,7 @@ const MovieAdd: React.FC<MovieAddProps> = () => {
         <div className="poster_section">
           <label id="poster">
             Plakat
-            <input className="poster_checkbox" type="checkbox" name="poster" checked={selectedPoster ? true : false} readOnly />
+            <input className={styles.poster_checkbox} type="checkbox" name="poster" checked={selectedPoster ? true : false} readOnly />
           </label>
         </div>
 
