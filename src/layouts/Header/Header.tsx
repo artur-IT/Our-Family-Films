@@ -18,7 +18,10 @@ export const Header = ({}) => {
     <>
       <header className={style.header}>
         <nav>
-          <p>Our Family Films</p>
+          <Link href="/">
+            <p>Our Family Films</p>
+          </Link>
+
           <Link href={showPanelLogin ? "/" : "/auth"} onClick={handleLinkLogin}>
             <button className={style.button}> {isLoggedIn ? "Wyloguj" : "Zaloguj"}</button>
           </Link>
