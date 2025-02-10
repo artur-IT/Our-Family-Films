@@ -11,6 +11,7 @@
 }
 
 .movieSearchInput {
+  height: 20px;
   padding: 5px;
   font-size: 14px;
   width: 250px;

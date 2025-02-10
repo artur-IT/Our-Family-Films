@@ -46,6 +46,9 @@
   padding: 5px;
   margin: 5px 0;
 }
+.movieAddForm div label {
+  margin-top: 5px;
+}
 .movieAddForm div select {
   width: 70px;
   height: 30px;
