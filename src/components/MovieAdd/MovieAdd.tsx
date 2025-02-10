@@ -98,7 +98,7 @@ const MovieAdd: React.FC<MovieAddProps> = () => {
           <label htmlFor="genre">Gatunek</label>
           <input id="genre" maxLength={30} {...register("genre", { required: "Wybierz gatunek", maxLength: 30 })} />
         </div>
-        <div className="poster_section">
+        <div className={styles.poster_section}>
           <label id="poster">
             Plakat
             <input className={styles.poster_checkbox} type="checkbox" name="poster" checked={selectedPoster ? true : false} readOnly />
