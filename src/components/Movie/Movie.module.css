@@ -25,6 +25,17 @@
   transition: all 0.4s ease;
 }
 
+.movie_description_edit {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  height: 100%;
+  color: #fff;
+  background-color: #000;
+}
+
 .movie_description button {
   font-family: "Roboto Flex", serif;
   font-weight: 100;
@@ -35,6 +46,21 @@
   width: 80px;
   height: 30px;
   border: none;
+  background-color: var(--primary);
+  color: #fff;
+  cursor: pointer;
+}
+.movie_description_edit button {
+  font-family: "Roboto Flex", serif;
+  font-weight: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  width: 80px;
+  height: 30px;
+  border: none;
+  border-radius: 3px;
   background-color: var(--primary);
   color: #fff;
   cursor: pointer;
