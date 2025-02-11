@@ -49,7 +49,7 @@ export const Movie = ({ movie, isLoggedIn }: { movie: MovieData; isLoggedIn: boo
       {showAddMovie && <MovieAdd />}
       <div className={style.movie} id={movie.id} data-expanded={isExpanded} style={{ backgroundImage: `url(${movie.image})` }}>
         {isEditMode && (
-          <div className={style.movie_description}>
+          <div className={style.movie_description} style={isEditMode ? { opacity: 1 } : undefined}>
             {/* Edit curtain on film */}
             {showEditForm && <MovieEdit setEditForm={setEditForm} movie={movie} id={movie.id} />}
             <button className={style.edit_btn} onClick={() => setEditForm(!showEditForm)} disabled={showEditForm}>

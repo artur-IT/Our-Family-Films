@@ -68,7 +68,7 @@ export const MovieEdit = ({ setEditForm, movie, id }: MovieEditProps) => {
 
     return (
       <>
-        <div className={styles.movieEdit}>
+        <div className={styles.movieEdit} style={user ? { opacity: 1 } : undefined}>
           {user === "Artur" && (
             <>
               <div className="title_section">
@@ -106,9 +106,9 @@ export const MovieEdit = ({ setEditForm, movie, id }: MovieEditProps) => {
             <input type="text" placeholder="Zmień komentarz" maxLength={30} {...register("comment", { maxLength: 30 })} />
           </div>
 
-          <div className="movie-actions">
-            <button onClick={handleSave}>Save</button>
-            <button onClick={handleCancel}>Cancel</button>
+          <div className={styles.movie_actions}>
+            <button onClick={handleSave}>Zapisz</button>
+            <button onClick={handleCancel}>Anuluj</button>
           </div>
         </div>
       </>

@@ -27,8 +27,15 @@
   justify-content: center;
 }
 
+.formGroup label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 .formGroup input {
-  width: 100px;
+  width: 110px;
   margin: 10px 0;
   padding: 5px;
   font-size: 16px;

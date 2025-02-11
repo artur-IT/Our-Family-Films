@@ -38,12 +38,16 @@ export const PanelLogin = () => {
       <h2>Login</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.formGroup}>
-          <label htmlFor="username">Username:</label>
-          <input type="text" id="username" {...register("username", { required: true })} />
+          <label htmlFor="username">
+            Username:
+            <input type="text" id="username" autoComplete="yes" {...register("username", { required: true })} />
+          </label>
         </div>
         <div className={styles.formGroup}>
-          <label htmlFor="password">Password:</label>
-          <input type="password" id="password" {...register("password", { required: true })} />
+          <label id="password">
+            Password:
+            <input type="current-password" id="current-password" {...register("password", { required: true })} />
+          </label>
         </div>
         <div className={styles.buttons}>
           <button type="submit" className={styles.button}>
