@@ -3,6 +3,7 @@ import styles from "./PanelLogin.module.css";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { useLoginState } from "@/context/LoginStateContext";
 import { useEditMode } from "@/context/EditMovieContext";
+import Link from "next/link";
 
 interface User {
   username: string;
@@ -44,9 +45,14 @@ export const PanelLogin = () => {
           <label htmlFor="password">Password:</label>
           <input type="password" id="password" {...register("password", { required: true })} />
         </div>
-        <button type="submit" className={styles.button}>
-          Login
-        </button>
+        <div className={styles.buttons}>
+          <button type="submit" className={styles.button}>
+            Login
+          </button>
+          <Link href="/">
+            <button className={styles.button}>Esc</button>
+          </Link>
+        </div>
       </form>
     </div>
   );
