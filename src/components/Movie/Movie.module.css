@@ -18,7 +18,7 @@
   justify-content: space-evenly;
   width: 100%;
   max-width: 200px;
-  height: 140px;
+  height: 130px;
   color: #fff;
   background-color: #000;
   opacity: 0;
@@ -90,10 +90,14 @@ div.rating span {
   margin-left: 10px;
   font-size: 12px;
 }
-.movie_description p {
-  font-size: 12px;
+.movie_description span {
+  font-size: 13px;
 }
-.comments_user p {
-  margin: 5px 10px;
+.comments_user div {
+  margin-left: 10px;
+}
+
+.comments_user div :nth-child(2) {
+  margin: 5px 2px;
   font-style: italic;
 }
