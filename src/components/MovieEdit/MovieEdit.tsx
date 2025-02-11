@@ -76,17 +76,17 @@ export const MovieEdit = ({ setEditForm, movie, id }: MovieEditProps) => {
                 <input id="title" {...register("title")} />
               </div>
 
+              <div>
+                <label htmlFor="genre">Gatunek</label>
+                <input id="genre" maxLength={30} {...register("genre", { maxLength: 30 })} />
+              </div>
+
               <div className="type_section">
                 <label htmlFor="type">Typ</label>
                 <select id="type" maxLength={30} {...register("type")}>
                   <option value="Film">Film</option>
                   <option value="Serial">Serial</option>
                 </select>
-              </div>
-
-              <div>
-                <label htmlFor="genre">Gatunek</label>
-                <input id="genre" maxLength={30} {...register("genre", { maxLength: 30 })} />
               </div>
             </>
           )}
