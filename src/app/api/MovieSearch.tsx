@@ -46,7 +46,7 @@ const MovieSearch: React.FC = () => {
         }
       })
       .catch((error) => {
-        console.error("There was a problem with the fetch operation:", error);
+        console.error("Błąd podczas wyszukiwania:", error);
       });
   };
 

@@ -26,13 +26,14 @@
 }
 
 .movie_description button {
+  font-family: "Roboto Flex", serif;
+  font-weight: 100;
   display: flex;
   justify-content: center;
   align-items: center;
   align-self: center;
   width: 100px;
   height: 40px;
-  /* margin-top: 10px; */
   border: none;
   background-color: var(--primary);
   color: #fff;
