@@ -42,10 +42,11 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  gap: 5px;
   width: 300%;
   margin: 0;
   z-index: 5;
-  /* background-color: #fff; */
+  background-color: aqua;
 }
 
 .moviePoster {

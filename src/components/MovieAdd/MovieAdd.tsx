@@ -1,5 +1,5 @@
 "use client";
-import { useContext, useEffect, useMemo } from "react";
+import { useContext, useEffect, useMemo, useRef } from "react";
 import MovieSearch from "@/app/api/MovieSearch";
 import styles from "./MovieAdd.module.css";
 import { MovieData } from "@/types/types";
@@ -20,6 +20,7 @@ interface MovieFormInputs {
 }
 
 const MovieAdd: React.FC<MovieAddProps> = () => {
+  const movieAddRef = useRef<HTMLDivElement>(null);
   const movieContext = useContext(MovieContext);
   const { toggleShowAddMovie } = useEditMode();
   const { addMovie, selectedTitle, selectedPoster, setSelectedTitle } = movieContext || {};
@@ -76,10 +77,26 @@ const MovieAdd: React.FC<MovieAddProps> = () => {
         image: "",
       });
     }
-  }, [selectedTitle]);
+
+    const handleClickOutside = (event: MouseEvent) => {
+      const targetElement = event.target as HTMLElement;
+
+      if (movieAddRef.current && !movieAddRef.current.contains(targetElement) && !targetElement.closest(`.${styles.movieAdd}`)) {
+        toggleShowAddMovie();
+      }
+    };
+
+    setTimeout(() => {
+      document.addEventListener("mousedown", handleClickOutside);
+    }, 100);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [selectedTitle, toggleShowAddMovie]);
 
   return (
-    <div className={styles.movieAdd}>
+    <div className={styles.movieAdd} ref={movieAddRef}>
       <h2>Dodaj film</h2>
       <MovieSearch />
       <form className={styles.movieAddForm} onSubmit={handleSubmit(onSubmit)}>
