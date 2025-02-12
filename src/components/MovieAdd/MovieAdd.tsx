@@ -80,18 +80,17 @@ const MovieAdd: React.FC<MovieAddProps> = () => {
 
     const handleClickOutside = (event: MouseEvent) => {
       const targetElement = event.target as HTMLElement;
-
       if (movieAddRef.current && !movieAddRef.current.contains(targetElement) && !targetElement.closest(`.${styles.movieAdd}`)) {
         toggleShowAddMovie();
       }
     };
 
     setTimeout(() => {
-      document.addEventListener("mousedown", handleClickOutside);
+      document.addEventListener("mousedown", handleClickOutside, { capture: true });
     }, 100);
 
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside, { capture: true });
     };
   }, [selectedTitle, toggleShowAddMovie]);
 
