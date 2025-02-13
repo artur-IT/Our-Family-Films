@@ -13,6 +13,8 @@ export const Header = ({}) => {
   const handleLinkLogin = () => {
     if (isLoggedIn) {
       setIsLoggedIn(!isLoggedIn);
+    }
+    if (isEditMode) {
       toggleEditMode();
     }
     setShowPanelLogin(!showPanelLogin);
