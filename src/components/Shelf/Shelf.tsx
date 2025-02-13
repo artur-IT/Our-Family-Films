@@ -41,7 +41,6 @@ export const Shelf = () => {
         </button>
       </div>
       <div className={style.shelf_bottom}></div>
-      {/* <div className={style.year}>2024</div> */}
     </>
   );
 };

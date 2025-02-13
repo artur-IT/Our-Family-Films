@@ -18,7 +18,7 @@
   /* width: 95%; */
   width: 1400px;
   /* max-width: 1390px; */
-  height: 100%;
+  height: 380px;
   display: flex;
   justify-content: flex-start;
   align-items: flex-end;
@@ -54,14 +54,6 @@
   background-color: rgba(0, 0, 0, 0.9);
 }
 
-.scroll_left {
-  /* position: relative;
-  left: -280px; */
-}
-
-.scroll_right {
-  /* right: 10px; */
-}
 /* end style Movie Container */
 
 .shelf_bottom {
@@ -83,21 +75,11 @@
   font-size: 130px;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 600;
+  color: #aaa;
   /* padding: 10px 20px; */
   /* border: 1px solid #000;
   background-color: #fff;
   box-shadow: 5px 5px 5px 1px rgba(0, 0, 0, 0.4); */
   transform: rotate(0.75turn);
-  opacity: 0.1;
-}
-
-.year {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 70px;
-  height: 30px;
-  border: 1px solid #000;
-  background-color: #fff;
-  box-shadow: 5px 5px 5px 1px rgba(0, 0, 0, 0.4);
+  opacity: 0.2;
 }
