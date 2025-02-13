@@ -43,10 +43,11 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 5px;
-  width: 300%;
+  width: 200%;
   margin: 0;
+  /* padding: 20px; */
   z-index: 5;
-  background-color: aqua;
+  background-color: var(--background);
 }
 
 .moviePoster {

@@ -86,10 +86,10 @@ div.button_section {
   font-weight: 100;
   background-color: var(--five);
   justify-content: center;
-  min-width: 100px;
+  width: 70px;
   color: #fff;
   border: none;
-  padding: 10px 20px;
+  padding: 10px 15px;
   border-radius: 3px;
   cursor: pointer;
   transition: background-color 0.3s ease;

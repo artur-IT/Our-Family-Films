@@ -129,7 +129,7 @@ const MovieAdd: React.FC<MovieAddProps> = () => {
         </div>
 
         <div className={styles.button_section}>
-          <button type="submit">Dodaj film</button>
+          <button type="submit">Dodaj </button>
           <button type="submit" onClick={() => toggleShowAddMovie()}>
             Anuluj
           </button>
