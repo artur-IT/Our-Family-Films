@@ -106,7 +106,7 @@ img.comments_icon {
   right: 5px;
   font-size: 12px;
 }
-.movie[data-expanded="true"] .movie_description {
+.movie_description:hover {
   height: 280px;
 }
 

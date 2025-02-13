@@ -11,7 +11,6 @@ import { MovieEdit } from "@/components/MovieEdit/MovieEdit";
 import MovieAdd from "../MovieAdd/MovieAdd";
 
 export const Movie = ({ movie, isLoggedIn }: { movie: MovieData; isLoggedIn: boolean }) => {
-  const [isExpanded, setIsExpanded] = useState(false);
   const [showEditForm, setEditForm] = useState(false);
   const movieContext = useContext(MovieContext);
   if (!movieContext) throw new Error("Movie must be used within MovieContext.Provider");
@@ -47,7 +46,7 @@ export const Movie = ({ movie, isLoggedIn }: { movie: MovieData; isLoggedIn: boo
   return (
     <>
       {showAddMovie && <MovieAdd />}
-      <div className={style.movie} id={movie.id} data-expanded={isExpanded} style={{ backgroundImage: `url(${movie.image})` }}>
+      <div className={style.movie} id={movie.id} style={{ backgroundImage: `url(${movie.image})` }}>
         {isEditMode && (
           <div className={style.movie_description_edit} style={isEditMode ? { opacity: 1 } : undefined}>
             {/* Edit curtain on film */}
@@ -78,7 +77,7 @@ export const Movie = ({ movie, isLoggedIn }: { movie: MovieData; isLoggedIn: boo
             <Image src={Number(averageRating.toFixed(0)) >= 2 ? starFullIcon : starEmptyIcon} alt="star" className={style.star} />
             <Image src={Number(averageRating.toFixed(0)) >= 3 ? starFullIcon : starEmptyIcon} alt="star" className={style.star} />
 
-            <Image src={commentsIcon} alt="comments icon" className={style.comments_icon} onClick={() => setIsExpanded(!isExpanded)} />
+            <Image src={commentsIcon} alt="comments icon" className={style.comments_icon} />
             <span className={style.commentsLength}>({Object.keys(movie.comments).length})</span>
           </div>
 
