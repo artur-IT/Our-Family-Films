@@ -5,6 +5,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding: 10px;
   background-color: var(--primary);
   z-index: 5;
 }
@@ -13,14 +14,14 @@
   margin: 6px 5px;
 }
 .movieEdit div label {
-  font-size: 16px;
+  font-size: 14px;
 }
 .movieEdit div input {
   width: 90%;
   height: 20px;
   border-radius: 3px;
   border: none;
-  margin-top: 3px;
+  margin-top: 8px;
   padding: 2px 5px;
 }
 .movieEdit div select {
@@ -28,19 +29,24 @@
   height: 20px;
   border-radius: 3px;
   border: none;
-  margin-left: 5px;
+  margin-top: 8px;
   padding: 2px 5px;
 }
 
 div.movie_actions {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: center;
+  gap: 10px;
 }
 
 .movie_actions button {
   width: 70px;
   height: 30px;
+  margin: 10px 0;
   border-radius: 3px;
+  background-color: var(--five);
+}
+.movie_actions button:hover {
   background-color: var(--button);
 }

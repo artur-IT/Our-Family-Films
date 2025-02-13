@@ -99,23 +99,30 @@ const MovieAdd: React.FC<MovieAddProps> = () => {
       <h2>Dodaj film</h2>
       <MovieSearch />
       <form className={styles.movieAddForm} onSubmit={handleSubmit(onSubmit)}>
-        <div className="title_section">
-          <label htmlFor="title">Tytuł</label>
-          <input id="title" {...register("title")} defaultValue={selectedTitle || ""} />
+        <div>
+          <label>
+            Tytuł <br />
+            <input id="title" {...register("title")} defaultValue={selectedTitle || ""} />
+          </label>
         </div>
-        <div className="type_section">
-          <label htmlFor="type">Typ</label>
-          <select id="type" {...register("type")}>
-            <option value="Film">Film</option>
-            <option value="Serial">Serial</option>
-          </select>
+
+        <div>
+          <label>
+            Gatunek <br />
+            <input id="genre" maxLength={30} {...register("genre", { required: "Wybierz gatunek", maxLength: 30 })} />
+          </label>
         </div>
-        <div className="genre_section">
-          <label htmlFor="genre">Gatunek</label>
-          <input id="genre" maxLength={30} {...register("genre", { required: "Wybierz gatunek", maxLength: 30 })} />
+        <div>
+          <label>
+            Typ <br />
+            <select id="type" {...register("type")}>
+              <option value="Film">Film</option>
+              <option value="Serial">Serial</option>
+            </select>
+          </label>
         </div>
-        <div className={styles.poster_section}>
-          <label id="poster">
+        <div>
+          <label>
             Plakat
             <input className={styles.poster_checkbox} type="checkbox" name="poster" checked={selectedPoster ? true : false} readOnly />
           </label>

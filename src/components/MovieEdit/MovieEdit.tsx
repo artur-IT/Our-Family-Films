@@ -71,39 +71,51 @@ export const MovieEdit = ({ setEditForm, movie, id }: MovieEditProps) => {
         <div className={styles.movieEdit} style={user ? { opacity: 1 } : undefined}>
           {user === "Artur" && (
             <>
-              <div className="title_section">
-                <label htmlFor="title">Tytuł</label>
-                <input id="title" {...register("title")} />
+              <div>
+                <label>
+                  Tytuł
+                  <input id="title" {...register("title")} />
+                </label>
               </div>
 
               <div>
-                <label htmlFor="genre">Gatunek</label>
-                <input id="genre" maxLength={30} {...register("genre", { maxLength: 30 })} />
+                <label>
+                  Gatunek
+                  <input id="genre" maxLength={30} {...register("genre", { maxLength: 30 })} />
+                </label>
               </div>
 
-              <div className="type_section">
-                <label htmlFor="type">Typ</label>
-                <select id="type" maxLength={30} {...register("type")}>
-                  <option value="Film">Film</option>
-                  <option value="Serial">Serial</option>
-                </select>
+              <div>
+                <label>
+                  Typ
+                  <br />
+                  <select maxLength={30} {...register("type")}>
+                    <option value="Film">Film</option>
+                    <option value="Serial">Serial</option>
+                  </select>
+                </label>
               </div>
             </>
           )}
 
-          <div className="rating">
-            <label htmlFor="rating">Ocena</label>
-            <select id="rating" {...register("ratings")}>
-              <option value="0">0</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-            </select>
+          <div>
+            <label>
+              Ocena
+              <br />
+              <select {...register("ratings")}>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+              </select>
+            </label>
           </div>
 
-          <div className="comment">
-            <label htmlFor="comment">Komentarz</label>
-            <input type="text" placeholder="Zmień komentarz" maxLength={30} {...register("comment", { maxLength: 30 })} />
+          <div>
+            <label>
+              Komentarz
+              <input type="text" placeholder="Zmień komentarz" maxLength={30} {...register("comment", { maxLength: 30 })} />
+            </label>
           </div>
 
           <div className={styles.movie_actions}>

@@ -1,16 +1,20 @@
 "use client";
-import { usePathname } from "next/navigation";
 import style from "./Header.module.css";
 import Link from "next/link";
 import { useState } from "react";
 import { useLoginState } from "@/context/LoginStateContext";
+import { useEditMode } from "@/context/EditMovieContext";
 
 export const Header = ({}) => {
   const [showPanelLogin, setShowPanelLogin] = useState<boolean>(false);
   const { isLoggedIn, setIsLoggedIn } = useLoginState();
+  const { isEditMode, toggleEditMode } = useEditMode();
 
   const handleLinkLogin = () => {
-    if (isLoggedIn) setIsLoggedIn(!isLoggedIn);
+    if (isLoggedIn) {
+      setIsLoggedIn(!isLoggedIn);
+      toggleEditMode();
+    }
     setShowPanelLogin(!showPanelLogin);
   };
 
@@ -18,7 +22,7 @@ export const Header = ({}) => {
     <>
       <header className={style.header}>
         <nav>
-          <Link href="/">
+          <Link href="/" onClick={handleLinkLogin}>
             <p>Our Family Films</p>
           </Link>
 
