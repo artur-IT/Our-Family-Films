@@ -18,13 +18,13 @@
 .movie_description {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: flex-start;
   width: 100%;
   height: 130px;
   color: #fff;
   background-color: #000;
   opacity: 0;
-  transition: all 0.4s ease;
+  transition: all 0.5s ease-in-out;
 }
 
 .movie_description_edit {
@@ -69,6 +69,7 @@
 }
 
 .movie:hover .movie_description {
+  height: 280px;
   opacity: 1;
 }
 
@@ -105,9 +106,6 @@ img.comments_icon {
   position: absolute;
   right: 5px;
   font-size: 12px;
-}
-.movie_description:hover {
-  height: 280px;
 }
 
 div.rating span {
