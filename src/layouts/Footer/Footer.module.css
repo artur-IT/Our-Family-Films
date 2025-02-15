@@ -10,3 +10,43 @@
   background-color: var(--five);
   color: var(--background);
 }
+
+@media (max-width: 800px) and (orientation: landscape) {
+  .footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 100vw;
+    padding: 5px 0;
+    bottom: 0;
+    height: 30px;
+    font-size: 0.8rem;
+    font-weight: 100;
+    background-color: var(--five);
+    color: var(--background);
+  }
+  .footer div p {
+    margin: 0;
+  }
+}
+
+@media (max-width: 400px) and (orientation: portrait) {
+  .footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 100vw;
+    padding: 5px 0;
+    bottom: 0;
+    height: 30px;
+    font-size: 0.8rem;
+    font-weight: 100;
+    background-color: var(--five);
+    color: var(--background);
+  }
+  .footer div p {
+    margin: 0;
+  }
+}

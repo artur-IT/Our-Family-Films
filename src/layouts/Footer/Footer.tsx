@@ -4,7 +4,7 @@ export const Footer = () => {
   return (
     <footer className={style.footer}>
       <div>
-        <p>&copy; 2024 Movie App</p>
+        <p>&copy; 2025 Movie App</p>
       </div>
     </footer>
   );

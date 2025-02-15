@@ -33,11 +33,6 @@ body.main {
 }
 
 @media (max-width: 800px) and (orientation: landscape) {
-  body.main {
-    /* display: flex;
-    width: 100vw;
-    height: 100vh; */
-  }
 }
 
 @media (max-width: 400px) and (orientation: portrait) {
