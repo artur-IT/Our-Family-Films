@@ -14,7 +14,7 @@ export const Shelf = () => {
     if (containerRef.current) {
       const container = containerRef.current;
       // const scrollAmount = 1000;
-      const scrollAmount = container.clientWidth / 2;
+      const scrollAmount = container.clientWidth;
       container.scrollBy({
         left: direction === "left" ? -scrollAmount : scrollAmount,
         behavior: "smooth",

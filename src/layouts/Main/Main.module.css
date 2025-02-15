@@ -8,6 +8,7 @@ div.main_container {
   max-width: 1100px;
   background-color: var(--background);
 }
+
 @media (max-width: 400px) and (orientation: portrait) {
   div.main_container {
     display: flex;

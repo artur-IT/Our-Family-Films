@@ -1,10 +1,25 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap");
 
+/* *,
+*::before,
+*::after {
+  box-sizing: inherit;
+} */
+
+html {
+  box-sizing: border-box;
+  height: 100%;
+  scroll-behavior: smooth;
+}
+
 body.main {
   display: flex;
-  justify-content: center;
-  /* height: 100vh; */
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  min-height: 100vh;
   font-family: "Roboto Flex", serif;
+  font-size: 1rem;
   font-optical-sizing: auto;
   font-weight: 300;
   margin: 0;
@@ -17,10 +32,19 @@ body.main {
   background-color: aquamarine;
 }
 
+@media (max-width: 800px) and (orientation: landscape) {
+  body.main {
+    /* display: flex;
+    width: 100vw;
+    height: 100vh; */
+  }
+}
+
 @media (max-width: 400px) and (orientation: portrait) {
   body.main {
-    width: 100vw;
-    height: 100vh;
-    background-color: #bf0413;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    font-family: "Roboto Flex", sans-serif;
   }
 }
