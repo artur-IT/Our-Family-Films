@@ -1,5 +1,5 @@
 import style from "./Main.module.css";
 
 export const Main = ({ children }: { children: React.ReactNode }) => {
-  return <div className={style.main}>{children}</div>;
+  return <div className={style.main_container}>{children}</div>;
 };

@@ -1,6 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap");
 
 body.main {
+  display: flex;
+  justify-content: center;
+  /* height: 100vh; */
   font-family: "Roboto Flex", serif;
   font-optical-sizing: auto;
   font-weight: 300;
@@ -11,4 +14,13 @@ body.main {
   --button: #05acff;
   --background: #f6fbff;
   --five: #20a5e7;
+  background-color: aquamarine;
+}
+
+@media (max-width: 400px) and (orientation: portrait) {
+  body.main {
+    width: 100vw;
+    height: 100vh;
+    background-color: #bf0413;
+  }
 }

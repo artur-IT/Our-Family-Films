@@ -27,10 +27,13 @@ import style from "./layout.module.css";
 //   },
 // };
 
+// tutaj renderujemy stałe elementy strony, które będą widoczne na każdej stronie
+// i nie będę sie renderować ponownie (np. header i footer)
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pl">
       <body className={style.main}>
+        {/* {children} */}
         <LoginProvider>
           <MovieProvider>
             <EditModeProvider>
