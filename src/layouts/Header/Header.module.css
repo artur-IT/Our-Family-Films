@@ -46,8 +46,16 @@
   background-color: var(--button);
 }
 
+@media (max-width: 800px) and (orientation: landscape) {
+  .header {
+    display: flex;
+    height: 50px;
+  }
+}
+
 @media (max-width: 400px) and (orientation: portrait) {
   .header {
     width: 100vw;
+    height: 50px;
   }
 }

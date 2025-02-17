@@ -80,7 +80,20 @@
   .shelf {
     display: flex;
     width: 100vw;
-    /* height: 100vh; */
+    height: 225px;
+  }
+  .shelf_movie_container {
+    width: 1400px;
+    height: 235px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    gap: 20px;
+    padding: 0;
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
   }
 }
 
