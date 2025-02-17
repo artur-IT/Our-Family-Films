@@ -112,7 +112,7 @@ div.button_section {
     width: 90vw;
     position: absolute;
     left: 50%;
-    top: 60%;
+    top: 220px;
     transform: translate(-50%, -50%);
     padding: 10px 0;
   }
@@ -135,5 +135,8 @@ div.button_section {
     height: 20px;
     padding: 5px;
     margin: 5px 0;
+  }
+  div.button_section {
+    margin: 10px 0px;
   }
 }

@@ -17,7 +17,7 @@
 
 .header nav {
   display: flex;
-  width: 90%;
+  width: 98%;
   max-width: 1300px;
   margin: 0 auto;
   justify-content: space-between;
@@ -36,8 +36,8 @@
   margin: 0 auto;
   color: #fff;
   border: none;
-  padding: 10px 20px;
-  border-radius: 3px;
+  padding: 8px 14px;
+  border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
@@ -57,5 +57,11 @@
   .header {
     width: 100vw;
     height: 50px;
+  }
+  .header nav {
+    width: 95%;
+  }
+  .button {
+    font-size: 0.8rem;
   }
 }

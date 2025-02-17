@@ -70,7 +70,7 @@
 }
 
 .movie:hover .movie_description {
-  height: 280px;
+  height: auto;
   opacity: 1;
 }
 
