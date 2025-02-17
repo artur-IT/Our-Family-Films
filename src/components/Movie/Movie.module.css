@@ -25,7 +25,7 @@
   color: #fff;
   background-color: #000;
   opacity: 0;
-  transition: all 0.5s ease-in-out;
+  transition: all 0.8s ease-in-out;
 }
 
 .movie_description_edit {
@@ -115,8 +115,8 @@ div.rating span {
 .movie_description span {
   font-size: 13px;
 }
-.comments_user div {
-  margin-left: 10px;
+.comments_user :last-child {
+  padding-bottom: 15px;
 }
 
 .comments_user div :nth-child(1) {
@@ -134,6 +134,18 @@ div.rating span {
     height: 235px;
     background-size: contain;
     background-repeat: no-repeat;
+  }
+
+  .movie_description_edit button {
+    width: 60px;
+    height: 25px;
+    font-size: 0.7em;
+  }
+  .movie_data p {
+    font-size: 0.7em;
+  }
+  .movie_description span {
+    font-size: 0.7em;
   }
 }
 

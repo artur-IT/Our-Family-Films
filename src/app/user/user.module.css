@@ -25,3 +25,26 @@
 .hallo {
   margin-right: 10px;
 }
+
+@media (max-width: 800px) and (orientation: landscape) {
+  .userPanel {
+    display: flex;
+    left: 50%;
+    top: 25px;
+    justify-content: center;
+    align-items: center;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    height: 50px;
+    font-size: 0.9rem;
+  }
+  .userPanel button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 120px;
+    height: 25px;
+    font-size: 0.8rem;
+    padding: 8px 12px;
+  }
+}

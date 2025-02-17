@@ -75,3 +75,9 @@
 .button:hover {
   background-color: var(--button);
 }
+
+@media (max-width: 800px) and (orientation: landscape) {
+  .loginPanel {
+    top: 50px;
+  }
+}

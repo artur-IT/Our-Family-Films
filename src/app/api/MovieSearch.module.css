@@ -73,6 +73,15 @@
   margin: 0;
 }
 
+@media (max-width: 800px) and (orientation: landscape) {
+  .movieSearchContainer {
+    padding: 10px;
+  }
+  .posters {
+    width: 100vw;
+  }
+}
+
 @media (max-width: 400px) and (orientation: portrait) {
   .posters {
     width: 100vw;

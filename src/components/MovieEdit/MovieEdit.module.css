@@ -50,3 +50,31 @@ div.movie_actions {
 .movie_actions button:hover {
   background-color: var(--button);
 }
+
+@media (max-width: 800px) and (orientation: landscape) {
+  .movieEdit {
+    padding: 0px;
+  }
+  .movieEdit div {
+    margin: 1px 4px;
+    font-size: 0.7rem;
+  }
+  .movieEdit div label {
+    font-size: 0.7rem;
+  }
+  .movieEdit div input {
+    padding: 1px;
+    margin: 1px 0;
+    font-size: 0.7rem;
+  }
+  .movieEdit div select {
+    font-size: 0.7rem;
+    margin-top: 4px;
+    padding: 2px;
+  }
+  .movie_actions button {
+    width: 40px;
+    height: 20px;
+    margin: 5px 0;
+  }
+}
