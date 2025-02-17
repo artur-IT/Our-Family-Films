@@ -1,5 +1,6 @@
 .movieAdd {
   position: absolute;
+  top: 150px;
   right: 50%;
   transform: translateX(200px);
   margin: 0 auto;
@@ -96,4 +97,43 @@ div.button_section {
 
 .movieAddForm button:hover {
   background-color: var(--button);
+}
+
+@media (max-width: 800px) and (orientation: landscape) {
+  .movieAdd {
+    top: 50px;
+    height: auto;
+    /* margin: 0 auto; */
+  }
+}
+
+@media (max-width: 400px) and (orientation: portrait) {
+  .movieAdd {
+    width: 90vw;
+    position: absolute;
+    left: 50%;
+    top: 60%;
+    transform: translate(-50%, -50%);
+    padding: 10px 0;
+  }
+
+  .movieAddForm {
+    width: 340px;
+    padding: 0px;
+    color: #fff;
+    transition: all 0.4s ease;
+    z-index: 4;
+    background-color: var(--primary);
+  }
+
+  .movieAddForm div {
+    padding: 0 10px;
+  }
+
+  .movieAddForm div input {
+    width: 250px;
+    height: 20px;
+    padding: 5px;
+    margin: 5px 0;
+  }
 }
