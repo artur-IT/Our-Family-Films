@@ -1,11 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap");
 
-/* *,
-*::before,
-*::after {
-  box-sizing: inherit;
-} */
-
 html {
   box-sizing: border-box;
   height: 100%;
@@ -29,7 +23,7 @@ body.main {
   --button: #05acff;
   --background: #f6fbff;
   --five: #20a5e7;
-  background-color: aquamarine;
+  background-color: var(--background);
 }
 
 @media (max-width: 800px) and (orientation: landscape) {

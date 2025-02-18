@@ -5,26 +5,27 @@
   flex-direction: column;
   justify-content: flex-end;
   align-items: flex-end;
-  /* width: 250px; */
   min-width: 250px;
-  /* max-width: 250px; */
   height: 375px;
   margin: 0 5px;
   border: 2px solid #000;
   background-size: cover;
   box-shadow: #000 10px 10px 10px 0px;
   overflow: hidden;
+  transition: all 0.8s ease-in-out;
 }
 
 .movie_description {
+  position: absolute;
+  bottom: -100%;
+  left: 0;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   width: 100%;
-  height: 130px;
+  height: auto;
   color: #fff;
-  background-color: #000;
-  opacity: 0;
+  background-color: rgba(0, 0, 0, 0.9);
   transition: all 0.8s ease-in-out;
 }
 
@@ -70,8 +71,7 @@
 }
 
 .movie:hover .movie_description {
-  height: auto;
-  opacity: 1;
+  bottom: 0;
 }
 
 .movie_data p,
@@ -114,6 +114,9 @@ div.rating span {
 }
 .movie_description span {
   font-size: 13px;
+}
+.comments_user {
+  margin-left: 10px;
 }
 .comments_user :last-child {
   padding-bottom: 15px;

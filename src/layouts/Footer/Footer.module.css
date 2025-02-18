@@ -2,11 +2,12 @@
   display: flex;
   justify-content: center;
   position: absolute;
+  align-items: center;
   width: 100vw;
   max-width: 1100px;
   padding: 20px 0;
   bottom: 0;
-  height: 50px;
+  height: 30px;
   background-color: var(--five);
   color: var(--background);
 }
