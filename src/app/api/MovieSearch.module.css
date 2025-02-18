@@ -77,6 +77,9 @@
   .movieSearchContainer {
     padding: 10px;
   }
+  .searchArea {
+    max-width: 325px;
+  }
   .posters {
     width: 100vw;
   }
