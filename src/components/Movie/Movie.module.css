@@ -5,8 +5,8 @@
   flex-direction: column;
   justify-content: flex-end;
   align-items: flex-end;
-  width: 250px;
-  min-width: 150px;
+  /* width: 250px; */
+  min-width: 250px;
   /* max-width: 250px; */
   height: 375px;
   margin: 0 5px;
@@ -129,7 +129,8 @@ div.rating span {
 
 @media (max-width: 800px) and (orientation: landscape) {
   .movie {
-    width: 150px;
+    /* width: 150px; */
+    min-width: 150px;
     max-width: 150px;
     height: 228px;
     background-size: contain;
