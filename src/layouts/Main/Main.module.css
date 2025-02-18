@@ -9,6 +9,12 @@ div.main_container {
   background-color: var(--background);
 }
 
+@media (max-width: 800px) and (orientation: landscape) {
+  div.main_container {
+    top: 70px;
+  }
+}
+
 @media (max-width: 400px) and (orientation: portrait) {
   div.main_container {
     display: flex;
