@@ -54,6 +54,10 @@
     margin: 0 auto;
     font-size: 0.8rem;
   }
+  .header nav a {
+    font-size: 0.7rem;
+    width: 70px;
+  }
 }
 
 @media (max-width: 400px) and (orientation: portrait) {
@@ -63,6 +67,7 @@
   }
   .header nav {
     width: 95%;
+    margin: 0 10px;
   }
   .button {
     font-size: 0.8rem;

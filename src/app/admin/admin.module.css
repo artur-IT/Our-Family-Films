@@ -36,19 +36,30 @@
     position: absolute;
     left: 50%;
     top: 25px;
+    transform: translate(-50%, -50%);
     display: flex;
     justify-content: center;
-    transform: translate(-50%, -50%);
-    width: auto;
+    width: 260px;
     height: auto;
-    padding: 0 10px;
-    background-color: yellow;
+    padding: 8px 10px;
+    color: var(--background);
+    background-color: var(--button);
     font-size: 0.9rem;
+    font-weight: 300;
+    border-radius: 4px;
   }
   .buttons {
-    width: auto;
+    width: 80px;
     font-size: 0.7rem;
-    padding: 8px;
+    font-weight: 300;
+    color: var(--button);
+    padding: 6px 2px;
+    background-color: #fff;
+  }
+  .buttons:focus {
+    font-weight: 300;
+    background-color: var(--primary);
+    color: #fff;
   }
 }
 
@@ -60,12 +71,25 @@
     display: flex;
     justify-content: center;
     transform: translate(-50%, -50%);
-    width: 290px;
-    height: 50px;
+    width: 100%;
+    height: auto;
+    font-weight: 300;
     margin: 0 auto;
+    color: var(--background);
+    background-color: var(--button);
   }
   .buttons {
+    width: 100px;
     font-size: 0.8rem;
-    padding: 8px 14px;
+    font-weight: 300;
+    padding: 6px;
+    color: var(--button);
+    background-color: #fff;
+    border: 1px solid var(--button);
+  }
+  .buttons:focus {
+    font-weight: 300;
+    background-color: var(--primary);
+    color: #fff;
   }
 }

@@ -11,8 +11,8 @@ export default function UserPanel() {
   }, []);
   return (
     <div className={style.userPanel}>
-      <span className={style.hallo}>Witaj {user}</span>
-      <button onClick={toggleEditMode}>{isEditMode ? "Zakończ edycję" : "Edytuj filmy"}</button>
+      <span className={style.hallo}>Hello {user}</span>
+      <button onClick={toggleEditMode}>{isEditMode ? "EDIT END" : "EDIT MOVIES"}</button>
     </div>
   );
 }

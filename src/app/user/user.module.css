@@ -34,7 +34,7 @@
     justify-content: center;
     align-items: center;
     transform: translate(-50%, -50%);
-    width: 200px;
+    width: 220px;
     height: 50px;
     font-size: 0.9rem;
   }
@@ -42,9 +42,47 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 120px;
+    width: 100px;
     height: 25px;
     font-size: 0.8rem;
     padding: 8px 12px;
+  }
+}
+
+@media (max-width: 400px) and (orientation: portrait) {
+  .userPanel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translate(-50%, -50%);
+    font-size: 0.9rem;
+    position: absolute;
+    left: 50%;
+    top: 85px;
+    width: 100%;
+    height: auto;
+    font-weight: 300;
+    margin: 0 auto;
+    padding: 10px;
+    color: var(--background);
+    background-color: var(--button);
+  }
+  .userPanel button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 25px;
+    font-size: 0.8rem;
+    font-weight: 300;
+    padding: 6px;
+    color: var(--button);
+    background-color: #fff;
+    border: 1px solid var(--button);
+  }
+  .userPanel button:focus {
+    font-weight: 300;
+    background-color: var(--primary);
+    color: #fff;
   }
 }
