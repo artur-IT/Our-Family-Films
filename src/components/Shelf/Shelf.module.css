@@ -9,7 +9,7 @@
 
 /* start Movie Container */
 .shelf_movie_container {
-  width: 1400px;
+  width: 100%;
   height: 392px;
   display: flex;
   justify-content: flex-start;
@@ -49,7 +49,7 @@
 /* end style Movie Container */
 
 .shelf_bottom {
-  width: 95%;
+  width: 97%;
   height: 15px;
   background-color: #000;
   box-shadow: 10px 10px 5px 1px rgba(0, 0, 0, 0.4);
@@ -72,7 +72,7 @@
 @media (max-width: 800px) and (orientation: landscape) {
   .shelf {
     display: flex;
-    width: 100%;
+    width: 120%;
     height: 225px;
   }
   .shelf_movie_container {
@@ -82,12 +82,14 @@
     justify-content: flex-start;
     align-items: flex-end;
     gap: 20px;
-    /* padding: 0; */
     overflow-x: scroll;
     scroll-behavior: smooth;
     scrollbar-width: none;
     -ms-overflow-style: none;
     z-index: 5;
+  }
+  .shelf_bottom {
+    width: 115%;
   }
   .year_aside {
     display: none;

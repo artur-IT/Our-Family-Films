@@ -21,7 +21,8 @@ body.main {
   --primary: #bf0413;
   --secondary: #f29f05;
   --button: #05acff;
-  --background: #f6fbff;
+  /* --background: #f6fbff; */
+  --background: #e3e7ed;
   --five: #20a5e7;
   background-color: var(--background);
 }

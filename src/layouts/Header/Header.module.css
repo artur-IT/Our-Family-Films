@@ -2,10 +2,9 @@
   position: absolute;
   top: 0;
   width: 100vw;
-  max-width: 1100px;
+  max-width: 75vw;
   height: 70px;
   background-color: #fff;
-  /* border-bottom: 2px solid var(--five); */
   color: #000000;
   display: flex;
   justify-content: space-between;
@@ -17,9 +16,8 @@
 
 .header nav {
   display: flex;
-  width: 98%;
-  max-width: 1300px;
-  margin: 0 auto;
+  width: 100%;
+  margin: 0 20px;
   justify-content: space-between;
   align-items: center;
 }
