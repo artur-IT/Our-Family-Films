@@ -38,6 +38,7 @@
   width: 100%;
   color: #fff;
   background-color: rgba(0, 0, 0, 0.7);
+  z-index: 5;
 }
 
 .movie_description button {

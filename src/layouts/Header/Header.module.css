@@ -51,6 +51,7 @@
   }
   .header nav {
     width: 96%;
+    margin: 0 auto;
     font-size: 0.8rem;
   }
 }
