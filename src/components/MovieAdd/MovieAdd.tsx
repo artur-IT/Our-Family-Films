@@ -96,25 +96,25 @@ const MovieAdd: React.FC<MovieAddProps> = () => {
 
   return (
     <div className={styles.movieAdd} ref={movieAddRef}>
-      <h2>Dodaj film</h2>
+      <h2>Add new movie</h2>
       <MovieSearch />
       <form className={styles.movieAddForm} onSubmit={handleSubmit(onSubmit)}>
         <div>
           <label>
-            Tytuł <br />
+            Title <br />
             <input id="title" {...register("title")} defaultValue={selectedTitle || ""} />
           </label>
         </div>
 
         <div>
           <label>
-            Gatunek <br />
+            Species <br />
             <input id="genre" maxLength={30} {...register("genre", { required: "Wybierz gatunek", maxLength: 30 })} />
           </label>
         </div>
         <div>
           <label>
-            Typ <br />
+            Type <br />
             <select id="type" {...register("type")}>
               <option value="Film">Film</option>
               <option value="Serial">Serial</option>
@@ -123,15 +123,15 @@ const MovieAdd: React.FC<MovieAddProps> = () => {
         </div>
         <div>
           <label>
-            Plakat
+            Poster
             <input className={styles.poster_checkbox} type="checkbox" name="poster" checked={selectedPoster ? true : false} readOnly />
           </label>
         </div>
 
         <div className={styles.button_section}>
-          <button type="submit">Dodaj </button>
+          <button type="submit">Add </button>
           <button type="submit" onClick={() => toggleShowAddMovie()}>
-            Anuluj
+            Cancel
           </button>
         </div>
       </form>

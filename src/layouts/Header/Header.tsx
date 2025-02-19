@@ -29,7 +29,7 @@ export const Header = ({}) => {
           </Link>
 
           <Link href={showPanelLogin ? "/" : "/auth"} onClick={handleLinkLogin}>
-            <button className={style.button}> {isLoggedIn ? "Wyloguj" : "Zaloguj"}</button>
+            <button className={style.button}> {isLoggedIn ? "Logout" : "Login"}</button>
           </Link>
         </nav>
       </header>

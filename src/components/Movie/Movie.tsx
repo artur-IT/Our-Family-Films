@@ -52,12 +52,12 @@ export const Movie = ({ movie, isLoggedIn }: { movie: MovieData; isLoggedIn: boo
             {/* Edit curtain on film */}
             {showEditForm && <MovieEdit setEditForm={setEditForm} movie={movie} id={movie.id} />}
             <button className={style.edit_btn} onClick={() => setEditForm(!showEditForm)} disabled={showEditForm}>
-              Edytuj
+              Edit
             </button>
             {/* If user as Admin show delete button */}
             {user === "Artur" && (
               <button className={style.delete_btn} onClick={handleDelete}>
-                Usuń
+                Delete
               </button>
             )}
           </div>

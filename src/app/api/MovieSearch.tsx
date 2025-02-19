@@ -56,18 +56,18 @@ const MovieSearch: React.FC = () => {
     <div className={styles.movieSearchContainer}>
       <div className={styles.searchArea}>
         <label>
-          Znajdź plakat
+          Find poster
           <input
             type="text"
             name="movieTitle"
             value={movieTitle}
             onChange={(e) => setMovieTitle(e.target.value)}
-            placeholder="Wpisz tytuł filmu"
+            placeholder="enter movie title"
             className={styles.movieSearchInput}
           />
         </label>
         <button onClick={handleSearch} className={styles.movieSearchButton}>
-          Szukaj
+          Search
         </button>
       </div>
 

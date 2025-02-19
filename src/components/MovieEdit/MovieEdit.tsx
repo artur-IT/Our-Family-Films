@@ -73,21 +73,21 @@ export const MovieEdit = ({ setEditForm, movie, id }: MovieEditProps) => {
             <>
               <div>
                 <label>
-                  Tytuł
+                  Title
                   <input id="title" {...register("title")} />
                 </label>
               </div>
 
               <div>
                 <label>
-                  Gatunek
+                  Species
                   <input id="genre" maxLength={30} {...register("genre", { maxLength: 30 })} />
                 </label>
               </div>
 
               <div>
                 <label>
-                  Typ
+                  Type
                   <br />
                   <select maxLength={30} {...register("type")}>
                     <option value="Film">Film</option>
@@ -100,7 +100,7 @@ export const MovieEdit = ({ setEditForm, movie, id }: MovieEditProps) => {
 
           <div>
             <label>
-              Ocena
+              Rating
               <br />
               <select {...register("ratings")}>
                 <option value="0">0</option>
@@ -113,14 +113,14 @@ export const MovieEdit = ({ setEditForm, movie, id }: MovieEditProps) => {
 
           <div>
             <label>
-              Komentarz
-              <input type="text" placeholder="Zmień komentarz" maxLength={30} {...register("comment", { maxLength: 30 })} />
+              Comment
+              <input type="text" placeholder="change comment" maxLength={30} {...register("comment", { maxLength: 30 })} />
             </label>
           </div>
 
           <div className={styles.movie_actions}>
-            <button onClick={handleSave}>Zapisz</button>
-            <button onClick={handleCancel}>Anuluj</button>
+            <button onClick={handleSave}>Save</button>
+            <button onClick={handleCancel}>Cancel</button>
           </div>
         </div>
       </>

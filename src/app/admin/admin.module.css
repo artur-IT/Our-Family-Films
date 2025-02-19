@@ -2,10 +2,8 @@
   display: flex;
   align-items: center;
   position: absolute;
-  right: 50%;
   top: 0px;
-  transform: translateX(100px);
-  padding: 20px 0;
+  padding: 10px 0;
   z-index: 5;
 }
 
@@ -15,6 +13,7 @@
 
 .buttons {
   display: flex;
+  width: 95px;
   margin-left: 8px;
   font-family: "Roboto Flex", serif;
   font-weight: 100;
@@ -22,7 +21,7 @@
   display: block;
   color: #fff;
   border: none;
-  padding: 8px 14px;
+  padding: 8px 12px;
   border-radius: 3px;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -37,6 +36,8 @@
     position: absolute;
     left: 50%;
     top: 25px;
+    display: flex;
+    justify-content: center;
     transform: translate(-50%, -50%);
     width: 300px;
     height: 50px;
@@ -53,6 +54,8 @@
     position: absolute;
     left: 50%;
     top: 85px;
+    display: flex;
+    justify-content: center;
     transform: translate(-50%, -50%);
     width: 290px;
     height: 50px;
