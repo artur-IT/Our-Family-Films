@@ -9,6 +9,7 @@ import { useEditMode } from "@/context/EditMovieContext";
 import { MovieContext } from "@/context/MovieContext";
 import { MovieEdit } from "@/components/MovieEdit/MovieEdit";
 import MovieAdd from "../MovieAdd/MovieAdd";
+import { MovieDeletePopup } from "../MovieDeletePopup/MovieDeletePopup";
 
 export const Movie = ({ movie, isLoggedIn }: { movie: MovieData; isLoggedIn: boolean }) => {
   const [showEditForm, setEditForm] = useState(false);
@@ -18,7 +19,7 @@ export const Movie = ({ movie, isLoggedIn }: { movie: MovieData; isLoggedIn: boo
   const { isEditMode, showAddMovie, user } = useEditMode();
 
   const handleDelete = async () => {
-    if (window.confirm("Czy na pewno chcesz usunąć ten film?")) {
+    if (window.confirm("Are you sure you want to delete this movie?")) {
       try {
         const response = await fetch(`/api/movies`, {
           method: "DELETE",
@@ -46,6 +47,7 @@ export const Movie = ({ movie, isLoggedIn }: { movie: MovieData; isLoggedIn: boo
   return (
     <>
       {showAddMovie && <MovieAdd />}
+      <MovieDeletePopup />;
       <div className={style.movie} id={movie.id} style={{ backgroundImage: `url(${movie.image})` }}>
         {isEditMode && (
           <div className={style.movie_description_edit} style={isEditMode ? { opacity: 1 } : undefined}>
