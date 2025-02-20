@@ -48,15 +48,12 @@
   .header {
     display: flex;
     height: 50px;
+    max-width: 85vw;
   }
   .header nav {
     width: 96%;
     margin: 0 auto;
     font-size: 0.8rem;
-  }
-  .header nav a {
-    font-size: 0.7rem;
-    width: 70px;
   }
 }
 
