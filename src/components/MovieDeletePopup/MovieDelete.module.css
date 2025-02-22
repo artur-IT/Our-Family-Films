@@ -7,7 +7,7 @@
   align-items: center;
   line-height: 1.5;
   background-color: #fff;
-  width: 100%;
+  width: 80%;
   height: 110px;
   border-radius: 5px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
@@ -21,7 +21,9 @@
 }
 
 .movieDeletePopup p {
+  font-size: 14px;
   margin: 0 10px 0 15px;
+  text-align: center;
 }
 
 .movieDeletePopup div button {
@@ -47,15 +49,16 @@
   .movieDeletePopup {
     flex-direction: column;
     justify-content: center;
-    text-align: center;
-    height: 100%;
+    width: 100%;
+    height: auto;
   }
 
   .movieDeletePopup p {
-    margin: 15px 15px;
+    margin: 10px;
   }
 
   .movieDeletePopup div {
+    flex-direction: row;
     margin-right: 0;
   }
 }
