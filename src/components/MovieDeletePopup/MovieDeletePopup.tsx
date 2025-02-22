@@ -1,13 +1,13 @@
 import styles from "./MovieDelete.module.css";
 
-export const MovieDeletePopup = () => {
+export const MovieDeletePopup = (props: { delete: () => void; deletePopup: () => void }) => {
   return (
     <>
       <div className={styles.movieDeletePopup}>
         <p>Are you sure you want to delete this movie?</p>
         <div>
-          <button>Yes</button>
-          <button>No</button>
+          <button onClick={props.delete}>Yes</button>
+          <button onClick={props.deletePopup}>No</button>
         </div>
       </div>
       ;

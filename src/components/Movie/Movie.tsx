@@ -13,29 +13,31 @@ import { MovieDeletePopup } from "../MovieDeletePopup/MovieDeletePopup";
 
 export const Movie = ({ movie, isLoggedIn }: { movie: MovieData; isLoggedIn: boolean }) => {
   const [showEditForm, setEditForm] = useState(false);
+  const [showDeletePopup, setDeletePopup] = useState(false);
   const movieContext = useContext(MovieContext);
   if (!movieContext) throw new Error("Movie must be used within MovieContext.Provider");
   const { deleteMovie } = movieContext;
   const { isEditMode, showAddMovie, user } = useEditMode();
 
   const handleDelete = async () => {
-    if (window.confirm("Are you sure you want to delete this movie?")) {
-      try {
-        const response = await fetch(`/api/movies`, {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ id: movie.id }),
-        });
+    // if (window.confirm("Are you sure you want to delete this movie?")) {
+    try {
+      const response = await fetch(`/api/movies`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id: movie.id }),
+      });
 
-        if (response.ok) {
-          deleteMovie(movie.id);
-        }
-      } catch (error) {
-        console.error("Błąd podczas usuwania filmu:", error);
+      if (response.ok) {
+        deleteMovie(movie.id);
+        setDeletePopup(!showDeletePopup);
       }
+    } catch (error) {
+      console.error("Hmmm, error durning delete movie:", error);
     }
+    // }
   };
 
   // SUM ALL RATINGS FROM ALL USERS
@@ -47,8 +49,9 @@ export const Movie = ({ movie, isLoggedIn }: { movie: MovieData; isLoggedIn: boo
   return (
     <>
       {showAddMovie && <MovieAdd />}
-      <MovieDeletePopup />;
+
       <div className={style.movie} id={movie.id} style={{ backgroundImage: `url(${movie.image})` }}>
+        {showDeletePopup && <MovieDeletePopup delete={handleDelete} deletePopup={() => setDeletePopup(!showDeletePopup)} />}
         {isEditMode && (
           <div className={style.movie_description_edit} style={isEditMode ? { opacity: 1 } : undefined}>
             {/* Edit curtain on film */}
@@ -58,7 +61,7 @@ export const Movie = ({ movie, isLoggedIn }: { movie: MovieData; isLoggedIn: boo
             </button>
             {/* If user as Admin show delete button */}
             {user === "Artur" && (
-              <button className={style.delete_btn} onClick={handleDelete}>
+              <button className={style.delete_btn} onClick={() => setDeletePopup(!showDeletePopup)}>
                 Delete
               </button>
             )}
