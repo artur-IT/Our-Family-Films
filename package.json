@@ -9,20 +9,20 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "mongodb": "^6.10.0",
-    "mongoose": "^8.8.2",
-    "next": "^15.1.0",
+    "mongodb": "^6.13.1",
+    "mongoose": "^8.10.1",
+    "next": "^15.1.7",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-hook-form": "^7.53.2",
-    "uuid": "^11.0.3"
+    "react-hook-form": "^7.54.2",
+    "uuid": "^11.1.0"
   },
   "devDependencies": {
     "@types/node": "^22",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "15.0.3",
+    "eslint-config-next": "15.1.7",
     "postcss": "^8",
     "typescript": "^5"
   }

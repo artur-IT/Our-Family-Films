@@ -31,7 +31,7 @@ import style from "./layout.module.css";
 // i nie będę sie renderować ponownie (np. header i footer)
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="pl">
+    <html lang="pl" id="root">
       <body className={style.main}>
         {/* {children} */}
         <LoginProvider>
