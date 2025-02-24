@@ -5,7 +5,7 @@
   max-width: 75vw;
   height: 55px;
   background-color: #fff;
-  color: #000000;
+  color: #000;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -36,7 +36,7 @@
 .button {
   font-family: "Roboto Flex", serif;
   font-weight: 300;
-  background-color: var(--five);
+  background-color: var(--button);
   display: block;
   margin: 0 auto;
   color: #fff;
@@ -48,7 +48,7 @@
 }
 
 .button:hover {
-  background-color: var(--button);
+  background-color: var(--three);
 }
 
 @media (max-width: 800px) and (orientation: landscape) {
@@ -73,6 +73,7 @@
     width: 95%;
     margin: 0 10px;
   }
+
   .button {
     font-size: 0.8rem;
   }

@@ -18,13 +18,14 @@ body.main {
   font-weight: 300;
   margin: 0;
   padding: 0;
-  --primary: #bf0413;
-  --secondary: #f29f05;
-  --button: #05acff;
-  /* --background: #f6fbff; */
-  --background: #e3e7ed;
-  --five: #20a5e7;
-  background-color: var(--background);
+  --one: #c44601;
+  --two: #f57600;
+  /* --background: #e3e7ed; */
+  --three: #054fb9;
+  --four: #8babf1;
+  --button: #0073e6;
+
+  background-color: #e3e7ed;
 }
 
 @media (max-width: 800px) and (orientation: landscape) {

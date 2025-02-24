@@ -43,20 +43,6 @@
   z-index: 5;
 }
 
-.movie_description button {
-  font-family: "Roboto Flex", serif;
-  font-weight: 100;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  align-self: center;
-  width: 80px;
-  height: 30px;
-  border: none;
-  background-color: var(--primary);
-  color: #fff;
-  cursor: pointer;
-}
 .movie_description_edit button {
   font-family: "Roboto Flex", serif;
   display: flex;
@@ -67,14 +53,14 @@
   height: 30px;
   border: none;
   border-radius: 5px;
-  background-color: var(--primary);
+  background-color: var(--one);
   color: #fff;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 .movie_description_edit button:hover {
-  color: var(--primary);
-  border: 1px solid var(--primary);
+  color: #000;
+  border: 1px solid var(--one);
   background-color: #fff;
 }
 

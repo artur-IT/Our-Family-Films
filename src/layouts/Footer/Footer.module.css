@@ -3,13 +3,18 @@
   justify-content: center;
   position: absolute;
   align-items: center;
-  width: 200px;
   max-width: 80vw;
-  padding: 10px 0;
+  font-size: 0.9rem;
+  font-weight: 100;
+  margin: 0;
+  padding: 15px 30px;
   bottom: 0;
-  height: 30px;
-  background-color: var(--five);
-  color: var(--background);
+  background-color: var(--button);
+  color: #fff;
+}
+
+.footer p {
+  margin: 0;
 }
 
 @media (max-width: 800px) and (orientation: landscape) {
@@ -18,17 +23,10 @@
     justify-content: center;
     align-items: center;
     position: absolute;
-    width: 150px;
-    padding: 3px 0;
+    padding: 10px 20px;
     bottom: 0;
-    height: 20px;
     font-size: 0.7rem;
     font-weight: 100;
-    background-color: var(--five);
-    color: var(--background);
-  }
-  .footer div p {
-    margin: 0;
   }
 }
 
@@ -38,16 +36,9 @@
     justify-content: center;
     align-items: center;
     position: absolute;
-    width: 150px;
-    padding: 5px 0;
+    padding: 10px 20px;
     bottom: 0;
-    height: 30px;
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     font-weight: 100;
-    background-color: var(--five);
-    color: var(--background);
-  }
-  .footer div p {
-    margin: 0;
   }
 }

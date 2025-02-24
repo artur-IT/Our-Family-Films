@@ -9,7 +9,7 @@
   background-color: #fff;
   width: 80%;
   height: 110px;
-  border-radius: 5px;
+  border-radius: 4px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
   z-index: 15;
 }
@@ -32,16 +32,16 @@
   margin: 5px;
   padding: 9px 15px;
   color: #fff;
-  border: 1px solid var(--primary);
-  background-color: var(--primary);
-  border-radius: 5px;
+  border: 1px solid var(--one);
+  background-color: var(--one);
+  border-radius: 4px;
   transition: all 0.3s ease;
   cursor: pointer;
 }
 
 .movieDeletePopup div button:hover {
   color: var(--primary);
-  border: 1px solid var(--primary);
+  border: 1px solid var(--one);
   background-color: #fff;
 }
 

@@ -6,7 +6,7 @@ div.main_container {
   align-items: center;
   width: 100%;
   max-width: 76vw;
-  background-color: var(--background);
+  background-color: #e3e7ed;
 }
 
 @media (max-width: 800px) and (orientation: landscape) {
