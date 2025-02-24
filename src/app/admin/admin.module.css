@@ -24,11 +24,14 @@
   padding: 8px 12px;
   border-radius: 3px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  /* transition: background-color 0.3s ease; */
+  transition: all 0.3s ease;
 }
 
 .buttons:hover {
-  background-color: var(--button);
+  color: var(--primary);
+  border: 1px solid var(--button);
+  background-color: #fff;
 }
 
 @media (max-width: 800px) and (orientation: landscape) {

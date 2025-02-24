@@ -25,6 +25,7 @@ export const Header = ({}) => {
       <header className={style.header}>
         <nav>
           <Link href="/" onClick={handleLinkLogin}>
+            <img src="/logo.png" alt="logo" className={style.logo} />
             <p>Our Family Films</p>
           </Link>
 
