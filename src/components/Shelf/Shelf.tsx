@@ -1,3 +1,5 @@
+"use client";
+
 import { Movie } from "@/components/Movie/Movie";
 import style from "./Shelf.module.css";
 import { useRef } from "react";

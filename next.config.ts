@@ -1,10 +1,9 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   images: {
     // dodaj domeny, z których pobierasz obrazki
     domains: ["image.tmdb.org"],
   },
 };
 
-export default nextConfig;
+module.exports = nextConfig;

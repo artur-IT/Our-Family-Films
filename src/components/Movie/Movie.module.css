@@ -1,6 +1,6 @@
 .movie {
   position: relative;
-  top: 10px;
+  top: 15px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -126,10 +126,11 @@ div.rating span {
 
 @media (max-width: 800px) and (orientation: landscape) {
   .movie {
-    /* width: 150px; */
+    position: relative;
+    top: 7px;
     min-width: 150px;
     max-width: 150px;
-    height: 228px;
+    height: 223px;
     background-size: contain;
     background-repeat: no-repeat;
   }
@@ -149,6 +150,8 @@ div.rating span {
 
 @media (max-width: 400px) and (orientation: portrait) {
   .movie {
+    position: relative;
+    top: 15px;
     min-width: 250px;
     background-repeat: no-repeat;
   }

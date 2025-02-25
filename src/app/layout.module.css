@@ -40,3 +40,10 @@ body.main {
     font-size: 0.8rem;
   }
 }
+
+.main {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--background-color);
+}
