@@ -8,7 +8,7 @@ interface MovieFormInputs {
   id?: string;
   title: string;
   type: string;
-  ratings: number | any;
+  ratings: number;
   genre: string;
   comment?: string;
   comments?: Record<string, string>;
@@ -16,7 +16,15 @@ interface MovieFormInputs {
 
 interface MovieEditProps {
   setEditForm: (value: boolean) => void;
-  movie: MovieFormInputs;
+  movie: {
+    id?: string;
+    title: string;
+    type: string;
+    ratings: Record<string, number>;
+    genre: string;
+    comment?: string;
+    comments?: Record<string, string>;
+  };
   id: string;
 }
 
@@ -29,13 +37,12 @@ export const MovieEdit = ({ setEditForm, movie, id }: MovieEditProps) => {
         title: movie.title,
         type: movie.type,
         genre: movie.genre,
-        // eslint-disable-next-line react-hooks/exhaustive-deps
         ratings: movie.ratings?.[user] || 0,
         comment: movie.comments?.[user] || "",
         comments: {},
       },
     });
-
+    console.log(movie.ratings?.[user], typeof movie.ratings?.[user]);
     const handleSave = handleSubmit(async (data) => {
       const newData = {
         id: id,
