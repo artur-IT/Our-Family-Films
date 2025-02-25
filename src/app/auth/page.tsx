@@ -13,7 +13,7 @@ export default function AuthPage() {
     if (pathname === "/auth" && isLoggedIn) {
       router.push("/");
     }
-  }, [pathname, router]);
+  }, []);
 
   return <PanelLogin />;
 }
