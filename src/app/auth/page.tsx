@@ -13,7 +13,8 @@ export default function AuthPage() {
     if (pathname === "/auth" && isLoggedIn) {
       router.push("/");
     }
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pathname, router]);
 
   return <PanelLogin />;
 }

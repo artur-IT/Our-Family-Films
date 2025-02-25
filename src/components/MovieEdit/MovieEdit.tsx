@@ -8,7 +8,7 @@ interface MovieFormInputs {
   id?: string;
   title: string;
   type: string;
-  ratings: any;
+  ratings: number | any;
   genre: string;
   comment?: string;
   comments?: Record<string, string>;
@@ -29,7 +29,8 @@ export const MovieEdit = ({ setEditForm, movie, id }: MovieEditProps) => {
         title: movie.title,
         type: movie.type,
         genre: movie.genre,
-        ratings: movie.ratings?.[user],
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        ratings: movie.ratings?.[user] || 0,
         comment: movie.comments?.[user] || "",
         comments: {},
       },

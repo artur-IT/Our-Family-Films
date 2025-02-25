@@ -92,6 +92,7 @@ const MovieAdd: React.FC<MovieAddProps> = () => {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside, { capture: true });
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedTitle, toggleShowAddMovie]);
 
   return (
