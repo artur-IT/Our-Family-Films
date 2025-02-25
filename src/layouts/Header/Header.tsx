@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { useLoginState } from "@/context/LoginStateContext";
 import { useEditMode } from "@/context/EditMovieContext";
+import Image from "next/image";
 
 export const Header = ({}) => {
   const [showPanelLogin, setShowPanelLogin] = useState<boolean>(false);
@@ -25,7 +26,7 @@ export const Header = ({}) => {
       <header className={style.header}>
         <nav>
           <Link href="/" onClick={handleLinkLogin}>
-            <img src="/logo.png" alt="logo" className={style.logo} />
+            <Image src="/logo.png" alt="logo" width={113} height={45} />
             <p>Our Family Films</p>
           </Link>
 

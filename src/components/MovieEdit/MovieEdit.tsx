@@ -8,7 +8,7 @@ interface MovieFormInputs {
   id?: string;
   title: string;
   type: string;
-  ratings: number | any;
+  ratings: any;
   genre: string;
   comment?: string;
   comments?: Record<string, string>;
@@ -29,7 +29,7 @@ export const MovieEdit = ({ setEditForm, movie, id }: MovieEditProps) => {
         title: movie.title,
         type: movie.type,
         genre: movie.genre,
-        ratings: movie.ratings?.[user] || 0,
+        ratings: movie.ratings?.[user],
         comment: movie.comments?.[user] || "",
         comments: {},
       },
