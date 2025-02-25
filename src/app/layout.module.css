@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap");
 
-html {
+#root {
   box-sizing: border-box;
   height: 100%;
   scroll-behavior: smooth;
@@ -39,11 +39,4 @@ body.main {
     font-family: "Roboto Flex", sans-serif;
     font-size: 0.8rem;
   }
-}
-
-.main {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  background-color: var(--background-color);
 }
