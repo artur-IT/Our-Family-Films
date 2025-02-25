@@ -18,7 +18,7 @@ interface MovieContextType {
 type MovieUpdateData = {
   title?: string;
   genre?: string;
-  ratings?: {};
+  ratings?: object;
 };
 
 export const MovieContext = createContext<MovieContextType | undefined>(undefined);

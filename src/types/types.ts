@@ -3,7 +3,7 @@ export interface MovieData {
   title: string;
   type: string;
   genre: string;
-  ratings: {};
-  comments: {};
+  ratings: object;
+  comments: object;
   image: string;
 }
