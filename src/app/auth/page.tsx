@@ -16,5 +16,5 @@ export default function AuthPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname, router]);
 
-  return <PanelLogin />;
+  return <PanelLogin isVisible={true} />;
 }

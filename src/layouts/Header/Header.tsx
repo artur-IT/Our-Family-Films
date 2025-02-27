@@ -5,8 +5,10 @@ import { useState } from "react";
 import { useLoginState } from "@/context/LoginStateContext";
 import { useEditMode } from "@/context/EditMovieContext";
 import Image from "next/image";
+import { PanelLogin } from "../PanelLogin/PanelLogin";
 
 export const Header = ({}) => {
+  const [isLoginVisible, setIsLoginVisible] = useState(false);
   const [showPanelLogin, setShowPanelLogin] = useState<boolean>(false);
   const { isLoggedIn, setIsLoggedIn } = useLoginState();
   const { isEditMode, toggleEditMode } = useEditMode();
@@ -31,10 +33,11 @@ export const Header = ({}) => {
           </Link>
 
           <Link href={showPanelLogin ? "/" : "/auth"} onClick={handleLinkLogin}>
-            <button className={style.button}> {isLoggedIn ? "Logout" : "Login"}</button>
+            <button className={style.button}> {isLoggedIn ? "Logout" : "Login"} </button>
           </Link>
         </nav>
       </header>
+      <PanelLogin isVisible={isLoginVisible} />
     </>
   );
 };

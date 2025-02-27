@@ -10,7 +10,6 @@
 /* start Movie Container */
 .shelf_movie_container {
   width: 100%;
-  /* height: 392px; */
   display: flex;
   justify-content: flex-start;
   align-items: flex-end;
@@ -30,6 +29,7 @@
 
 .scroll_button {
   z-index: 1;
+  width: 30px;
   height: 30px;
   background-color: rgba(0, 0, 0, 0.1);
   color: #fff;
@@ -79,7 +79,6 @@
   }
   .shelf_movie_container {
     width: 1400px;
-    /* height: 222px; */
     display: flex;
     justify-content: flex-start;
     align-items: flex-end;
@@ -100,7 +99,6 @@
 
 @media (max-width: 400px) and (orientation: portrait) {
   .shelf_movie_container {
-    /* height: 393px; */
     z-index: 10;
   }
   .shelf {

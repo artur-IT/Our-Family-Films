@@ -1,9 +1,9 @@
 .loginPanel {
-  position: absolute;
-  right: 50%;
-  top: 70px;
-  transform: translateX(100px);
-  width: 130px;
+  position: fixed;
+  left: 50%;
+  transform: translate(-50%, -100%);
+  top: 0;
+  width: 150px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -11,9 +11,15 @@
   background-color: var(--one);
   color: #fff;
   padding: 20px;
-  border-radius: 6px;
+  border-radius: 0 0 6px 6px;
   border: 1px solid #000;
   z-index: 15;
+  transition: transform 0.5s ease;
+  will-change: transform;
+}
+
+.loginPanelShow {
+  transform: translate(-50%, 0);
 }
 
 .loginPanel h2 {

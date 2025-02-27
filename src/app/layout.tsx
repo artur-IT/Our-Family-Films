@@ -31,14 +31,13 @@ export const metadata: Metadata = {
 // i nie będę sie renderować ponownie (np. header i footer)
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="pl" id="root">
+    <html lang="en" id="root">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet" />
       </head>
       <body className={style.main}>
-        {/* {children} */}
         <LoginProvider>
           <MovieProvider>
             <EditModeProvider>

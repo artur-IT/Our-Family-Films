@@ -1,4 +1,4 @@
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import styles from "./PanelLogin.module.css";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { useLoginState } from "@/context/LoginStateContext";
@@ -9,11 +9,16 @@ interface User {
   username: string;
   password: string;
 }
-export const PanelLogin = () => {
+interface PanelLoginProps {
+  isVisible: boolean;
+}
+
+export const PanelLogin = ({ isVisible }: PanelLoginProps) => {
   const { checkUser } = useEditMode();
   const router = useRouter();
   const { isLoggedIn, setIsLoggedIn, users } = useLoginState();
   const { register, handleSubmit } = useForm();
+  const pathname = usePathname();
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     const foundUser = users.find((user: User) => user.username === data.username && user.password === data.password);
@@ -34,7 +39,7 @@ export const PanelLogin = () => {
   };
 
   return (
-    <div className={styles.loginPanel}>
+    <div className={`${styles.loginPanel} ${isVisible ? styles.loginPanelShow : ""}`}>
       <h2>Login</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.formGroup}>
