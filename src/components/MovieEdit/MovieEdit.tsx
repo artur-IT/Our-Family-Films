@@ -42,7 +42,7 @@ export const MovieEdit = ({ setEditForm, movie, id }: MovieEditProps) => {
         comments: {},
       },
     });
-    console.log(movie.ratings?.[user], typeof movie.ratings?.[user]);
+
     const handleSave = handleSubmit(async (data) => {
       const newData = {
         id: id,
@@ -52,8 +52,8 @@ export const MovieEdit = ({ setEditForm, movie, id }: MovieEditProps) => {
       };
       try {
         const updatedComments = {
-          ...movie.comments, // zachowujemy wszystkie istniejące komentarze
-          [user]: data.comment, // dodajemy/aktualizujemy komentarz aktualnego użytkownika
+          ...movie.comments,
+          ...(data.comment ? { [user]: data.comment } : {}),
         };
 
         const updatedRatings = {
