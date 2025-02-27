@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap&font-display=swap");
 
 #root {
   box-sizing: border-box;
@@ -12,7 +12,7 @@ body.main {
   justify-content: flex-start;
   align-items: center;
   min-height: 100vh;
-  font-family: "Roboto Flex", serif;
+  font-family: "Roboto Flex", "Roboto", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 1rem;
   font-optical-sizing: auto;
   font-weight: 300;
