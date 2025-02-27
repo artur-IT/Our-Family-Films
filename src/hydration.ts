@@ -11,6 +11,6 @@ export const getInitialData = () => ({
 export const formatMovieData = (movie: MovieData) => ({
   ...movie,
   id: movie.id.toString(),
-  rating: Number(movie.rating) || 0,
-  comments: Array.isArray(movie.comments) ? movie.comments : [],
+  ratings: movie.ratings || {},
+  comments: Array.isArray(movie.comments) ? movie.comments : {},
 });
