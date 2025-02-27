@@ -15,11 +15,7 @@ interface MovieContextType {
   setSelectedPoster: (poster: string) => void;
 }
 
-type MovieUpdateData = {
-  title?: string;
-  genre?: string;
-  ratings?: object;
-};
+type MovieUpdateData = Partial<MovieData>;
 
 export const MovieContext = createContext<MovieContextType | undefined>(undefined);
 
@@ -74,9 +70,7 @@ export const MovieProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         throw new Error(`Błąd HTTP: ${response.status}`);
       }
 
-      setMovies((prevMovies) =>
-        prevMovies.map((movie) => (movie.id === movieId ? { ...movie, ...updatedData, rating: updatedData.ratings } : movie))
-      );
+      setMovies((prevMovies) => prevMovies.map((movie) => (movie.id === movieId ? { ...movie, ...updatedData } : movie)));
     } catch (error) {
       console.error("Błąd aktualizacji filmu:", error);
     }
