@@ -4,6 +4,7 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { useLoginState } from "@/context/LoginStateContext";
 import { useEditMode } from "@/context/EditMovieContext";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 interface User {
   username: string;
@@ -13,11 +14,13 @@ interface PanelLoginProps {
   isVisible: boolean;
 }
 
-export const PanelLogin = ({ isVisible }: PanelLoginProps) => {
+export const PanelLogin = () => {
   const { checkUser } = useEditMode();
   const router = useRouter();
   const { isLoggedIn, setIsLoggedIn, users } = useLoginState();
   const { register, handleSubmit } = useForm();
+
+  const [isAnimating, setIsAnimating] = useState(false);
   const pathname = usePathname();
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
@@ -38,8 +41,19 @@ export const PanelLogin = ({ isVisible }: PanelLoginProps) => {
     }
   };
 
+  useEffect(() => {
+    if (pathname === "/auth") {
+      setIsAnimating(true);
+    } else {
+      // Dodajemy małe opóźnienie przed ukryciem panelu
+      setTimeout(() => {
+        setIsAnimating(false);
+      }, 50);
+    }
+  }, [pathname]);
+
   return (
-    <div className={`${styles.loginPanel} ${isVisible ? styles.loginPanelShow : ""}`}>
+    <div className={`${styles.loginPanel} ${isAnimating ? styles.loginPanelShow : ""}`}>
       <h2>Login</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.formGroup}>
