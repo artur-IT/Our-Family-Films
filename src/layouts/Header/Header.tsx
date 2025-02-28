@@ -33,7 +33,6 @@ export const Header = ({}) => {
           </Link>
         </nav>
       </header>
-      <PanelLogin />
     </>
   );
 };

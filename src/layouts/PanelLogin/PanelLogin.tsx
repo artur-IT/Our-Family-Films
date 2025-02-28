@@ -27,11 +27,15 @@ export const PanelLogin = () => {
       checkUser(foundUser.name);
       document.cookie = "auth=true; path=/";
 
-      if (foundUser.username === "ar") {
-        await router.push("/admin");
-      } else {
-        await router.push("/user");
-      }
+      setIsAnimating(false);
+
+      setTimeout(async () => {
+        if (foundUser.username === "ar") {
+          await router.push("/admin");
+        } else {
+          await router.push("/user");
+        }
+      }, 500);
     } else {
       alert("Nieprawidłowe dane logowania!");
     }
@@ -41,12 +45,22 @@ export const PanelLogin = () => {
     if (pathname === "/auth") {
       setIsAnimating(true);
     } else {
-      // małe opóźnienie przed ukryciem panelu
+      // Najpierw animujemy
+      setIsAnimating(false);
       setTimeout(() => {
-        setIsAnimating(false);
-      }, 50);
+        router.push("/");
+      }, 500); // czas powinien być taki sam jak transition w CSS
     }
-  }, [pathname]);
+  }, [pathname, router]);
+
+  const handleEsc = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setIsAnimating(false);
+    // Czekamy na zakończenie animacji
+    setTimeout(() => {
+      router.push("/");
+    }, 500);
+  };
 
   return (
     <div className={`${styles.loginPanel} ${isAnimating ? styles.loginPanelShow : ""}`}>
@@ -69,7 +83,9 @@ export const PanelLogin = () => {
             Login
           </button>
           <Link href="/">
-            <button className={styles.button}>Esc</button>
+            <button className={styles.button} type="button" onClick={handleEsc}>
+              Esc
+            </button>
           </Link>
         </div>
       </form>
