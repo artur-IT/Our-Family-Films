@@ -2,7 +2,6 @@ import { useContext, useState } from "react";
 import style from "./Movie.module.css";
 import starEmptyIcon from "../../../public/star-empty.svg";
 import starFullIcon from "../../../public/star-full.svg";
-import commentsIcon from "../../../public/comments.svg";
 import { MovieData } from "@/types/types";
 import Image from "next/image";
 import { useEditMode } from "@/context/EditMovieContext";
@@ -20,7 +19,6 @@ export const Movie = ({ movie, isLoggedIn }: { movie: MovieData; isLoggedIn: boo
   const { isEditMode, showAddMovie, user } = useEditMode();
 
   const handleDelete = async () => {
-    // if (window.confirm("Are you sure you want to delete this movie?")) {
     try {
       const response = await fetch(`/api/movies`, {
         method: "DELETE",
@@ -37,7 +35,6 @@ export const Movie = ({ movie, isLoggedIn }: { movie: MovieData; isLoggedIn: boo
     } catch (error) {
       console.error("Hmmm, error durning delete movie:", error);
     }
-    // }
   };
 
   // SUM ALL RATINGS FROM ALL USERS
