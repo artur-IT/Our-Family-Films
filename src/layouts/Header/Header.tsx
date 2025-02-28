@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useLoginState } from "@/context/LoginStateContext";
 import { useEditMode } from "@/context/EditMovieContext";
 import Image from "next/image";
-import { PanelLogin } from "../PanelLogin/PanelLogin";
 
 export const Header = ({}) => {
   const { isLoggedIn, setIsLoggedIn } = useLoginState();
