@@ -10,16 +10,12 @@ interface User {
   username: string;
   password: string;
 }
-interface PanelLoginProps {
-  isVisible: boolean;
-}
 
 export const PanelLogin = () => {
   const { checkUser } = useEditMode();
   const router = useRouter();
   const { isLoggedIn, setIsLoggedIn, users } = useLoginState();
   const { register, handleSubmit } = useForm();
-
   const [isAnimating, setIsAnimating] = useState(false);
   const pathname = usePathname();
 
@@ -45,7 +41,7 @@ export const PanelLogin = () => {
     if (pathname === "/auth") {
       setIsAnimating(true);
     } else {
-      // Dodajemy małe opóźnienie przed ukryciem panelu
+      // małe opóźnienie przed ukryciem panelu
       setTimeout(() => {
         setIsAnimating(false);
       }, 50);

@@ -1,12 +1,10 @@
 "use client";
 import style from "./Header.module.css";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 import { useLoginState } from "@/context/LoginStateContext";
 import { useEditMode } from "@/context/EditMovieContext";
 import Image from "next/image";
 import { PanelLogin } from "../PanelLogin/PanelLogin";
-import { usePathname } from "next/navigation";
 
 export const Header = ({}) => {
   const { isLoggedIn, setIsLoggedIn } = useLoginState();
