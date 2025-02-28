@@ -81,9 +81,6 @@ export const Movie = ({ movie, isLoggedIn }: { movie: MovieData; isLoggedIn: boo
             <Image src={Number(averageRating.toFixed(0)) > 0 ? starFullIcon : starEmptyIcon} alt="star" className={style.star} />
             <Image src={Number(averageRating.toFixed(0)) >= 2 ? starFullIcon : starEmptyIcon} alt="star" className={style.star} />
             <Image src={Number(averageRating.toFixed(0)) >= 3 ? starFullIcon : starEmptyIcon} alt="star" className={style.star} />
-
-            <Image src={commentsIcon} alt="comments icon" className={style.comments_icon} />
-            <span className={style.commentsLength}>({Object.keys(movie.comments).length})</span>
           </div>
 
           {/* User comments */}
