@@ -1,6 +1,6 @@
 div.main_container {
   position: relative;
-  top: 100px;
+  top: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -11,7 +11,7 @@ div.main_container {
 
 @media (max-width: 800px) and (orientation: landscape) {
   div.main_container {
-    top: 70px;
+    top: 20px;
   }
 }
 
@@ -20,6 +20,6 @@ div.main_container {
     display: flex;
     width: 100vw;
     height: 100vh;
-    top: 0;
+    top: -60px;
   }
 }

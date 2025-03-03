@@ -5,7 +5,7 @@ import { useLoginState } from "@/context/LoginStateContext";
 import { useEditMode } from "@/context/EditMovieContext";
 import Image from "next/image";
 
-export const Header = ({}) => {
+export const Header = ({ prop }: { prop: React.ReactNode }) => {
   const { isLoggedIn, setIsLoggedIn } = useLoginState();
   const { isEditMode, toggleEditMode } = useEditMode();
 
@@ -31,6 +31,7 @@ export const Header = ({}) => {
             <button className={style.button}> {isLoggedIn ? "Logout" : "Login"} </button>
           </Link>
         </nav>
+        {prop}
       </header>
     </>
   );

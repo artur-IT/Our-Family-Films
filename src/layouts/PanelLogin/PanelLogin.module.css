@@ -1,6 +1,7 @@
 .loginPanel {
-  position: fixed;
-  left: 50%;
+  position: absolute;
+  top: 0;
+  right: -75px;
   transform: translate(-50%, -100%);
   width: 150px;
   display: flex;

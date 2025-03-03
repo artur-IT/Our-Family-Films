@@ -41,8 +41,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <LoginProvider>
           <MovieProvider>
             <EditModeProvider>
-              <Header />
-              {children}
+              <Header prop={children} />
+              {/* {children} */}
               <Main>
                 <Shelf />
               </Main>

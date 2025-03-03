@@ -21,7 +21,6 @@
   scrollbar-width: none;
   /* Ukrywa scrollbar w IE */
   -ms-overflow-style: none;
-  z-index: 10;
 }
 &::-webkit-scrollbar {
   display: none;
@@ -87,7 +86,6 @@
     scroll-behavior: smooth;
     scrollbar-width: none;
     -ms-overflow-style: none;
-    z-index: 5;
   }
   .shelf_bottom {
     width: 115%;
@@ -98,9 +96,6 @@
 }
 
 @media (max-width: 400px) and (orientation: portrait) {
-  .shelf_movie_container {
-    z-index: 10;
-  }
   .shelf {
     position: relative;
     top: 100px;
