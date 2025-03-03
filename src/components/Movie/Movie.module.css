@@ -136,6 +136,9 @@ div.rating span {
     background-size: contain;
     background-repeat: no-repeat;
   }
+  .movie_description {
+    bottom: -125%;
+  }
 
   .movie_description_edit button {
     width: 60px;
