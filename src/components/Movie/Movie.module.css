@@ -121,10 +121,6 @@ div.rating span {
 .comments_user div :nth-child(1) {
   color: #ffd43b;
 }
-/* .comments_user div :last-child {
-  margin: 5px 2px;
-  font-style: italic;
-} */
 
 @media (max-width: 800px) and (orientation: landscape) {
   .movie {

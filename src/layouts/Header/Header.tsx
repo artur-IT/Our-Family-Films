@@ -5,7 +5,7 @@ import { useLoginState } from "@/context/LoginStateContext";
 import { useEditMode } from "@/context/EditMovieContext";
 import Image from "next/image";
 
-export const Header = ({ prop }: { prop: React.ReactNode }) => {
+export const Header = ({ panelLogin }: { panelLogin: React.ReactNode }) => {
   const { isLoggedIn, setIsLoggedIn } = useLoginState();
   const { isEditMode, toggleEditMode } = useEditMode();
 
@@ -24,14 +24,14 @@ export const Header = ({ prop }: { prop: React.ReactNode }) => {
         <nav>
           <Link href="/" onClick={handleLinkLogin}>
             <Image src="/logo.png" alt="logo" width={113} height={45} />
-            <p>Our Family Films</p>
+            <p>Good Family Movies</p>
           </Link>
 
           <Link href={isLoggedIn ? "/" : "/auth"} onClick={handleLinkLogin}>
             <button className={style.button}> {isLoggedIn ? "Logout" : "Login"} </button>
           </Link>
         </nav>
-        {prop}
+        {panelLogin}
       </header>
     </>
   );

@@ -11,7 +11,7 @@ body.main {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  min-height: 100vh;
+  max-height: 100vh;
   font-family: "Roboto Flex", "Roboto", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 1rem;
   font-optical-sizing: auto;
@@ -34,7 +34,6 @@ body.main {
   body.main {
     margin: 0;
     padding: 0;
-    min-height: 100vh;
     font-family: "Roboto Flex", sans-serif;
     font-size: 0.8rem;
   }

@@ -26,7 +26,7 @@ export const Shelf = () => {
 
   return (
     <>
-      <div className={style.year_aside}>2024</div>
+      {/* <div className={style.year_aside}>2024</div> */}
       <div className={style.shelf}>
         <button className={`${style.scroll_button} ${style.scroll_left}`} onClick={() => scroll("left")}>
           ←
