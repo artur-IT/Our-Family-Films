@@ -29,7 +29,7 @@ const MovieSearch: React.FC = () => {
   }, []);
 
   const searchMoviePoster = (title: string) => {
-    const url = `https://api.themoviedb.org/3/search/movie?query=${title}&api_key=${TMDB_API_KEY}`;
+    const url = `https://api.themoviedb.org/3/search/multi?include_adult=false&language=pl-PL&page=1&query=${title}&api_key=${TMDB_API_KEY}`;
     fetch(url)
       .then((response) => {
         if (!response.ok) {
@@ -46,7 +46,7 @@ const MovieSearch: React.FC = () => {
         }
       })
       .catch((error) => {
-        console.error("Błąd podczas wyszukiwania:", error);
+        console.error("Error durning fetching movie posters:", error);
       });
   };
 
@@ -76,7 +76,7 @@ const MovieSearch: React.FC = () => {
           moviePosters.map((poster, index) => (
             <Image
               key={index}
-              src={`https://image.tmdb.org/t/p/w500${poster}`}
+              src={`https://image.tmdb.org/t/p/original${poster}`}
               alt={`Movie Poster ${index}`}
               className={styles.moviePoster}
               width={150}
