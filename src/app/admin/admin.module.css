@@ -1,10 +1,12 @@
 .adminPanel {
   display: flex;
+  justify-content: center;
   align-items: center;
-  position: absolute;
-  right: 28%;
-  padding: 10px 0;
-  z-index: 5;
+  width: 330px;
+  padding: 10px 10px;
+  color: #fff;
+  background-color: var(--button);
+  border-radius: 4px;
 }
 
 .adminControls {
@@ -13,50 +15,37 @@
 
 .buttons {
   display: flex;
-  width: 95px;
+  width: 97px;
   margin-left: 8px;
   font-family: "Roboto Flex", serif;
-  font-weight: 100;
-  background-color: var(--button);
+  font-weight: 300;
+  background-color: #fff;
   display: block;
-  color: #fff;
+  color: var(--button);
   border: none;
   padding: 8px 12px;
   border-radius: 3px;
   cursor: pointer;
-  /* transition: background-color 0.3s ease; */
   transition: all 0.3s ease;
 }
 
 .buttons:hover {
-  background-color: var(--three);
+  border: 1px solid #fff;
+  color: #fff;
+  background-color: var(--button);
 }
 
 @media (max-width: 800px) and (orientation: landscape) {
   .adminPanel {
-    position: absolute;
-    left: 50%;
-    top: 25px;
-    transform: translate(-70px, -50%);
     display: flex;
-    justify-content: center;
     width: 260px;
-    height: auto;
     padding: 8px 10px;
-    color: #fff;
-    background-color: var(--button);
     font-size: 0.8rem;
-    font-weight: 300;
-    border-radius: 4px;
   }
   .buttons {
     width: 70px;
     font-size: 0.6rem;
-    font-weight: 300;
-    color: var(--button);
     padding: 6px 2px;
-    background-color: #fff;
-    border-radius: 4px;
   }
   .buttons:focus {
     border: 1px solid #fff;
@@ -84,9 +73,6 @@
     font-size: 0.8rem;
     font-weight: 300;
     padding: 6px;
-    color: var(--button);
-    background-color: #fff;
-    border-radius: 4px;
   }
   .buttons:focus {
     border: 1px solid #fff;

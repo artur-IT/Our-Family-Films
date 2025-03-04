@@ -26,12 +26,11 @@ export const Header = ({ panelLogin }: { panelLogin: React.ReactNode }) => {
             <Image src="/logo.png" alt="logo" width={113} height={45} />
             <p>Good Family Movies</p>
           </Link>
-
+          {panelLogin}
           <Link href={isLoggedIn ? "/" : "/auth"} onClick={handleLinkLogin}>
             <button className={style.button}> {isLoggedIn ? "Logout" : "Login"} </button>
           </Link>
         </nav>
-        {panelLogin}
       </header>
     </>
   );
