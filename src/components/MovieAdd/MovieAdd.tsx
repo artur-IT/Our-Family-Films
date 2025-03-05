@@ -23,7 +23,7 @@ const MovieAdd: React.FC<MovieAddProps> = () => {
   const movieAddRef = useRef<HTMLDivElement>(null);
   const movieContext = useContext(MovieContext);
   const { toggleShowAddMovie } = useEditMode();
-  const { addMovie, selectedTitle, selectedPoster, setSelectedTitle } = movieContext || {};
+  const { addMovie, selectedTitle, selectedPoster, setSelectedTitle, setSelectedPoster } = movieContext || {};
   const movieId = useMemo(() => uuidv4().slice(0, 3), []);
 
   const { register, handleSubmit, reset } = useForm<MovieFormInputs>({
@@ -68,13 +68,25 @@ const MovieAdd: React.FC<MovieAddProps> = () => {
     }
   };
 
+  const clearMovieForm = () => {
+    reset({
+      title: "",
+      genre: "",
+      type: "Film",
+    });
+
+    if (setSelectedPoster) {
+      setSelectedPoster("");
+    }
+    if (setSelectedTitle) {
+      setSelectedTitle("");
+    }
+  };
+
   useEffect(() => {
     if (selectedTitle) {
       reset({
         title: selectedTitle,
-        type: "Film",
-        genre: "",
-        image: "",
       });
     }
 
@@ -98,7 +110,7 @@ const MovieAdd: React.FC<MovieAddProps> = () => {
   return (
     <div className={styles.movieAdd} ref={movieAddRef}>
       <h2>Add new movie</h2>
-      <MovieSearch />
+      <MovieSearch clearMovieForm={clearMovieForm} />
       <form className={styles.movieAddForm} onSubmit={handleSubmit(onSubmit)}>
         <div>
           <label>

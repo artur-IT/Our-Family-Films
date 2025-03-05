@@ -6,7 +6,7 @@ import Image from "next/image";
 
 const TMDB_API_KEY = process.env.NEXT_PUBLIC_TMDB_API_KEY;
 
-const MovieSearch: React.FC = () => {
+const MovieSearch = ({ clearMovieForm }: { clearMovieForm: () => void }) => {
   const context = useContext(MovieContext);
   const setSelectedTitle = context?.setSelectedTitle;
   const setSelectedPoster = context?.setSelectedPoster;
@@ -17,8 +17,10 @@ const MovieSearch: React.FC = () => {
   // Close finding posters when clicking outside of the posters div
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (postersRef.current && !postersRef.current.contains(event.target as Node)) {
-        // setMoviePosters([]);
+      const target = event.target as HTMLElement;
+      if (postersRef.current && !postersRef.current.contains(event.target as Node) && !target.className.includes("movieSearchButton")) {
+        setFoundMovies(new Map());
+        setMovieTitle("");
       }
     };
 
@@ -27,8 +29,9 @@ const MovieSearch: React.FC = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
   const searchMoviePoster = (title: string) => {
-    if (setSelectedTitle) setSelectedTitle("");
+    clearMovieForm();
     const url = `https://api.themoviedb.org/3/search/multi?include_adult=false&language=pl-PL&page=1&query=${title}&api_key=${TMDB_API_KEY}`;
     fetch(url)
       .then((response) => {
@@ -77,6 +80,7 @@ const MovieSearch: React.FC = () => {
       <div ref={postersRef} className={styles.posters}>
         {Array.from(foundMovies).map(([title, poster], index) => (
           <Image
+            key={index}
             src={`https://image.tmdb.org/t/p/original${poster}`}
             alt={`Movie Poster ${title}`}
             className={styles.moviePoster}
