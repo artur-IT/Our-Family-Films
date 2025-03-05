@@ -11,12 +11,11 @@
 .searchArea {
   display: flex;
   align-items: flex-end;
-  max-width: 350px;
+  max-width: 315px;
   margin: 0;
 }
 
 .movieSearchInput {
-  height: 20px;
   margin-top: 6px;
   padding: 5px;
   font-size: 14px;
