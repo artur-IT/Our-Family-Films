@@ -103,14 +103,14 @@ const MovieAdd: React.FC<MovieAddProps> = () => {
         <div>
           <label>
             Title <br />
-            <input id="title" {...register("title")} defaultValue={selectedTitle || ""} />
+            <input id="title" {...register("title", { required: "Enter the title", maxLength: 50 })} defaultValue={selectedTitle || ""} />
           </label>
         </div>
 
         <div>
           <label>
             Species <br />
-            <input id="genre" maxLength={30} {...register("genre", { required: "Wybierz gatunek", maxLength: 30 })} />
+            <input id="genre" maxLength={30} {...register("genre", { required: "Enter the species", maxLength: 30 })} />
           </label>
         </div>
         <div>

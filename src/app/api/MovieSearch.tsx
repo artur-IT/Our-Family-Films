@@ -11,14 +11,14 @@ const MovieSearch: React.FC = () => {
   const setSelectedTitle = context?.setSelectedTitle;
   const setSelectedPoster = context?.setSelectedPoster;
   const [movieTitle, setMovieTitle] = useState("");
-  const [moviePosters, setMoviePosters] = useState<string[]>([]);
   const postersRef = useRef<HTMLDivElement>(null);
+  const [foundMovies, setFoundMovies] = useState<Map<string, string>>(new Map());
 
   // Close finding posters when clicking outside of the posters div
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (postersRef.current && !postersRef.current.contains(event.target as Node)) {
-        setMoviePosters([]);
+        // setMoviePosters([]);
       }
     };
 
@@ -27,8 +27,8 @@ const MovieSearch: React.FC = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
-
   const searchMoviePoster = (title: string) => {
+    if (setSelectedTitle) setSelectedTitle("");
     const url = `https://api.themoviedb.org/3/search/multi?include_adult=false&language=pl-PL&page=1&query=${title}&api_key=${TMDB_API_KEY}`;
     fetch(url)
       .then((response) => {
@@ -39,10 +39,13 @@ const MovieSearch: React.FC = () => {
       })
       .then((data) => {
         if (data.results.length > 0) {
-          const posters = data.results
-            .filter((result: { poster_path: string }) => result.poster_path !== null)
-            .map((result: { poster_path: string }) => result.poster_path);
-          setMoviePosters(posters);
+          const newMap = new Map();
+          data.results.forEach((result: { title: string; poster_path: string }) => {
+            if (result.title || result.poster_path) {
+              newMap.set(result.title, result.poster_path);
+            }
+          });
+          setFoundMovies(newMap);
         }
       })
       .catch((error) => {
@@ -72,28 +75,25 @@ const MovieSearch: React.FC = () => {
       </div>
 
       <div ref={postersRef} className={styles.posters}>
-        {moviePosters.length > 0 &&
-          moviePosters.map((poster, index) => (
-            <Image
-              key={index}
-              src={`https://image.tmdb.org/t/p/original${poster}`}
-              alt={`Movie Poster ${index}`}
-              className={styles.moviePoster}
-              width={150}
-              height={225}
-              onClick={() => {
-                if (setSelectedTitle && setSelectedPoster) {
-                  setSelectedTitle(movieTitle);
-                  setSelectedPoster(poster);
-                  setMoviePosters([]);
-                  setMovieTitle("");
-                }
-              }}
-            />
-          ))}
+        {Array.from(foundMovies).map(([title, poster], index) => (
+          <Image
+            src={`https://image.tmdb.org/t/p/original${poster}`}
+            alt={`Movie Poster ${title}`}
+            className={styles.moviePoster}
+            width={150}
+            height={225}
+            onClick={() => {
+              if (setSelectedTitle && setSelectedPoster) {
+                setSelectedTitle(title);
+                setSelectedPoster(poster);
+                setFoundMovies(new Map());
+                setMovieTitle("");
+              }
+            }}
+          />
+        ))}
       </div>
     </div>
   );
 };
-
 export default MovieSearch;
