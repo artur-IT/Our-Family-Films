@@ -50,6 +50,7 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 5px;
+  width: max-content;
   width: 300%;
   margin: 0;
   z-index: 5;

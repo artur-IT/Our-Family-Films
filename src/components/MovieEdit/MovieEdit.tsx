@@ -122,7 +122,7 @@ export const MovieEdit = ({ setEditForm, movie, id }: MovieEditProps) => {
           <div>
             <label>
               Comment
-              <input type="text" placeholder="change comment" maxLength={30} {...register("comment", { maxLength: 30 })} />
+              <input type="text" placeholder="change comment, max.30" maxLength={30} {...register("comment", { maxLength: 30 })} />
             </label>
           </div>
 
