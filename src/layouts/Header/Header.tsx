@@ -55,3 +55,4 @@ export const Header = React.memo(({ panelLogin }: HeaderProps) => {
     </>
   );
 });
+Header.displayName = "Header";

@@ -1,6 +1,6 @@
 import { usePathname, useRouter } from "next/navigation";
 import styles from "./PanelLogin.module.css";
-import { FieldValues, set, SubmitHandler, useForm } from "react-hook-form";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { useLoginState } from "@/context/LoginStateContext";
 import { useEditMode } from "@/context/EditMovieContext";
 import Link from "next/link";
