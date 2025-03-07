@@ -39,7 +39,7 @@ export const Header = React.memo(({ panelLogin }: HeaderProps) => {
         <nav>
           {/* Logo and title link that also handles logout */}
           <Link href="/" onClick={handleLinkLogin}>
-            <Image src="/logo.png" alt="logo" width={113} height={45} />
+            <Image src="/logo.png" alt="logo" width={113} height={45} priority={true} />
             <p>Good Family Movies</p>
           </Link>
 
