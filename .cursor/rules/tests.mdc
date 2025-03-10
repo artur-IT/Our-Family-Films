@@ -1,0 +1,10 @@
+---
+description: Zasady dla wszystkich testów w projekcie.
+globs: **/*
+alwaysApply: true
+---
+Teesting
+- Use unit and integration testing framework Vitest for functions and helpers.
+
+Documentation
+- Provide clear and concise comments for all tests.

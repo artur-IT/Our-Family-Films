@@ -4,8 +4,12 @@ import { MovieContext } from "@/context/MovieContext";
 import styles from "./MovieSearch.module.css";
 import Image from "next/image";
 
+// This is the API key for The Movie Database (TMDb) which is used to fetch movie data.
+// It is stored in the environment variables for security reasons.
 const TMDB_API_KEY = process.env.NEXT_PUBLIC_TMDB_API_KEY;
-
+// This is the main component for searching and displaying movie posters.
+// It uses the MovieContext to set the selected title and poster.
+// It also has a function to clear the movie form.
 const MovieSearch = ({ clearMovieForm }: { clearMovieForm: () => void }) => {
   const context = useContext(MovieContext);
   const setSelectedTitle = context?.setSelectedTitle;
@@ -14,7 +18,9 @@ const MovieSearch = ({ clearMovieForm }: { clearMovieForm: () => void }) => {
   const postersRef = useRef<HTMLDivElement>(null);
   const [foundMovies, setFoundMovies] = useState<Map<string, string>>(new Map());
 
-  // Close finding posters when clicking outside of the posters div
+  // This effect is used to close the posters when clicking outside of the posters div.
+  // It listens for mousedown events and checks if the target is not the posters div or the search button.
+  // If it's not, it clears the found movies and the movie title.
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as HTMLElement;
@@ -25,39 +31,36 @@ const MovieSearch = ({ clearMovieForm }: { clearMovieForm: () => void }) => {
     };
 
     document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const searchMoviePoster = (title: string) => {
+  // This function is used to search for a movie poster.
+  // It first clears the movie form, then constructs the URL for the API request.
+  // It then fetches the data and if there are results, it creates a new map with the titles and poster paths.
+  // Finally, it sets the found movies with the new map.
+  const searchMoviePoster = async (title: string) => {
     clearMovieForm();
     const url = `https://api.themoviedb.org/3/search/multi?include_adult=false&language=pl-PL&page=1&query=${title}&api_key=${TMDB_API_KEY}`;
-    fetch(url)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        if (data.results.length > 0) {
-          const newMap = new Map();
-          data.results.forEach((result: { title: string; poster_path: string }) => {
-            if (result.title || result.poster_path) {
-              newMap.set(result.title, result.poster_path);
-            }
-          });
-          setFoundMovies(newMap);
-        }
-      })
-      .catch((error) => {
-        console.error("Error durning fetching movie posters:", error);
-      });
+    try {
+      const response = await fetch(url);
+      if (!response.ok) throw new Error("Network response was not ok");
+      const data = await response.json();
+      if (data.results.length > 0) {
+        const newMap = new Map<string, string>();
+        data.results.forEach(({ title, poster_path }: { title: string; poster_path: string }) => {
+          if (title || poster_path) newMap.set(title, poster_path);
+        });
+        setFoundMovies(newMap);
+      }
+    } catch (error) {
+      console.error("Error during fetching movie posters:", error);
+    }
   };
 
   const handleSearch = () => searchMoviePoster(movieTitle);
 
+  // It also contains the posters div, which is a ref to the postersRef.
+  // The posters div contains the found movie posters.
   return (
     <div className={styles.movieSearchContainer}>
       <div className={styles.searchArea}>
