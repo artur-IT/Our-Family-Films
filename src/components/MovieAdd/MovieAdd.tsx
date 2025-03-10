@@ -108,36 +108,45 @@ const MovieAdd: React.FC<MovieAddProps> = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedTitle, toggleShowAddMovie]);
 
+  // Interface for the properties of the InputField component
   interface InputFieldProps<T extends FieldValues> {
-    id: Path<T>;
-    label: string;
-    register: UseFormRegister<T>;
+    id: Path<T>; // The id of the input field
+    label: string; // The label to display for the input field
+    register: UseFormRegister<T>; // The register function from react-hook-form to connect the input
     required?: boolean;
     maxLength?: number;
     defaultValue?: string;
   }
+
+  // InputField component for rendering a labeled input field
   const InputField = <T extends FieldValues>({ id, label, register, required, maxLength, defaultValue }: InputFieldProps<T>) => {
     return (
       <div>
         <label>
           {label} <br />
+          {/* Register the input field with react-hook-form and set its properties */}
           <input {...register(id, { required, maxLength })} defaultValue={defaultValue} />
         </label>
       </div>
     );
   };
 
+  // Interface for the properties of the SelectField component
   interface SelectFieldProps<T extends FieldValues> {
-    id: Path<T>;
+    id: Path<T>; // The id of the select field
     label: string;
-    register: UseFormRegister<T>;
-    options: string[];
+    register: UseFormRegister<T>; // The register function from react-hook-form to connect the select
+    options: string[]; // Array of options to display in the select dropdown
   }
+
+  // SelectField component for rendering a labeled select dropdown
   const SelectField = <T extends FieldValues>({ id, label, register, options }: SelectFieldProps<T>) => (
     <div>
       <label>
         {label} <br />
+        {/* Register the select field with react-hook-form */}
         <select id={id} {...register(id)}>
+          {/* Map through options to create option elements */}
           {options.map((option) => (
             <option key={option} value={option}>
               {option}
