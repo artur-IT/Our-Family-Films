@@ -6,7 +6,7 @@ import { MovieData } from "@/types/types";
 import { MovieContext } from "@/context/MovieContext";
 import { useEditMode } from "@/context/EditMovieContext";
 import { v4 as uuidv4 } from "uuid";
-import { useForm } from "react-hook-form";
+import { FieldValues, Path, useForm, UseFormRegister } from "react-hook-form";
 
 // Define the props for the MovieAdd component
 interface MovieAddProps {
@@ -108,29 +108,25 @@ const MovieAdd: React.FC<MovieAddProps> = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedTitle, toggleShowAddMovie]);
 
-  // Component for rendering input fields
-  const InputField = ({
-    id,
-    label,
-    register,
-    required,
-    maxLength,
-    defaultValue,
-  }: {
-    id: string; // ID of the input field
-    label: string; // Label for the input field
-    register: any; // Register function from react-hook-form
-    required: boolean; // Whether the field is required
-    maxLength: number; // Maximum length of the input
-    defaultValue?: string; // Default value for the input
-  }) => (
-    <div>
-      <label>
-        {label} <br />
-        <input id={id} {...register(id, { required, maxLength })} defaultValue={defaultValue} /> {/* Register the input field */}
-      </label>
-    </div>
-  );
+  interface InputFieldProps<T extends FieldValues> {
+    id: Path<T>;
+    label: string;
+    register: UseFormRegister<T>;
+    required?: boolean;
+    maxLength?: number;
+    defaultValue?: string;
+  }
+
+  const InputField = <T extends FieldValues>({ id, label, register, required, maxLength, defaultValue }: InputFieldProps<T>) => {
+    return (
+      <div>
+        <label>
+          {label} <br />
+          <input {...register(id, { required, maxLength })} defaultValue={defaultValue} />
+        </label>
+      </div>
+    );
+  };
 
   // Component for rendering select fields
   const SelectField = ({ id, label, register, options }: { id: string; label: string; register: any; options: string[] }) => (
