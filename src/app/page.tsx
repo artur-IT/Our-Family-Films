@@ -1,5 +1,5 @@
-// tutaj renderujemy elementy strony, które będą się wczytywać
-// stąd Home jest renderowany w layout.tsx jako children
+// here we render the page elements that will be loaded
+// Home is rendered in layout.tsx as children
 export default function Home() {
   return <></>;
 }

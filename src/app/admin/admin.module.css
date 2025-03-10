@@ -9,10 +9,6 @@
   border-radius: 4px;
 }
 
-.adminControls {
-  margin-bottom: 2rem;
-}
-
 .buttons {
   display: flex;
   width: 97px;
@@ -20,7 +16,6 @@
   font-family: "Roboto Flex", serif;
   font-weight: 300;
   background-color: #fff;
-  display: block;
   color: var(--button);
   border: none;
   padding: 8px 12px;

@@ -69,11 +69,6 @@
   box-shadow: #000 10px 10px 10px 0px;
 }
 
-.movieTitle {
-  font-size: 1.5rem;
-  margin: 0;
-}
-
 @media (max-width: 800px) and (orientation: landscape) {
   .movieSearchContainer {
     padding: 10px;

@@ -27,8 +27,8 @@ export const metadata: Metadata = {
   },
 };
 
-// tutaj renderujemy stałe elementy strony, które będą widoczne na każdej stronie
-// i nie będę sie renderować ponownie (np. header i footer)
+// here we render the static elements of the page that will be visible on every page
+// and will not be re-rendered (e.g. header and footer)
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" id="root">

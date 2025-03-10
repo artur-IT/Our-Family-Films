@@ -1,7 +1,6 @@
 .movieEdit {
   position: absolute;
   top: 0px;
-  /* height: -webkit-fill-available; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;

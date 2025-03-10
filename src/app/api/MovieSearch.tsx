@@ -59,7 +59,6 @@ const MovieSearch = ({ clearMovieForm }: { clearMovieForm: () => void }) => {
 
   const handleSearch = () => searchMoviePoster(movieTitle);
 
-  // It also contains the posters div, which is a ref to the postersRef.
   // The posters div contains the found movie posters.
   return (
     <div className={styles.movieSearchContainer}>

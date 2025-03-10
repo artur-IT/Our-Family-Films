@@ -48,13 +48,6 @@
   border-radius: 3px;
 }
 
-.panel {
-  background: #fff;
-  padding: 20px;
-  border-radius: 6px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
 .buttons {
   display: flex;
   justify-content: space-evenly;
