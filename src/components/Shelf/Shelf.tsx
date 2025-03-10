@@ -8,37 +8,35 @@ import { MovieContext } from "@/context/MovieContext";
 import { useLoginState } from "@/context/LoginStateContext";
 
 export const Shelf = () => {
+  // Create a reference to the container element for scrolling
   const containerRef = useRef<HTMLDivElement>(null);
   const { isLoggedIn } = useLoginState();
+  // Use the MovieContext to get the list of movies, defaulting to an empty array if not available
   const { movies } = useContext(MovieContext) || { movies: [] };
 
-  const scroll = (direction: "left" | "right") => {
-    if (containerRef.current) {
-      const container = containerRef.current;
-      // const scrollAmount = 1000;
-      const scrollAmount = container.clientWidth;
-      container.scrollBy({
-        left: direction === "left" ? -scrollAmount : scrollAmount,
-        behavior: "smooth",
-      });
-    }
+  const handleScroll = (direction: "left" | "right") => {
+    // Scroll the container by its width in the specified direction
+    containerRef.current?.scrollBy({
+      left: direction === "left" ? -containerRef.current.clientWidth : containerRef.current.clientWidth,
+      behavior: "smooth",
+    });
   };
 
   return (
     <>
-      {/* <div className={style.year_aside}>2024</div> */}
       <div className={style.shelf}>
-        <button className={`${style.scroll_button} ${style.scroll_left}`} onClick={() => scroll("left")}>
+        <button className={`${style.scroll_button} ${style.scroll_left}`} onClick={() => handleScroll("left")}>
           ←
         </button>
 
+        {/* Container for movie components */}
         <div className={style.shelf_movie_container} ref={containerRef}>
           {movies.map((movie) => (
             <Movie isLoggedIn={isLoggedIn} key={movie.id} movie={movie} />
           ))}
         </div>
 
-        <button className={`${style.scroll_button} ${style.scroll_right}`} onClick={() => scroll("right")}>
+        <button className={`${style.scroll_button} ${style.scroll_right}`} onClick={() => handleScroll("right")}>
           →
         </button>
       </div>

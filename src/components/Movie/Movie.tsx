@@ -13,13 +13,17 @@ import { MovieDeletePopup } from "../MovieDeletePopup/MovieDeletePopup";
 export const Movie = ({ movie, isLoggedIn }: { movie: MovieData; isLoggedIn: boolean }) => {
   const [showEditForm, setEditForm] = useState(false);
   const [showDeletePopup, setDeletePopup] = useState(false);
+  // Use context to access movie context and ensure it's used within the provider
   const movieContext = useContext(MovieContext);
   if (!movieContext) throw new Error("Movie must be used within MovieContext.Provider");
   const { deleteMovie } = movieContext;
+  // Use custom hook to determine if the app is in edit mode and if the add movie form should be shown
   const { isEditMode, showAddMovie, user } = useEditMode();
 
+  // Function to handle movie deletion
   const handleDelete = async () => {
     try {
+      // Send a DELETE request to the API to delete the movie
       const response = await fetch(`/api/movies`, {
         method: "DELETE",
         headers: {
@@ -37,10 +41,8 @@ export const Movie = ({ movie, isLoggedIn }: { movie: MovieData; isLoggedIn: boo
     }
   };
 
-  // SUM ALL RATINGS FROM ALL USERS
-  const totalRatings = Object.values(movie.ratings).reduce((sum, rating) => {
-    return (sum as number) + (rating as number);
-  }, 0);
+  // Calculate the total and average ratings for the movie
+  const totalRatings = Object.values(movie.ratings).reduce((sum, rating) => (sum as number) + (rating as number), 0);
   const averageRating = (totalRatings as number) / Object.values(movie.ratings).length;
 
   return (
@@ -75,9 +77,14 @@ export const Movie = ({ movie, isLoggedIn }: { movie: MovieData; isLoggedIn: boo
 
           {/* Rating film (stars)*/}
           <div className={style.rating}>
-            <Image src={Number(averageRating.toFixed(0)) > 0 ? starFullIcon : starEmptyIcon} alt="star" className={style.star} />
-            <Image src={Number(averageRating.toFixed(0)) >= 2 ? starFullIcon : starEmptyIcon} alt="star" className={style.star} />
-            <Image src={Number(averageRating.toFixed(0)) >= 3 ? starFullIcon : starEmptyIcon} alt="star" className={style.star} />
+            {[1, 2, 3].map((star) => (
+              <Image
+                src={Number(averageRating.toFixed(0)) >= star ? starFullIcon : starEmptyIcon}
+                alt="star"
+                className={style.star}
+                key={star}
+              />
+            ))}
           </div>
 
           {/* User comments */}

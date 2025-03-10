@@ -8,10 +8,13 @@ import { useEditMode } from "@/context/EditMovieContext";
 import { v4 as uuidv4 } from "uuid";
 import { useForm } from "react-hook-form";
 
+// Define the props for the MovieAdd component
 interface MovieAddProps {
-  movieDB?: MovieData[];
-  setMovieDB?: (value: MovieData[]) => void;
+  movieDB?: MovieData[]; // Optional array of movies
+  setMovieDB?: (value: MovieData[]) => void; // Optional function to set the movie database
 }
+
+// Define the structure of the form inputs
 interface MovieFormInputs {
   title: string;
   type: "Film" | "Serial";
@@ -19,13 +22,15 @@ interface MovieFormInputs {
   image: string;
 }
 
+// Main component for adding a new movie
 const MovieAdd: React.FC<MovieAddProps> = () => {
-  const movieAddRef = useRef<HTMLDivElement>(null);
-  const movieContext = useContext(MovieContext);
-  const { toggleShowAddMovie } = useEditMode();
-  const { addMovie, selectedTitle, selectedPoster, setSelectedTitle, setSelectedPoster } = movieContext || {};
-  const movieId = useMemo(() => uuidv4().slice(0, 3), []);
+  const movieAddRef = useRef<HTMLDivElement>(null); // Reference to the movie add form
+  const movieContext = useContext(MovieContext); // Access the movie context
+  const { toggleShowAddMovie } = useEditMode(); // Get the function to toggle the add movie form visibility
+  const { addMovie, selectedTitle, selectedPoster, setSelectedTitle, setSelectedPoster } = movieContext || {}; // Destructure necessary values from context
+  const movieId = useMemo(() => uuidv4().slice(0, 3), []); // Generate a unique movie ID
 
+  // Initialize the form with default values
   const { register, handleSubmit, reset } = useForm<MovieFormInputs>({
     defaultValues: {
       title: selectedTitle || "",
@@ -35,17 +40,25 @@ const MovieAdd: React.FC<MovieAddProps> = () => {
     },
   });
 
+  // Function to handle form submission
   const onSubmit = async (data: MovieFormInputs) => {
-    const newMovie = {
-      id: movieId,
-      title: data.title,
-      type: data.type,
-      genre: data.genre,
-      ratings: {},
-      comments: {},
-      image: `https://image.tmdb.org/t/p/w500${selectedPoster || ""}`,
-    };
+    const newMovie = createMovie(data);
+    await saveMovie(newMovie);
+  };
 
+  // Function to create a movie object
+  const createMovie = (data: MovieFormInputs) => ({
+    id: movieId,
+    title: data.title,
+    type: data.type,
+    genre: data.genre,
+    ratings: {},
+    comments: {},
+    image: `https://image.tmdb.org/t/p/w500${selectedPoster || ""}`,
+  });
+
+  // Function to save the new movie to the server
+  const saveMovie = async (newMovie: MovieData) => {
     try {
       const response = await fetch("/api/movies", {
         method: "POST",
@@ -54,94 +67,110 @@ const MovieAdd: React.FC<MovieAddProps> = () => {
       });
 
       if (response.ok) {
-        if (addMovie) {
-          addMovie(newMovie as MovieData);
-        }
-        if (setSelectedTitle) {
-          setSelectedTitle("");
-        }
-
-        toggleShowAddMovie();
+        // Check if the response is successful
+        addMovie?.(newMovie); // Add the new movie to the context
+        setSelectedTitle?.(""); // Clear the selected title
+        toggleShowAddMovie(); // Hide the add movie form
       }
     } catch (error) {
       console.error(error);
     }
   };
 
+  // Function to clear the movie form
   const clearMovieForm = () => {
-    reset({
-      title: "",
-      genre: "",
-      type: "Film",
-    });
-
-    if (setSelectedPoster) {
-      setSelectedPoster("");
-    }
-    if (setSelectedTitle) {
-      setSelectedTitle("");
-    }
+    reset({ title: "", genre: "", type: "Film" }); // Reset form fields to default values
+    setSelectedPoster?.(""); // Clear the selected poster
+    setSelectedTitle?.(""); // Clear the selected title
   };
 
   useEffect(() => {
     if (selectedTitle) {
-      reset({
-        title: selectedTitle,
-      });
+      reset({ title: selectedTitle }); // Reset title if selectedTitle is available
     }
 
+    // Function to handle clicks outside the movie add form
     const handleClickOutside = (event: MouseEvent) => {
-      const targetElement = event.target as HTMLElement;
+      const targetElement = event.target as HTMLElement; // Get the clicked element
       if (movieAddRef.current && !movieAddRef.current.contains(targetElement) && !targetElement.closest(`.${styles.movieAdd}`)) {
-        toggleShowAddMovie();
+        toggleShowAddMovie(); // Hide the add movie form if clicked outside
       }
     };
 
-    setTimeout(() => {
-      document.addEventListener("mousedown", handleClickOutside, { capture: true });
-    }, 100);
+    // Add event listener for mouse down events
+    const clickOutsideListener = () => document.addEventListener("mousedown", handleClickOutside, { capture: true });
+    setTimeout(clickOutsideListener, 100);
 
+    // Cleanup function to remove the event listener
     return () => {
       document.removeEventListener("mousedown", handleClickOutside, { capture: true });
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedTitle, toggleShowAddMovie]);
 
+  // Component for rendering input fields
+  const InputField = ({
+    id,
+    label,
+    register,
+    required,
+    maxLength,
+    defaultValue,
+  }: {
+    id: string; // ID of the input field
+    label: string; // Label for the input field
+    register: any; // Register function from react-hook-form
+    required: boolean; // Whether the field is required
+    maxLength: number; // Maximum length of the input
+    defaultValue?: string; // Default value for the input
+  }) => (
+    <div>
+      <label>
+        {label} <br />
+        <input id={id} {...register(id, { required, maxLength })} defaultValue={defaultValue} /> {/* Register the input field */}
+      </label>
+    </div>
+  );
+
+  // Component for rendering select fields
+  const SelectField = ({ id, label, register, options }: { id: string; label: string; register: any; options: string[] }) => (
+    <div>
+      <label>
+        {label} <br />
+        <select id={id} {...register(id)}>
+          {" "}
+          {/* Register the select field */}
+          {options.map((option) => (
+            <option key={option} value={option}>
+              {option} {/* Render each option */}
+            </option>
+          ))}
+        </select>
+      </label>
+    </div>
+  );
+
+  // Component for rendering checkbox fields
+  const CheckboxField = ({ label, checked }: { label: string; checked: boolean }) => (
+    <div>
+      <label>{label}</label>
+      <input className={styles.poster_checkbox} type="checkbox" checked={checked} readOnly />
+    </div>
+  );
+
+  // Render the MovieAdd component
   return (
     <div className={styles.movieAdd} ref={movieAddRef}>
       <h2>Add new movie</h2>
       <MovieSearch clearMovieForm={clearMovieForm} />
       <form className={styles.movieAddForm} onSubmit={handleSubmit(onSubmit)}>
-        <div>
-          <label>
-            Title <br />
-            <input id="title" {...register("title", { required: "Enter the title", maxLength: 50 })} defaultValue={selectedTitle || ""} />
-          </label>
-        </div>
-
-        <div>
-          <label>
-            Species <br />
-            <input id="genre" maxLength={30} {...register("genre", { required: "Enter the species", maxLength: 30 })} />
-          </label>
-        </div>
-        <div>
-          <label>
-            Type <br />
-            <select id="type" {...register("type")}>
-              <option value="Film">Film</option>
-              <option value="Serial">Serial</option>
-            </select>
-          </label>
-        </div>
-        <div>
-          <label>Poster</label>
-          <input className={styles.poster_checkbox} type="checkbox" name="poster" checked={selectedPoster ? true : false} readOnly />
-        </div>
-
+        <InputField id="title" label="Title" register={register} required maxLength={50} defaultValue={selectedTitle} />
+        <InputField id="genre" label="Species" register={register} required maxLength={30} />
+        <SelectField id="type" label="Type" register={register} options={["Film", "Serial"]} />
+        <CheckboxField label="Poster" checked={!!selectedPoster} />
         <div className={styles.button_section}>
-          <button type="submit">Add </button>
-          <button type="submit" onClick={() => toggleShowAddMovie()}>
+          <button type="submit">Add</button>
+          <button type="button" onClick={toggleShowAddMovie}>
             Cancel
           </button>
         </div>

@@ -10,7 +10,6 @@ export const MovieDeletePopup = (props: { delete: () => void; deletePopup: () =>
           <button onClick={props.deletePopup}>No</button>
         </div>
       </div>
-      ;
     </>
   );
 };
