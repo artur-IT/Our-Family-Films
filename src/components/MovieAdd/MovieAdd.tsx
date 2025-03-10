@@ -116,7 +116,6 @@ const MovieAdd: React.FC<MovieAddProps> = () => {
     maxLength?: number;
     defaultValue?: string;
   }
-
   const InputField = <T extends FieldValues>({ id, label, register, required, maxLength, defaultValue }: InputFieldProps<T>) => {
     return (
       <div>
@@ -128,17 +127,20 @@ const MovieAdd: React.FC<MovieAddProps> = () => {
     );
   };
 
-  // Component for rendering select fields
-  const SelectField = ({ id, label, register, options }: { id: string; label: string; register: any; options: string[] }) => (
+  interface SelectFieldProps<T extends FieldValues> {
+    id: Path<T>;
+    label: string;
+    register: UseFormRegister<T>;
+    options: string[];
+  }
+  const SelectField = <T extends FieldValues>({ id, label, register, options }: SelectFieldProps<T>) => (
     <div>
       <label>
         {label} <br />
         <select id={id} {...register(id)}>
-          {" "}
-          {/* Register the select field */}
           {options.map((option) => (
             <option key={option} value={option}>
-              {option} {/* Render each option */}
+              {option}
             </option>
           ))}
         </select>
