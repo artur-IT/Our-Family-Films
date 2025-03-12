@@ -1,20 +1,11 @@
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 import { Header } from "./Header";
-import { LoginStateContext } from "../../context/LoginStateContext";
-import { EditModeProvider } from "../../context/EditMovieContext";
-// import { describe, test, expect } from "jest-dom/extend-expect";
-import React from "react";
+import { LoginStateContext } from "@/context/LoginStateContext";
+import { EditModeProvider } from "@/context/EditMovieContext";
 
 // Mock EditModeProvider
 const MockEditModeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const mockToggleEditMode = jest.fn();
-
-  // Create a mock context value
-  const mockContextValue = {
-    isEditMode: false,
-    toggleEditMode: mockToggleEditMode,
-  };
   // Use the context directly without passing value
   return <EditModeProvider>{children}</EditModeProvider>;
 };
