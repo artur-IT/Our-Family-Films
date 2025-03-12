@@ -1,8 +1,8 @@
 "use client";
 import style from "./Header.module.css";
 import Link from "next/link";
-import { useLoginState } from "@/context/LoginStateContext";
-import { useEditMode } from "@/context/EditMovieContext";
+import { useLoginState } from "../../context/LoginStateContext";
+import { useEditMode } from "../../context/EditMovieContext";
 import Image from "next/image";
 import React from "react";
 
