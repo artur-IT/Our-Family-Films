@@ -21,18 +21,18 @@ describe("Header Component", () => {
     );
   };
 
-  test("renders header with title", () => {
+  test("renders header with title !!", () => {
     renderHeader();
-    expect(screen.getByText(/Good Family Movies/i)).toBeInTheDocument();
+    expect(screen.getByText("Good Family Movies")).toBeInTheDocument();
   });
 
   test("shows login button when not logged in", () => {
     renderHeader(false);
-    expect(screen.getByRole("button", { name: /Login/i })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Login" })).toBeInTheDocument();
   });
 
   test("shows logout button when logged in", () => {
     renderHeader(true);
-    expect(screen.getByRole("button", { name: /Logout/i })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Logout" })).toBeInTheDocument();
   });
 });

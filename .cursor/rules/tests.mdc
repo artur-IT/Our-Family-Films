@@ -4,7 +4,8 @@ globs: **/*
 alwaysApply: true
 ---
 Teesting
-- Use unit and integration testing framework Vitest for functions and helpers.
+- Use unit and integration testing framework Jest for functions and helpers.
+- I'm just learning tests, so generate only the necessary tests with comments.
 
 Documentation
 - Provide clear and concise comments for all tests.
