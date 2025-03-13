@@ -13,10 +13,12 @@ import { MovieDeletePopup } from "../MovieDeletePopup/MovieDeletePopup";
 export const Movie = ({ movie, isLoggedIn }: { movie: MovieData; isLoggedIn: boolean }) => {
   const [showEditForm, setEditForm] = useState(false);
   const [showDeletePopup, setDeletePopup] = useState(false);
+
   // Use context to access movie context and ensure it's used within the provider
   const movieContext = useContext(MovieContext);
   if (!movieContext) throw new Error("Movie must be used within MovieContext.Provider");
   const { deleteMovie } = movieContext;
+
   // Use custom hook to determine if the app is in edit mode and if the add movie form should be shown
   const { isEditMode, showAddMovie, user } = useEditMode();
 
@@ -58,6 +60,7 @@ export const Movie = ({ movie, isLoggedIn }: { movie: MovieData; isLoggedIn: boo
             <button className={style.edit_btn} onClick={() => setEditForm(!showEditForm)} disabled={showEditForm}>
               Edit
             </button>
+
             {/* If user as Admin show delete button */}
             {user === "Artur" && (
               <button className={style.delete_btn} onClick={() => setDeletePopup(!showDeletePopup)}>

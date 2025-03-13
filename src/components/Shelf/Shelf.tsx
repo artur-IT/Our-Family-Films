@@ -40,7 +40,13 @@ export const Shelf = () => {
           →
         </button>
       </div>
-      <div className={style.shelf_bottom}></div>
+      <div className={style.shelf_bottom}>
+        <div className={style.description}>
+          Filmy, które obejrzeliśmy razem z naszymi dziećmi. Filmy te nie zawierają treści, które są szkodliwe dla dorastających dzieci,
+          jest w nich wyraźnie zarysowane dobro i zło, promowane są wartości chrześcijańskie m.in. rodzina, przyjaźń, miłość, pomoc słabszym
+          i potrzebującym, poświęcenie, szacunek dla innych.
+        </div>
+      </div>
     </>
   );
 };
