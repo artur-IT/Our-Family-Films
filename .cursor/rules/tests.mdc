@@ -1,7 +1,7 @@
 ---
 description: Zasady dla wszystkich testów w projekcie.
 globs: **/*
-alwaysApply: true
+alwaysApply: false
 ---
 Teesting
 - Use unit and integration testing framework Jest for functions and helpers.

@@ -10,7 +10,7 @@ type EditModeContextType = {
   toggleEditMode: () => void;
 };
 
-const EditModeContext = createContext<EditModeContextType | undefined>(undefined);
+export const EditModeContext = createContext<EditModeContextType | undefined>(undefined);
 
 export function EditModeProvider({ children }: { children: ReactNode }) {
   const [isEditMode, setIsEditMode] = useState<boolean>(false);
