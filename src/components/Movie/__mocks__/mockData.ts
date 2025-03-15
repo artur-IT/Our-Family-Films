@@ -13,6 +13,7 @@ export const mockMovie = {
   comments: {
     user1: "Great movie!",
     user2: "Nice one",
+    user3: "Great!",
   },
 };
 

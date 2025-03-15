@@ -57,10 +57,13 @@
   position: relative;
   top: 60px;
   margin: 0 auto;
+  padding: 20px;
+  border-radius: 10px;
   width: 90%;
   height: auto;
   text-align: justify;
   line-height: 1.5rem;
+  background-color: #fff;
   z-index: 2;
 }
 
@@ -105,12 +108,13 @@
     width: 90vw;
     height: 15px;
     background-color: #000;
-    box-shadow: 10px 10px 5px 1px rgba(0, 0, 0, 0.4);
+    box-shadow: 5px 5px 5px 1px rgba(0, 0, 0, 0.4);
     z-index: 5;
   }
   .description {
     width: 97%;
-    top: 50px;
+    top: 30px;
+    padding: 12px;
     line-height: 1rem;
   }
 }

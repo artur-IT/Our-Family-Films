@@ -66,21 +66,25 @@ describe("Movie Component - dodatkowe testy", () => {
     );
   };
 
-  // test("popup usuwania filmu pojawia się po kliknięciu przycisku Delete", () => {
-  //   const { rerender } = renderMovie(true);
-  //   // Najpierw włączamy tryb edycji
-  //   rerender(
-  //     <MovieContext.Provider value={mockMovieContext}>
-  //       <EditModeProvider>
-  //         <Movie movie={mockMovie} isLoggedIn={true} />
-  //       </EditModeProvider>
-  //     </MovieContext.Provider>
-  //   );
+  test("popup usuwania filmu pojawia się po kliknięciu przycisku Delete", () => {
+    const { rerender } = renderMovie(true);
+    rerender(
+      <MovieContext.Provider value={mockMovieContext}>
+        <EditModeContext.Provider
+          value={{
+            ...mockEditContext, // wszystkie domyślne wartości
+            user: "Artur", // nadpisujemy tylko user
+          }}
+        >
+          <Movie movie={mockMovie} isLoggedIn={true} />
+        </EditModeContext.Provider>
+      </MovieContext.Provider>
+    );
 
-  //   const deleteButton = screen.getByText("Delete");
-  //   fireEvent.click(deleteButton);
-  //   expect(screen.getByText("Are you sure you want to delete this movie?")).toBeInTheDocument();
-  // });
+    const deleteButton = screen.getByText("Delete");
+    fireEvent.click(deleteButton);
+    expect(screen.getByText("Are you sure you want to delete this movie?")).toBeInTheDocument();
+  });
 
   // test("formularz edycji pojawia się po kliknięciu przycisku Edit", () => {
 
@@ -117,23 +121,24 @@ describe("Movie Component - dodatkowe testy", () => {
     expect(screen.getByText("Delete")).toBeInTheDocument();
   });
 
-  // test("średnia ocen jest poprawnie obliczana i wyświetlana", () => {
-  //   const movieWithRatings = {
-  //     ...mockMovie,
-  //     ratings: { user1: 3, user2: 2, user3: 3 },
-  //   };
+  test("średnia ocen jest poprawnie obliczana i wyświetlana", () => {
+    const movieWithRatings = {
+      ...mockMovie,
+      ratings: { user1: 0, user2: 0, user3: 1 },
+    };
+    renderMovie();
+    render(
+      <MovieContext.Provider value={{ ...mockMovieContext, movies: [movieWithRatings] }}>
+        <EditModeContext.Provider value={mockEditContext}>
+          <Movie movie={movieWithRatings} isLoggedIn={true} />
+        </EditModeContext.Provider>
+      </MovieContext.Provider>
+    );
 
-  //   render(
-  //     <MovieContext.Provider value={{ ...mockMovieContext, movies: [movieWithRatings] }}>
-  //       <EditModeProvider>
-  //         <Movie movie={movieWithRatings} isLoggedIn={true} />
-  //       </EditModeProvider>
-  //     </MovieContext.Provider>
-  //   );
-
-  //   const fullStars = screen.getAllByAltText("star").filter((star) => star.getAttribute("src")?.includes("star-full"));
-  //   expect(fullStars).toHaveLength(3);
-  // });
+    const fullStars = screen.getAllByRole("img").filter((star) => star.getAttribute("alt")?.includes("star-empty"));
+    // screen.debug(fullStars);
+    expect(fullStars).toHaveLength(3);
+  });
 
   // test("obsługa błędu podczas usuwania filmu", async () => {
   //   global.fetch = jest.fn(() => Promise.reject(new Error("Błąd serwera"))) as jest.Mock;

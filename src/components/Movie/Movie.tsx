@@ -47,6 +47,9 @@ export const Movie = ({ movie, isLoggedIn }: { movie: MovieData; isLoggedIn: boo
   const totalRatings = Object.values(movie.ratings).reduce((sum, rating) => (sum as number) + (rating as number), 0);
   const averageRating = (totalRatings as number) / Object.values(movie.ratings).length;
 
+  // Check if there is any rating greater than 0
+  const hasAnyRating = Object.values(movie.ratings).some((rating) => (rating as number) > 0);
+
   return (
     <>
       {showAddMovie && <MovieAdd />}
@@ -82,8 +85,8 @@ export const Movie = ({ movie, isLoggedIn }: { movie: MovieData; isLoggedIn: boo
           <div className={style.rating}>
             {[1, 2, 3].map((star) => (
               <Image
-                src={Number(averageRating.toFixed(0)) >= star ? starFullIcon : starEmptyIcon}
-                alt="star"
+                src={Number(averageRating.toFixed(1)) >= star || (star === 1 && hasAnyRating) ? starFullIcon : starEmptyIcon}
+                alt={Number(averageRating.toFixed(0)) >= star ? "star-full" : "star-empty"}
                 className={style.star}
                 key={star}
               />
