@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent, getByTestId } from "@testing-library/react";
 import { Movie } from "./Movie";
 import { MovieContext } from "@/context/MovieContext";
 import { EditModeContext, EditModeProvider, useEditMode } from "@/context/EditMovieContext";
@@ -86,22 +86,24 @@ describe("Movie Component - dodatkowe testy", () => {
     expect(screen.getByText("Are you sure you want to delete this movie?")).toBeInTheDocument();
   });
 
-  // test("formularz edycji pojawia się po kliknięciu przycisku Edit", () => {
+  test("formularz edycji filmu pojawia się po kliknięciu przycisku Edit", () => {
+    const { rerender } = renderMovie(true);
+    renderMovie();
 
-  //   const { rerender } = renderMovie(true);
-  //   rerender(
-  //     <MovieContext.Provider value={mockMovieContext}>
-  //       <EditModeProvider>
-  //         <Movie movie={mockMovie} isLoggedIn={true} />
+    rerender(
+      <MovieContext.Provider value={mockMovieContext}>
+        <EditModeContext.Provider value={mockEditContext}>
+          <Movie movie={mockMovie} isLoggedIn={true} />
+        </EditModeContext.Provider>
+      </MovieContext.Provider>
+    );
+    const editButton = screen.getByTestId("edit-button");
 
-  //       </EditModeProvider>
-  //     </MovieContext.Provider>
-  //   );
+    fireEvent.click(editButton);
+    const editMovieForm = screen.getByTestId("movie-edit");
 
-  //   const editButton = screen.getByText("Edit");
-  //   fireEvent.click(editButton);
-  //   expect(screen.getByText("EDIT MOVIE")).toBeInTheDocument();
-  // });
+    expect(editMovieForm).toBeInTheDocument();
+  });
 
   test("przycisk Delete jest widoczny tylko dla Admina", () => {
     const { rerender } = renderMovie(true);
@@ -136,33 +138,8 @@ describe("Movie Component - dodatkowe testy", () => {
     );
 
     const fullStars = screen.getAllByRole("img").filter((star) => star.getAttribute("alt")?.includes("star-empty"));
-    // screen.debug(fullStars);
     expect(fullStars).toHaveLength(3);
   });
-
-  // test("obsługa błędu podczas usuwania filmu", async () => {
-  //   global.fetch = jest.fn(() => Promise.reject(new Error("Błąd serwera"))) as jest.Mock;
-
-  //   const consoleSpy = jest.spyOn(console, "error");
-  //   const { rerender } = renderMovie(true);
-
-  //   rerender(
-  //     <MovieContext.Provider value={mockMovieContext}>
-  //       <EditModeProvider>
-  //         <Movie movie={mockMovie} isLoggedIn={true} />
-  //       </EditModeProvider>
-  //     </MovieContext.Provider>
-  //   );
-
-  //   const deleteButton = screen.getByText("Delete");
-  //   fireEvent.click(deleteButton);
-
-  //   const confirmDelete = screen.getByText("Yes");
-  //   fireEvent.click(confirmDelete);
-
-  //   expect(consoleSpy).toHaveBeenCalled();
-  //   consoleSpy.mockRestore();
-  // });
 });
 
 // Przykład użycia w testach:

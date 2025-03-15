@@ -71,7 +71,7 @@ export const MovieEdit = ({ setEditForm, movie, id }: MovieEditProps) => {
   });
 
   return (
-    <div className={styles.movieEdit} style={user ? { opacity: 1 } : undefined}>
+    <div className={styles.movieEdit} style={user ? { opacity: 1 } : undefined} data-testid="movie-edit">
       {user === "Artur" && ( // Check if the user is allowed to edit
         <>
           {(["title", "genre", "type"] as const).map((field, index) => (

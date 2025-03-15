@@ -58,9 +58,9 @@ export const Movie = ({ movie, isLoggedIn }: { movie: MovieData; isLoggedIn: boo
         {showDeletePopup && <MovieDeletePopup delete={handleDelete} deletePopup={() => setDeletePopup(!showDeletePopup)} />}
         {isEditMode && (
           <div className={style.movie_description_edit} style={isEditMode ? { opacity: 1 } : undefined}>
-            {/* Edit curtain on film */}
+            {/* Edit Form movie description on film poster */}
             {showEditForm && <MovieEdit setEditForm={setEditForm} movie={movie} id={movie.id} />}
-            <button className={style.edit_btn} onClick={() => setEditForm(!showEditForm)} disabled={showEditForm}>
+            <button className={style.edit_btn} onClick={() => setEditForm(!showEditForm)} disabled={showEditForm} data-testid="edit-button">
               Edit
             </button>
 
