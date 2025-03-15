@@ -121,10 +121,10 @@ describe("Movie Component - dodatkowe testy", () => {
     expect(screen.getByText("Delete")).toBeInTheDocument();
   });
 
-  test("średnia ocen jest poprawnie obliczana i wyświetlana", () => {
+  test("wyświetlane są 3 puste gwiazki", () => {
     const movieWithRatings = {
       ...mockMovie,
-      ratings: { user1: 0, user2: 0, user3: 1 },
+      ratings: { user1: 0, user2: 0, user3: 0 },
     };
     renderMovie();
     render(

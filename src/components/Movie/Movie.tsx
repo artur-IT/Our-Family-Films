@@ -86,7 +86,7 @@ export const Movie = ({ movie, isLoggedIn }: { movie: MovieData; isLoggedIn: boo
             {[1, 2, 3].map((star) => (
               <Image
                 src={Number(averageRating.toFixed(1)) >= star || (star === 1 && hasAnyRating) ? starFullIcon : starEmptyIcon}
-                alt={Number(averageRating.toFixed(0)) >= star ? "star-full" : "star-empty"}
+                alt={Number(averageRating.toFixed(0)) >= star || (star === 1 && hasAnyRating) ? "star-full" : "star-empty"}
                 className={style.star}
                 key={star}
               />
