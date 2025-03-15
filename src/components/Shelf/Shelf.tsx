@@ -42,9 +42,11 @@ export const Shelf = () => {
       </div>
       <div className={style.shelf_bottom}>
         <div className={style.description}>
-          Filmy, które obejrzeliśmy razem z naszymi dziećmi. Filmy te nie zawierają treści, które są szkodliwe dla dorastających dzieci,
-          jest w nich wyraźnie zarysowane dobro i zło, promowane są wartości chrześcijańskie m.in. rodzina, przyjaźń, miłość, pomoc słabszym
-          i potrzebującym, poświęcenie, szacunek dla innych.
+          Znajdziesz tu rekomendacje filmów odpowiednich dla całej rodziny – bez przemocy, wulgarnego języka, scen niemoralnych,
+          kontrowersyjnych treści czy treści podważających podstawowe zasady etyczne. Filmy, które obejrzeliśmy razem z naszymi nastoletnimi
+          dziećmi. Jest w nich wyraźnie zarysowane dobro i zło, promowane są wartości chrześcijańskie m.in. rodzina, przyjaźń, miłość,
+          nadzieja, pomoc słabszym i potrzebującym, poświęcenie, szacunek dla innych. To filmy, które inspirują, podnoszą na duchu i
+          wzmacniają więzi rodzinne.
         </div>
       </div>
     </>
