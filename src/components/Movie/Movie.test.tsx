@@ -1,61 +1,11 @@
-import { render, screen, fireEvent, getByTestId } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import { Movie } from "./Movie";
 import { MovieContext } from "@/context/MovieContext";
-import { EditModeContext, EditModeProvider, useEditMode } from "@/context/EditMovieContext";
+import { EditModeContext, EditModeProvider } from "@/context/EditMovieContext";
 import { mockEditContext, mockMovie, mockMovieContext } from "./__mocks__/mockData";
 import { setupFetchMock } from "./__mocks__/mockFetch";
 
-//------------------------------------------------------------
-
-// describe("Movie Component", () => {
-//   const renderMovie = (isLoggedIn = false) => {
-//     return render(
-//       <MovieContext.Provider value={mockMovieContext}>
-//         <EditModeProvider>
-//           <Movie movie={mockMovie} isLoggedIn={isLoggedIn} />
-//         </EditModeProvider>
-//       </MovieContext.Provider>
-//     );
-//   };
-
-//   test("renders the movie title", () => {
-//     renderMovie();
-//     // screen.debug();
-//     expect(screen.getByText("Lord of the rings")).toBeInTheDocument();
-//   });
-
-//   test("renders the movie genre", () => {
-//     renderMovie();
-//     expect(screen.getByText("Fantasy")).toBeInTheDocument();
-//   });
-
-//   test("renders the movie type", () => {
-//     renderMovie();
-//     expect(screen.getByText("(Film)")).toBeInTheDocument();
-//   });
-
-//   test("displays user comments", () => {
-//     renderMovie(true);
-//     expect(screen.getByText("Great movie!")).toBeInTheDocument();
-//     expect(screen.getByText("Nice one")).toBeInTheDocument();
-//   });
-
-//   test("does not display edit buttons when not in edit mode", () => {
-//     renderMovie();
-//     expect(screen.queryByText("Edit")).not.toBeInTheDocument();
-//     expect(screen.queryByText("Delete")).not.toBeInTheDocument();
-//   });
-
-//   test("displays rating stars", () => {
-//     renderMovie();
-//     const stars = screen.getAllByAltText("star");
-//     expect(stars).toHaveLength(3);
-//   });
-// });
-
-//------------------------------------------------------------
-
-describe("Movie Component - dodatkowe testy", () => {
+describe("Movie Component", () => {
   const renderMovie = (isLoggedIn = false) => {
     return render(
       <MovieContext.Provider value={mockMovieContext}>
@@ -66,7 +16,55 @@ describe("Movie Component - dodatkowe testy", () => {
     );
   };
 
-  test("popup usuwania filmu pojawia się po kliknięciu przycisku Delete", () => {
+  test("renders the movie title", () => {
+    renderMovie();
+    // screen.debug();
+    expect(screen.getByText("Lord of the rings")).toBeInTheDocument();
+  });
+
+  test("renders the movie genre", () => {
+    renderMovie();
+    expect(screen.getByText("Fantasy")).toBeInTheDocument();
+  });
+
+  test("renders the movie type", () => {
+    renderMovie();
+    expect(screen.getByText("(Film)")).toBeInTheDocument();
+  });
+
+  test("displays user comments", () => {
+    renderMovie(true);
+    expect(screen.getByText("Great movie!")).toBeInTheDocument();
+    expect(screen.getByText("Nice one")).toBeInTheDocument();
+  });
+
+  test("does not display edit buttons when not in edit mode", () => {
+    renderMovie();
+    expect(screen.queryByText("Edit")).not.toBeInTheDocument();
+    expect(screen.queryByText("Delete")).not.toBeInTheDocument();
+  });
+
+  test("displays rating stars", () => {
+    renderMovie();
+    const stars = screen.getAllByAltText("star-full");
+    expect(stars).toHaveLength(3);
+  });
+});
+
+//------------------------------------------------------------
+
+describe("Movie Component - additional tests", () => {
+  const renderMovie = (isLoggedIn = false) => {
+    return render(
+      <MovieContext.Provider value={mockMovieContext}>
+        <EditModeProvider>
+          <Movie movie={mockMovie} isLoggedIn={isLoggedIn} />
+        </EditModeProvider>
+      </MovieContext.Provider>
+    );
+  };
+
+  test("delete movie popup appears after clicking the Delete button", () => {
     const { rerender } = renderMovie(true);
     rerender(
       <MovieContext.Provider value={mockMovieContext}>
@@ -86,7 +84,7 @@ describe("Movie Component - dodatkowe testy", () => {
     expect(screen.getByText("Are you sure you want to delete this movie?")).toBeInTheDocument();
   });
 
-  test("formularz edycji filmu pojawia się po kliknięciu przycisku Edit", () => {
+  test("edit movie form appears after clicking the Edit button", () => {
     const { rerender } = renderMovie(true);
     renderMovie();
 
@@ -105,14 +103,14 @@ describe("Movie Component - dodatkowe testy", () => {
     expect(editMovieForm).toBeInTheDocument();
   });
 
-  test("przycisk Delete jest widoczny tylko dla Admina", () => {
+  test("Delete button is visible only for Admin", () => {
     const { rerender } = renderMovie(true);
     rerender(
       <MovieContext.Provider value={mockMovieContext}>
         <EditModeContext.Provider
           value={{
-            ...mockEditContext, // wszystkie domyślne wartości
-            user: "Artur", // nadpisujemy tylko user
+            ...mockEditContext,
+            user: "Artur",
           }}
         >
           <Movie movie={mockMovie} isLoggedIn={true} />
@@ -123,7 +121,7 @@ describe("Movie Component - dodatkowe testy", () => {
     expect(screen.getByText("Delete")).toBeInTheDocument();
   });
 
-  test("wyświetlane są 3 puste gwiazki", () => {
+  test("3 empty stars are displayed", () => {
     const movieWithRatings = {
       ...mockMovie,
       ratings: { user1: 0, user2: 0, user3: 0 },
@@ -142,52 +140,73 @@ describe("Movie Component - dodatkowe testy", () => {
   });
 });
 
-// Przykład użycia w testach:
-// describe("Movie Component z mockami", () => {
-//   beforeEach(() => {
-//     setupFetchMock(true);
-//   });
+describe("Movie Component with mocked fetch", () => {
+  const renderMovie = (isLoggedIn = false) => {
+    return render(
+      <MovieContext.Provider value={mockMovieContext}>
+        <EditModeProvider>
+          <Movie movie={mockMovie} isLoggedIn={isLoggedIn} />
+        </EditModeProvider>
+      </MovieContext.Provider>
+    );
+  };
 
-//   afterEach(() => {
-//     jest.clearAllMocks();
-//   });
+  beforeEach(() => {
+    setupFetchMock(true);
+  });
 
-//   test("usuwa film po potwierdzeniu", async () => {
-//     render(
-//       <MovieContext.Provider value={mockMovieContext}>
-//         <EditModeProvider>
-//           <Movie movie={mockMovie} isLoggedIn={true} />
-//         </EditModeProvider>
-//       </MovieContext.Provider>
-//     );
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
 
-//     // Test logiki usuwania
-//     const deleteButton = screen.getByText("Delete");
-//     fireEvent.click(deleteButton);
+  test("removes the movie after confirmation", async () => {
+    const { rerender } = renderMovie(true);
+    rerender(
+      <MovieContext.Provider value={mockMovieContext}>
+        <EditModeContext.Provider
+          value={{
+            ...mockEditContext,
+            user: "Artur",
+          }}
+        >
+          <Movie movie={mockMovie} isLoggedIn={true} />
+        </EditModeContext.Provider>
+      </MovieContext.Provider>
+    );
 
-//     const confirmButton = screen.getByText("Yes");
-//     await fireEvent.click(confirmButton);
+    // Test logiki usuwania
+    const deleteButton = screen.getByText("Delete");
+    fireEvent.click(deleteButton);
 
-//     expect(mockMovieContext.deleteMovie).toHaveBeenCalledWith(mockMovie.id);
-//   });
+    const confirmButton = screen.getByText("Yes");
+    await fireEvent.click(confirmButton);
 
-//   test("obsługuje błąd podczas usuwania", async () => {
-//     setupFetchMock(false);
+    expect(mockMovieContext.deleteMovie).toHaveBeenCalledWith(mockMovie.id);
+  });
 
-//     render(
-//       <MovieContext.Provider value={mockMovieContext}>
-//         <EditModeProvider>
-//           <Movie movie={mockMovie} isLoggedIn={true} />
-//         </EditModeProvider>
-//       </MovieContext.Provider>
-//     );
+  test("handles error during deletion", async () => {
+    setupFetchMock(false);
 
-//     const deleteButton = screen.getByText("Delete");
-//     fireEvent.click(deleteButton);
+    const { rerender } = renderMovie(true);
+    rerender(
+      <MovieContext.Provider value={mockMovieContext}>
+        <EditModeContext.Provider
+          value={{
+            ...mockEditContext,
+            user: "Artur",
+          }}
+        >
+          <Movie movie={mockMovie} isLoggedIn={true} />
+        </EditModeContext.Provider>
+      </MovieContext.Provider>
+    );
 
-//     const confirmButton = screen.getByText("Yes");
-//     await fireEvent.click(confirmButton);
+    const deleteButton = screen.getByText("Delete");
+    fireEvent.click(deleteButton);
 
-//     expect(mockMovieContext.deleteMovie).not.toHaveBeenCalled();
-//   });
-// });
+    const confirmButton = screen.getByText("Yes");
+    await fireEvent.click(confirmButton);
+
+    expect(mockMovieContext.deleteMovie).not.toHaveBeenCalled();
+  });
+});
