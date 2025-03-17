@@ -160,8 +160,10 @@ const MovieAdd: React.FC<MovieAddProps> = () => {
   // Component for rendering checkbox fields
   const CheckboxField = ({ label, checked }: { label: string; checked: boolean }) => (
     <div>
-      <label>{label}</label>
-      <input className={styles.poster_checkbox} type="checkbox" checked={checked} readOnly />
+      <label>
+        {label}
+        <input className={styles.poster_checkbox} type="checkbox" checked={checked} readOnly />
+      </label>
     </div>
   );
 
