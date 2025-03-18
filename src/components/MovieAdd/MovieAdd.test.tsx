@@ -9,7 +9,7 @@ import { setupFetchMock } from "../Movie/__mocks__/mockFetch";
 
 // Mock modułu MovieSearch
 jest.mock("@/app/api/MovieSearch", () => {
-  return function MockMovieSearch({ clearMovieForm }: { clearMovieForm: () => void }) {
+  return function MockMovieSearch() {
     return <div data-testid="movie-search">Movie Search Component</div>;
   };
 });

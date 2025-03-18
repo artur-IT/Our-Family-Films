@@ -4,6 +4,7 @@ import { Shelf } from "./Shelf";
 import { MovieContext } from "@/context/MovieContext";
 import { LoginStateContext } from "@/context/LoginStateContext";
 import { mockMovieContext } from "../Movie/__mocks__/mockData";
+import { Movie } from "@/components/Movie/Movie";
 
 // Mock the Movie component to simplify testing
 jest.mock("@/components/Movie/Movie", () => ({
@@ -101,7 +102,6 @@ describe("Shelf Component", () => {
 
   test("passes isLoggedIn prop to Movie components", () => {
     // Create a custom mock for Movie to check props
-    const { Movie } = require("@/components/Movie/Movie");
     renderShelf(false);
 
     // Check if isLoggedIn prop was passed as false
