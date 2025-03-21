@@ -1,11 +1,14 @@
 "use client";
-
 import { Movie } from "@/components/Movie/Movie";
 import style from "./Shelf.module.css";
-import { useRef } from "react";
-import { useContext } from "react";
+import { useRef, useContext } from "react";
 import { MovieContext } from "@/context/MovieContext";
 import { useLoginState } from "@/context/LoginStateContext";
+
+import { DndContext, closestCenter, KeyboardSensor, PointerSensor, useSensor, useSensors, DragEndEvent } from "@dnd-kit/core";
+import { arrayMove, SortableContext, sortableKeyboardCoordinates, horizontalListSortingStrategy } from "@dnd-kit/sortable";
+import { SortableMovie } from "@/components/SortableMovie/SortableMovie";
+import { EditModeContext } from "@/context/EditMovieContext"; // Zakładam, że masz taki kontekst
 
 export const Shelf = () => {
   // Create a reference to the container element for scrolling
@@ -22,6 +25,44 @@ export const Shelf = () => {
     });
   };
 
+  // Pobierz kontekst edycji i informacje o użytkowniku
+  const { isEditMode, user } = useContext(EditModeContext) || { isEditMode: false, user: "" };
+
+  // Sprawdź, czy użytkownik to administrator (Artur) i jest w trybie edycji
+  const isAdmin = user === "Artur" && isEditMode;
+
+  // Konfiguracja sensorów dla dnd-kit
+  const sensors = useSensors(
+    useSensor(PointerSensor),
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates,
+    })
+  );
+
+  // Obsługa zakończenia przeciągania
+  const handleDragEnd = (event: DragEndEvent) => {
+    const { active, over } = event;
+
+    if (over && active.id !== over.id) {
+      // Znajdź indeksy filmów
+      const oldIndex = movies.findIndex((movie) => movie.id === active.id);
+      const newIndex = movies.findIndex((movie) => movie.id === over.id);
+
+      // Utwórz nową tablicę z przeniesionym filmem
+      const newMovies = arrayMove(movies, oldIndex, newIndex);
+
+      // Zaktualizuj stan filmów
+      // Tutaj możesz dodać wywołanie API do zapisania nowej kolejności w bazie danych
+      // if (updateMovie) {
+      // Aktualizuj stan lokalny
+      // updateMovie(newMovies);
+
+      // Opcjonalnie: zapisz nową kolejność w bazie danych
+      // saveMovieOrderToDatabase(newMovies);
+      // }
+    }
+  };
+
   return (
     <>
       <div className={style.shelf}>
@@ -31,9 +72,21 @@ export const Shelf = () => {
 
         {/* Container for movie components */}
         <div className={style.shelf_movie_container} ref={containerRef}>
-          {movies.map((movie) => (
+          {isAdmin ? (
+            <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+              <SortableContext items={movies.map((movie) => movie.id)} strategy={horizontalListSortingStrategy}>
+                {movies.map((movie) => (
+                  <SortableMovie key={movie.id} movie={movie} isLoggedIn={isLoggedIn} id={movie.id} />
+                ))}
+              </SortableContext>
+            </DndContext>
+          ) : (
+            // Standardowy widok dla zwykłych użytkowników
+            movies.map((movie) => <Movie isLoggedIn={isLoggedIn} key={movie.id} movie={movie} />)
+          )}
+          {/* {movies.map((movie) => (
             <Movie isLoggedIn={isLoggedIn} key={movie.id} movie={movie} />
-          ))}
+          ))} */}
         </div>
 
         <button className={`${style.scroll_button} ${style.scroll_right}`} onClick={() => handleScroll("right")}>
