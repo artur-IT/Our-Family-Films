@@ -7,6 +7,7 @@ interface MovieContextType {
   movies: MovieData[];
   addMovie: (newMovie: MovieData) => void;
   updateMovie: (id: string, updatedData: Partial<MovieData>) => void;
+  updateDragDropMovie: (newMovies: MovieData[]) => void;
   deleteMovie: (id: string) => void;
   useMovie: (newMovie: MovieData) => void;
   selectedTitle: string;
@@ -76,6 +77,14 @@ export const MovieProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     }
   }, []);
 
+  // Przykładowa implementacja funkcji updateMovie w MovieContext
+  const updateDragDropMovie = (newMovies: MovieData[]) => {
+    setMovies(newMovies);
+
+    // Opcjonalnie: zapisz nową kolejność w bazie danych
+    // saveMovieOrderToDatabase(newMovies);
+  };
+
   const deleteMovie = useCallback((movieId: string) => {
     setMovies((prevMovies) => prevMovies.filter((movie) => movie.id !== movieId));
   }, []);
@@ -94,7 +103,18 @@ export const MovieProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 
   return (
     <MovieContext.Provider
-      value={{ movies, addMovie, deleteMovie, updateMovie, useMovie, selectedTitle, selectedPoster, setSelectedTitle, setSelectedPoster }}
+      value={{
+        movies,
+        addMovie,
+        deleteMovie,
+        updateMovie,
+        updateDragDropMovie,
+        useMovie,
+        selectedTitle,
+        selectedPoster,
+        setSelectedTitle,
+        setSelectedPoster,
+      }}
     >
       {children}
     </MovieContext.Provider>

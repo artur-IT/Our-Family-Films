@@ -15,7 +15,7 @@ export const Shelf = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const { isLoggedIn } = useLoginState();
   // Use the MovieContext to get the list of movies, defaulting to an empty array if not available
-  const { movies } = useContext(MovieContext) || { movies: [] };
+  const { movies, updateDragDropMovie } = useContext(MovieContext) || { movies: [] };
 
   const handleScroll = (direction: "left" | "right") => {
     // Scroll the container by its width in the specified direction
@@ -53,13 +53,13 @@ export const Shelf = () => {
 
       // Zaktualizuj stan filmów
       // Tutaj możesz dodać wywołanie API do zapisania nowej kolejności w bazie danych
-      // if (updateMovie) {
-      // Aktualizuj stan lokalny
-      // updateMovie(newMovies);
+      if (updateDragDropMovie) {
+        // Aktualizuj stan lokalny
+        updateDragDropMovie(newMovies);
 
-      // Opcjonalnie: zapisz nową kolejność w bazie danych
-      // saveMovieOrderToDatabase(newMovies);
-      // }
+        // Opcjonalnie: zapisz nową kolejność w bazie danych
+        // saveMovieOrderToDatabase(newMovies);
+      }
     }
   };
 
