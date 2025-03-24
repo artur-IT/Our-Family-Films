@@ -1,0 +1,38 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+Jako junior frontend developer specjalizujący się w React i uczący się TypeScript, stwórz uniwersalny plan dla każdego nowego projektu frontendowego. Plan powinien uwzględniać:
+
+1. **Cele Projektu**: 
+Wyraźnie określ, co chcesz osiągnąć w projekcie i jakie funkcjonalności powinien mieć.
+
+2. **Technologie**: 
+Zidentyfikuj i opisz najbardziej odpowiednie technologie do użycia (np. React, TypeScript, CSS, itp.).
+
+3. **Architektura Aplikacji**: 
+Przygotuj podstawową strukturę folderów i plików aplikacji. Upewnij się, że uwzględniasz zasady modularności i reużywalności komponentów.
+
+4. **Zarządzanie Stanem**: 
+Wybierz metodę zarządzania stanem (np. Context API, Redux, MobX) i opisz, dlaczego wybrałeś tę metodę.
+
+5. **Testy**: 
+Określ podejście do testowania (jednostkowe, integracyjne) oraz narzędzia, które będziesz wykorzystywał (np. Jest, React Testing Library).
+
+6. **Responsywność**: 
+Opracuj zasady dotyczące responsywnego projektowania, aby aplikacja działała na różnych urządzeniach.
+
+7. **Dostępność**: 
+Uwzględnij wytyczne dotyczące dostępności (WCAG), aby upewnić się, że aplikacja jest dostępna dla wszystkich użytkowników.
+
+8. **Dokumentacja**: 
+Zdecyduj o strategii dokumentacji projektu, aby inne osoby mogły łatwo zrozumieć i przyczynić się do projektu.
+
+9. **Wersjonowanie i Kontrola Kodów**: 
+Opisz jak będziesz zarządzać wersjami kodu (np. Git, branch policy).  
+
+10. **CI/CD**: 
+Zainstaluj i skonfiguruj narzędzia do ciągłej integracji i dostarczania (np. GitHub Actions, Travis CI).
+
+Na końcu projektu dokonaj przeglądu i podsumowania, jakie umiejętności zostały zdobyte oraz jak można poprawić przyszłe projekty.

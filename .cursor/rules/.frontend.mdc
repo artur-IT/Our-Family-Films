@@ -1,0 +1,33 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+
+1. Refaktoryzacja kodu
+Zrefaktoryzuj ten kod zgodnie z najlepszymi praktykami React i TypeScript. Popraw czytelność, użyj odpowiednich hooków i rozbij duże komponenty na mniejsze.
+<!-- Gdy masz komponent, który jest zbyt duży, nieczytelny lub nie wykorzystuje najlepiej dostępnych wzorców. -->
+
+2. Poprawa wydajności komponentów
+Analizując ten komponent React, wskaż potencjalne problemy z wydajnością i zoptymalizuj go, używając rozwiązań dostępnych m.in. w React 19.
+
+3. Sprawdzenie i poprawa bezpieczeństwa kodu
+Przeanalizuj ten kod pod kątem potencjalnych luk w bezpieczeństwie (np. XSS, CSRF, ataki związane z eval). Zasugeruj poprawki.
+<!-- Gdy tworzysz aplikację, która przechowuje dane użytkowników lub komunikuje się z backendem. -->
+
+4. Generowanie testów jednostkowych
+Wygeneruj testy jednostkowe dla tego komponentu React za pomocą Jest i React Testing Library. Pokryj kluczowe przypadki użycia.
+<!-- Gdy chcesz pisać testy, ale nie jesteś pewien, od czego zacząć. -->
+
+5. Debugowanie błędu
+Mam problem z tym kodem. Przeanalizuj go i zasugeruj, co może być nie tak oraz jak go naprawić.
+<!-- Gdy nie możesz znaleźć przyczyny błędu i potrzebujesz dodatkowej analizy. -->
+
+6. Poprawa dostępności (a11y)
+Sprawdź ten kod pod kątem dostępności (a11y) i zasugeruj poprawki, aby był bardziej zgodny ze standardami WCAG.
+<!-- Gdy chcesz, aby aplikacja była użyteczna dla wszystkich użytkowników, w tym osób z niepełnosprawnościami. -->
+
+7. Optymalizacja kodu pod SEO
+Przeanalizuj ten kod i wskaż, jak można go zoptymalizować pod kątem SEO. Zasugeruj ulepszenia dla meta tagów, struktury HTML i wydajności.
+<!-- Gdy tworzysz stronę, która powinna dobrze indeksować się w Google. -->
+
