@@ -48,6 +48,7 @@ const MovieAdd: React.FC<MovieAddProps> = () => {
 
   // Function to create a movie object
   const createMovie = (data: MovieFormInputs) => ({
+    order: 0,
     id: movieId,
     title: data.title,
     type: data.type,

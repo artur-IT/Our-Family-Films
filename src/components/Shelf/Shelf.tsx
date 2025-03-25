@@ -46,7 +46,7 @@ export const Shelf = () => {
 
       // Create a new array with the moved movie
       const newMovies = arrayMove(movies, oldIndex, newIndex);
-      console.log(newMovies);
+
       if (updateDragDropMovie) {
         // Update local state
         updateDragDropMovie(newMovies);
