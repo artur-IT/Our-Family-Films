@@ -17,11 +17,10 @@ export const SortableMovie = ({ movie, isLoggedIn, id }: SortableMovieProps) => 
     transform: CSS.Transform.toString(transform),
     transition,
     cursor: "grab",
-    position: "relative" as "relative",
+    position: "relative",
   };
-
   return (
-    <div ref={setNodeRef} style={style} {...attributes} {...listeners}>
+    <div ref={setNodeRef} style={style as React.CSSProperties} {...attributes} {...listeners}>
       <div className={styles.drag_handle}>
         <span className={styles.drag_icon}>⋮⋮</span>
       </div>

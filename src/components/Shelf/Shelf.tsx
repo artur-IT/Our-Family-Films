@@ -4,7 +4,6 @@ import style from "./Shelf.module.css";
 import { useRef, useContext } from "react";
 import { MovieContext } from "@/context/MovieContext";
 import { useLoginState } from "@/context/LoginStateContext";
-import { MovieData } from "@/types/types";
 
 import { DndContext, closestCenter, KeyboardSensor, PointerSensor, useSensor, useSensors, DragEndEvent } from "@dnd-kit/core";
 import { arrayMove, SortableContext, sortableKeyboardCoordinates, horizontalListSortingStrategy } from "@dnd-kit/sortable";

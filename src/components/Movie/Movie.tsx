@@ -9,7 +9,6 @@ import { MovieContext } from "@/context/MovieContext";
 import { MovieEdit } from "@/components/MovieEdit/MovieEdit";
 import MovieAdd from "../MovieAdd/MovieAdd";
 import { MovieDeletePopup } from "../MovieDeletePopup/MovieDeletePopup";
-import { useDraggable } from "@dnd-kit/core";
 
 export const Movie = ({ movie, isLoggedIn }: { movie: MovieData; isLoggedIn: boolean }) => {
   const [showEditForm, setEditForm] = useState(false);
