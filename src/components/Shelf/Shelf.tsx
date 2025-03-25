@@ -8,12 +8,16 @@ import { useLoginState } from "@/context/LoginStateContext";
 import { DndContext, closestCenter, KeyboardSensor, PointerSensor, useSensor, useSensors, DragEndEvent } from "@dnd-kit/core";
 import { arrayMove, SortableContext, sortableKeyboardCoordinates, horizontalListSortingStrategy } from "@dnd-kit/sortable";
 import { SortableMovie } from "@/components/SortableMovie/SortableMovie";
-import { EditModeContext } from "@/context/EditMovieContext"; // Zakładam, że masz taki kontekst
+import { EditModeContext } from "@/context/EditMovieContext";
 
 export const Shelf = () => {
   // Create a reference to the container element for scrolling
   const containerRef = useRef<HTMLDivElement>(null);
   const { isLoggedIn } = useLoginState();
+
+  // Get the edit context and user information
+  const { isEditMode, user } = useContext(EditModeContext) || { isEditMode: false, user: "" };
+
   // Use the MovieContext to get the list of movies, defaulting to an empty array if not available
   const { movies, updateDragDropMovie } = useContext(MovieContext) || { movies: [] };
 
@@ -25,13 +29,7 @@ export const Shelf = () => {
     });
   };
 
-  // Pobierz kontekst edycji i informacje o użytkowniku
-  const { isEditMode, user } = useContext(EditModeContext) || { isEditMode: false, user: "" };
-
-  // Sprawdź, czy użytkownik to administrator (Artur) i jest w trybie edycji
-  const isAdmin = user === "Artur" && isEditMode;
-
-  // Konfiguracja sensorów dla dnd-kit
+  // Configuration of sensors for dnd-kit
   const sensors = useSensors(
     useSensor(PointerSensor),
     useSensor(KeyboardSensor, {
@@ -39,22 +37,20 @@ export const Shelf = () => {
     })
   );
 
-  // Obsługa zakończenia przeciągania
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
 
     if (over && active.id !== over.id) {
-      // Znajdź indeksy filmów
       const oldIndex = movies.findIndex((movie) => movie.id === active.id);
       const newIndex = movies.findIndex((movie) => movie.id === over.id);
 
-      // Utwórz nową tablicę z przeniesionym filmem
+      // Create a new array with the moved movie
       const newMovies = arrayMove(movies, oldIndex, newIndex);
 
-      // Zaktualizuj stan filmów
+      // Update the state of movies
       // Tutaj możesz dodać wywołanie API do zapisania nowej kolejności w bazie danych
       if (updateDragDropMovie) {
-        // Aktualizuj stan lokalny
+        // Update local state
         updateDragDropMovie(newMovies);
 
         // Opcjonalnie: zapisz nową kolejność w bazie danych
@@ -72,7 +68,7 @@ export const Shelf = () => {
 
         {/* Container for movie components */}
         <div className={style.shelf_movie_container} ref={containerRef}>
-          {isAdmin ? (
+          {user === "Artur" && !isEditMode && isLoggedIn ? (
             <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
               <SortableContext items={movies.map((movie) => movie.id)} strategy={horizontalListSortingStrategy}>
                 {movies.map((movie) => (
@@ -81,12 +77,9 @@ export const Shelf = () => {
               </SortableContext>
             </DndContext>
           ) : (
-            // Standardowy widok dla zwykłych użytkowników
+            // Standard view for users who are not administrators
             movies.map((movie) => <Movie isLoggedIn={isLoggedIn} key={movie.id} movie={movie} />)
           )}
-          {/* {movies.map((movie) => (
-            <Movie isLoggedIn={isLoggedIn} key={movie.id} movie={movie} />
-          ))} */}
         </div>
 
         <button className={`${style.scroll_button} ${style.scroll_right}`} onClick={() => handleScroll("right")}>

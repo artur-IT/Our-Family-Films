@@ -1,0 +1,130 @@
+# AI Rules for {{project-name}}
+
+{{project-description}}
+
+## Coding practices
+
+### Guidelines for AI Support Level
+
+#### I am a beginner
+
+- When running in agent mode, execute up to 3 actions at a time and ask for approval or course correction afterwards.
+- Write code with clear variable names and include explanatory comments for non-obvious logic. Avoid shorthand syntax and complex patterns.
+- Provide full implementations rather than partial snippets. Include import statements, required dependencies, and initialization code.
+- Add defensive coding patterns and clear error handling. Include validation for user inputs and explicit type checking.
+- Suggest simpler solutions first, then offer more optimized versions with explanations of the trade-offs.
+- Briefly explain why certain approaches are used and link to relevant documentation or learning resources.
+- When suggesting fixes for errors, explain the root cause and how the solution addresses it to build understanding. Ask for confirmation before proceeding.
+- Offer introducing basic test cases that demonstrate how the code works and common edge cases to consider.
+
+
+### Guidelines for Version Control
+
+#### Git
+
+- Use conventional commits to create meaningful commit messages
+- Use feature branches with descriptive names following {{branch_naming_convention}}
+- Write meaningful commit messages that explain why changes were made, not just what
+- Keep commits focused on single logical changes to facilitate code review and bisection
+- Use interactive rebase to clean up history before merging feature branches
+- Leverage git hooks to enforce code quality checks before commits and pushes
+
+#### Conventional Commits
+
+- Follow the format: type(scope): description for all commit messages
+- Use consistent types (feat, fix, docs, style, refactor, test, chore) across the project
+- Define clear scopes based on {{project_modules}} to indicate affected areas
+- Include issue references in commit messages to link changes to requirements
+- Use breaking change footer (!: or BREAKING CHANGE:) to clearly mark incompatible changes
+- Configure commitlint to automatically enforce conventional commit format
+
+
+## Frontend
+
+### Guidelines for React
+
+#### React Coding Standards
+
+- Use functional components with hooks instead of class components
+- Implement React.memo() for expensive components that render often with the same props
+- Utilize React.lazy() and Suspense for code-splitting and performance optimization
+- Use the useCallback hook for event handlers passed to child components to prevent unnecessary re-renders
+- Prefer useMemo for expensive calculations to avoid recomputation on every render
+- Implement useId() for generating unique IDs for accessibility attributes
+- Use the new use hook for data fetching in React 19+ projects
+- Leverage Server Components for {{data_fetching_heavy_components}} when using React with Next.js or similar frameworks
+- Consider using the new useOptimistic hook for optimistic UI updates in forms
+- Use useTransition for non-urgent state updates to keep the UI responsive
+
+#### Next.js
+
+- Use App Router and Server Components for improved performance and SEO
+- Implement route handlers for API endpoints instead of the pages/api directory
+- Use server actions for form handling and data mutations from Server Components
+- Leverage Next.js Image component with proper sizing for core web vitals optimization
+- Implement the Metadata API for dynamic SEO optimization
+- Use React Server Components for {{data_fetching_operations}} to reduce client-side JavaScript
+- Implement Streaming and Suspense for improved loading states
+- Use the new Link component without requiring a child <a> tag
+- Leverage parallel routes for complex layouts and parallel data fetching
+- Implement intercepting routes for modal patterns and nested UIs
+
+#### React Query
+
+- Use TanStack Query (formerly React Query) with appropriate staleTime and gcTime based on data freshness requirements
+- Implement the useInfiniteQuery hook for pagination and infinite scrolling
+- Use optimistic updates for mutations to make the UI feel more responsive
+- Leverage queryClient.setQueryDefaults to establish consistent settings for query categories
+- Use suspense mode with <Suspense> boundaries for a more declarative data fetching approach
+- Implement retry logic with custom backoff algorithms for transient network issues
+- Use the select option to transform and extract specific data from query results
+- Implement mutations with onMutate, onError, and onSettled for robust error handling
+- Use Query Keys structuring pattern ([entity, params]) for better organization and automatic refetching
+- Implement query invalidation strategies to keep data fresh after mutations
+
+
+### Guidelines for Styling
+
+#### Styled Components
+
+- Use the ThemeProvider for consistent theming across components
+- Implement the css helper for sharing styles between components
+- Use props for conditional styling within template literals
+- Leverage the createGlobalStyle for global styling
+- Implement attrs method to pass HTML attributes to the underlying DOM elements
+- Use the as prop for dynamic component rendering
+- Leverage styled(Component) syntax for extending existing components
+- Implement the css prop for one-off styling needs
+- Use the & character for nesting selectors
+- Leverage the keyframes helper for animations
+
+
+## Database
+
+### Guidelines for NoSQL
+
+#### MongoDB
+
+- Use the aggregation framework for complex queries instead of multiple queries
+- Implement schema validation to ensure data consistency for {{document_types}}
+- Use indexes for frequently queried fields to improve performance
+
+
+## Testing
+
+### Guidelines for Unit Testing
+
+#### Jest
+
+- Use Jest with TypeScript for type checking in tests
+- Implement Testing Library for component testing instead of enzyme
+- Use snapshot testing sparingly and only for stable UI components
+- Leverage mock functions and spies for isolating units of code
+- Implement test setup and teardown with beforeEach and afterEach
+- Use describe blocks for organizing related tests
+- Leverage expect assertions with specific matchers
+- Implement code coverage reporting with meaningful targets
+- Use mockResolvedValue and mockRejectedValue for async testing
+- Leverage fake timers for testing time-dependent functionality
+
+

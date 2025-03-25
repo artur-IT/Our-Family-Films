@@ -29,6 +29,7 @@ export const mockMovieContext = {
   selectedPoster: "",
   setSelectedTitle: jest.fn(),
   setSelectedPoster: jest.fn(),
+  updateDragDropMovie: jest.fn(),
 };
 
 // Mock dla kontekstu edycji
