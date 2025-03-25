@@ -77,12 +77,29 @@ export const MovieProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     }
   }, []);
 
-  // Przykładowa implementacja funkcji updateMovie w MovieContext
+  const saveMovieOrderToDatabase = async (movies: MovieData[]) => {
+    try {
+      const response = await fetch("/api/movies/order", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ movies }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to save movie order");
+      }
+
+      console.log("Movie order saved successfully");
+    } catch (error) {
+      console.error("Error saving movie order:", error);
+    }
+  };
+
   const updateDragDropMovie = (newMovies: MovieData[]) => {
     setMovies(newMovies);
-
-    // Opcjonalnie: zapisz nową kolejność w bazie danych
-    // saveMovieOrderToDatabase(newMovies);
+    saveMovieOrderToDatabase(newMovies);
   };
 
   const deleteMovie = useCallback((movieId: string) => {

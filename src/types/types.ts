@@ -6,4 +6,5 @@ export interface MovieData {
   ratings: Record<string, number>;
   comments: Record<string, string>;
   image: string;
+  order: number;
 }

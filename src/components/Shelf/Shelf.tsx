@@ -4,6 +4,7 @@ import style from "./Shelf.module.css";
 import { useRef, useContext } from "react";
 import { MovieContext } from "@/context/MovieContext";
 import { useLoginState } from "@/context/LoginStateContext";
+import { MovieData } from "@/types/types";
 
 import { DndContext, closestCenter, KeyboardSensor, PointerSensor, useSensor, useSensors, DragEndEvent } from "@dnd-kit/core";
 import { arrayMove, SortableContext, sortableKeyboardCoordinates, horizontalListSortingStrategy } from "@dnd-kit/sortable";
@@ -46,15 +47,10 @@ export const Shelf = () => {
 
       // Create a new array with the moved movie
       const newMovies = arrayMove(movies, oldIndex, newIndex);
-
-      // Update the state of movies
-      // Tutaj możesz dodać wywołanie API do zapisania nowej kolejności w bazie danych
+      console.log(newMovies);
       if (updateDragDropMovie) {
         // Update local state
         updateDragDropMovie(newMovies);
-
-        // Opcjonalnie: zapisz nową kolejność w bazie danych
-        // saveMovieOrderToDatabase(newMovies);
       }
     }
   };
@@ -78,7 +74,9 @@ export const Shelf = () => {
             </DndContext>
           ) : (
             // Standard view for users who are not administrators
-            movies.map((movie) => <Movie isLoggedIn={isLoggedIn} key={movie.id} movie={movie} />)
+            [...movies]
+              .sort((a, b) => (a.order || 0) - (b.order || 0))
+              .map((movie) => <Movie isLoggedIn={isLoggedIn} key={movie.id} movie={movie} />)
           )}
         </div>
 
