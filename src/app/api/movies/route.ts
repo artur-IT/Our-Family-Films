@@ -6,6 +6,7 @@ export async function GET() {
   try {
     const collection = await getCollectionMovies();
     const movies = await collection.find({}).toArray();
+    movies.sort((a, b) => (a.order || 0) - (b.order || 0));
     return NextResponse.json(movies);
   } catch (error) {
     return NextResponse.json({ error: error }, { status: 500 });

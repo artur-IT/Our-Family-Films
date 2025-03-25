@@ -74,9 +74,7 @@ export const Shelf = () => {
             </DndContext>
           ) : (
             // Standard view for users who are not administrators
-            [...movies]
-              .sort((a, b) => (a.order || 0) - (b.order || 0))
-              .map((movie) => <Movie isLoggedIn={isLoggedIn} key={movie.id} movie={movie} />)
+            movies.map((movie) => <Movie isLoggedIn={isLoggedIn} key={movie.id} movie={movie} />)
           )}
         </div>
 
