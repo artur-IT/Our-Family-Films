@@ -8,6 +8,7 @@ import { Header } from "@/layouts/Header/Header";
 import { LoginProvider } from "@/context/LoginStateContext";
 import style from "./layout.module.css";
 import "./globals.css";
+import { Hero } from "@/components/Hero/Hero";
 
 export const metadata: Metadata = {
   title: "Our Family Films",
@@ -31,25 +32,41 @@ export const metadata: Metadata = {
 // and will not be re-rendered (e.g. header and footer)
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" id="root">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet" />
-      </head>
-      <body className={style.main}>
-        <LoginProvider>
-          <MovieProvider>
-            <EditModeProvider>
-              <Header panelLogin={children} />
-              <Main>
-                <Shelf />
-              </Main>
-              <Footer />
-            </EditModeProvider>
-          </MovieProvider>
-        </LoginProvider>
-      </body>
-    </html>
+    <>
+      <html lang="en" id="root">
+        <head>
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+          <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet" />
+
+          <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css"></link>
+        </head>
+        <body className={style.main}>
+          <LoginProvider>
+            <MovieProvider>
+              <EditModeProvider>
+                <div className={style.wrap}>
+                  <Header panelLogin={children} />
+                  <Hero />
+                  <Main>
+                    <Shelf />
+                  </Main>
+                  <Footer />
+                </div>
+              </EditModeProvider>
+            </MovieProvider>
+          </LoginProvider>
+
+          <div id="stars"></div>
+          <div id="stars2"></div>
+          <div id="stars3"></div>
+          <div id="title">
+            <span>PURE CSS</span>
+            <br />
+            <span>PARALLAX PIXEL STARS</span>
+          </div>
+        </body>
+      </html>
+    </>
   );
 }

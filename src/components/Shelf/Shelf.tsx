@@ -22,7 +22,6 @@ export const Shelf = () => {
   const { movies, updateDragDropMovie } = useContext(MovieContext) || { movies: [] };
 
   const handleScroll = (direction: "left" | "right") => {
-    // Scroll the container by its width in the specified direction
     containerRef.current?.scrollBy({
       left: direction === "left" ? -containerRef.current.clientWidth : containerRef.current.clientWidth,
       behavior: "smooth",
@@ -81,15 +80,7 @@ export const Shelf = () => {
           →
         </button>
       </div>
-      <div className={style.shelf_bottom}>
-        <div className={style.description}>
-          Znajdziesz tu rekomendacje filmów odpowiednich dla całej rodziny – bez przemocy, wulgarnego języka, scen niemoralnych,
-          kontrowersyjnych treści czy treści podważających podstawowe zasady etyczne. Filmy, które obejrzeliśmy razem z naszymi nastoletnimi
-          dziećmi. Jest w nich wyraźnie zarysowane dobro i zło, promowane są wartości chrześcijańskie m.in. rodzina, przyjaźń, miłość,
-          nadzieja, pomoc słabszym i potrzebującym, poświęcenie, szacunek dla innych. To filmy, które inspirują, podnoszą na duchu i
-          wzmacniają więzi rodzinne.
-        </div>
-      </div>
+      <div className={style.shelf_bottom}></div>
     </>
   );
 };

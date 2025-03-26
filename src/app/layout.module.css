@@ -11,7 +11,7 @@ body.main {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  max-height: 100vh;
+  /* max-height: 100vh; */
   font-family: "Roboto Flex", "Roboto", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 1rem;
   font-optical-sizing: auto;
@@ -23,11 +23,23 @@ body.main {
   --three: #054fb9;
   --four: #8babf1;
   --button: #0073e6;
-
-  background-color: #e3e7ed;
+  /* background: radial-gradient(black 15%, transparent 16%) 0 0, radial-gradient(black 15%, transparent 16%) 8px 8px,
+    radial-gradient(rgba(255, 255, 255, 0.1) 15%, transparent 20%) 0 1px,
+    radial-gradient(rgba(255, 255, 255, 0.1) 15%, transparent 20%) 8px 9px;
+  background-color: #282828;
+  background-size: 16px 16px; */
 }
 
-@media (max-width: 800px) and (orientation: landscape) {
+.wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-width: 1400px;
+  height: 100vh;
+  background-color: #f57600;
+  border-radius: 20px;
+  border: 2px solid #000;
+  overflow: hidden;
 }
 
 @media (max-width: 400px) and (orientation: portrait) {

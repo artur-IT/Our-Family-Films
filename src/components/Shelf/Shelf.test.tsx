@@ -49,9 +49,6 @@ describe("Shelf Component", () => {
     // Check if scroll buttons are rendered
     expect(screen.getByText("←")).toBeInTheDocument();
     expect(screen.getByText("→")).toBeInTheDocument();
-
-    // Check if description is rendered
-    expect(screen.getByText(/Znajdziesz tu rekomendacje filmów/i)).toBeInTheDocument();
   });
 
   test("renders all movies from context", () => {

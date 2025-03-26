@@ -1,23 +1,17 @@
 .header {
   position: relative;
-  top: 0;
-  width: 100vw;
-  max-width: 75vw;
-  height: 55px;
+  width: 100%;
   background-color: #fff;
+  padding: 15px;
   color: #000;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1rem;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-  z-index: 1;
 }
 
 .header nav {
   display: flex;
   width: 100%;
-  margin: 0 15px;
+  margin: 0px 15px;
   justify-content: space-between;
   align-items: center;
 }
@@ -26,7 +20,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-weight: 400;
   text-decoration: none;
+}
+
+a:visited {
+  color: #000;
 }
 
 .button {
