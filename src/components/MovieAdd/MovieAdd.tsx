@@ -20,6 +20,7 @@ interface MovieFormInputs {
   type: "Film" | "Serial";
   genre: string;
   image: string;
+  link: string;
 }
 
 // Main component for adding a new movie
@@ -27,7 +28,7 @@ const MovieAdd: React.FC<MovieAddProps> = () => {
   const movieAddRef = useRef<HTMLDivElement>(null); // Reference to the movie add form
   const movieContext = useContext(MovieContext); // Access the movie context
   const { toggleShowAddMovie } = useEditMode(); // Get the function to toggle the add movie form visibility
-  const { addMovie, selectedTitle, selectedPoster, setSelectedTitle, setSelectedPoster } = movieContext || {}; // Destructure necessary values from context
+  const { addMovie, selectedTitle, selectedPoster, movieLink, setSelectedTitle, setSelectedPoster } = movieContext || {}; // Destructure necessary values from context
   const movieId = useMemo(() => uuidv4().slice(0, 3), []); // Generate a unique movie ID
 
   // Initialize the form with default values
@@ -37,6 +38,7 @@ const MovieAdd: React.FC<MovieAddProps> = () => {
       type: "Film",
       genre: "",
       image: "",
+      link: "",
     },
   });
 
@@ -56,6 +58,7 @@ const MovieAdd: React.FC<MovieAddProps> = () => {
     ratings: {},
     comments: {},
     image: `https://image.tmdb.org/t/p/w500${selectedPoster || ""}`,
+    link: movieLink || "",
   });
 
   // Function to save the new movie to the server

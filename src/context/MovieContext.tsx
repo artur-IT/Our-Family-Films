@@ -12,8 +12,10 @@ interface MovieContextType {
   useMovie: (newMovie: MovieData) => void;
   selectedTitle: string;
   selectedPoster: string;
+  movieLink: string;
   setSelectedTitle: (title: string) => void;
   setSelectedPoster: (poster: string) => void;
+  setMovieLink: (link: string) => void;
 }
 
 type MovieUpdateData = Partial<MovieData>;
@@ -25,6 +27,7 @@ export const MovieProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const [movies, setMovies] = useState<MovieData[]>(initialData.movies);
   const [selectedTitle, setSelectedTitle] = useState(initialData.selectedTitle);
   const [selectedPoster, setSelectedPoster] = useState(initialData.selectedPoster);
+  const [movieLink, setMovieLink] = useState(initialData.link);
 
   // get movies from MongoDB
   const getMovies = useCallback(async () => {
@@ -129,8 +132,10 @@ export const MovieProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         useMovie,
         selectedTitle,
         selectedPoster,
+        movieLink,
         setSelectedTitle,
         setSelectedPoster,
+        setMovieLink,
       }}
     >
       {children}

@@ -7,4 +7,5 @@ export interface MovieData {
   comments: Record<string, string>;
   image: string;
   order: number;
+  link: string;
 }

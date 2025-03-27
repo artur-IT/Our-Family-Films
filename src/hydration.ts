@@ -6,6 +6,7 @@ export const getInitialData = () => ({
   selectedPoster: "",
   type: "film",
   genre: "",
+  link: "",
 });
 
 export const formatMovieData = (movie: MovieData) => ({
@@ -13,4 +14,5 @@ export const formatMovieData = (movie: MovieData) => ({
   id: movie.id.toString(),
   ratings: movie.ratings || {},
   comments: Array.isArray(movie.comments) ? movie.comments : {},
+  link: movie.link,
 });

@@ -7,6 +7,13 @@ import Image from "next/image";
 // This is the API key for The Movie Database (TMDb) which is used to fetch movie data.
 // It is stored in the environment variables for security reasons.
 const TMDB_API_KEY = process.env.NEXT_PUBLIC_TMDB_API_KEY;
+
+interface Movie {
+  title: string;
+  poster_path: string;
+  link: string;
+}
+
 // This is the main component for searching and displaying movie posters.
 // It uses the MovieContext to set the selected title and poster.
 // It also has a function to clear the movie form.
@@ -15,8 +22,9 @@ const MovieSearch = ({ clearMovieForm }: { clearMovieForm: () => void }) => {
   const setSelectedTitle = context?.setSelectedTitle;
   const setSelectedPoster = context?.setSelectedPoster;
   const [movieTitle, setMovieTitle] = useState("");
+  const setMovieLink = context?.setMovieLink;
   const postersRef = useRef<HTMLDivElement>(null);
-  const [foundMovies, setFoundMovies] = useState<Map<string, string>>(new Map());
+  const [foundMovies, setFoundMovies] = useState<Movie[]>([]);
 
   // This effect is used to close the posters when clicking outside of the posters div.
   // It listens for mousedown events and checks if the target is not the posters div or the search button.
@@ -25,7 +33,7 @@ const MovieSearch = ({ clearMovieForm }: { clearMovieForm: () => void }) => {
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as HTMLElement;
       if (postersRef.current && !postersRef.current.contains(event.target as Node) && !target.className.includes("movieSearchButton")) {
-        setFoundMovies(new Map());
+        setFoundMovies([]);
         setMovieTitle("");
       }
     };
@@ -46,11 +54,15 @@ const MovieSearch = ({ clearMovieForm }: { clearMovieForm: () => void }) => {
       if (!response.ok) throw new Error("Network response was not ok");
       const data = await response.json();
       if (data.results.length > 0) {
-        const newMap = new Map<string, string>();
-        data.results.forEach(({ title, poster_path }: { title: string; poster_path: string }) => {
-          if (title || poster_path) newMap.set(title, poster_path);
-        });
-        setFoundMovies(newMap);
+        const movieInfo = new Array();
+        data.results.forEach(
+          ({ title, poster_path, media_type, id }: { title: string; poster_path: string; media_type: string; id: number }) => {
+            const link = `https://www.themoviedb.org/${media_type}/${id}`;
+            if (title || poster_path) movieInfo.push({ title, poster_path, link });
+          }
+        );
+        setFoundMovies(movieInfo as Movie[]);
+        // console.log(movieInfo);
       }
     } catch (error) {
       console.error("Error during fetching movie posters:", error);
@@ -80,19 +92,22 @@ const MovieSearch = ({ clearMovieForm }: { clearMovieForm: () => void }) => {
       </div>
 
       <div ref={postersRef} className={styles.posters}>
-        {Array.from(foundMovies).map(([title, poster], index) => (
+        {foundMovies.map((movie, index) => (
           <Image
             key={index}
-            src={`https://image.tmdb.org/t/p/original${poster}`}
-            alt={`Movie Poster ${title}`}
+            src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
+            alt={`Movie Poster ${movie.title}`}
             className={styles.moviePoster}
             width={150}
             height={225}
             onClick={() => {
               if (setSelectedTitle && setSelectedPoster) {
-                setSelectedTitle(title);
-                setSelectedPoster(poster);
-                setFoundMovies(new Map());
+                setSelectedTitle(movie.title);
+                setSelectedPoster(movie.poster_path);
+                if (setMovieLink) {
+                  setMovieLink(movie.link);
+                }
+                setFoundMovies([]);
                 setMovieTitle("");
               }
             }}
