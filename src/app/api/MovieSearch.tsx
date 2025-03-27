@@ -54,7 +54,7 @@ const MovieSearch = ({ clearMovieForm }: { clearMovieForm: () => void }) => {
       if (!response.ok) throw new Error("Network response was not ok");
       const data = await response.json();
       if (data.results.length > 0) {
-        const movieInfo = new Array();
+        const movieInfo: Movie[] = [];
         data.results.forEach(
           ({ title, poster_path, media_type, id }: { title: string; poster_path: string; media_type: string; id: number }) => {
             const link = `https://www.themoviedb.org/${media_type}/${id}`;
