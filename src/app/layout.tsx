@@ -61,9 +61,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <div id="stars2"></div>
           <div id="stars3"></div>
           <div id="title">
-            <span>PURE CSS</span>
+            {/* <span>PURE CSS</span>
             <br />
-            <span>PARALLAX PIXEL STARS</span>
+            <span>PARALLAX PIXEL STARS</span> */}
           </div>
         </body>
       </html>

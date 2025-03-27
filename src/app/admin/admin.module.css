@@ -11,6 +11,7 @@
 
 .buttons {
   display: flex;
+  justify-content: center;
   width: 97px;
   margin-left: 8px;
   font-family: "Roboto Flex", serif;
