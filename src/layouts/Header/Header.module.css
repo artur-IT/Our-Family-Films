@@ -24,7 +24,7 @@
   text-decoration: none;
 }
 
-nav a:visited {
+.header nav a:visited {
   color: #000;
 }
 
