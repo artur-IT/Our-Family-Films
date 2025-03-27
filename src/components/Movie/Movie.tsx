@@ -11,6 +11,7 @@ import MovieAdd from "../MovieAdd/MovieAdd";
 import { MovieDeletePopup } from "../MovieDeletePopup/MovieDeletePopup";
 
 export const Movie = ({ movie, isLoggedIn }: { movie: MovieData; isLoggedIn: boolean }) => {
+  console.log(movie);
   const [showEditForm, setEditForm] = useState(false);
   const [showDeletePopup, setDeletePopup] = useState(false);
 
@@ -76,7 +77,10 @@ export const Movie = ({ movie, isLoggedIn }: { movie: MovieData; isLoggedIn: boo
         {/* Movie description */}
         <div className={style.movie_description} style={isLoggedIn ? { opacity: 1 } : undefined} id={movie.id}>
           <div className={style.movie_data}>
-            <p>{movie.title}</p>
+            {/* <p>{movie.title}</p> */}
+            <a href={movie.link} target="_blank">
+              {movie.title}
+            </a>
             <p>{`(${movie.type})`}</p>
             <p>{movie.genre}</p>
           </div>

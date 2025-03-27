@@ -75,6 +75,17 @@
   font-variant-caps: small-caps;
 }
 
+.movie_data a {
+  color: #fff;
+  text-decoration: none;
+}
+.movie_data a:hover {
+  color: #ffd43b;
+}
+.movie_data a:visited {
+  color: #fff;
+}
+
 .movie_data {
   margin: 10px;
   padding-top: 80px;
