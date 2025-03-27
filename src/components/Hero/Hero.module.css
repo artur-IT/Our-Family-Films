@@ -8,13 +8,16 @@
 }
 
 .description {
+  position: absolute;
   padding: 20px;
   border-radius: 10px;
-  width: 45%;
+  min-width: 400px;
+  width: 800px;
   height: auto;
-  text-align: justify;
+  text-align: center;
+  font-style: italic;
   line-height: 1.5rem;
-  background-color: #fff;
+  /* background-color: #fff; */
   z-index: 2;
 }
 

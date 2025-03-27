@@ -34,6 +34,8 @@ body.main {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  width: 100%;
+  /* min-width: 600px; */
   max-width: 1400px;
   height: 100vh;
   background-color: #f57600;
