@@ -25,10 +25,19 @@ export const Hero = () => {
             transition: "opacity 1s ease-in-out, visibility 1s ease-in-out",
           }}
         >
-          {slideIndex === 0 &&
-            "Znajdziesz tu rekomendacje filmów odpowiednich dla całej rodziny – bez przemocy, wulgarnego języka, scen niemoralnych, kontrowersyjnych treści czy treści podważających podstawowe zasady etyczne."}
-          {slideIndex === 1 &&
-            "Filmy, które obejrzeliśmy razem z naszymi nastoletnimi dziećmi. Jest w nich wyraźnie zarysowane dobro i zło, promowane są wartości chrześcijańskie m.in. rodzina, przyjaźń, miłość, nadzieja, pomoc słabszym i potrzebującym, poświęcenie, szacunek dla innych."}
+          {slideIndex === 0 && (
+            <>
+              Znajdziesz tu rekomendacje filmów odpowiednich dla całej rodziny. <br /> Bez przemocy, wulgarnego języka, scen niemoralnych,
+              kontrowersyjnych treści czy treści podważających podstawowe zasady etyczne.
+            </>
+          )}
+          {slideIndex === 1 && (
+            <>
+              Filmy, które obejrzeliśmy razem z naszymi nastoletnimi dziećmi. <br />
+              Jest w nich wyraźnie zarysowane dobro i zło, promowane są wartości chrześcijańskie m.in. rodzina, przyjaźń, miłość, nadzieja,
+              pomoc słabszym i potrzebującym, poświęcenie, szacunek dla innych.
+            </>
+          )}
           {slideIndex === 2 && "To filmy, które inspirują, podnoszą na duchu i wzmacniają więzi rodzinne."}
         </div>
       ))}

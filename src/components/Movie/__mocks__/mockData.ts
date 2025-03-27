@@ -15,6 +15,8 @@ export const mockMovie = {
     user2: "Nice one",
     user3: "Great!",
   },
+  link: "https://www.themoviedb.org/movie/1",
+  order: 1,
 };
 
 // Mock dla kontekstu filmów
@@ -27,6 +29,8 @@ export const mockMovieContext = {
   useMovie: jest.fn(),
   selectedTitle: "",
   selectedPoster: "",
+  movieLink: "",
+  setMovieLink: jest.fn(),
   setSelectedTitle: jest.fn(),
   setSelectedPoster: jest.fn(),
   updateDragDropMovie: jest.fn(),

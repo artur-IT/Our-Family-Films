@@ -101,7 +101,7 @@ export const PanelLogin = () => {
           </button>
           <Link href={ROUTES.HOME}>
             <button className={styles.button} type="button" onClick={handleEsc}>
-              Esc
+              Cancel
             </button>
           </Link>
         </div>

@@ -34,7 +34,7 @@ body.main {
   height: 100vh;
   margin: 0 auto;
   background-color: #0f577f;
-  border-radius: 20px;
+  /* border-radius: 20px; */
   border: 2px solid #000;
   overflow: hidden;
   position: relative;

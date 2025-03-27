@@ -62,7 +62,6 @@ const MovieSearch = ({ clearMovieForm }: { clearMovieForm: () => void }) => {
           }
         );
         setFoundMovies(movieInfo as Movie[]);
-        // console.log(movieInfo);
       }
     } catch (error) {
       console.error("Error during fetching movie posters:", error);
