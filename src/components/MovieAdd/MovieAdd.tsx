@@ -21,6 +21,13 @@ interface MovieFormInputs {
   genre: string;
   image: string;
   link: string;
+  id: number;
+  media_type: string;
+  release_date?: string;
+  overview?: string;
+  backdrop_path?: string;
+  vote_average?: number;
+  vote_count?: number;
 }
 
 // Main component for adding a new movie
@@ -59,6 +66,12 @@ const MovieAdd: React.FC<MovieAddProps> = () => {
     comments: {},
     image: `https://image.tmdb.org/t/p/w500${selectedPoster || ""}`,
     link: movieLink || "",
+    // media_type: string;
+    // release_date?: string;
+    // overview?: string;
+    // backdrop_path?: string;
+    // vote_average?: number;
+    // vote_count?: number;
   });
 
   // Function to save the new movie to the server

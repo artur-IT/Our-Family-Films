@@ -12,6 +12,13 @@ interface Movie {
   title: string;
   poster_path: string;
   link: string;
+  id: number;
+  media_type: string;
+  release_date?: string;
+  overview?: string;
+  backdrop_path?: string;
+  vote_average?: number;
+  vote_count?: number;
 }
 
 // This is the main component for searching and displaying movie posters.
@@ -25,6 +32,7 @@ const MovieSearch = ({ clearMovieForm }: { clearMovieForm: () => void }) => {
   const setMovieLink = context?.setMovieLink;
   const postersRef = useRef<HTMLDivElement>(null);
   const [foundMovies, setFoundMovies] = useState<Movie[]>([]);
+  let movieINFO = {};
 
   // This effect is used to close the posters when clicking outside of the posters div.
   // It listens for mousedown events and checks if the target is not the posters div or the search button.
@@ -56,9 +64,10 @@ const MovieSearch = ({ clearMovieForm }: { clearMovieForm: () => void }) => {
       if (data.results.length > 0) {
         const movieInfo: Movie[] = [];
         data.results.forEach(
-          ({ title, poster_path, media_type, id }: { title: string; poster_path: string; media_type: string; id: number }) => {
+          ({ title, poster_path, media_type, id, release_date, overview, backdrop_path, vote_average, vote_count }: Movie) => {
             const link = `https://www.themoviedb.org/${media_type}/${id}`;
-            if (title || poster_path) movieInfo.push({ title, poster_path, link });
+            if (title || poster_path)
+              movieInfo.push({ title, poster_path, link, id, media_type, release_date, overview, backdrop_path, vote_average, vote_count });
           }
         );
         setFoundMovies(movieInfo as Movie[]);
@@ -67,7 +76,7 @@ const MovieSearch = ({ clearMovieForm }: { clearMovieForm: () => void }) => {
       console.error("Error during fetching movie posters:", error);
     }
   };
-
+  // console.log(foundMovies);
   const handleSearch = () => searchMoviePoster(movieTitle);
 
   // The posters div contains the found movie posters.
@@ -108,6 +117,19 @@ const MovieSearch = ({ clearMovieForm }: { clearMovieForm: () => void }) => {
                 }
                 setFoundMovies([]);
                 setMovieTitle("");
+
+                movieINFO = {
+                  title: movie.title,
+                  poster_path: movie.poster_path,
+                  link: movie.link,
+                  id: movie.id,
+                  media_type: movie.media_type,
+                  release_date: movie.release_date,
+                  overview: movie.overview,
+                  backdrop_path: movie.backdrop_path,
+                  vote_average: movie.vote_average,
+                  vote_count: movie.vote_count,
+                };
               }
             }}
           />

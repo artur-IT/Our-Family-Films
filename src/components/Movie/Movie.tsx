@@ -10,16 +10,10 @@ import { MovieEdit } from "@/components/MovieEdit/MovieEdit";
 import MovieAdd from "../MovieAdd/MovieAdd";
 import { MovieDeletePopup } from "../MovieDeletePopup/MovieDeletePopup";
 
-import ExternalContent from "../ExternalContent/ExternalContent";
-
 export const Movie = ({ movie, isLoggedIn }: { movie: MovieData; isLoggedIn: boolean }) => {
   const [showEditForm, setEditForm] = useState(false);
   const [showDeletePopup, setDeletePopup] = useState(false);
-
   const [showInfo, setShowInfo] = useState(false);
-  // Przykładowy selektor - musisz go dostosować do struktury strony, z której pobierasz dane
-  // np. dla IMDB może to być '.title_wrapper' lub '.plot_summary'
-  const selector = "div.header.large.border.first";
 
   // Use context to access movie context and ensure it's used within the provider
   const movieContext = useContext(MovieContext);
@@ -92,20 +86,6 @@ export const Movie = ({ movie, isLoggedIn }: { movie: MovieData; isLoggedIn: boo
             <button className={style.infoButton} onClick={() => setShowInfo(true)}>
               INFO
             </button>
-
-            {/* Modal z informacjami */}
-            {showInfo && (
-              <div className={style.modal}>
-                <div className={style.modalContent}>
-                  <button className={style.closeButton} onClick={() => setShowInfo(false)}>
-                    ✕
-                  </button>
-                  <h2>{movie.title} - Informacje</h2>
-
-                  {movie.link ? <ExternalContent url={movie.link} selector={selector} /> : <p>Brak linku do informacji o filmie.</p>}
-                </div>
-              </div>
-            )}
           </div>
 
           {/* Rating film (stars)*/}
