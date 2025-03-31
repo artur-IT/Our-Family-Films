@@ -1,6 +1,7 @@
 "use client";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { MovieContext } from "@/context/MovieContext";
+import { MovieData } from "@/types/types";
 import styles from "./MovieSearch.module.css";
 import Image from "next/image";
 
@@ -8,18 +9,18 @@ import Image from "next/image";
 // It is stored in the environment variables for security reasons.
 const TMDB_API_KEY = process.env.NEXT_PUBLIC_TMDB_API_KEY;
 
-interface Movie {
-  title: string;
-  poster_path: string;
-  link: string;
-  id: number;
-  media_type: string;
-  release_date?: string;
-  overview?: string;
-  backdrop_path?: string;
-  vote_average?: number;
-  vote_count?: number;
-}
+// interface Movie {
+//   title: string;
+//   poster_path: string;
+//   link: string;
+//   id: number;
+//   media_type: string;
+//   release_date?: string;
+//   overview?: string;
+//   backdrop_path?: string;
+//   vote_average?: number;
+//   vote_count?: number;
+// }
 
 // This is the main component for searching and displaying movie posters.
 // It uses the MovieContext to set the selected title and poster.
@@ -28,11 +29,13 @@ const MovieSearch = ({ clearMovieForm }: { clearMovieForm: () => void }) => {
   const context = useContext(MovieContext);
   const setSelectedTitle = context?.setSelectedTitle;
   const setSelectedPoster = context?.setSelectedPoster;
+  // const movieInfo = context?.movieInfo;
+  const setMovieInfo = context?.setMovieInfo;
   const [movieTitle, setMovieTitle] = useState("");
   const setMovieLink = context?.setMovieLink;
   const postersRef = useRef<HTMLDivElement>(null);
-  const [foundMovies, setFoundMovies] = useState<Movie[]>([]);
-  let movieINFO = {};
+  const [foundMovies, setFoundMovies] = useState<MovieData[]>([]);
+  const tempMovieInfo: MovieData[] = [];
 
   // This effect is used to close the posters when clicking outside of the posters div.
   // It listens for mousedown events and checks if the target is not the posters div or the search button.
@@ -61,22 +64,33 @@ const MovieSearch = ({ clearMovieForm }: { clearMovieForm: () => void }) => {
       const response = await fetch(url);
       if (!response.ok) throw new Error("Network response was not ok");
       const data = await response.json();
+      // console.log(data);
       if (data.results.length > 0) {
-        const movieInfo: Movie[] = [];
-        data.results.forEach(
-          ({ title, poster_path, media_type, id, release_date, overview, backdrop_path, vote_average, vote_count }: Movie) => {
-            const link = `https://www.themoviedb.org/${media_type}/${id}`;
-            if (title || poster_path)
-              movieInfo.push({ title, poster_path, link, id, media_type, release_date, overview, backdrop_path, vote_average, vote_count });
-          }
-        );
-        setFoundMovies(movieInfo as Movie[]);
+        data.results.forEach((result: any) => {
+          const link = `https://www.themoviedb.org/${result.media_type}/${result.id}`;
+          if (title || result.poster_path)
+            tempMovieInfo.push({
+              id: result.id,
+              title: result.title || result.name,
+              info: {
+                image: result.poster_path,
+                link: link,
+                media_type: result.media_type,
+                release_date: result.release_date,
+                overview: result.overview,
+                backdrop_path: result.backdrop_path,
+                vote_average: result.vote_average,
+                vote_count: result.vote_count,
+              },
+            });
+        });
+        setFoundMovies(tempMovieInfo);
       }
     } catch (error) {
       console.error("Error during fetching movie posters:", error);
     }
   };
-  // console.log(foundMovies);
+
   const handleSearch = () => searchMoviePoster(movieTitle);
 
   // The posters div contains the found movie posters.
@@ -103,7 +117,7 @@ const MovieSearch = ({ clearMovieForm }: { clearMovieForm: () => void }) => {
         {foundMovies.map((movie, index) => (
           <Image
             key={index}
-            src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
+            src={`https://image.tmdb.org/t/p/original${movie.info.image}`}
             alt={`Movie Poster ${movie.title}`}
             className={styles.moviePoster}
             width={150}
@@ -111,25 +125,15 @@ const MovieSearch = ({ clearMovieForm }: { clearMovieForm: () => void }) => {
             onClick={() => {
               if (setSelectedTitle && setSelectedPoster) {
                 setSelectedTitle(movie.title);
-                setSelectedPoster(movie.poster_path);
+                setSelectedPoster(movie.info.image);
                 if (setMovieLink) {
-                  setMovieLink(movie.link);
+                  setMovieLink(movie.info.link);
+                }
+                if (setMovieInfo) {
+                  setMovieInfo([movie]);
                 }
                 setFoundMovies([]);
                 setMovieTitle("");
-
-                movieINFO = {
-                  title: movie.title,
-                  poster_path: movie.poster_path,
-                  link: movie.link,
-                  id: movie.id,
-                  media_type: movie.media_type,
-                  release_date: movie.release_date,
-                  overview: movie.overview,
-                  backdrop_path: movie.backdrop_path,
-                  vote_average: movie.vote_average,
-                  vote_count: movie.vote_count,
-                };
               }
             }}
           />

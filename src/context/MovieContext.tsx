@@ -13,6 +13,8 @@ interface MovieContextType {
   selectedTitle: string;
   selectedPoster: string;
   movieLink: string;
+  movieInfo: MovieData[];
+  setMovieInfo: (movieInfo: MovieData[]) => void;
   setSelectedTitle: (title: string) => void;
   setSelectedPoster: (poster: string) => void;
   setMovieLink: (link: string) => void;
@@ -28,6 +30,7 @@ export const MovieProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const [selectedTitle, setSelectedTitle] = useState(initialData.selectedTitle);
   const [selectedPoster, setSelectedPoster] = useState(initialData.selectedPoster);
   const [movieLink, setMovieLink] = useState(initialData.link);
+  const [movieInfo, setMovieInfo] = useState<MovieData[]>([]);
 
   // get movies from MongoDB
   const getMovies = useCallback(async () => {
@@ -133,6 +136,8 @@ export const MovieProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         selectedTitle,
         selectedPoster,
         movieLink,
+        movieInfo,
+        setMovieInfo,
         setSelectedTitle,
         setSelectedPoster,
         setMovieLink,

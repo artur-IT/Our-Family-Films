@@ -14,65 +14,48 @@ interface MovieAddProps {
   setMovieDB?: (value: MovieData[]) => void; // Optional function to set the movie database
 }
 
-// Define the structure of the form inputs
-interface MovieFormInputs {
-  title: string;
-  type: "Film" | "Serial";
-  genre: string;
-  image: string;
-  link: string;
-  id: number;
-  media_type: string;
-  release_date?: string;
-  overview?: string;
-  backdrop_path?: string;
-  vote_average?: number;
-  vote_count?: number;
-}
-
 // Main component for adding a new movie
 const MovieAdd: React.FC<MovieAddProps> = () => {
   const movieAddRef = useRef<HTMLDivElement>(null); // Reference to the movie add form
   const movieContext = useContext(MovieContext); // Access the movie context
   const { toggleShowAddMovie } = useEditMode(); // Get the function to toggle the add movie form visibility
-  const { addMovie, selectedTitle, selectedPoster, movieLink, setSelectedTitle, setSelectedPoster } = movieContext || {}; // Destructure necessary values from context
+  const { addMovie, selectedTitle, selectedPoster, movieLink, movieInfo, setSelectedTitle, setSelectedPoster } = movieContext || {}; // Destructure necessary values from context
   const movieId = useMemo(() => uuidv4().slice(0, 3), []); // Generate a unique movie ID
 
   // Initialize the form with default values
-  const { register, handleSubmit, reset } = useForm<MovieFormInputs>({
+  const { register, handleSubmit, reset } = useForm<MovieData>({
     defaultValues: {
       title: selectedTitle || "",
       type: "Film",
       genre: "",
-      image: "",
-      link: "",
     },
   });
 
-  // Function to handle form submission
-  const onSubmit = async (data: MovieFormInputs) => {
-    const newMovie = createMovie(data);
+  // Zakładając, że movieInfo to tablica, możemy uzyskać pierwszy element (jeśli istnieje)
+  const selectedMovie = movieInfo && movieInfo.length > 0 ? movieInfo[0] : undefined;
+
+  const createMovie = async (data: MovieData) => {
+    const newMovie: MovieData = {
+      order: 0,
+      id: movieId,
+      title: data.title || selectedTitle || "",
+      type: data.type,
+      genre: data.genre,
+      ratings: {},
+      comments: {},
+      info: {
+        image: `https://image.tmdb.org/t/p/w500${selectedPoster}`,
+        link: movieLink || "",
+        media_type: selectedMovie?.info?.media_type || "",
+        release_date: selectedMovie?.info?.release_date || "",
+        overview: selectedMovie?.info?.overview || "",
+        backdrop_path: selectedMovie?.info?.backdrop_path || "",
+        vote_average: selectedMovie?.info?.vote_average || 0,
+        vote_count: selectedMovie?.info?.vote_count || 0,
+      },
+    };
     await saveMovie(newMovie);
   };
-
-  // Function to create a movie object
-  const createMovie = (data: MovieFormInputs) => ({
-    order: 0,
-    id: movieId,
-    title: data.title,
-    type: data.type,
-    genre: data.genre,
-    ratings: {},
-    comments: {},
-    image: `https://image.tmdb.org/t/p/w500${selectedPoster || ""}`,
-    link: movieLink || "",
-    // media_type: string;
-    // release_date?: string;
-    // overview?: string;
-    // backdrop_path?: string;
-    // vote_average?: number;
-    // vote_count?: number;
-  });
 
   // Function to save the new movie to the server
   const saveMovie = async (newMovie: MovieData) => {
@@ -189,7 +172,7 @@ const MovieAdd: React.FC<MovieAddProps> = () => {
     <div className={styles.movieAdd} ref={movieAddRef}>
       <h2>Add new movie</h2>
       <MovieSearch clearMovieForm={clearMovieForm} />
-      <form className={styles.movieAddForm} onSubmit={handleSubmit(onSubmit)}>
+      <form className={styles.movieAddForm} onSubmit={handleSubmit(createMovie)}>
         <InputField id="title" label="Title" register={register} required maxLength={50} defaultValue={selectedTitle} />
         <InputField id="genre" label="Species" register={register} required maxLength={30} />
         <SelectField id="type" label="Type" register={register} options={["Film", "Serial"]} />

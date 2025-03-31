@@ -45,17 +45,18 @@ export const Movie = ({ movie, isLoggedIn }: { movie: MovieData; isLoggedIn: boo
   };
 
   // Calculate the total and average ratings for the movie
-  const totalRatings = Object.values(movie.ratings).reduce((sum, rating) => (sum as number) + (rating as number), 0);
-  const averageRating = (totalRatings as number) / Object.values(movie.ratings).length;
+  const ratings = movie.ratings || {};
+  const totalRatings = Object.values(ratings).reduce((sum, rating) => (sum as number) + (rating as number), 0);
+  const averageRating = Object.values(ratings).length > 0 ? (totalRatings as number) / Object.values(ratings).length : 0;
 
   // Check if there is any rating greater than 0
-  const hasAnyRating = Object.values(movie.ratings).some((rating) => (rating as number) > 0);
+  const hasAnyRating = Object.values(ratings).some((rating) => (rating as number) > 0);
 
   return (
     <>
       {showAddMovie && <MovieAdd />}
 
-      <div className={style.movie} id={movie.id} style={{ backgroundImage: `url(${movie.image})` }}>
+      <div className={style.movie} id={movie.id} style={{ backgroundImage: `url(${movie.info.image})` }}>
         {showDeletePopup && <MovieDeletePopup delete={handleDelete} deletePopup={() => setDeletePopup(!showDeletePopup)} />}
         {isEditMode && (
           <div className={style.movie_description_edit} style={isEditMode ? { opacity: 1 } : undefined}>
@@ -77,7 +78,7 @@ export const Movie = ({ movie, isLoggedIn }: { movie: MovieData; isLoggedIn: boo
         {/* Movie description */}
         <div className={style.movie_description} style={isLoggedIn ? { opacity: 1 } : undefined} id={movie.id}>
           <div className={style.movie_data}>
-            <a href={movie.link} target="_blank">
+            <a href={movie.info.link} target="_blank">
               {movie.title}
             </a>
             <p>{`(${movie.type})`}</p>
@@ -102,7 +103,7 @@ export const Movie = ({ movie, isLoggedIn }: { movie: MovieData; isLoggedIn: boo
 
           {/* User comments */}
           <div className={style.comments_user}>
-            {Object.entries(movie.comments).map(([user, comment]) => (
+            {Object.entries(movie.comments || {}).map(([user, comment]) => (
               <div key={user}>
                 <span>{user} | </span>
                 <span>{comment as string}</span>
