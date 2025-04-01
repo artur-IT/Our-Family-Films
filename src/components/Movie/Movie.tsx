@@ -13,7 +13,6 @@ import { MovieDeletePopup } from "../MovieDeletePopup/MovieDeletePopup";
 export const Movie = ({ movie, isLoggedIn }: { movie: MovieData; isLoggedIn: boolean }) => {
   const [showEditForm, setEditForm] = useState(false);
   const [showDeletePopup, setDeletePopup] = useState(false);
-  const [showInfo, setShowInfo] = useState(false);
 
   // Use context to access movie context and ensure it's used within the provider
   const movieContext = useContext(MovieContext);
@@ -54,10 +53,21 @@ export const Movie = ({ movie, isLoggedIn }: { movie: MovieData; isLoggedIn: boo
 
   // Funkcja obsługująca kliknięcie przycisku INFO
   const handleInfoClick = (e: React.MouseEvent) => {
-    e.stopPropagation(); // Zapobiega propagacji zdarzenia
+    e.stopPropagation();
+
     if (setSelectedMovieId) {
       // Jeśli film jest już wybrany, odznacz go, w przeciwnym razie wybierz
-      setSelectedMovieId(selectedMovieId === movie.id ? null : movie.id);
+      const newSelectedId = selectedMovieId === movie.id ? null : movie.id;
+      setSelectedMovieId(newSelectedId);
+
+      if (newSelectedId) {
+        setTimeout(() => {
+          const movieDetailsElement = document.querySelector('[class*="movieDetailsContainer"]');
+          if (movieDetailsElement) {
+            movieDetailsElement.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        }, 100);
+      }
     }
   };
 

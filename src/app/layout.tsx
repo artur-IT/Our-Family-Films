@@ -54,14 +54,21 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </EditModeProvider>
             </MovieProvider>
           </LoginProvider>
-
-          <div id="stars"></div>
-          <div id="stars2"></div>
-          <div id="stars3"></div>
-          <div id="title">
-            <span>PURE CSS</span>
-            <br />
-            <span>PARALLAX PIXEL STARS</span>
+          <div
+            id="night"
+            style={{
+              position: "fixed",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100vh",
+              zIndex: -1,
+              overflow: "hidden",
+            }}
+          >
+            <div id="stars"></div>
+            <div id="stars2"></div>
+            <div id="stars3"></div>
           </div>
         </body>
       </html>

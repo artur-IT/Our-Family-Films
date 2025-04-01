@@ -53,24 +53,37 @@ const MovieSearch = ({ clearMovieForm }: { clearMovieForm: () => void }) => {
       const data = await response.json();
       // console.log(data);
       if (data.results.length > 0) {
-        data.results.forEach((result: any) => {
-          const link = `https://www.themoviedb.org/${result.media_type}/${result.id}`;
-          if (title || result.poster_path)
-            tempMovieInfo.push({
-              id: result.id,
-              title: result.title || result.name,
-              info: {
-                image: result.poster_path,
-                link: link,
-                media_type: result.media_type,
-                release_date: result.release_date,
-                overview: result.overview,
-                backdrop_path: result.backdrop_path,
-                vote_average: result.vote_average,
-                vote_count: result.vote_count,
-              },
-            });
-        });
+        data.results.forEach(
+          (result: {
+            id: string;
+            title?: string;
+            name?: string;
+            poster_path: string;
+            media_type: string;
+            release_date: string;
+            overview: string;
+            backdrop_path: string;
+            vote_average: number;
+            vote_count: number;
+          }) => {
+            const link = `https://www.themoviedb.org/${result.media_type}/${result.id}`;
+            if (title || result.poster_path)
+              tempMovieInfo.push({
+                id: result.id,
+                title: result.title ? result.title : result.name ? result.name : "",
+                info: {
+                  image: result.poster_path,
+                  link: link,
+                  media_type: result.media_type,
+                  release_date: result.release_date,
+                  overview: result.overview,
+                  backdrop_path: result.backdrop_path,
+                  vote_average: result.vote_average,
+                  vote_count: result.vote_count,
+                },
+              });
+          }
+        );
         setFoundMovies(tempMovieInfo);
       }
     } catch (error) {

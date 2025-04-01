@@ -71,12 +71,6 @@ export const MovieDetails: React.FC = () => {
               </p>
             )}
 
-            {currentMovie?.info.media_type && (
-              <p>
-                <strong>Typ mediów:</strong> {currentMovie.info.media_type}
-              </p>
-            )}
-
             {currentMovie?.info.vote_average !== undefined && (
               <p>
                 <strong>Ocena:</strong> {currentMovie.info.vote_average.toFixed(1)}/10
@@ -88,7 +82,7 @@ export const MovieDetails: React.FC = () => {
 
             {currentMovie?.info.overview && (
               <div className={styles.overview}>
-                <strong>Opis:</strong>
+                <strong>Opis</strong>
                 <p>{currentMovie.info.overview}</p>
               </div>
             )}

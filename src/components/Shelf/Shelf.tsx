@@ -83,7 +83,6 @@ export const Shelf = () => {
       </div>
       <div className={style.shelf_bottom}></div>
 
-      {/* Dodajemy komponent szczegółów filmu */}
       <MovieDetails />
     </>
   );
