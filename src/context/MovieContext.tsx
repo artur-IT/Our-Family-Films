@@ -1,7 +1,7 @@
 "use client";
 import React, { createContext, useCallback, useContext, useEffect, useState } from "react";
 import { MovieData } from "../types/types";
-import { getInitialData } from "@/hydration";
+import { getInitialDataToAddForm } from "@/hydration";
 
 interface MovieContextType {
   movies: MovieData[];
@@ -25,7 +25,7 @@ type MovieUpdateData = Partial<MovieData>;
 export const MovieContext = createContext<MovieContextType | undefined>(undefined);
 
 export const MovieProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const initialData = getInitialData();
+  const initialData = getInitialDataToAddForm();
   const [movies, setMovies] = useState<MovieData[]>(initialData.movies);
   const [selectedTitle, setSelectedTitle] = useState(initialData.selectedTitle);
   const [selectedPoster, setSelectedPoster] = useState(initialData.selectedPoster);

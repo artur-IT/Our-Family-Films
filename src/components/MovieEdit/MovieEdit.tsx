@@ -3,6 +3,7 @@ import styles from "./MovieEdit.module.css";
 import { useForm } from "react-hook-form";
 import { MovieContext } from "@/context/MovieContext";
 import { useEditMode } from "@/context/EditMovieContext";
+import { MovieData } from "@/types/types";
 
 interface MovieFormInputs {
   id?: string;
@@ -16,15 +17,7 @@ interface MovieFormInputs {
 
 interface MovieEditProps {
   setEditForm: (value: boolean) => void; // Function to toggle the edit form visibility
-  movie: {
-    id?: string;
-    title: string;
-    type: string;
-    ratings: Record<string, number>;
-    genre: string;
-    comment?: string;
-    comments?: Record<string, string>;
-  };
+  movie: MovieData;
   id: string; // ID of the movie being edited
 }
 
