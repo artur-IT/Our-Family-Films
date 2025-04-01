@@ -127,10 +127,10 @@ div.button_section {
 
 @media (max-width: 400px) and (orientation: portrait) {
   .movieAdd {
-    width: 90vw;
+    width: 95vw;
     position: absolute;
     left: 50%;
-    top: 230px;
+    top: 85px;
     transform: translate(-50%, -50%);
     padding: 10px 0;
   }

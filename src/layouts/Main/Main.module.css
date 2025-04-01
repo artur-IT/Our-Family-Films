@@ -3,7 +3,6 @@ div.main_container {
   flex-direction: column;
   align-items: center;
   width: 100%;
-  /* background-color: #0f577f; */
 }
 
 @media (max-width: 800px) and (orientation: landscape) {
@@ -14,9 +13,7 @@ div.main_container {
 
 @media (max-width: 400px) and (orientation: portrait) {
   div.main_container {
+    position: relative;
     display: flex;
-    width: 100vw;
-    height: 100vh;
-    top: -90px;
   }
 }

@@ -1,8 +1,8 @@
 .movieDetailsContainer {
   margin: 2rem auto;
   max-width: 1000px;
-  padding: 1rem;
-  background-color: #f5f5f5;
+  padding: 0.2rem;
+  background-color: #000;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   transition: opacity 0.6s ease, transform 0.6s ease;
@@ -86,6 +86,37 @@
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+}
+
+.closeButton {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #666;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.closeButton:hover {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+.detailsCard {
+  position: relative;
+  background-color: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 @media (min-width: 768px) {

@@ -1,18 +1,20 @@
 .hero {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 50px auto;
-  height: 100%;
-  min-height: 250px;
+  min-width: 380px;
+  width: 100%;
+  max-width: 800px;
+  min-height: 150px;
 }
 
 .description {
   position: absolute;
+  display: flex;
   padding: 20px;
-  border-radius: 10px;
-  min-width: 400px;
-  width: 800px;
+  width: 100%;
   height: auto;
   color: #fff;
   text-align: center;
@@ -21,7 +23,6 @@
   font-weight: 100;
   line-height: 1.9rem;
   letter-spacing: 1px;
-  /* background-color: #fff; */
   z-index: 2;
 }
 
@@ -32,11 +33,21 @@
 }
 
 @media (max-width: 400px) and (orientation: portrait) {
+  .hero {
+    display: flex;
+    width: 90%;
+    margin-top: 20px;
+    margin-bottom: 0;
+    min-width: 100%;
+    max-width: 350px;
+  }
+
   .description {
-    width: 97%;
-    top: 30px;
-    padding: 12px;
-    font-size: 0.7rem;
-    line-height: 1rem;
+    display: flex;
+    width: 95%;
+    height: auto;
+    padding: 0 20px;
+    font-size: 0.9rem;
+    line-height: 1.3rem;
   }
 }

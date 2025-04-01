@@ -6,10 +6,24 @@ import Image from "next/image";
 import { MovieData } from "@/types/types";
 
 export const MovieDetails: React.FC = () => {
-  const { movies, selectedMovieId } = useContext(MovieContext) || { movies: [], selectedMovieId: null };
+  const { movies, selectedMovieId, setSelectedMovieId } = useContext(MovieContext) || {
+    movies: [],
+    selectedMovieId: null,
+    setSelectedMovieId: () => {},
+  };
   const [isVisible, setIsVisible] = useState(false);
   const [currentMovie, setCurrentMovie] = useState<MovieData | null>(null);
   const [shouldRender, setShouldRender] = useState(false);
+
+  // Funkcja zamykająca okno szczegółów
+  const handleClose = () => {
+    setIsVisible(false);
+
+    // Po zakończeniu animacji znikania, resetujemy selectedMovieId
+    setTimeout(() => {
+      setSelectedMovieId(null);
+    }, 300);
+  };
 
   // Efekt obsługujący pojawienie się i znikanie komponentu
   useEffect(() => {
@@ -46,6 +60,10 @@ export const MovieDetails: React.FC = () => {
     <div className={`${styles.movieDetailsContainer} ${isVisible ? styles.visible : styles.hidden}`}>
       <div className={styles.detailsCard}>
         <div className={styles.detailsHeader}>
+          <button className={styles.closeButton} onClick={handleClose}>
+            &times;
+          </button>
+
           <h3>{currentMovie?.title}</h3>
           {currentMovie?.type && <span className={styles.type}>{currentMovie.type}</span>}
           {currentMovie?.genre && <span className={styles.genre}>{currentMovie.genre}</span>}

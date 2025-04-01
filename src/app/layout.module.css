@@ -1,5 +1,4 @@
 #root {
-  box-sizing: border-box;
   height: auto;
   min-height: 100%;
   scroll-behavior: smooth;
@@ -29,13 +28,12 @@ body.main {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
   width: 100%;
-  /* min-width: 600px; */
   max-width: 1400px;
   min-height: 100vh;
   margin: 0 auto;
   background-color: rgba(15, 87, 127, 0.2);
-  /* border-radius: 20px; */
   border: 2px solid #000;
   overflow-y: auto;
   position: relative;
@@ -53,5 +51,9 @@ body.main {
     padding: 0;
     font-family: "Roboto Flex", sans-serif;
     font-size: 0.8rem;
+  }
+
+  .wrap {
+    position: relative;
   }
 }

@@ -2,13 +2,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 150px;
+  width: 200px;
   font-size: 0.9rem;
   font-weight: 100;
   margin: 0 auto;
   margin-top: 30px;
   padding: 10px 20px;
   bottom: 0;
+  border: 1px solid #000;
+  border-block-end: none;
   background-color: var(--button);
   color: #fff;
 }
@@ -35,7 +37,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    position: absolute;
+    position: relative;
+    width: 160px;
     padding: 10px 20px;
     bottom: 0;
     font-size: 0.7rem;
