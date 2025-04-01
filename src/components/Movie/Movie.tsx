@@ -18,7 +18,7 @@ export const Movie = ({ movie, isLoggedIn }: { movie: MovieData; isLoggedIn: boo
   // Use context to access movie context and ensure it's used within the provider
   const movieContext = useContext(MovieContext);
   if (!movieContext) throw new Error("Movie must be used within MovieContext.Provider");
-  const { deleteMovie } = movieContext;
+  const { deleteMovie, setSelectedMovieId, selectedMovieId } = movieContext;
 
   // Use custom hook to determine if the app is in edit mode and if the add movie form should be shown
   const { isEditMode, showAddMovie, user } = useEditMode();
@@ -52,6 +52,15 @@ export const Movie = ({ movie, isLoggedIn }: { movie: MovieData; isLoggedIn: boo
   // Check if there is any rating greater than 0
   const hasAnyRating = Object.values(ratings).some((rating) => (rating as number) > 0);
 
+  // Funkcja obsługująca kliknięcie przycisku INFO
+  const handleInfoClick = (e: React.MouseEvent) => {
+    e.stopPropagation(); // Zapobiega propagacji zdarzenia
+    if (setSelectedMovieId) {
+      // Jeśli film jest już wybrany, odznacz go, w przeciwnym razie wybierz
+      setSelectedMovieId(selectedMovieId === movie.id ? null : movie.id);
+    }
+  };
+
   return (
     <>
       {showAddMovie && <MovieAdd />}
@@ -84,7 +93,7 @@ export const Movie = ({ movie, isLoggedIn }: { movie: MovieData; isLoggedIn: boo
             <p>{`(${movie.type})`}</p>
             <p>{movie.genre}</p>
 
-            <button className={style.infoButton} onClick={() => setShowInfo(true)}>
+            <button className={style.infoButton} onClick={handleInfoClick} aria-label="Pokaż szczegóły filmu">
               INFO
             </button>
           </div>

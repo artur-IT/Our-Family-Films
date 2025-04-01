@@ -9,6 +9,7 @@ import { DndContext, closestCenter, KeyboardSensor, PointerSensor, useSensor, us
 import { arrayMove, SortableContext, sortableKeyboardCoordinates, horizontalListSortingStrategy } from "@dnd-kit/sortable";
 import { SortableMovie } from "@/components/SortableMovie/SortableMovie";
 import { EditModeContext } from "@/context/EditMovieContext";
+import { MovieDetails } from "@/components/MovieDetails/MovieDetails";
 
 export const Shelf = () => {
   // Create a reference to the container element for scrolling
@@ -81,6 +82,9 @@ export const Shelf = () => {
         </button>
       </div>
       <div className={style.shelf_bottom}></div>
+
+      {/* Dodajemy komponent szczegółów filmu */}
+      <MovieDetails />
     </>
   );
 };

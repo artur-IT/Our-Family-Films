@@ -9,19 +9,6 @@ import Image from "next/image";
 // It is stored in the environment variables for security reasons.
 const TMDB_API_KEY = process.env.NEXT_PUBLIC_TMDB_API_KEY;
 
-// interface Movie {
-//   title: string;
-//   poster_path: string;
-//   link: string;
-//   id: number;
-//   media_type: string;
-//   release_date?: string;
-//   overview?: string;
-//   backdrop_path?: string;
-//   vote_average?: number;
-//   vote_count?: number;
-// }
-
 // This is the main component for searching and displaying movie posters.
 // It uses the MovieContext to set the selected title and poster.
 // It also has a function to clear the movie form.

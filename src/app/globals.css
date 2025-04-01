@@ -354,27 +354,6 @@ html {
     617px 1627px #fff, 1078px 86px #fff, 2048px 2066px #fff, 2188px 2117px #fff;
 }
 
-#title {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  color: #fff;
-  text-align: center;
-  font-family: "lato", sans-serif;
-  font-weight: 300;
-  font-size: 50px;
-  letter-spacing: 10px;
-  margin-top: -60px;
-  padding-left: 10px;
-}
-#title span {
-  background: -webkit-linear-gradient(white, #38495a);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
 @keyframes animStar {
   from {
     transform: translateY(0px);
