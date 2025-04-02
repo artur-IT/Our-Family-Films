@@ -104,7 +104,6 @@ div.button_section {
 
 @media (max-width: 800px) and (orientation: landscape) {
   .movieAdd {
-    top: -68px;
     height: auto;
     padding: 2px 10px;
   }

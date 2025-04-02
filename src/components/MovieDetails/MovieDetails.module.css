@@ -178,3 +178,9 @@
 .movieLink:hover {
   background-color: #1565c0;
 }
+
+@media (max-width: 800px) and (orientation: landscape) {
+  .detailsContent {
+    flex-direction: row;
+  }
+}

@@ -27,7 +27,7 @@
 }
 
 @media (max-width: 800px) and (orientation: landscape) {
-  .description {
+  .hero {
     display: none;
   }
 }
