@@ -12,15 +12,16 @@ export default function AdminPanel() {
       <button className={style.buttons} onClick={toggleEditMode}>
         {isEditMode ? "EDIT END" : "EDIT MOVIE"}
       </button>
-
-      <button
-        className={style.buttons}
-        onClick={toggleShowAddMovie}
-        disabled={!isEditMode}
-        style={{ visibility: isEditMode ? "visible" : "hidden" }}
-      >
-        ADD MOVIE
-      </button>
+      {isEditMode ? (
+        <button
+          className={style.buttons}
+          onClick={toggleShowAddMovie}
+          disabled={!isEditMode}
+          style={{ visibility: isEditMode ? "visible" : "hidden" }}
+        >
+          ADD MOVIE
+        </button>
+      ) : null}
     </div>
   );
 }
