@@ -16,7 +16,6 @@ const MovieSearch = ({ clearMovieForm }: { clearMovieForm: () => void }) => {
   const context = useContext(MovieContext);
   const setSelectedTitle = context?.setSelectedTitle;
   const setSelectedPoster = context?.setSelectedPoster;
-  // const movieInfo = context?.movieInfo;
   const setMovieInfo = context?.setMovieInfo;
   const [movieTitle, setMovieTitle] = useState("");
   const setMovieLink = context?.setMovieLink;
@@ -51,7 +50,7 @@ const MovieSearch = ({ clearMovieForm }: { clearMovieForm: () => void }) => {
       const response = await fetch(url);
       if (!response.ok) throw new Error("Network response was not ok");
       const data = await response.json();
-      // console.log(data);
+
       if (data.results.length > 0) {
         data.results.forEach(
           (result: {
