@@ -4,6 +4,7 @@ import { MovieContext } from "@/context/MovieContext";
 import styles from "./MovieDetails.module.css";
 import Image from "next/image";
 import { MovieData } from "@/types/types";
+import RatingBar from "../RatingBar/RatingBar";
 
 export const MovieDetails: React.FC = () => {
   const { movies, selectedMovieId, setSelectedMovieId } = useContext(MovieContext) || {
@@ -15,45 +16,45 @@ export const MovieDetails: React.FC = () => {
   const [currentMovie, setCurrentMovie] = useState<MovieData | null>(null);
   const [shouldRender, setShouldRender] = useState(false);
 
-  // Funkcja zamykająca okno szczegółów
+  // Close movie detail window
   const handleClose = () => {
     setIsVisible(false);
 
-    // Po zakończeniu animacji znikania, resetujemy selectedMovieId
+    // After the disappearance animation is finished, we reset the selectedMovieId
     setTimeout(() => {
       setSelectedMovieId(null);
     }, 300);
   };
 
-  // Efekt obsługujący pojawienie się i znikanie komponentu
+  // Effect handling the appearance and disappearance of the component
   useEffect(() => {
     if (selectedMovieId) {
-      // Gdy wybrano film, najpierw przygotuj komponent do renderowania
+      // When a movie is selected, first prepare the component for rendering
       const movie = movies.find((movie) => movie.id === selectedMovieId);
       if (movie) {
         setCurrentMovie(movie);
         setShouldRender(true);
 
-        // Opóźnij pokazanie komponentu, aby dać czas na renderowanie
+        // Delay showing the component to give time for rendering
         setTimeout(() => {
           setIsVisible(true);
         }, 50);
       }
     } else {
-      // Gdy odznaczono film, najpierw ukryj komponent
+      // When a movie is deselected, first hide the component
       setIsVisible(false);
 
-      // Po zakończeniu animacji znikania, przestań renderować komponent
+      // After the disappearance animation is finished, stop rendering the component
       const timer = setTimeout(() => {
         setShouldRender(false);
         setCurrentMovie(null);
-      }, 300); // Czas powinien odpowiadać czasowi animacji CSS
+      }, 300); // Time should match the CSS animation time
 
       return () => clearTimeout(timer);
     }
   }, [selectedMovieId, movies]);
 
-  // Jeśli nie powinniśmy renderować komponentu, zwróć null
+  // If we shouldn't render the component, return null
   if (!shouldRender) return null;
 
   return (
@@ -61,7 +62,7 @@ export const MovieDetails: React.FC = () => {
       <div className={styles.detailsCard}>
         <div className={styles.detailsHeader}>
           <button className={styles.closeButton} onClick={handleClose}>
-            &times;
+            ×
           </button>
 
           <h3>{currentMovie?.title}</h3>
@@ -74,7 +75,7 @@ export const MovieDetails: React.FC = () => {
             {currentMovie?.info.image && (
               <Image
                 src={currentMovie.info.image}
-                alt={`Plakat filmu ${currentMovie.title}`}
+                alt={`Movie poster ${currentMovie.title}`}
                 width={200}
                 height={300}
                 className={styles.poster}
@@ -90,12 +91,13 @@ export const MovieDetails: React.FC = () => {
             )}
 
             {currentMovie?.info.vote_average !== undefined && (
-              <p>
-                <strong>Ocena:</strong> {currentMovie.info.vote_average.toFixed(1)}/10
+              <div className={styles.ratingContainer}>
+                <strong>Ocena:</strong>
+                <RatingBar rating={currentMovie.info.vote_average} />
                 {currentMovie.info.vote_count !== undefined && (
                   <span className={styles.voteCount}> ({currentMovie.info.vote_count} głosów)</span>
                 )}
-              </p>
+              </div>
             )}
 
             {currentMovie?.info.overview && (

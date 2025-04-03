@@ -1,0 +1,25 @@
+.ratingBarContainer {
+  display: flex;
+  align-items: center;
+  margin: 5px 0;
+}
+
+.ratingBar {
+  height: 10px;
+  width: 100px;
+  background-color: #e0e0e0;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-right: 10px;
+}
+
+.ratingFill {
+  height: 100%;
+  border-radius: 5px;
+  transition: width 0.3s ease;
+}
+
+.ratingValue {
+  font-size: 0.9rem;
+  font-weight: bold;
+}

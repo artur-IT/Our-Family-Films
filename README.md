@@ -30,9 +30,9 @@ These are films that we watched with our teenage children. The movies clearly sh
 
 The project uses the API of The Movie Database (TMDB), one of the largest movie databases in the world. With this integration:
 
-Access to up-to-date movie information (descriptions, ratings, cast)
+Access to up-to-date movie information (descriptions, ratings, year of production)
 High-quality movie posters
-Movie metadata (year of production, director, genre)
+Movie metadata (year of production, average rating, description)
 Regular content updates without the need for manual data entry
 Integration with TMDB allows you to focus on curating movies suitable for families, while the technical aspects of movie data are handled by a professional database.
 
@@ -66,8 +66,8 @@ Integration with TMDB allows you to focus on curating movies suitable for famili
 - TMDB API - integration with The Movie Database for retrieving up-to-date movie data
 - React Context API - managing global application state
 - CSS Modules - component styling with class name isolation
-- React Hooks - managing state and effects in function components
-- CSS Animations - smooth transitions between views
+- React Hooks - managing state, effects anf Form in function components
+- CSS Animations - smooth transitions between views details of movie
 - React DnD - implementation of drag & drop functionality for interactive video collection management
 - UUID v4 - generation of unique identifiers for videos
 - Jest/React Testing Library - comprehensive testing of components and functionality
@@ -87,15 +87,13 @@ The project uses [node](https://nodejs.org/en/) and [npm](https://www.npmjs.com/
 - Interactive movie shelf - ability to reorganize movies using drag and drop mechanism
 - Saving changes in the order of videos between sessions
 
-## ✨ Animated background with stars (only CSS !)
+## ✨ Animated background with stars
 
 The application uses a dynamic animated background with a starry sky effect, which adds a unique character and atmosphere when viewing videos:
 
-- Implementation using react-tsparticles library - an advanced tool for creating interactive particle animations
-- Configurable animation parameters (number of stars, speed, interactivity)
-- Performance optimization through the use of WebGL and Canvas
+- Implementation using only CSS, without the need for additional libraries!
+- Configurable animation parameters (number of stars, speed)
 - Responsiveness - the animation adapts to different screen sizes
-- Subtle parallax effect reacting to cursor movement
 
 The animated background not only improves the aesthetics of the application, but also alludes to the magical world of cinema, creating an immersive experience for users browsing movie recommendations.
 
