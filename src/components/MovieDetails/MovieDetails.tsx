@@ -92,7 +92,6 @@ export const MovieDetails: React.FC = () => {
 
             {currentMovie?.info.vote_average !== undefined && (
               <div className={styles.ratingContainer}>
-                <strong>Ocena:</strong>
                 <RatingBar rating={currentMovie.info.vote_average} />
                 {currentMovie.info.vote_count !== undefined && (
                   <span className={styles.voteCount}> ({currentMovie.info.vote_count} głosów)</span>

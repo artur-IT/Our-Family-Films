@@ -18,7 +18,7 @@
   height: auto;
   color: #fff;
   text-align: center;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   font-style: italic;
   font-weight: 100;
   line-height: 1.9rem;
@@ -26,9 +26,25 @@
   z-index: 2;
 }
 
+@media (min-width: 801px) and (max-width: 1000px) and (orientation: landscape) {
+  .hero {
+    margin: 0 auto;
+    min-height: 100px;
+  }
+
+  .description {
+    font-size: 0.9rem;
+    line-height: 1.3rem;
+    justify-content: center;
+  }
+}
+
 @media (max-width: 800px) and (orientation: landscape) {
   .hero {
     display: none;
+  }
+  .description {
+    font-size: 1rem;
   }
 }
 
@@ -47,7 +63,7 @@
     width: 95%;
     height: auto;
     padding: 0 20px;
-    font-size: 0.9rem;
+    font-size: 0.7rem;
     line-height: 1.3rem;
   }
 }

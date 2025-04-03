@@ -2,7 +2,7 @@
   position: relative;
   width: 100%;
   background-color: #fff;
-  padding: 15px;
+  padding: 15px 0px;
   color: #000;
   display: flex;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
@@ -44,6 +44,12 @@
 
 .button:hover {
   background-color: var(--three);
+}
+
+@media (min-width: 801px) and (max-width: 1000px) and (orientation: landscape) {
+  .header {
+    padding: 4px 0;
+  }
 }
 
 @media (max-width: 800px) and (orientation: landscape) {
