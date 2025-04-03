@@ -1,3 +1,5 @@
+# Good Family Movies
+
 <p align="center"> Front page </p>
 
 ![Front page](./public/images/1.png)
@@ -97,16 +99,21 @@ The application uses a dynamic animated background with a starry sky effect, whi
 
 The animated background not only improves the aesthetics of the application, but also alludes to the magical world of cinema, creating an immersive experience for users browsing movie recommendations.
 
-```
-some example code
-
-more code :)
-```
-
 &nbsp;
 
-- five - example with a screenshot
-  <img alt='what it is' src="https://via.placeholder.com/500x200" />
+## 📷 Some example code - screenshots
+
+Search movie posters API:
+
+![](./public/images/api.png)
+
+Drag & drop code:
+
+![](./public/images/drag_drop.png)
+
+Stars CSS background:
+
+![](./public/images/stars.png)
 
 &nbsp;
 
