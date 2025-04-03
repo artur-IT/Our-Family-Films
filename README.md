@@ -1,4 +1,18 @@
-![screen or GIF of your app](https://via.placeholder.com/1000x300)
+<p align="center"> Front page </p>
+
+![Front page](./public/images/1.png)
+
+<p align="center"> Admin Edit Mode: </p>
+
+![](./public/images/2.png)
+
+<p align="center"> Drag&Drop functionality: </p>
+
+![](./public/images/3.png)
+
+<p align="center"> Add new movie and finding/select poster: </p>
+
+![](./public/images/4.png)
 
 # Good Family Movies
 
