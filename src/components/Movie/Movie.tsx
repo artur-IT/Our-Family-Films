@@ -51,12 +51,11 @@ export const Movie = ({ movie, isLoggedIn }: { movie: MovieData; isLoggedIn: boo
   // Check if there is any rating greater than 0
   const hasAnyRating = Object.values(ratings).some((rating) => (rating as number) > 0);
 
-  // Funkcja obsługująca kliknięcie przycisku INFO
   const handleInfoClick = (e: React.MouseEvent) => {
     e.stopPropagation();
 
     if (setSelectedMovieId) {
-      // Jeśli film jest już wybrany, odznacz go, w przeciwnym razie wybierz
+      // If the movie is already selected, deselect it, otherwise select it
       const newSelectedId = selectedMovieId === movie.id ? null : movie.id;
       setSelectedMovieId(newSelectedId);
 

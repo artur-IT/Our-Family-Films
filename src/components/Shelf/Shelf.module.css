@@ -82,12 +82,10 @@
 @media (max-width: 400px) and (orientation: portrait) {
   .shelf {
     position: relative;
-    /* top: 100px; */
     width: 90vw;
   }
   .shelf_bottom {
     position: relative;
-    /* top: 100px; */
     width: 90vw;
     height: 15px;
     background-color: #000;

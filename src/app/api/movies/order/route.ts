@@ -1,12 +1,12 @@
 import { getCollectionMovies } from "@/lib/db";
 import { NextResponse } from "next/server";
 
-// ENDPOINT DO AKTUALIZACJI KOLEJNOŚCI FILMÓW
+// ENDPOINT FOR UPDATING MOVIE ORDER
 export async function POST(request: Request) {
   try {
     const { movies } = await request.json();
     const collection = await getCollectionMovies();
-    // Aktualizuj każdy film z nowym polem order
+
     const updateOperations = movies.map((movie: { id: string }, index: number) => ({
       updateOne: {
         filter: { id: movie.id },

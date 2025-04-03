@@ -40,14 +40,12 @@ Integration with TMDB allows you to focus on curating movies suitable for famili
 
 - Movie browsing - intuitive interface to discover new titles
 - Detailed information - each movie includes description, rating and review
-- Admin panel - ability to add and remove movies (admins only)
+- Admin panel - ability to add and remove movies (admin only)
 - Edit reviews - logged-in users can edit movie reviews
 - Drag & Drop - the ability to move movies on a virtual shelf to adjust their order according to your preferences
 - Animated transitions - smooth animations when viewing movie details
 - Responsive design (only 1 @media) - tailored for mobile and desktop devices.
 - PARALLAX PIXEL STARS background (only CSS)
-
-&nbsp;
 
 ## 💡 Technologies
 
@@ -72,15 +70,11 @@ Integration with TMDB allows you to focus on curating movies suitable for famili
 - UUID v4 - generation of unique identifiers for videos
 - Jest/React Testing Library - comprehensive testing of components and functionality
 
-&nbsp;
-
 ## 💿 Installation
 
 The project uses [node](https://nodejs.org/en/) and [npm](https://www.npmjs.com/). Having them installed, type into the terminal: `npm i` and `npm run dev`.
 
 `http://localhost:3000`
-
-&nbsp;
 
 ## 🤔 Solutions provided in the project
 
@@ -97,8 +91,6 @@ The application uses a dynamic animated background with a starry sky effect, whi
 
 The animated background not only improves the aesthetics of the application, but also alludes to the magical world of cinema, creating an immersive experience for users browsing movie recommendations.
 
-&nbsp;
-
 ## 📷 Some example code - screenshots
 
 Search movie posters API:
@@ -113,19 +105,13 @@ Stars CSS background:
 
 ![](./public/images/stars.png)
 
-&nbsp;
-
 ## 💭 Conclusions for future projects
 
 - Multilingual version (Polish/English)
 
-&nbsp;
-
 ## 🙋‍♂️ Feel free to contact me
 
 Write sth nice ;)
-
-&nbsp;
 
 ## 👏 Thanks
 

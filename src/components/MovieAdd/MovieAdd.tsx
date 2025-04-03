@@ -31,7 +31,7 @@ const MovieAdd: React.FC<MovieAddProps> = () => {
     },
   });
 
-  // Zakładając, że movieInfo to tablica, możemy uzyskać pierwszy element (jeśli istnieje)
+  // Assuming movieInfo is an array, we can get the first element (if it exists)
   const selectedMovie = movieInfo && movieInfo.length > 0 ? movieInfo[0] : undefined;
 
   const createMovie = async (data: MovieData) => {
