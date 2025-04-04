@@ -26,19 +26,16 @@ export const Hero = () => {
           }}
         >
           {slideIndex === 0 && (
-            <>
-              Znajdziesz tu rekomendacje filmów odpowiednich dla całej rodziny. Bez przemocy, wulgarnego języka, scen niemoralnych,
-              kontrowersyjnych treści czy treści podważających podstawowe zasady etyczne.
-            </>
+            <>The site was created for parents looking for valuable movies that are safe to watch with their children and teens.</>
           )}
           {slideIndex === 1 && (
             <>
-              Filmy, które obejrzeliśmy razem z naszymi nastoletnimi dziećmi. Jest w nich wyraźnie zarysowane dobro i zło, promowane są
-              wartości chrześcijańskie m.in. rodzina, przyjaźń, miłość, nadzieja, pomoc słabszym i potrzebującym, poświęcenie, szacunek dla
-              innych.
+              These are films that we watched with our teenage children. The movies clearly show what is good and what is evil, and they
+              promote Christian values like family, friendship, love, hope, helping those in need, sacrifice, and respect for others.
             </>
           )}
-          {slideIndex === 2 && "To filmy, które inspirują, podnoszą na duchu i wzmacniają więzi rodzinne."}
+          {slideIndex === 2 &&
+            "films that are suitable for all the family. We want to avoid films with stupid violence, bad language, scenes that are too sexual, films that are controversial, or films that do not follow basic moral rules"}
         </div>
       ))}
     </div>
