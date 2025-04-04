@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import style from "./Movie.module.css";
 import starEmptyIcon from "../../../public/star-empty.svg";
 import starFullIcon from "../../../public/star-full.svg";
@@ -10,7 +10,7 @@ import { MovieEdit } from "@/components/MovieEdit/MovieEdit";
 import MovieAdd from "../MovieAdd/MovieAdd";
 import { MovieDeletePopup } from "../MovieDeletePopup/MovieDeletePopup";
 
-export const Movie = ({ movie, isLoggedIn }: { movie: MovieData; isLoggedIn: boolean }) => {
+export const Movie = ({ movie, isLoggedIn, index = 0 }: { movie: MovieData; isLoggedIn: boolean; index?: number }) => {
   const [showEditForm, setEditForm] = useState(false);
   const [showDeletePopup, setDeletePopup] = useState(false);
 
@@ -18,6 +18,10 @@ export const Movie = ({ movie, isLoggedIn }: { movie: MovieData; isLoggedIn: boo
   const movieContext = useContext(MovieContext);
   if (!movieContext) throw new Error("Movie must be used within MovieContext.Provider");
   const { deleteMovie, setSelectedMovieId, selectedMovieId } = movieContext;
+
+  const [isVisible, setIsVisible] = useState(false); // Nowy stan do kontrolowania widoczności filmu
+  // Dodajemy klasę do kontrolowania widoczności
+  const movieVisibilityClass = isVisible ? style.visible : style.hidden;
 
   // Use custom hook to determine if the app is in edit mode and if the add movie form should be shown
   const { isEditMode, showAddMovie, user } = useEditMode();
@@ -70,11 +74,21 @@ export const Movie = ({ movie, isLoggedIn }: { movie: MovieData; isLoggedIn: boo
     }
   };
 
+  // Efekt do opóźnionego pokazywania filmu
+  useEffect(() => {
+    const delay = 0 + index * 600;
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, delay); // 2 sekundy opóźnienia
+
+    return () => clearTimeout(timer); // Czyszczenie timera przy odmontowaniu komponentu
+  }, [index]);
+
   return (
     <>
       {showAddMovie && <MovieAdd />}
 
-      <div className={style.movie} id={movie.id} style={{ backgroundImage: `url(${movie.info.image})` }}>
+      <div className={`${style.movie} ${movieVisibilityClass}`} id={movie.id} style={{ backgroundImage: `url(${movie.info.image})` }}>
         {showDeletePopup && <MovieDeletePopup delete={handleDelete} deletePopup={() => setDeletePopup(!showDeletePopup)} />}
         {isEditMode && (
           <div className={style.movie_description_edit} style={isEditMode ? { opacity: 1 } : undefined}>

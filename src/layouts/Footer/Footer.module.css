@@ -9,9 +9,10 @@
   margin-top: 30px;
   padding: 10px 20px;
   bottom: 0;
-  border: 1px solid #000;
+  border: 2px solid #000;
   border-block-end: none;
   background-color: var(--button);
+  border-radius: 10px 10px 0 0;
   color: #fff;
 }
 

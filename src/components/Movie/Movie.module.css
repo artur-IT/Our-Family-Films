@@ -133,6 +133,17 @@ div.rating span {
   color: #ffd43b;
 }
 
+.visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+}
+
+.hidden {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
 @media (max-width: 800px) and (orientation: landscape) {
   .movie {
     position: relative;
