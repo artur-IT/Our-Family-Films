@@ -72,6 +72,16 @@
   }
 }
 
+@media (max-width: 600px) and (orientation: portrait) {
+  .description {
+    font-size: 0.9rem;
+  }
+  .languageToggle {
+    top: -30px;
+    right: 5px;
+  }
+}
+
 @media (max-width: 400px) and (orientation: portrait) {
   .hero {
     display: flex;

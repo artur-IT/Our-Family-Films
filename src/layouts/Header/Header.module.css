@@ -73,6 +73,13 @@
   }
 }
 
+@media (max-width: 600px) and (orientation: portrait) {
+  .header {
+    max-width: 100vw;
+    padding: 5px 0;
+  }
+}
+
 @media (max-width: 400px) and (orientation: portrait) {
   .header {
     max-width: 100vw;

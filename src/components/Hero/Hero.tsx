@@ -18,7 +18,7 @@ export const Hero = () => {
     en: [
       "The site was created for parents looking for valuable movies that are safe to watch with their teens.",
       "These are films that we watched with our teenage children. The movies clearly show what is good and what is evil, and they promote Christian values like family, friendship, love, hope, helping those in need, sacrifice, and respect for others.",
-      "films that are suitable for all the family. We want to avoid films with stupid violence, bad language, scenes that are too sexual, films that are controversial, or films that do not follow basic moral rules",
+      "Films that are suitable for all the family. We want to avoid films with stupid violence, bad language, scenes that are too sexual, films that are controversial, or films that do not follow basic moral rules",
     ],
     pl: [
       "Strona została stworzona dla rodziców poszukujących wartościowych filmów, które można bezpiecznie oglądać z nastolatkami.",
