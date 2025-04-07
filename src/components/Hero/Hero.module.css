@@ -67,3 +67,21 @@
     line-height: 1.3rem;
   }
 }
+.languageToggle {
+  position: absolute;
+  top: -25px;
+  right: -40px;
+  background-color: rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.languageToggle:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
