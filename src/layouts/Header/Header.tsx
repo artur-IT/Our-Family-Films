@@ -5,7 +5,6 @@ import { useLoginState } from "../../context/LoginStateContext";
 import { useEditMode } from "../../context/EditMovieContext";
 import Image from "next/image";
 import React, { useState } from "react";
-import { set } from "mongoose";
 
 const ROUTES = {
   HOME: "/",
