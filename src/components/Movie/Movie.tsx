@@ -74,14 +74,14 @@ export const Movie = ({ movie, isLoggedIn, index = 0 }: { movie: MovieData; isLo
     }
   };
 
-  // Efekt do opóźnionego pokazywania filmu
+  // Effect for delayed movie display
   useEffect(() => {
-    const delay = 0 + index * 600;
+    const delay = 200 + index * 600;
     const timer = setTimeout(() => {
       setIsVisible(true);
-    }, delay); // 2 sekundy opóźnienia
+    }, delay);
 
-    return () => clearTimeout(timer); // Czyszczenie timera przy odmontowaniu komponentu
+    return () => clearTimeout(timer); // Clearing the timer when the component is unmounted
   }, [index]);
 
   return (

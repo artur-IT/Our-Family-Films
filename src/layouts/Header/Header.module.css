@@ -1,5 +1,6 @@
 .header {
   position: relative;
+  top: -70;
   width: 710px;
   background-color: #fff;
   padding: 10px 0px;
@@ -8,6 +9,7 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
   border-radius: 0 0 10px 10px;
   border: 2px solid #000;
+  transition: all 1s ease;
 }
 
 .header nav {

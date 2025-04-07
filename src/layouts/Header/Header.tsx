@@ -4,7 +4,8 @@ import Link from "next/link";
 import { useLoginState } from "../../context/LoginStateContext";
 import { useEditMode } from "../../context/EditMovieContext";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
+import { set } from "mongoose";
 
 const ROUTES = {
   HOME: "/",
@@ -20,6 +21,7 @@ export const Header = React.memo(({ panelLogin }: HeaderProps) => {
   // Get login state and edit mode from context hooks
   const { isLoggedIn, setIsLoggedIn } = useLoginState();
   const { isEditMode, toggleEditMode } = useEditMode();
+  const [afterLoad, setAfterLoad] = useState(false);
 
   // Handle login/logout link click
   // If user is logged in, log them out
@@ -33,9 +35,11 @@ export const Header = React.memo(({ panelLogin }: HeaderProps) => {
     }
   };
 
+  setTimeout(() => setAfterLoad(true), 4000);
+
   return (
     <>
-      <header className={style.header} data-testid="main-header">
+      <header className={style.header} data-testid="main-header" style={afterLoad ? { top: 0 } : undefined}>
         <nav>
           {/* Logo and title link that also handles logout */}
           <Link href="/" onClick={handleLinkLogin}>
