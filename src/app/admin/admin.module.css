@@ -64,6 +64,7 @@
     margin: 0 auto;
     color: #fff;
     background-color: var(--button);
+    z-index: 5;
   }
   .buttons {
     width: 90px;

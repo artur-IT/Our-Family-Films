@@ -38,7 +38,7 @@
   cursor: pointer;
   font-size: 12px;
   transition: all 0.3s ease;
-  z-index: 10;
+  z-index: 1;
 }
 
 .languageToggle:hover {
@@ -89,5 +89,9 @@
     padding: 0 20px;
     font-size: 0.7rem;
     line-height: 1.3rem;
+  }
+  .languageToggle {
+    top: 0px;
+    right: 5px;
   }
 }
