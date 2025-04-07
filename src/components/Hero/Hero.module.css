@@ -26,9 +26,28 @@
   z-index: 2;
 }
 
+.languageToggle {
+  position: absolute;
+  top: -25px;
+  right: -40px;
+  background-color: rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.languageToggle:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
 @media (min-width: 801px) and (max-width: 1000px) and (orientation: landscape) {
   .hero {
-    margin: 0 auto;
+    margin: 10px auto 0 auto;
     min-height: 100px;
   }
 
@@ -36,6 +55,11 @@
     font-size: 0.9rem;
     line-height: 1.3rem;
     justify-content: center;
+  }
+
+  .languageToggle {
+    top: 0;
+    right: -10px;
   }
 }
 
@@ -66,22 +90,4 @@
     font-size: 0.7rem;
     line-height: 1.3rem;
   }
-}
-.languageToggle {
-  position: absolute;
-  top: -25px;
-  right: -40px;
-  background-color: rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  color: white;
-  padding: 5px 10px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 12px;
-  transition: all 0.3s ease;
-  z-index: 10;
-}
-
-.languageToggle:hover {
-  background-color: rgba(255, 255, 255, 0.3);
 }
