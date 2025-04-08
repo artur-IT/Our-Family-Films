@@ -50,11 +50,12 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 5px;
-  width: max-content;
-  width: 300%;
+  /* width: max-content; */
+  width: 90vw;
+  max-width: 1350px;
   margin: 0;
   z-index: 5;
-  background-color: #e3e7ed;
+  background-color: rgba(227, 231, 237, 1);
 }
 
 .moviePoster {

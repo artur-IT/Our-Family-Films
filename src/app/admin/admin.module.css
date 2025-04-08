@@ -50,7 +50,7 @@
   }
 }
 
-@media (max-width: 400px) and (orientation: portrait) {
+@media (max-width: 700px) and (orientation: portrait) {
   .adminPanel {
     position: absolute;
     left: 50%;
