@@ -9,7 +9,7 @@ export const Hero = () => {
   React.useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev === 2 ? 0 : prev + 1));
-    }, 7000);
+    }, 10000);
 
     return () => clearInterval(timer);
   }, []);
@@ -22,8 +22,10 @@ export const Hero = () => {
     ],
     pl: [
       "Strona została stworzona dla rodziców poszukujących wartościowych filmów, które można bezpiecznie oglądać z nastolatkami.",
+
       "To filmy, które oglądaliśmy z naszymi nastoletnimi dziećmi. Filmy wyraźnie pokazują, co jest dobre, a co złe, oraz promują chrześcijańskie wartości, takie jak rodzina, przyjaźń, miłość, nadzieja, pomoc potrzebującym, poświęcenie i szacunek dla innych.",
-      "Filmy odpowiednie dla całej rodziny. Chcemy unikać filmów z bezsensowną przemocą, wulgarnym językiem, zbyt seksualnymi scenami, filmów kontrowersyjnych lub takich, które nie przestrzegają podstawowych zasad moralnych",
+
+      "Filmy odpowiednie dla całej rodziny. Chcemy unikać filmów przemocą, wulgarnym językiem, seksualnymi scenami, filmów kontrowersyjnych lub takich, które nie przestrzegają podstawowych zasad moralnych",
     ],
   };
 
