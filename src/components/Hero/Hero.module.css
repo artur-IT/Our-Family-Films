@@ -30,7 +30,7 @@
   position: absolute;
   top: -25px;
   right: -40px;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.7);
   border: 1px solid rgba(255, 255, 255, 0.4);
   color: white;
   padding: 5px 10px;
@@ -42,7 +42,7 @@
 }
 
 .languageToggle:hover {
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
 @media (min-width: 801px) and (max-width: 1000px) and (orientation: landscape) {

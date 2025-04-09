@@ -1,7 +1,7 @@
 .userPanel {
   position: absolute;
   right: 50%;
-  top: 0px;
+  top: 7px;
   transform: translateX(170px);
   padding: 8px;
   z-index: 10;
@@ -10,7 +10,7 @@
 .userPanel button {
   font-family: "Roboto Flex", serif;
   font-weight: 100;
-  width: 110px;
+  width: 100px;
   height: 35px;
   color: #fff;
   border: none;

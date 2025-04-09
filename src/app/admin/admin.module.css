@@ -3,6 +3,7 @@
   justify-content: center;
   align-items: center;
   width: auto;
+  height: 53px;
   padding: 10px 10px;
   color: #fff;
   background-color: var(--button);
@@ -13,7 +14,7 @@
 .buttons {
   display: flex;
   justify-content: center;
-  width: 97px;
+  width: 90px;
   margin-left: 8px;
   font-family: "Roboto Flex", serif;
   font-weight: 300;
