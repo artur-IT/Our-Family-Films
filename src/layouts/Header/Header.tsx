@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useLoginState } from "../../context/LoginStateContext";
 import { useEditMode } from "../../context/EditMovieContext";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const ROUTES = {
   HOME: "/",
@@ -33,8 +33,11 @@ export const Header = React.memo(({ panelLogin }: HeaderProps) => {
       toggleEditMode();
     }
   };
-
-  setTimeout(() => setAfterLoad(true), 4000);
+  useEffect(() => {
+    const timer = setTimeout(() => setAfterLoad(true), 4000);
+    // Clearing the timer on component unmount
+    return () => clearTimeout(timer);
+  });
 
   return (
     <>
