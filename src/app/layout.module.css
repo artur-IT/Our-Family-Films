@@ -29,7 +29,8 @@ body.main {
   min-height: 100vh;
   margin: 0 auto;
   background-color: rgba(15, 87, 127, 0.2);
-  border: 2px solid #000;
+  border-right: 2px solid #000;
+  border-left: 2px solid #000;
   overflow-y: auto;
   position: relative;
   z-index: 1;
