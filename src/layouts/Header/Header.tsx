@@ -20,7 +20,7 @@ export const Header = React.memo(({ panelLogin }: HeaderProps) => {
   // Get login state and edit mode from context hooks
   const { isLoggedIn, setIsLoggedIn } = useLoginState();
   const { isEditMode, toggleEditMode } = useEditMode();
-  const [afterLoad, setAfterLoad] = useState(false);
+  const [afterLoad, setAfterLoad] = useState(true);
 
   // Handle login/logout link click
   // If user is logged in, log them out
@@ -34,9 +34,19 @@ export const Header = React.memo(({ panelLogin }: HeaderProps) => {
     }
   };
   useEffect(() => {
-    const timer = setTimeout(() => setAfterLoad(true), 4000);
-    // Clearing the timer on component unmount
-    return () => clearTimeout(timer);
+    const isFirstVisit = localStorage.getItem("headerAnimationShown") !== "true";
+
+    if (isFirstVisit) {
+      // Jeśli to pierwszy load, ustaw afterLoad na false i pokaż animację
+      setAfterLoad(false);
+
+      const timer = setTimeout(() => {
+        setAfterLoad(true);
+        localStorage.setItem("headerAnimationShown", "true");
+      }, 4000);
+      // Clearing the timer on component unmount
+      return () => clearTimeout(timer);
+    }
   });
 
   return (
