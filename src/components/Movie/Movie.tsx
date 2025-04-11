@@ -88,7 +88,18 @@ export const Movie = ({ movie, isLoggedIn, index = 0 }: { movie: MovieData; isLo
     <>
       {showAddMovie && <MovieAdd />}
 
-      <div className={`${style.movie} ${movieVisibilityClass}`} id={movie.id} style={{ backgroundImage: `url(${movie.info.image})` }}>
+      <div className={`${style.movie} ${movieVisibilityClass}`} id={movie.id}>
+        <div className={style.posterContainer}>
+          <Image
+            src={movie.info.image}
+            alt={`Plakat filmu ${movie.title}`}
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            priority={index < 4} // Priorytetowe ładowanie dla pierwszych kilku filmów
+            className={style.posterImage}
+          />
+        </div>
+
         {showDeletePopup && <MovieDeletePopup delete={handleDelete} deletePopup={() => setDeletePopup(!showDeletePopup)} />}
         {isEditMode && (
           <div className={style.movie_description_edit} style={isEditMode ? { opacity: 1 } : undefined}>
