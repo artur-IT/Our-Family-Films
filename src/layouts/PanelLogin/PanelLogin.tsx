@@ -92,7 +92,7 @@ export const PanelLogin = () => {
         <div className={styles.formGroup}>
           <label>
             Password:
-            <input type="current-password" id="current-password" {...register("password", { required: true })} />
+            <input type="password" id="current-password" {...register("password", { required: true })} autoComplete="no" />
           </label>
         </div>
         <div className={styles.buttons}>

@@ -112,7 +112,7 @@ const MovieSearch = ({ clearMovieForm }: { clearMovieForm: () => void }) => {
         </button>
       </div>
 
-      <div ref={postersRef} className={styles.posters}>
+      <div ref={postersRef} className={styles.posters} style={{ visibility: foundMovies.length > 0 ? "visible" : "hidden" }}>
         {foundMovies.map((movie, index) => (
           <Image
             key={index}

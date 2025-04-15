@@ -8,18 +8,17 @@ import { useEditMode } from "@/context/EditMovieContext";
 import { v4 as uuidv4 } from "uuid";
 import { FieldValues, Path, useForm, UseFormRegister } from "react-hook-form";
 
-// Define the props for the MovieAdd component
 interface MovieAddProps {
   movieDB?: MovieData[]; // Optional array of movies
-  setMovieDB?: (value: MovieData[]) => void; // Optional function to set the movie database
+  setMovieDB?: (value: MovieData[]) => void;
 }
 
-// Main component for adding a new movie
+
 const MovieAdd: React.FC<MovieAddProps> = () => {
-  const movieAddRef = useRef<HTMLDivElement>(null); // Reference to the movie add form
-  const movieContext = useContext(MovieContext); // Access the movie context
-  const { toggleShowAddMovie } = useEditMode(); // Get the function to toggle the add movie form visibility
-  const { addMovie, selectedTitle, selectedPoster, movieLink, movieInfo, setSelectedTitle, setSelectedPoster } = movieContext || {}; // Destructure necessary values from context
+  const movieAddRef = useRef<HTMLDivElement>(null);
+  const movieContext = useContext(MovieContext);
+  const { toggleShowAddMovie } = useEditMode();
+  const { addMovie, selectedTitle, selectedPoster, movieLink, movieInfo, setSelectedTitle, setSelectedPoster } = movieContext || {};
   const movieId = useMemo(() => uuidv4().slice(0, 3), []); // Generate a unique movie ID
 
   // Initialize the form with default values
@@ -67,10 +66,9 @@ const MovieAdd: React.FC<MovieAddProps> = () => {
       });
 
       if (response.ok) {
-        // Check if the response is successful
-        addMovie?.(newMovie); // Add the new movie to the context
-        setSelectedTitle?.(""); // Clear the selected title
-        toggleShowAddMovie(); // Hide the add movie form
+        addMovie?.(newMovie);
+        setSelectedTitle?.("");
+        toggleShowAddMovie();
       }
     } catch (error) {
       console.error(error);
@@ -79,9 +77,9 @@ const MovieAdd: React.FC<MovieAddProps> = () => {
 
   // Function to clear the movie form
   const clearMovieForm = () => {
-    reset({ title: "", genre: "", type: "Film" }); // Reset form fields to default values
-    setSelectedPoster?.(""); // Clear the selected poster
-    setSelectedTitle?.(""); // Clear the selected title
+    reset({ title: "", genre: "", type: "Film" });
+    setSelectedPoster?.("");
+    setSelectedTitle?.("");
   };
 
   useEffect(() => {

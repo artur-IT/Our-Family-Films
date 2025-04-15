@@ -50,10 +50,10 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 5px;
-  /* width: max-content; */
   width: 90vw;
   max-width: 1350px;
   margin: 0;
+  padding: 40px;
   z-index: 5;
   background-color: rgba(227, 231, 237, 1);
 }
@@ -79,11 +79,13 @@
   }
   .posters {
     width: 100vw;
+    padding: 10px;
   }
 }
 
 @media (max-width: 400px) and (orientation: portrait) {
   .posters {
     width: 100vw;
+    padding: 10px;
   }
 }

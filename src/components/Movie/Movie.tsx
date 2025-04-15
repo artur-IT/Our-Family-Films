@@ -95,7 +95,7 @@ export const Movie = ({ movie, isLoggedIn, index = 0 }: { movie: MovieData; isLo
             alt={`Plakat filmu ${movie.title}`}
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            priority={index < 4} // Priorytetowe ładowanie dla pierwszych kilku filmów
+            priority={index < 4}
             className={style.posterImage}
           />
         </div>
