@@ -65,6 +65,7 @@ Integration with TMDB allows you to focus on curating movies suitable for famili
 - React Context API - managing global application state
 - CSS Modules - component styling with class name isolation
 - React Hooks - managing state, effects anf Form in function components
+- React Hook Form - handling form data in React
 - CSS Animations - smooth transitions between views details of movie
 - React DnD - implementation of drag & drop functionality for interactive video collection management
 - UUID v4 - generation of unique identifiers for videos

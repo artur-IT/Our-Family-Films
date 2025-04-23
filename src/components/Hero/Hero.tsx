@@ -16,16 +16,18 @@ export const Hero = () => {
 
   const content = {
     en: [
-      "The site was created for parents looking for valuable movies that are safe to watch with their teens.",
-      "These are films that we watched with our teenage children. The movies clearly show what is good and what is evil, and they promote Christian values like family, friendship, love, hope, helping those in need, sacrifice, and respect for others.",
-      "Films that are suitable for all the family. We want to avoid films with stupid violence, bad language, scenes that are too sexual, films that are controversial, or films that do not follow basic moral rules",
+      "The site was created for parents looking for valuable movies that are safe to watch with their teenagers.",
+
+      "These are the movies we watched with our teenage children. The movies clearly show what is right and wrong and promote Christian values such as family, friendship, love, hope, helping those in need, sacrifice and respect for others.",
+
+      "Movies suitable for the whole family. We avoid films with violence, vulgar language, sexual scenes, controversial films or those that do not follow basic moral principles.",
     ],
     pl: [
       "Strona została stworzona dla rodziców poszukujących wartościowych filmów, które można bezpiecznie oglądać z nastolatkami.",
 
       "To filmy, które oglądaliśmy z naszymi nastoletnimi dziećmi. Filmy wyraźnie pokazują, co jest dobre, a co złe, oraz promują chrześcijańskie wartości, takie jak rodzina, przyjaźń, miłość, nadzieja, pomoc potrzebującym, poświęcenie i szacunek dla innych.",
 
-      "Filmy odpowiednie dla całej rodziny. Chcemy unikać filmów przemocą, wulgarnym językiem, seksualnymi scenami, filmów kontrowersyjnych lub takich, które nie przestrzegają podstawowych zasad moralnych",
+      "Filmy odpowiednie dla całej rodziny. Unikamy filmów z przemocą, wulgarnym językiem, seksualnymi scenami, filmów kontrowersyjnych lub takich, które nie przestrzegają podstawowych zasad moralnych",
     ],
   };
 
