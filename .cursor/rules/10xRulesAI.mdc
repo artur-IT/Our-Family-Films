@@ -13,36 +13,54 @@ alwaysApply: true
 
 #### I am a beginner
 
-- When running in agent mode, execute up to 3 actions at a time and ask for approval or course correction afterwards.
+<!-- - When running in agent mode, execute up to 3 actions at a time and ask for approval or course correction afterwards.
 - Write code with clear variable names and include explanatory comments for non-obvious logic. Avoid shorthand syntax and complex patterns.
 - Provide full implementations rather than partial snippets. Include import statements, required dependencies, and initialization code.
 - Add defensive coding patterns and clear error handling. Include validation for user inputs and explicit type checking.
 - Suggest simpler solutions first, then offer more optimized versions with explanations of the trade-offs.
 - Briefly explain why certain approaches are used and link to relevant documentation or learning resources.
 - When suggesting fixes for errors, explain the root cause and how the solution addresses it to build understanding. Ask for confirmation before proceeding.
-- Offer introducing basic test cases that demonstrate how the code works and common edge cases to consider.
-
+- Offer introducing basic test cases that demonstrate how the code works and common edge cases to consider. -->
+ Podczas pracy w trybie agenta wykonuj do 3 akcji jednocześnie, a następnie poproś o zatwierdzenie lub korektę kursu.
+- Pisz kod z jasnymi nazwami zmiennych i dołączaj komentarze wyjaśniające nieoczywistą logikę. Unikaj skróconej składni i złożonych wzorców.
+- Dostarczaj pełne implementacje, a nie częściowe fragmenty. Dołącz instrukcje importu, wymagane zależności i kod inicjalizacyjny.
+- Dodaj defensywne wzorce kodowania i jasną obsługę błędów. Dołącz walidację danych wejściowych użytkownika i jawne sprawdzanie typów.
+- Sugeruj najpierw prostsze rozwiązania, a następnie oferuj bardziej zoptymalizowane wersje z wyjaśnieniem kompromisów.
+- Krótko wyjaśnij, dlaczego stosowane są określone podejścia i podaj link do odpowiedniej dokumentacji lub zasobów edukacyjnych.
+- Sugerując poprawki błędów, wyjaśnij pierwotną przyczynę i sposób, w jaki rozwiązanie ją rozwiązuje, aby zbudować zrozumienie. Poproś o potwierdzenie przed kontynuowaniem.
+- Zaproponuj wprowadzenie podstawowych przypadków testowych, które zademonstrują sposób działania kodu i typowe przypadki brzegowe do rozważenia.
 
 ### Guidelines for Version Control
 
 #### Git
 
-- Use conventional commits to create meaningful commit messages
+<!-- - Use conventional commits to create meaningful commit messages
 - Use feature branches with descriptive names following {{branch_naming_convention}}
 - Write meaningful commit messages that explain why changes were made, not just what
 - Keep commits focused on single logical changes to facilitate code review and bisection
 - Use interactive rebase to clean up history before merging feature branches
-- Leverage git hooks to enforce code quality checks before commits and pushes
+- Leverage git hooks to enforce code quality checks before commits and pushes -->
+- Używanie konwencjonalnych zatwierdzeń do tworzenia znaczących komunikatów zatwierdzenia
+- Używanie gałęzi funkcji z opisowymi nazwami zgodnie z {{branch_naming_convention}}.
+- Pisz znaczące komunikaty zatwierdzenia, które wyjaśniają, dlaczego wprowadzono zmiany, a nie tylko co
+- Utrzymuj zatwierdzenia skoncentrowane na pojedynczych logicznych zmianach, aby ułatwić przegląd kodu i bisection
+- Użyj interaktywnego rebase, aby wyczyścić historię przed scaleniem gałęzi funkcji
+- Wykorzystaj haki git, aby wymusić kontrole jakości kodu przed zatwierdzeniem i wypchnięciem
 
 #### Conventional Commits
 
-- Follow the format: type(scope): description for all commit messages
+<!-- - Follow the format: type(scope): description for all commit messages
 - Use consistent types (feat, fix, docs, style, refactor, test, chore) across the project
 - Define clear scopes based on {{project_modules}} to indicate affected areas
 - Include issue references in commit messages to link changes to requirements
 - Use breaking change footer (!: or BREAKING CHANGE:) to clearly mark incompatible changes
-- Configure commitlint to automatically enforce conventional commit format
-
+- Configure commitlint to automatically enforce conventional commit format -->
+- Postępuj zgodnie z formatem: type(scope): description dla wszystkich komunikatów commit
+- Używaj spójnych typów (feat, fix, docs, style, refactor, test, chore) w całym projekcie
+- Zdefiniuj wyraźne zakresy oparte na {{project_modules}}, aby wskazać obszary, których dotyczą
+- Uwzględnij odniesienia do zagadnień w komunikatach commit, aby powiązać zmiany z wymaganiami
+- Użyj stopki zmiany łamiącej (!: lub BREAKING CHANGE:), aby wyraźnie oznaczyć niekompatybilne zmiany
+- Skonfiguruj commitlint, aby automatycznie wymuszał konwencjonalny format zatwierdzania
 
 ## Frontend
 
@@ -50,7 +68,7 @@ alwaysApply: true
 
 #### React Coding Standards
 
-- Use functional components with hooks instead of class components
+<!-- - Use functional components with hooks instead of class components
 - Implement React.memo() for expensive components that render often with the same props
 - Utilize React.lazy() and Suspense for code-splitting and performance optimization
 - Use the useCallback hook for event handlers passed to child components to prevent unnecessary re-renders
@@ -59,11 +77,21 @@ alwaysApply: true
 - Use the new use hook for data fetching in React 19+ projects
 - Leverage Server Components for {{data_fetching_heavy_components}} when using React with Next.js or similar frameworks
 - Consider using the new useOptimistic hook for optimistic UI updates in forms
-- Use useTransition for non-urgent state updates to keep the UI responsive
+- Use useTransition for non-urgent state updates to keep the UI responsive -->
+- Używaj komponentów funkcjonalnych z hakami zamiast komponentów klasowych
+- Zaimplementuj React.memo() dla drogich komponentów, które często renderują się z tymi samymi rekwizytami
+- Wykorzystaj React. lazy() i Suspense do dzielenia kodu i optymalizacji wydajności
+- Używaj haka useCallback dla obsługi zdarzeń przekazywanych do komponentów potomnych, aby zapobiec niepotrzebnemu ponownemu renderowaniu
+- Preferuj useMemo dla drogich obliczeń, aby uniknąć ponownego obliczania przy każdym renderowaniu
+- Zaimplementuj useId() do generowania unikalnych identyfikatorów dla atrybutów dostępności
+- Użyj nowego haka use do pobierania danych w projektach React 19+
+- Wykorzystaj komponenty serwera dla {{data_fetching_heavy_components}} podczas używania Reacta z Next. js lub podobnymi frameworkami
+- Rozważ użycie nowego haka useOptimistic do optymistycznych aktualizacji interfejsu użytkownika w formularzach
+- Używaj useTransition do niepilnych aktualizacji stanu, aby zachować responsywność interfejsu użytkownika.
 
 #### Next.js
 
-- Use App Router and Server Components for improved performance and SEO
+<!-- - Use App Router and Server Components for improved performance and SEO
 - Implement route handlers for API endpoints instead of the pages/api directory
 - Use server actions for form handling and data mutations from Server Components
 - Leverage Next.js Image component with proper sizing for core web vitals optimization
@@ -72,11 +100,21 @@ alwaysApply: true
 - Implement Streaming and Suspense for improved loading states
 - Use the new Link component without requiring a child <a> tag
 - Leverage parallel routes for complex layouts and parallel data fetching
-- Implement intercepting routes for modal patterns and nested UIs
+- Implement intercepting routes for modal patterns and nested UIs -->
+- Wykorzystanie App Router i Server Components w celu poprawy wydajności i SEO
+- Wdrożenie obsługi tras dla punktów końcowych API zamiast katalogu pages/api
+- Wykorzystanie akcji serwera do obsługi formularzy i mutacji danych z Server Components
+- Wykorzystanie komponentu Next. js Image z odpowiednim rozmiarem dla optymalizacji podstawowych elementów strony
+- Zaimplementuj Metadata API dla dynamicznej optymalizacji SEO
+- Użyj React Server Components dla {{data_fetching_operations}}, aby zredukować JavaScript po stronie klienta
+- Zaimplementuj Streaming i Suspense dla lepszych stanów ładowania
+- Użyj nowego komponentu Link bez konieczności stosowania podrzędnego tagu <a>
+- Wykorzystaj równoległe trasy dla złożonych układów i równoległego pobierania danych
+- Zaimplementuj przechwytywanie tras dla wzorców modalnych i zagnieżdżonych interfejsów użytkownika
 
 #### React Query
 
-- Use TanStack Query (formerly React Query) with appropriate staleTime and gcTime based on data freshness requirements
+<!-- - Use TanStack Query (formerly React Query) with appropriate staleTime and gcTime based on data freshness requirements
 - Implement the useInfiniteQuery hook for pagination and infinite scrolling
 - Use optimistic updates for mutations to make the UI feel more responsive
 - Leverage queryClient.setQueryDefaults to establish consistent settings for query categories
@@ -85,14 +123,23 @@ alwaysApply: true
 - Use the select option to transform and extract specific data from query results
 - Implement mutations with onMutate, onError, and onSettled for robust error handling
 - Use Query Keys structuring pattern ([entity, params]) for better organization and automatic refetching
-- Implement query invalidation strategies to keep data fresh after mutations
-
+- Implement query invalidation strategies to keep data fresh after mutations -->
+- Użyj TanStack Query (dawniej React Query) z odpowiednimi staleTime i gcTime w oparciu o wymagania dotyczące świeżości danych
+- Zaimplementuj hak useInfiniteQuery do paginacji i nieskończonego przewijania
+- Użyj optymistycznych aktualizacji dla mutacji, aby interfejs użytkownika był bardziej responsywny
+- Wykorzystaj queryClient. setQueryDefaults w celu ustalenia spójnych ustawień dla kategorii zapytań
+- Użyj trybu suspense z granicami <Suspense> dla bardziej deklaratywnego podejścia do pobierania danych
+- Zaimplementuj logikę ponawiania z niestandardowymi algorytmami backoff dla przejściowych problemów sieciowych
+- Użyj opcji select do przekształcania i wyodrębniania określonych danych z wyników zapytań
+- Zaimplementuj mutacje z onMutate, onError i onSettled dla solidnej obsługi błędów
+- Użyj wzorca struktury Query Keys ([entity, params]) dla lepszej organizacji i automatycznego ponownego pobierania
+- Zaimplementuj strategie unieważniania zapytań, aby zachować świeżość danych po mutacjach
 
 ### Guidelines for Styling
 
 #### Styled Components
 
-- Use the ThemeProvider for consistent theming across components
+<!-- - Use the ThemeProvider for consistent theming across components
 - Implement the css helper for sharing styles between components
 - Use props for conditional styling within template literals
 - Leverage the createGlobalStyle for global styling
@@ -101,8 +148,17 @@ alwaysApply: true
 - Leverage styled(Component) syntax for extending existing components
 - Implement the css prop for one-off styling needs
 - Use the & character for nesting selectors
-- Leverage the keyframes helper for animations
-
+- Leverage the keyframes helper for animations -->
+- Użyj ThemeProvider do spójnego tworzenia motywów w komponentach
+- Zaimplementuj pomocnika css do współdzielenia stylów między komponentami
+- Użyj rekwizytów do stylizacji warunkowej w literałach szablonu
+- Wykorzystaj createGlobalStyle do stylizacji globalnej
+- Zaimplementuj metodę attrs do przekazywania atrybutów HTML do bazowych elementów DOM
+- Użyj właściwości as do dynamicznego renderowania komponentów
+- Wykorzystaj składnię styled(Component) do rozszerzania istniejących komponentów
+- Zaimplementuj właściwość css dla jednorazowych potrzeb stylizacji
+- Użyj znaku & do zagnieżdżania selektorów
+- Wykorzystaj pomocnika keyframes do animacji
 
 ## Database
 
@@ -110,10 +166,12 @@ alwaysApply: true
 
 #### MongoDB
 
-- Use the aggregation framework for complex queries instead of multiple queries
+<!-- - Use the aggregation framework for complex queries instead of multiple queries
 - Implement schema validation to ensure data consistency for {{document_types}}
-- Use indexes for frequently queried fields to improve performance
-
+- Use indexes for frequently queried fields to improve performance -->
+- Używanie struktury agregacji dla złożonych zapytań zamiast wielu zapytań
+- Wdrożenie walidacji schematu w celu zapewnienia spójności danych dla {{document_types}}.
+- Użyj indeksów dla często wyszukiwanych pól, aby poprawić wydajność
 
 ## Testing
 
@@ -121,7 +179,7 @@ alwaysApply: true
 
 #### Jest
 
-- Use Jest with TypeScript for type checking in tests
+<!-- - Use Jest with TypeScript for type checking in tests
 - Implement Testing Library for component testing instead of enzyme
 - Use snapshot testing sparingly and only for stable UI components
 - Leverage mock functions and spies for isolating units of code
@@ -130,6 +188,14 @@ alwaysApply: true
 - Leverage expect assertions with specific matchers
 - Implement code coverage reporting with meaningful targets
 - Use mockResolvedValue and mockRejectedValue for async testing
-- Leverage fake timers for testing time-dependent functionality
-
-
+- Leverage fake timers for testing time-dependent functionality -->
+- Używaj Jest z TypeScript do sprawdzania typów w testach
+- Wdrażaj Testing Library do testowania komponentów zamiast enzymów
+- Używaj testów migawkowych oszczędnie i tylko dla stabilnych komponentów UI
+- Wykorzystuj funkcje mock i szpiegów do izolowania jednostek kodu
+- Wdrażaj konfigurację i usuwanie testów za pomocą beforeEach i afterEach
+- Używaj bloków describe do organizowania powiązanych testów. Użyj bloków describe do organizowania powiązanych testów
+- Wykorzystaj asercje expect z określonymi matcherami
+- Zaimplementuj raportowanie pokrycia kodu za pomocą znaczących celów
+- Użyj mockResolvedValue i mockRejectedValue do testowania asynchronicznego
+- Wykorzystaj fałszywe timery do testowania funkcjonalności zależnych od czasu
