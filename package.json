@@ -19,9 +19,7 @@
     "@dnd-kit/utilities": "^3.2.2",
     "@types/bcrypt": "^6.0.0",
     "bcrypt": "^6.0.0",
-    "cheerio": "^1.0.0",
     "mongodb": "^6.13.1",
-    "mongoose": "^8.10.1",
     "next": "^15.1.7",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
@@ -29,9 +27,6 @@
     "uuid": "^11.1.0"
   },
   "devDependencies": {
-    "@babel/preset-env": "^7.26.9",
-    "@babel/preset-react": "^7.26.3",
-    "@babel/preset-typescript": "^7.26.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.2.0",
     "@types/jest": "^29.5.14",
@@ -41,14 +36,12 @@
     "concurrently": "^9.1.2",
     "eslint": "^9",
     "eslint-config-next": "15.1.7",
-    "identity-obj-proxy": "^3.0.0",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
     "postcss": "^8",
     "ts-jest": "^29.2.6",
     "ts-node": "^10.9.2",
-    "typescript": "^5",
-    "vitest": "^3.0.8"
+    "typescript": "^5"
   },
   "compilerOptions": {
     "types": [
