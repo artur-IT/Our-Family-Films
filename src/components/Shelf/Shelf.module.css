@@ -22,9 +22,6 @@
   /* Hide scrollbar in IE */
   -ms-overflow-style: none;
 }
-&::-webkit-scrollbar {
-  display: none;
-}
 
 .scroll_button {
   width: 30px;
@@ -43,6 +40,7 @@
 .scroll_button:hover {
   background-color: rgba(0, 0, 0, 0.9);
 }
+
 /* end style Movie Container */
 
 .shelf_bottom {
@@ -60,6 +58,7 @@
     height: 225px;
     align-items: center;
   }
+
   .shelf_movie_container {
     width: 1400px;
     display: flex;
@@ -71,9 +70,11 @@
     scrollbar-width: none;
     -ms-overflow-style: none;
   }
+
   .scroll_button {
     padding: 5px;
   }
+
   .shelf_bottom {
     width: 95%;
   }
@@ -84,6 +85,7 @@
     position: relative;
     width: 90vw;
   }
+
   .shelf_bottom {
     position: relative;
     width: 90vw;

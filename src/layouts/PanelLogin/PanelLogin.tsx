@@ -6,11 +6,6 @@ import { useEditMode } from "@/context/EditMovieContext";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-interface User {
-  username: string;
-  password: string;
-}
-
 const ANIMATION_DURATION = 500;
 const ADMIN_USERNAME = "ar";
 const ROUTES = {
@@ -20,10 +15,9 @@ const ROUTES = {
 } as const;
 
 export const PanelLogin = () => {
-  // Custom hooks and state management
   const { checkUser } = useEditMode();
   const router = useRouter();
-  const { isLoggedIn, setIsLoggedIn, users } = useLoginState();
+  const { setIsLoggedIn } = useLoginState();
   const { register, handleSubmit } = useForm();
   const [isAnimating, setIsAnimating] = useState(false);
   const pathname = usePathname();
@@ -31,26 +25,44 @@ export const PanelLogin = () => {
 
   // Handle form submission and user authentication
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-    // Find user in users array matching provided credentials
-    const foundUser = users.find((user: User) => user.username === data.username && user.password === data.password);
+    try {
+      setError(null); // Clear any previous errors
 
-    if (foundUser) {
-      // If user found, update login state and set authentication cookie
-      setIsLoggedIn(!isLoggedIn);
-      checkUser(foundUser.name);
-      document.cookie = "auth=true; path=/";
-      setIsAnimating(false);
+      // Send credentials to API for authentication
+      // The API will handle password comparison securely on the server side
+      const response = await fetch("/api/auth", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: data.username,
+          password: data.password,
+        }),
+      });
 
-      // Redirect user based on their role after animation
-      setTimeout(async () => {
-        if (foundUser.username === ADMIN_USERNAME) {
-          await router.push(ROUTES.ADMIN);
-        } else {
-          await router.push(ROUTES.USER);
-        }
-      }, ANIMATION_DURATION);
-    } else {
-      setError("Wrong user or password!");
+      const result = await response.json();
+
+      if (result.success && result.user) {
+        setIsLoggedIn(true);
+        checkUser(result.user.name || result.user.username);
+        document.cookie = "auth=true; path=/";
+        setIsAnimating(false);
+
+        // Redirect user based on their role after animation
+        setTimeout(async () => {
+          if (result.user.username === ADMIN_USERNAME) {
+            await router.push(ROUTES.ADMIN);
+          } else {
+            await router.push(ROUTES.USER);
+          }
+        }, ANIMATION_DURATION);
+      } else {
+        setError("Wrong user or password!");
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+      setError("An error occurred during login. Please try again.");
     }
   };
 
