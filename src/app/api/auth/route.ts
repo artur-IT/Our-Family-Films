@@ -9,7 +9,7 @@ export async function GET() {
     const collection = await getCollectionUsers();
     const users = await collection.find({}).toArray();
     // Remove password field from response for security
-    const usersWithoutPasswords = users.map(({ password, ...user }) => user);
+    const usersWithoutPasswords = users.map(({  ...user }) => user);
     // Return the users as a JSON response (without passwords)
     return NextResponse.json(usersWithoutPasswords);
   } catch (error) {
@@ -43,7 +43,7 @@ export async function PATCH(request: Request) {
     }
 
     // Remove password from response for security
-    const { password, ...responseData } = movieData;
+    const {  ...responseData } = movieData;
 
     // Return a success response with the updated user data (without password)
     return NextResponse.json({
