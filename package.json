@@ -10,12 +10,15 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
-    "dev:test": "concurrently \"npm run dev\" \"npm run test:watch\""
+    "dev:test": "concurrently \"npm run dev\" \"npm run test:watch\"",
+    "migrate:passwords": "ts-node scripts/migrate-passwords.ts"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",
     "@dnd-kit/sortable": "^10.0.0",
     "@dnd-kit/utilities": "^3.2.2",
+    "@types/bcrypt": "^6.0.0",
+    "bcrypt": "^6.0.0",
     "cheerio": "^1.0.0",
     "mongodb": "^6.13.1",
     "mongoose": "^8.10.1",
