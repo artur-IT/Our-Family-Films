@@ -13,6 +13,10 @@ jobs:
     # Run on the latest Ubuntu (Linux) runner
     runs-on: ubuntu-latest
 
+    # Environment variables available to all steps in this job
+    env:
+      MONGODB_URI: ${{ secrets.MONGODB_URI }}
+
     # Steps are individual actions that run in sequence
     steps:
       # Step 1: Checkout code from repository
