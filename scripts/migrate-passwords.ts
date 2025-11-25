@@ -42,16 +42,16 @@ async function migratePasswords() {
     for (const user of users) {
       const password = user.password;
 
-      // Check if password is already hashed (bcrypt hashes start with $2a$ or $2b$)
-      if (password && (password.startsWith("$2a$") || password.startsWith("$2b$"))) {
-        console.log(`⏭️  Skipping user "${user.username}" - password already hashed`);
+      // Skip if password is empty, undefined, or not a string
+      if (!password || typeof password !== "string") {
+        console.log(`⚠️  Skipping user "${user.username}" - no valid password found (type: ${typeof password})`);
         skippedCount++;
         continue;
       }
 
-      // Skip if password is empty or undefined
-      if (!password) {
-        console.log(`⚠️  Skipping user "${user.username}" - no password found`);
+      // Check if password is already hashed (bcrypt hashes start with $2a$ or $2b$)
+      if (password.startsWith("$2a$") || password.startsWith("$2b$")) {
+        console.log(`⏭️  Skipping user "${user.username}" - password already hashed`);
         skippedCount++;
         continue;
       }

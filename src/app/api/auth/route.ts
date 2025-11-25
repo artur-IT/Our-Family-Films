@@ -26,6 +26,11 @@ export async function PATCH(request: Request) {
 
     // If password is being updated, hash it before storing
     if (updateData.password) {
+      // Validate that password is a string before processing
+      if (typeof updateData.password !== "string") {
+        return NextResponse.json({ error: "Password must be a string" }, { status: 400 });
+      }
+
       // Check if password is already hashed (starts with $2a$ or $2b$)
       const isAlreadyHashed = updateData.password.startsWith("$2a$") || updateData.password.startsWith("$2b$");
       
@@ -78,9 +83,11 @@ export async function POST(request: Request) {
 
     // Compare the provided password with the stored hashed password
     // This works for both hashed passwords (new) and plain text passwords (old - for migration)
-    const isPasswordValid = user.password.startsWith("$2b$") || user.password.startsWith("$2a$")
-      ? await comparePassword(password, user.password)
-      : user.password === password; // Fallback for old plain text passwords during migration
+    // Check if stored password is a string and if it's already hashed
+    const isPasswordValid = 
+      typeof user.password === "string" && (user.password.startsWith("$2b$") || user.password.startsWith("$2a$"))
+        ? await comparePassword(password, user.password)
+        : user.password === password; // Fallback for old plain text passwords during migration
 
     if (!isPasswordValid) {
       return NextResponse.json({ success: false }, { status: 401 });
