@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useLoginState } from "../../context/LoginStateContext";
 import { useEditMode } from "../../context/EditMovieContext";
 import Image from "next/image";
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback } from "react";
 
 const ROUTES = {
   HOME: "/",
