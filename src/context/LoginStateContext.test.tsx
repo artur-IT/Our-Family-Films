@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen, waitFor, act } from "@testing-library/react";
-import { LoginProvider, useLoginState, LoginStateContext } from "./LoginStateContext";
+import { LoginProvider, useLoginState } from "./LoginStateContext";
 
 // Mock fetch globally
 global.fetch = jest.fn();

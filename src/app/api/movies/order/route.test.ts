@@ -10,17 +10,22 @@ jest.mock("@/lib/db", () => ({
 // Mock NextResponse
 jest.mock("next/server", () => ({
   NextResponse: {
-    json: jest.fn((data, init) => ({
+    json: jest.fn((data: unknown, init?: { status?: number }) => ({
       json: async () => data,
       status: init?.status || 200,
-      ...data,
+      ...(typeof data === "object" && data !== null ? data : {}),
     })),
   },
 }));
 
+// Type for mock MongoDB collection
+interface MockCollection {
+  bulkWrite: jest.Mock;
+}
+
 describe("Movies Order API Route", () => {
   // Mock collection with methods
-  let mockCollection: any;
+  let mockCollection: MockCollection;
 
   beforeEach(() => {
     // Reset all mocks before each test
@@ -52,7 +57,7 @@ describe("Movies Order API Route", () => {
 
       const request = {
         json: async () => moviesData,
-      } as Request;
+      } as unknown as Request;
 
       // Act: Call the POST function
       await POST(request);
@@ -98,7 +103,7 @@ describe("Movies Order API Route", () => {
 
       const request = {
         json: async () => moviesData,
-      } as Request;
+      } as unknown as Request;
 
       // Act: Call the POST function
       await POST(request);
@@ -123,7 +128,7 @@ describe("Movies Order API Route", () => {
 
       const request = {
         json: async () => moviesData,
-      } as Request;
+      } as unknown as Request;
 
       // Act: Call the POST function
       await POST(request);
@@ -148,7 +153,7 @@ describe("Movies Order API Route", () => {
         json: async () => ({
           movies: [{ id: "1", title: "Movie 1" }],
         }),
-      } as Request;
+      } as unknown as Request;
 
       // Act: Call the POST function
       await POST(request);
@@ -176,7 +181,7 @@ describe("Movies Order API Route", () => {
 
       const request = {
         json: async () => moviesData,
-      } as Request;
+      } as unknown as Request;
 
       // Act: Call the POST function
       await POST(request);

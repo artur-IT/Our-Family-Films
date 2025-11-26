@@ -10,17 +10,25 @@ jest.mock("@/lib/db", () => ({
 // Mock NextResponse
 jest.mock("next/server", () => ({
   NextResponse: {
-    json: jest.fn((data, init) => ({
+    json: jest.fn((data: unknown, init?: { status?: number }) => ({
       json: async () => data,
       status: init?.status || 200,
-      ...data,
+      ...(typeof data === "object" && data !== null ? data : {}),
     })),
   },
 }));
 
+// Type for mock MongoDB collection
+interface MockCollection {
+  find: jest.Mock;
+  insertOne: jest.Mock;
+  updateOne: jest.Mock;
+  deleteOne: jest.Mock;
+}
+
 describe("Movies API Routes", () => {
   // Mock collection with methods
-  let mockCollection: any;
+  let mockCollection: MockCollection;
 
   beforeEach(() => {
     // Reset all mocks before each test
@@ -117,7 +125,7 @@ describe("Movies API Routes", () => {
 
       const request = {
         json: async () => mockMovieData,
-      } as Request;
+      } as unknown as Request;
 
       // Act: Call the POST function
       await POST(request);
@@ -140,7 +148,7 @@ describe("Movies API Routes", () => {
           id: "1",
           title: "New Movie",
         }),
-      } as Request;
+      } as unknown as Request;
 
       // Act: Call the POST function
       await POST(request);
@@ -171,7 +179,7 @@ describe("Movies API Routes", () => {
 
       const request = {
         json: async () => movieData,
-      } as Request;
+      } as unknown as Request;
 
       // Act: Call the PATCH function
       await PATCH(request);
@@ -202,7 +210,7 @@ describe("Movies API Routes", () => {
           id: "999",
           title: "Updated Title",
         }),
-      } as Request;
+      } as unknown as Request;
 
       // Act: Call the PATCH function
       await PATCH(request);
@@ -224,7 +232,7 @@ describe("Movies API Routes", () => {
           id: "1",
           title: "Updated Title",
         }),
-      } as Request;
+      } as unknown as Request;
 
       // Act: Call the PATCH function
       await PATCH(request);
@@ -250,7 +258,7 @@ describe("Movies API Routes", () => {
         json: async () => ({
           id: "1",
         }),
-      } as Request;
+      } as unknown as Request;
 
       // Act: Call the DELETE function
       await DELETE(request);
@@ -274,7 +282,7 @@ describe("Movies API Routes", () => {
         json: async () => ({
           id: "999",
         }),
-      } as Request;
+      } as unknown as Request;
 
       // Act: Call the DELETE function
       await DELETE(request);
@@ -295,7 +303,7 @@ describe("Movies API Routes", () => {
         json: async () => ({
           id: "1",
         }),
-      } as Request;
+      } as unknown as Request;
 
       // Act: Call the DELETE function
       await DELETE(request);

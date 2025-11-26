@@ -17,17 +17,25 @@ jest.mock("@/lib/auth", () => ({
 // Mock NextResponse
 jest.mock("next/server", () => ({
   NextResponse: {
-    json: jest.fn((data, init) => ({
+    json: jest.fn((data: unknown, init?: { status?: number }) => ({
       json: async () => data,
       status: init?.status || 200,
-      ...data,
+      ...(typeof data === "object" && data !== null ? data : {}),
     })),
   },
 }));
 
+// Type for mock MongoDB collection
+interface MockCollection {
+  find: jest.Mock;
+  findOne: jest.Mock;
+  updateOne: jest.Mock;
+  deleteOne: jest.Mock;
+}
+
 describe("Auth API Routes", () => {
   // Mock collection with methods
-  let mockCollection: any;
+  let mockCollection: MockCollection;
 
   beforeEach(() => {
     // Reset all mocks before each test
@@ -58,7 +66,7 @@ describe("Auth API Routes", () => {
       mockCollection.find().toArray.mockResolvedValue(mockUsers);
 
       // Act: Call the GET function
-      const response = await GET();
+      await GET();
 
       // Assert: Check that users are returned without passwords
       expect(getCollectionUsers).toHaveBeenCalled();
@@ -111,7 +119,7 @@ describe("Auth API Routes", () => {
           username: "testuser",
           password: "password123",
         }),
-      } as Request;
+      } as unknown as Request;
 
       // Act: Call the POST function
       await POST(request);
@@ -137,7 +145,7 @@ describe("Auth API Routes", () => {
           username: "",
           password: "password123",
         }),
-      } as Request;
+      } as unknown as Request;
 
       // Act: Call the POST function
       await POST(request);
@@ -162,7 +170,7 @@ describe("Auth API Routes", () => {
           username: "nonexistent",
           password: "password123",
         }),
-      } as Request;
+      } as unknown as Request;
 
       // Act: Call the POST function
       await POST(request);
@@ -191,7 +199,7 @@ describe("Auth API Routes", () => {
           username: "testuser",
           password: "wrongpassword",
         }),
-      } as Request;
+      } as unknown as Request;
 
       // Act: Call the POST function
       await POST(request);
@@ -219,7 +227,7 @@ describe("Auth API Routes", () => {
           username: "testuser",
           password: "plaintextpassword",
         }),
-      } as Request;
+      } as unknown as Request;
 
       // Act: Call the POST function
       await POST(request);
@@ -243,7 +251,7 @@ describe("Auth API Routes", () => {
         json: async () => {
           throw new Error("Invalid JSON");
         },
-      } as Request;
+      } as unknown as Request;
 
       // Act: Call the POST function
       await POST(request);
@@ -272,7 +280,7 @@ describe("Auth API Routes", () => {
           name: "Updated Name",
           username: "testuser",
         }),
-      } as Request;
+      } as unknown as Request;
 
       // Act: Call the PATCH function
       await PATCH(request);
@@ -304,7 +312,7 @@ describe("Auth API Routes", () => {
           id: "1",
           password: "newpassword",
         }),
-      } as Request;
+      } as unknown as Request;
 
       // Act: Call the PATCH function
       await PATCH(request);
@@ -331,7 +339,7 @@ describe("Auth API Routes", () => {
           id: "1",
           password: "$2b$10$alreadyhashed",
         }),
-      } as Request;
+      } as unknown as Request;
 
       // Act: Call the PATCH function
       await PATCH(request);
@@ -358,7 +366,7 @@ describe("Auth API Routes", () => {
           id: "999",
           name: "Updated Name",
         }),
-      } as Request;
+      } as unknown as Request;
 
       // Act: Call the PATCH function
       await PATCH(request);
@@ -377,7 +385,7 @@ describe("Auth API Routes", () => {
           id: "1",
           password: 12345, // Not a string
         }),
-      } as Request;
+      } as unknown as Request;
 
       // Act: Call the PATCH function
       await PATCH(request);
@@ -400,7 +408,7 @@ describe("Auth API Routes", () => {
           id: "1",
           name: "Updated Name",
         }),
-      } as Request;
+      } as unknown as Request;
 
       // Act: Call the PATCH function
       await PATCH(request);
@@ -426,7 +434,7 @@ describe("Auth API Routes", () => {
         json: async () => ({
           id: "1",
         }),
-      } as Request;
+      } as unknown as Request;
 
       // Act: Call the DELETE function
       await DELETE(request);
@@ -450,7 +458,7 @@ describe("Auth API Routes", () => {
         json: async () => ({
           id: "999",
         }),
-      } as Request;
+      } as unknown as Request;
 
       // Act: Call the DELETE function
       await DELETE(request);
@@ -471,7 +479,7 @@ describe("Auth API Routes", () => {
         json: async () => ({
           id: "1",
         }),
-      } as Request;
+      } as unknown as Request;
 
       // Act: Call the DELETE function
       await DELETE(request);
