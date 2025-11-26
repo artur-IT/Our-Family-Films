@@ -40,9 +40,8 @@ export function EditModeProvider({ children }: { children: ReactNode }) {
       toggleShowAddMovie,
       toggleEditMode,
     }),
-    [isEditMode, showAddMovie, user]
+    [isEditMode, showAddMovie, user, checkUser, toggleShowAddMovie, toggleEditMode]
   );
-
   // Provide the context values to all children components
   return <EditModeContext.Provider value={contextValue}>{children}</EditModeContext.Provider>;
 }
