@@ -1,5 +1,5 @@
 "use client";
-import { createContext, useCallback, useContext, useMemo, useState, ReactNode } from "react";
+import { createContext, useCallback, useContext, useEffect, useMemo, useState, ReactNode } from "react";
 
 // Type definition for the EditModeContext
 type EditModeContextType = {
@@ -40,9 +40,8 @@ export function EditModeProvider({ children }: { children: ReactNode }) {
       toggleShowAddMovie,
       toggleEditMode,
     }),
-    [isEditMode, showAddMovie, user]
+    [isEditMode, showAddMovie, user, checkUser, toggleShowAddMovie, toggleEditMode]
   );
-
   // Provide the context values to all children components
   return <EditModeContext.Provider value={contextValue}>{children}</EditModeContext.Provider>;
 }

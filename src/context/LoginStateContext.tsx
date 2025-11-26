@@ -41,6 +41,8 @@ export const LoginProvider = ({ children }: { children: React.ReactNode }) => {
       }
 
       const data = await response.json();
+      // Update users - this will cause one re-render, which is acceptable
+      // The context is memoized, so components will only re-render if they use 'users'
       setUsers(data);
     } catch (error) {
       console.error("Error fetching users:", error);
@@ -52,6 +54,7 @@ export const LoginProvider = ({ children }: { children: React.ReactNode }) => {
   }, [getUsers]);
 
   // Memoize context value to prevent unnecessary re-renders
+  // setIsLoggedIn from useState is stable, so it doesn't need to be in dependencies
   const contextValue = useMemo(
     () => ({
       isLoggedIn,
@@ -60,6 +63,10 @@ export const LoginProvider = ({ children }: { children: React.ReactNode }) => {
     }),
     [isLoggedIn, users]
   );
+
+  // Debug: Log when LoginProvider context value changes
+  useEffect(() => {
+  }, [isLoggedIn, users]);
 
   return <LoginStateContext.Provider value={contextValue}>{children}</LoginStateContext.Provider>;
 };
