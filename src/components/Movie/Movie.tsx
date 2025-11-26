@@ -14,19 +14,13 @@ export const Movie = ({ movie, isLoggedIn, index = 0 }: { movie: MovieData; isLo
   const [showEditForm, setEditForm] = useState(false);
   const [showDeletePopup, setDeletePopup] = useState(false);
 
-  // Use context to access movie context and ensure it's used within the provider
   const movieContext = useContext(MovieContext);
   if (!movieContext) throw new Error("Movie must be used within MovieContext.Provider");
   const { deleteMovie, setSelectedMovieId, selectedMovieId } = movieContext;
-
-  const [isVisible, setIsVisible] = useState(false); // Nowy stan do kontrolowania widoczności filmu
-  // Dodajemy klasę do kontrolowania widoczności
+  const [isVisible, setIsVisible] = useState(false);
   const movieVisibilityClass = isVisible ? style.visible : style.hidden;
-
-  // Use custom hook to determine if the app is in edit mode and if the add movie form should be shown
   const { isEditMode, showAddMovie, user } = useEditMode();
 
-  // Function to handle movie deletion
   const handleDelete = async () => {
     try {
       // Send a DELETE request to the API to delete the movie
@@ -81,7 +75,7 @@ export const Movie = ({ movie, isLoggedIn, index = 0 }: { movie: MovieData; isLo
       setIsVisible(true);
     }, delay);
 
-    return () => clearTimeout(timer); // Clearing the timer when the component is unmounted
+    return () => clearTimeout(timer);
   }, [index]);
 
   return (

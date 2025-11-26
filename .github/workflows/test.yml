@@ -1,0 +1,66 @@
+name: Run Tests
+
+# When to run this workflow
+on:
+  push:
+    branches: [ main, refactor ]
+  pull_request:
+    branches: [ main ]
+
+# Jobs are tasks that run in parallel or in sequence
+jobs:
+  test:
+    # Run on the latest Ubuntu (Linux) runner
+    runs-on: ubuntu-latest
+
+    # Environment variables available to all steps in this job
+    env:
+      MONGODB_URI: ${{ secrets.MONGODB_URI }}
+
+    # Steps are individual actions that run in sequence
+    steps:
+      # Step 1: Checkout code from repository
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Step 2: Setup Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: npm ci
+
+      # Step 4: Run linter (check code quality)
+      - name: Run linter
+        run: npm run lint
+
+      # Step 5: Build the project (check if it compiles correctly)
+      - name: Build project
+        run: npm run build
+
+      # Step 6: Run tests with coverage
+      - name: Run tests with coverage
+        run: npm run test:coverage
+
+      # Step 7: Display coverage summary in logs
+      - name: Display coverage summary
+        run: |
+          if [ -f coverage/coverage-summary.json ]; then
+            echo "📊 Test Coverage Summary:"
+            node -e "const cov = require('./coverage/coverage-summary.json'); const total = cov.total; console.log('Lines: ' + total.lines.pct + '%'); console.log('Statements: ' + total.statements.pct + '%'); console.log('Functions: ' + total.functions.pct + '%'); console.log('Branches: ' + total.branches.pct + '%');"
+          else
+            echo "⚠️ Coverage summary file not found"
+          fi
+
+      # Step 8: Upload coverage report as artifact (you can download it from Actions tab)
+      - name: Upload coverage reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: coverage/
+          retention-days: 30
+

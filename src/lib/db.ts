@@ -3,7 +3,6 @@ import { MongoClient } from "mongodb";
 
 // Getting the MongoDB URI from environment variables
 const MONGODB_URI = process.env.MONGODB_URI;
-// const MONGODB_URI = 'mongodb+srv://vercel-admin-user-6703a71951df322efc1f187a:FNGsib8AhXU4LJp8@cluster0.r4uz6i5.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 const DATABASE_NAME = "myFirstBase";
 const COLLECTION_MOVIES = "our_movies";
 const COLLECTION_USERS = "our_movies_Users";
