@@ -1,5 +1,5 @@
 "use client";
-import { createContext, useContext, useState, ReactNode } from "react";
+import { createContext, useCallback, useContext, useMemo, useState, ReactNode } from "react";
 
 // Type definition for the EditModeContext
 type EditModeContextType = {
@@ -20,21 +20,31 @@ export function EditModeProvider({ children }: { children: ReactNode }) {
   const [showAddMovie, setShowAddMovie] = useState<boolean>(false);
   const [user, setUser] = useState<string>("us");
 
-  // Function to set the current user
-  const checkUser = (value: string) => setUser(value);
+  // Function to set the current user - memoized to prevent re-renders
+  const checkUser = useCallback((value: string) => setUser(value), []);
 
-  // Function to toggle edit mode state
-  const toggleEditMode = () => setIsEditMode((prev) => !prev);
+  // Function to toggle edit mode state - memoized to prevent re-renders
+  const toggleEditMode = useCallback(() => setIsEditMode((prev) => !prev), []);
 
-  // Function to toggle add movie form visibility
-  const toggleShowAddMovie = () => setShowAddMovie((prev) => !prev);
+  // Function to toggle add movie form visibility - memoized to prevent re-renders
+  const toggleShowAddMovie = useCallback(() => setShowAddMovie((prev) => !prev), []);
+
+  // Memoize context value to prevent unnecessary re-renders
+  // Functions are stable (created with useState setters or useCallback), so they don't need to be in dependencies
+  const contextValue = useMemo(
+    () => ({
+      isEditMode,
+      showAddMovie,
+      user,
+      checkUser,
+      toggleShowAddMovie,
+      toggleEditMode,
+    }),
+    [isEditMode, showAddMovie, user]
+  );
 
   // Provide the context values to all children components
-  return (
-    <EditModeContext.Provider value={{ isEditMode, showAddMovie, user, checkUser, toggleShowAddMovie, toggleEditMode }}>
-      {children}
-    </EditModeContext.Provider>
-  );
+  return <EditModeContext.Provider value={contextValue}>{children}</EditModeContext.Provider>;
 }
 
 // Custom hook to use the edit mode context

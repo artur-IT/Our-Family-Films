@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useCallback, useContext, useEffect, useState } from "react";
+import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 
 interface User {
   username: string;
@@ -51,7 +51,17 @@ export const LoginProvider = ({ children }: { children: React.ReactNode }) => {
     getUsers();
   }, [getUsers]);
 
-  return <LoginStateContext.Provider value={{ isLoggedIn, setIsLoggedIn, users }}>{children}</LoginStateContext.Provider>;
+  // Memoize context value to prevent unnecessary re-renders
+  const contextValue = useMemo(
+    () => ({
+      isLoggedIn,
+      setIsLoggedIn,
+      users,
+    }),
+    [isLoggedIn, users]
+  );
+
+  return <LoginStateContext.Provider value={contextValue}>{children}</LoginStateContext.Provider>;
 };
 
 // Custom hook to easily access the login state context
