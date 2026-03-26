@@ -9,7 +9,7 @@ export const Hero = () => {
   React.useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev === 2 ? 0 : prev + 1));
-    }, 10000);
+    }, 100);
 
     return () => clearInterval(timer);
   }, []);
