@@ -12,14 +12,9 @@ import { EditModeContext } from "@/context/EditMovieContext";
 import { MovieDetails } from "@/components/MovieDetails/MovieDetails";
 
 export const Shelf = () => {
-  // Create a reference to the container element for scrolling
   const containerRef = useRef<HTMLDivElement>(null);
   const { isLoggedIn } = useLoginState();
-
-  // Get the edit context and user information
   const { isEditMode, user } = useContext(EditModeContext) || { isEditMode: false, user: "" };
-
-  // Use the MovieContext to get the list of movies, defaulting to an empty array if not available
   const { movies, updateDragDropMovie } = useContext(MovieContext) || { movies: [] };
 
   const handleScroll = (direction: "left" | "right") => {
@@ -29,7 +24,6 @@ export const Shelf = () => {
     });
   };
 
-  // Configuration of sensors for dnd-kit
   const sensors = useSensors(
     useSensor(PointerSensor),
     useSensor(KeyboardSensor, {
@@ -44,11 +38,9 @@ export const Shelf = () => {
       const oldIndex = movies.findIndex((movie) => movie.id === active.id);
       const newIndex = movies.findIndex((movie) => movie.id === over.id);
 
-      // Create a new array with the moved movie
       const newMovies = arrayMove(movies, oldIndex, newIndex);
 
       if (updateDragDropMovie) {
-        // Update local state
         updateDragDropMovie(newMovies);
       }
     }

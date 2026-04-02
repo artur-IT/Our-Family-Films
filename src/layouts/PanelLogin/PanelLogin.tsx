@@ -26,10 +26,8 @@ export const PanelLogin = () => {
   // Handle form submission and user authentication
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     try {
-      setError(null); // Clear any previous errors
+      setError(null);
 
-      // Send credentials to API for authentication
-      // The API will handle password comparison securely on the server side
       const response = await fetch("/api/auth", {
         method: "POST",
         headers: {
@@ -49,7 +47,6 @@ export const PanelLogin = () => {
         document.cookie = "auth=true; path=/";
         setIsAnimating(false);
 
-        // Redirect user based on their role after animation
         setTimeout(async () => {
           if (result.user.username === ADMIN_USERNAME) {
             await router.push(ROUTES.ADMIN);
@@ -75,11 +72,10 @@ export const PanelLogin = () => {
       setIsAnimating(false);
       setTimeout(() => {
         router.push(ROUTES.HOME);
-      }, ANIMATION_DURATION); // Same duration as CSS transition
+      }, ANIMATION_DURATION);
     }
   }, [pathname, router]);
 
-  // Handle escape button click
   const handleEsc = (e: React.MouseEvent) => {
     e.preventDefault();
     setIsAnimating(false);
@@ -93,7 +89,6 @@ export const PanelLogin = () => {
     <div className={`${styles.loginPanel} ${isAnimating ? styles.loginPanelShow : ""}`}>
       {error && <div className={styles.error}>{error}</div>}
       <h2>Login</h2>
-      {/* Login form with form validation */}
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.formGroup}>
           <label>

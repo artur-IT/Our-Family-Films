@@ -16,29 +16,26 @@ interface MovieFormInputs {
 }
 
 interface MovieEditProps {
-  setEditForm: (value: boolean) => void; // Function to toggle the edit form visibility
+  setEditForm: (value: boolean) => void; 
   movie: MovieData;
-  id: string; // ID of the movie being edited
+  id: string; 
 }
 
-// Main component for editing movie details
 export const MovieEdit = ({ setEditForm, movie, id }: MovieEditProps) => {
-  const { user } = useEditMode(); // Get the current user from edit mode context
-  const movieContext = useContext(MovieContext); // Access movie context
+  const { user } = useEditMode();
+  const movieContext = useContext(MovieContext); 
 
-  // Initialize the form with default values based on the movie data
   const { register, handleSubmit } = useForm<MovieFormInputs>({
     defaultValues: {
       title: movie.title,
       type: movie.type,
       genre: movie.genre,
-      ratings: movie.ratings?.[user] || 0, // Default rating for the current user
-      comment: movie.comments?.[user] || "", // Default comment for the current user
+      ratings: movie.ratings?.[user] || 0, 
+      comment: movie.comments?.[user] || "", 
       comments: {},
     },
   });
 
-  // Function to handle saving the updated movie data
   const handleSave = handleSubmit(async (data) => {
     const updatedData = {
       id,
@@ -47,17 +44,17 @@ export const MovieEdit = ({ setEditForm, movie, id }: MovieEditProps) => {
       genre: data.genre,
       ratings: {
         ...movie.ratings,
-        [user]: Number(data.ratings), // Update the rating for the current user
+        [user]: Number(data.ratings), 
       },
       comments: {
         ...movie.comments,
-        ...(data.comment ? { [user]: data.comment } : {}), // Add comment if provided
+        ...(data.comment ? { [user]: data.comment } : {}), 
       },
     };
 
     try {
-      await movieContext?.updateMovie(id, updatedData); // Update the movie in context
-      setEditForm(false); // Close the edit form
+      await movieContext?.updateMovie(id, updatedData); 
+      setEditForm(false);
     } catch (error) {
       console.error("Error while updating the movie:", error);
     }
@@ -65,19 +62,19 @@ export const MovieEdit = ({ setEditForm, movie, id }: MovieEditProps) => {
 
   return (
     <div className={styles.movieEdit} style={user ? { opacity: 1 } : undefined} data-testid="movie-edit">
-      {user === "Artur" && ( // Check if the user is allowed to edit
+      {user === "Artur" && (
         <>
           {(["title", "genre", "type"] as const).map((field, index) => (
             <div key={index}>
               <label>
                 {field.charAt(0).toUpperCase() + field.slice(1)}
-                {field === "type" ? ( // Render a select for the type field
+                {field === "type" ? ( 
                   <select {...register(field)}>
                     <option value="Film">Film</option>
                     <option value="Serial">Serial</option>
                   </select>
                 ) : (
-                  <input id={field} maxLength={field === "genre" ? 30 : undefined} {...register(field)} /> // Render input for other fields
+                  <input id={field} maxLength={field === "genre" ? 30 : undefined} {...register(field)} /> 
                 )}
               </label>
             </div>
@@ -88,8 +85,8 @@ export const MovieEdit = ({ setEditForm, movie, id }: MovieEditProps) => {
       {(["ratings", "comment"] as const).map((field, index) => (
         <div key={index}>
           <label>
-            {field.charAt(0).toUpperCase() + field.slice(1)} {/* Display the field name with the first letter capitalized  */}
-            {field === "ratings" ? ( // Render a select for the ratings field
+            {field.charAt(0).toUpperCase() + field.slice(1)} 
+            {field === "ratings" ? ( 
               <select {...register(field)}>
                 {[0, 1, 2, 3].map((value) => (
                   <option key={value} value={value}>

@@ -35,7 +35,6 @@ export const MovieProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const [movieInfo, setMovieInfo] = useState<MovieData[]>([]);
   const [selectedMovieId, setSelectedMovieId] = useState<string | null>(null);
 
-  // get movies from MongoDB
   const getMovies = useCallback(async () => {
     try {
       const response = await fetch("/api/movies", {
@@ -47,13 +46,13 @@ export const MovieProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       });
 
       if (!response.ok) {
-        throw new Error(`Błąd HTTP: ${response.status}`);
+        throw new Error(`HTTP Error: ${response.status}`);
       }
 
       const data = await response.json();
       setMovies(data);
     } catch (error) {
-      console.error("Błąd pobierania filmów:", error);
+      console.error("Get movie error:", error);
     }
   }, []);
 
@@ -61,7 +60,7 @@ export const MovieProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     (newMovie: MovieData) => {
       setMovies((prevMovies) => [...prevMovies, newMovie]);
       setSelectedPoster("");
-      getMovies(); // refresh film list
+      getMovies(); 
     },
     [getMovies]
   );
@@ -77,12 +76,12 @@ export const MovieProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       });
 
       if (!response.ok) {
-        throw new Error(`Błąd HTTP: ${response.status}`);
+        throw new Error(`HTTP Error: ${response.status}`);
       }
 
       setMovies((prevMovies) => prevMovies.map((movie) => (movie.id === movieId ? { ...movie, ...updatedData } : movie)));
     } catch (error) {
-      console.error("Błąd aktualizacji filmu:", error);
+      console.error("Update movie error:", error);
     }
   }, []);
 

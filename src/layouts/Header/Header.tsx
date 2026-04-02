@@ -15,12 +15,10 @@ interface HeaderProps {
   panelLogin: React.ReactNode;
 }
 
-// Header component that receives panelLogin as a prop
 export const Header = React.memo(({ panelLogin }: HeaderProps) => {
   const { isLoggedIn, setIsLoggedIn } = useLoginState();
   const { isEditMode, toggleEditMode } = useEditMode();
 
-  // Handle login/logout link click - memoized to prevent re-renders
   const handleLinkLogin = useCallback(() => {
     if (isLoggedIn) {
       setIsLoggedIn(!isLoggedIn);
@@ -38,7 +36,6 @@ export const Header = React.memo(({ panelLogin }: HeaderProps) => {
           <p>Good Family Movies</p>
         </Link>
 
-        {/* Render login panel passed as prop */}
         {panelLogin}
 
         <Link href={isLoggedIn ? ROUTES.HOME : ROUTES.AUTH} onClick={handleLinkLogin}>

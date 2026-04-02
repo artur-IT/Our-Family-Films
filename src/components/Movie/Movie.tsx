@@ -23,7 +23,6 @@ export const Movie = ({ movie, isLoggedIn, index = 0 }: { movie: MovieData; isLo
 
   const handleDelete = async () => {
     try {
-      // Send a DELETE request to the API to delete the movie
       const response = await fetch(`/api/movies`, {
         method: "DELETE",
         headers: {
@@ -41,19 +40,16 @@ export const Movie = ({ movie, isLoggedIn, index = 0 }: { movie: MovieData; isLo
     }
   };
 
-  // Calculate the total and average ratings for the movie
   const ratings = movie.ratings || {};
   const totalRatings = Object.values(ratings).reduce((sum, rating) => (sum as number) + (rating as number), 0);
   const averageRating = Object.values(ratings).length > 0 ? (totalRatings as number) / Object.values(ratings).length : 0;
 
-  // Check if there is any rating greater than 0
   const hasAnyRating = Object.values(ratings).some((rating) => (rating as number) > 0);
 
   const handleInfoClick = (e: React.MouseEvent) => {
     e.stopPropagation();
 
     if (setSelectedMovieId) {
-      // If the movie is already selected, deselect it, otherwise select it
       const newSelectedId = selectedMovieId === movie.id ? null : movie.id;
       setSelectedMovieId(newSelectedId);
 
@@ -68,7 +64,6 @@ export const Movie = ({ movie, isLoggedIn, index = 0 }: { movie: MovieData; isLo
     }
   };
 
-  // Effect for delayed movie display
   useEffect(() => {
     const delay = 200 + index * 600;
     const timer = setTimeout(() => {
@@ -103,7 +98,6 @@ export const Movie = ({ movie, isLoggedIn, index = 0 }: { movie: MovieData; isLo
               Edit
             </button>
 
-            {/* If user as Admin show delete button */}
             {user === "Artur" && (
               <button className={style.delete_btn} onClick={() => setDeletePopup(!showDeletePopup)}>
                 Delete

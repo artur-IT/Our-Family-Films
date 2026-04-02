@@ -7,7 +7,6 @@ interface User {
   name?: string;
 }
 
-// Create context for managing login state across the application
 export const LoginStateContext = createContext<{
   isLoggedIn: boolean;
   setIsLoggedIn: (loggedIn: boolean) => void;
@@ -18,22 +17,18 @@ export const LoginStateContext = createContext<{
   users: [],
 });
 
-// Provider component that makes login state available to all child components
 export const LoginProvider = ({ children }: { children: React.ReactNode }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [users, setUsers] = useState([]);
 
-  // Function to fetch users from the API
-  // Using useCallback to prevent unnecessary re-renders
   const getUsers = useCallback(async () => {
     try {
-      // Fetch users from the authentication API
       const response = await fetch("/api/auth", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
         },
-        cache: "no-store", // Prevent caching of sensitive authentication data
+        cache: "no-store", 
       });
 
       if (!response.ok) {
@@ -41,8 +36,6 @@ export const LoginProvider = ({ children }: { children: React.ReactNode }) => {
       }
 
       const data = await response.json();
-      // Update users - this will cause one re-render, which is acceptable
-      // The context is memoized, so components will only re-render if they use 'users'
       setUsers(data);
     } catch (error) {
       console.error("Error fetching users:", error);
@@ -53,8 +46,6 @@ export const LoginProvider = ({ children }: { children: React.ReactNode }) => {
     getUsers();
   }, [getUsers]);
 
-  // Memoize context value to prevent unnecessary re-renders
-  // setIsLoggedIn from useState is stable, so it doesn't need to be in dependencies
   const contextValue = useMemo(
     () => ({
       isLoggedIn,
@@ -64,12 +55,10 @@ export const LoginProvider = ({ children }: { children: React.ReactNode }) => {
     [isLoggedIn, users]
   );
 
-  // Debug: Log when LoginProvider context value changes
   useEffect(() => {
   }, [isLoggedIn, users]);
 
   return <LoginStateContext.Provider value={contextValue}>{children}</LoginStateContext.Provider>;
 };
 
-// Custom hook to easily access the login state context
 export const useLoginState = () => useContext(LoginStateContext);

@@ -20,21 +20,17 @@ const MONGODB_URI = process.env.MONGODB_URI || 'mongodb+srv://vercel-admin-user-
 const DATABASE_NAME = "myFirstBase";
 const COLLECTION_USERS = "our_movies_Users";
 
-// Number of salt rounds for password hashing
 const SALT_ROUNDS = 10;
 
 async function migratePasswords() {
   let client: MongoClient | null = null;
 
   try {
-    console.log("🔗 Connecting to MongoDB...");
     client = await MongoClient.connect(MONGODB_URI);
     const db = client.db(DATABASE_NAME);
     const collection = db.collection(COLLECTION_USERS);
 
-    console.log("📋 Fetching all users...");
     const users = await collection.find({}).toArray();
-    console.log(`Found ${users.length} users to process.`);
 
     let migratedCount = 0;
     let skippedCount = 0;
@@ -42,22 +38,17 @@ async function migratePasswords() {
     for (const user of users) {
       const password = user.password;
 
-      // Skip if password is empty, undefined, or not a string
       if (!password || typeof password !== "string") {
-        console.log(`⚠️  Skipping user "${user.username}" - no valid password found (type: ${typeof password})`);
         skippedCount++;
         continue;
       }
 
       // Check if password is already hashed (bcrypt hashes start with $2a$ or $2b$)
       if (password.startsWith("$2a$") || password.startsWith("$2b$")) {
-        console.log(`⏭️  Skipping user "${user.username}" - password already hashed`);
         skippedCount++;
         continue;
       }
 
-      // Hash the plain text password
-      console.log(`🔐 Hashing password for user "${user.username}"...`);
       const hashedPassword = await bcrypt.hash(password, SALT_ROUNDS);
 
       // Update the user in the database
@@ -66,23 +57,14 @@ async function migratePasswords() {
         { $set: { password: hashedPassword } }
       );
 
-      console.log(`✅ Successfully migrated password for user "${user.username}"`);
       migratedCount++;
     }
 
-    console.log("\n📊 Migration Summary:");
-    console.log(`   ✅ Migrated: ${migratedCount} users`);
-    console.log(`   ⏭️  Skipped: ${skippedCount} users`);
-    console.log(`   📝 Total: ${users.length} users`);
-    console.log("\n✨ Migration completed successfully!");
-
   } catch (error) {
-    console.error("❌ Error during migration:", error);
     process.exit(1);
   } finally {
     if (client) {
       await client.close();
-      console.log("🔌 Database connection closed.");
     }
   }
 }
@@ -90,11 +72,9 @@ async function migratePasswords() {
 // Run the migration
 migratePasswords()
   .then(() => {
-    console.log("🎉 All done!");
     process.exit(0);
   })
   .catch((error) => {
-    console.error("💥 Fatal error:", error);
     process.exit(1);
   });
 

@@ -1,14 +1,7 @@
 import bcrypt from "bcrypt";
 
-// Number of salt rounds for password hashing
-// Higher number = more secure but slower (10 is a good balance)
 const SALT_ROUNDS = 10;
 
-/**
- * This function should be used when creating or updating user passwords
- * @param password - The plain text password to hash
- * @returns A promise that resolves to the hashed password string
- */
 export async function hashPassword(password: string): Promise<string> {
   return await bcrypt.hash(password, SALT_ROUNDS);
 }

@@ -9,19 +9,17 @@ import { v4 as uuidv4 } from "uuid";
 import { FieldValues, Path, useForm, UseFormRegister } from "react-hook-form";
 
 interface MovieAddProps {
-  movieDB?: MovieData[]; // Optional array of movies
+  movieDB?: MovieData[]; 
   setMovieDB?: (value: MovieData[]) => void;
 }
-
 
 const MovieAdd: React.FC<MovieAddProps> = () => {
   const movieAddRef = useRef<HTMLDivElement>(null);
   const movieContext = useContext(MovieContext);
   const { toggleShowAddMovie } = useEditMode();
   const { addMovie, selectedTitle, selectedPoster, movieLink, movieInfo, setSelectedTitle, setSelectedPoster } = movieContext || {};
-  const movieId = useMemo(() => uuidv4().slice(0, 3), []); // Generate a unique movie ID
+  const movieId = useMemo(() => uuidv4().slice(0, 3), []); 
 
-  // Initialize the form with default values
   const { register, handleSubmit, reset } = useForm<MovieData>({
     defaultValues: {
       title: selectedTitle || "",
@@ -30,7 +28,6 @@ const MovieAdd: React.FC<MovieAddProps> = () => {
     },
   });
 
-  // Assuming movieInfo is an array, we can get the first element (if it exists)
   const selectedMovie = movieInfo && movieInfo.length > 0 ? movieInfo[0] : undefined;
 
   const createMovie = async (data: MovieData) => {
@@ -56,7 +53,6 @@ const MovieAdd: React.FC<MovieAddProps> = () => {
     await saveMovie(newMovie);
   };
 
-  // Function to save the new movie to the server
   const saveMovie = async (newMovie: MovieData) => {
     try {
       const response = await fetch("/api/movies", {
@@ -75,7 +71,6 @@ const MovieAdd: React.FC<MovieAddProps> = () => {
     }
   };
 
-  // Function to clear the movie form
   const clearMovieForm = () => {
     reset({ title: "", genre: "", type: "Film" });
     setSelectedPoster?.("");
@@ -84,57 +79,50 @@ const MovieAdd: React.FC<MovieAddProps> = () => {
 
   useEffect(() => {
     if (selectedTitle) {
-      reset({ title: selectedTitle }); // Reset title if selectedTitle is available
+      reset({ title: selectedTitle });
     }
 
-    // Function to handle clicks outside the movie add form
     const handleClickOutside = (event: MouseEvent) => {
-      const targetElement = event.target as HTMLElement; // Get the clicked element
+      const targetElement = event.target as HTMLElement; 
       if (movieAddRef.current && !movieAddRef.current.contains(targetElement) && !targetElement.closest(`.${styles.movieAdd}`)) {
-        toggleShowAddMovie(); // Hide the add movie form if clicked outside
+        toggleShowAddMovie(); 
       }
     };
 
-    // Add event listener for mouse down events
     const clickOutsideListener = () => document.addEventListener("mousedown", handleClickOutside, { capture: true });
     setTimeout(clickOutsideListener, 100);
 
-    // Cleanup function to remove the event listener
     return () => {
       document.removeEventListener("mousedown", handleClickOutside, { capture: true });
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedTitle, toggleShowAddMovie]);
 
-  // Interface for the properties of the InputField component
   interface InputFieldProps<T extends FieldValues> {
-    id: Path<T>; // The id of the input field
-    label: string; // The label to display for the input field
-    register: UseFormRegister<T>; // The register function from react-hook-form to connect the input
+    id: Path<T>;
+    label: string; 
+    register: UseFormRegister<T>;
     required?: boolean;
     maxLength?: number;
     defaultValue?: string;
   }
 
-  // InputField component for rendering a labeled input field
   const InputField = <T extends FieldValues>({ id, label, register, required, maxLength, defaultValue }: InputFieldProps<T>) => {
     return (
       <div>
         <label>
           {label} <br />
-          {/* Register the input field with react-hook-form and set its properties */}
           <input {...register(id, { required, maxLength })} defaultValue={defaultValue} />
         </label>
       </div>
     );
   };
 
-  // Interface for the properties of the SelectField component
   interface SelectFieldProps<T extends FieldValues> {
-    id: Path<T>; // The id of the select field
+    id: Path<T>; 
     label: string;
-    register: UseFormRegister<T>; // The register function from react-hook-form to connect the select
-    options: string[]; // Array of options to display in the select dropdown
+    register: UseFormRegister<T>;
+    options: string[]; 
   }
 
   // SelectField component for rendering a labeled select dropdown
@@ -142,9 +130,7 @@ const MovieAdd: React.FC<MovieAddProps> = () => {
     <div>
       <label>
         {label} <br />
-        {/* Register the select field with react-hook-form */}
         <select id={id} {...register(id)}>
-          {/* Map through options to create option elements */}
           {options.map((option) => (
             <option key={option} value={option}>
               {option}
@@ -155,7 +141,6 @@ const MovieAdd: React.FC<MovieAddProps> = () => {
     </div>
   );
 
-  // Component for rendering checkbox fields
   const CheckboxField = ({ label, checked }: { label: string; checked: boolean }) => (
     <div>
       <label>
@@ -165,7 +150,6 @@ const MovieAdd: React.FC<MovieAddProps> = () => {
     </div>
   );
 
-  // Render the MovieAdd component
   return (
     <div className={styles.movieAdd} ref={movieAddRef}>
       <h2>Add new movie</h2>

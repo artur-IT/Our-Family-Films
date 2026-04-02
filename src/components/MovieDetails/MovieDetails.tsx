@@ -16,45 +16,37 @@ export const MovieDetails: React.FC = () => {
   const [currentMovie, setCurrentMovie] = useState<MovieData | null>(null);
   const [shouldRender, setShouldRender] = useState(false);
 
-  // Close movie detail window
   const handleClose = () => {
     setIsVisible(false);
 
-    // After the disappearance animation is finished, we reset the selectedMovieId
     setTimeout(() => {
       setSelectedMovieId(null);
     }, 300);
   };
 
-  // Effect handling the appearance and disappearance of the component
   useEffect(() => {
     if (selectedMovieId) {
-      // When a movie is selected, first prepare the component for rendering
       const movie = movies.find((movie) => movie.id === selectedMovieId);
       if (movie) {
         setCurrentMovie(movie);
         setShouldRender(true);
 
-        // Delay showing the component to give time for rendering
         setTimeout(() => {
           setIsVisible(true);
         }, 50);
       }
     } else {
-      // When a movie is deselected, first hide the component
       setIsVisible(false);
 
-      // After the disappearance animation is finished, stop rendering the component
       const timer = setTimeout(() => {
         setShouldRender(false);
         setCurrentMovie(null);
-      }, 300); // Time should match the CSS animation time
+      }, 300); 
 
       return () => clearTimeout(timer);
     }
   }, [selectedMovieId, movies]);
 
-  // If we shouldn't render the component, return null
   if (!shouldRender) return null;
 
   return (
